@@ -1,0 +1,51 @@
+<div data-name="dpr" class="page">
+	<div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">DPR</div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+		
+  	<div class="page-content dpr-screen-content dpr_sheet">  
+      <form id="form_dpr" class="form_dpr">  
+        <div class="block">       
+          <div class="list no-hairlines-md">
+            <ul id="dprul" class="no-bg">
+              <li class="item-content item-input ">
+                <div class="item-inner">
+                  <div class="item-title item-floating-label floatlbl_placeholder">Stations<sup class="text-red fw-600 font-12">*</sup></div>
+                  <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                    <select class="form-control" name="station_id" id="station_id">                    
+                    </select>
+                  </div>
+                </div>
+              </li>
+
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-floating-label floatlbl_placeholder">Date<sup class="text-red fw-600 font-12">*</sup></div>
+                  <div class="item-input-wrap txtbox_border">
+                    <input type="text" placeholder="Select date" name="dpr_date" readonly="readonly" id="demo-calendar-modal-dpr"/>
+                  </div>
+                </div>
+              </li>
+            </ul>           
+          </div>
+          <div class="block">
+              <div class="row">
+                <div class="col"><a class="button col button button-fill color-black no-radius" href="#" onclick="opendprsheet()">Submit</a></div>
+              </div>
+          </div>
+
+        </div>  
+      </form> 			
+  	</div>
+</div>

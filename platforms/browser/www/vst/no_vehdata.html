@@ -1,0 +1,79 @@
+<div data-name="no_vehdata" class="page">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">VST</div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+  <div class="page-content novehdata">
+    <div class="block">    
+      	<div class=container4> 
+	  		<p class="text-uppercase">no data found</p>
+		</div>
+		<form id="noveh_form">
+			<input type="hidden" name="hidd_qrtxt" id="hidd_qrtxt" />
+        <div class="row">
+	        <!--button class="col button button-fill color-gray" type="button" onclick="addvstPage()">Enter Data</button-->
+
+          <button class="col button button-fill color-black search_veh display-block" type="button" onclick="searchVehicle()">Vehicle Search</button>
+        </div>
+
+
+
+
+        <div class="card veh_search mt-10 elevation-15 card-border display-none">
+          <!--div class="card-header">Card header</div-->
+          <div class="card-content card-content-padding">
+            <div class="list no-hairlines-md">
+              <ul id="searchvst">
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                    <div class="item-title floatlbl_placeholder fs-12 fw-600">Vehicle No<sup class="text-red fw-600 font-12">*</sup></div>
+                    <div class="item-input-wrap notxtborder">
+                      <div class="row">
+                        <div class="col-20">
+                          <input type="text" placeholder="GJ" name="search_np_one" id="codeBox1" class="readonly_txt num_plt text-uppercase num_plate fs-14" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)">
+                          
+                        </div>                  
+
+                        <div class="col-20">
+                          <input type="number" placeholder="18" name="search_np_two" id="codeBox2" class="readonly_txt num_plt text-uppercase num_plate fs-14" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)">
+                          
+                        </div>
+
+                        <div class="col-20">
+                          <input type="text" placeholder="BK" name="search_np_three" id="codeBox3" class="readonly_txt num_plt text-uppercase num_plate fs-14" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)">     
+                        </div>
+                      
+                        <div class="col-33">
+                          <input type="number" placeholder="8807" name="search_np_four" id="codeBox4" class="readonly_txt num_plt text-uppercase num_plate fs-14" onkeyup="gotonext_four(this)">                  
+                        </div>
+                      </div> 
+                    </div>
+                    <div class="fs-12 fw-600 mt-5">For Ex: GJ-18-BK-8807</div> 
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--div class="block">
+            <div class="row mb-15">
+              <button class="col button button-small button-fill text-uppercase veh_searchbtn" type="button" onclick="searchByveh()">search</button>
+              <button class="col button button-small button-fill text-uppercase color-gray" type="button" onclick="hidecard()">cancel</button>
+            </div>
+          </div-->
+        </div>
+
+
+    	</form>
+   </div>
+  </div>
+</div>  

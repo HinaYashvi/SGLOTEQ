@@ -1,0 +1,18 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "SGL",
+  "short_name": "SGL",
+  "version": "com.phonegap.SGL",
+  "description": "Sabarmati Gas Limited.",
+  "author": "SGL Team",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
+  "orientation": "portrait",
+  "start_url": "index.html"
+}

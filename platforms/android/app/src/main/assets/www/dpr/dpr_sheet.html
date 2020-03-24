@@ -1,0 +1,1320 @@
+<div data-name="dpr_sheet" class="page">
+	<div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">DPR SHEET</div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+  	<div class="page-content dpr-screen-content dpr_sheet">  
+      <div class="block">
+        <div class="row">
+          <div class="col-66">
+            <div class="text-red fw-600 st_name"></div>
+          </div>
+          <div class="col-33">
+            <div class="text-red fw-600 dpr_dt"></div>
+          </div>
+        </div>  
+      </div>
+
+      <form id="form_dpr" class="form_dpr">  
+        <input type="hidden" name="hidd_stid" id="hidd_stid" />
+        <input type="hidden" name="hidd_dprdt" id="hidd_dprdt" />
+        <!---------------------------- C O M P R E S S O R -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">compressor</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table">    
+                      <table>
+                        <thead>
+                          <tr>            
+                            <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_zero tbl-cell"><strong id="comp_time_zero" >00:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_one tbl-cell"><strong id="comp_time_one" >01:00</strong></th>                             
+
+                            <th class="label-cell text-uppercase table-th comp_th_two display-none"><strong id="comp_time_two">02:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_three display-none"><strong id="comp_time_three">03:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_four display-none"><strong id="comp_time_four">04:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_five display-none"><strong id="comp_time_five">05:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_six display-none"><strong id="comp_time_six">06:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_seven display-none"><strong id="comp_time_seven">07:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_eight display-none"><strong id="comp_time_eight">08:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_nine display-none"><strong id="comp_time_nine">09:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_ten display-none"><strong id="comp_time_ten">10:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_eleven display-none"><strong id="comp_time_eleven">11:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_twelve display-none"><strong id="comp_time_twelve">12:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_thirteen display-none"><strong id="comp_time_thirteen">13:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_fourteen display-none"><strong id="comp_time_fourteen">14:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_fifteen display-none"><strong id="comp_time_fiften">15:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_sixteen display-none"><strong id="comp_time_sixteen">16:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_seventeen display-none"><strong id="comp_time_seventeen">17:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_eighteen display-none"><strong id="comp_time_eighteen">18:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_nineteen display-none"><strong id="comp_time_nineteen">19:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_twenty display-none"><strong id="comp_time_twenty">20:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_twentyone display-none"><strong id="comp_time_twentyone">21:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_twentytwo display-none"><strong id="comp_time_twentytwo">22:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_twentythree display-none"><strong id="comp_time_twentythree">23:00</strong></th>     
+                          </tr>
+                        </thead>
+                        <tbody id="sheet_data" >
+                          <tr >                             
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. suction<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="comp_suc_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="comp_suc_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="comp_suc_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="comp_suc_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="comp_suc_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="comp_suc_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="comp_suc_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="comp_suc_seven" class="td_txt"></td>          
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="comp_suc_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="comp_suc_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="comp_suc_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="comp_suc_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="comp_suc_twelve" class="td_txt"></td>      
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="comp_suc_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="comp_suc_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="comp_suc_fifteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="comp_suc_sixteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="comp_suc_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="comp_suc_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="comp_suc_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="comp_suc_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="comp_suc_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="comp_suc_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="comp_suc_twentythree" class="td_txt"></td>           
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. discharge<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="comp_dis_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="comp_dis_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="comp_dis_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="comp_dis_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="comp_dis_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="comp_dis_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="comp_dis_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="comp_dis_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="comp_dis_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="comp_dis_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="comp_dis_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="comp_dis_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="comp_dis_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="comp_dis_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="comp_dis_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="comp_dis_fifteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="comp_dis_sixteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="comp_dis_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="comp_dis_eighteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="comp_dis_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="comp_dis_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="comp_dis_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="comp_dis_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="comp_dis_twentythree" class="td_txt"></td>
+
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 1 mfm<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="lcv_one_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="lcv_one_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="lcv_one_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="lcv_one_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="lcv_one_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="lcv_one_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="lcv_one_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="lcv_one_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="lcv_one_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="lcv_one_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="lcv_one_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="lcv_one_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="lcv_one_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="lcv_one_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="lcv_one_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="lcv_one_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="lcv_one_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="lcv_one_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="lcv_one_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="lcv_one_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="lcv_one_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="lcv_one_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="lcv_one_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="lcv_one_twentythree" class="td_txt"></td>                        
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 2 mfm<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="lcv_two_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="lcv_two_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="lcv_two_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="lcv_two_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="lcv_two_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="lcv_two_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="lcv_two_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="lcv_two_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="lcv_two_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="lcv_two_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="lcv_two_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="lcv_two_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="lcv_two_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="lcv_two_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="lcv_two_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="lcv_two_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="lcv_two_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="lcv_two_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="lcv_two_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="lcv_two_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="lcv_two_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="lcv_two_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="lcv_two_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="lcv_two_twentythree" class="td_txt"></td>                      
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 3 mfm</td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="lcv_three_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="lcv_three_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="lcv_three_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="lcv_three_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="lcv_three_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="lcv_three_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="lcv_three_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="lcv_three_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="lcv_three_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="lcv_three_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="lcv_three_ten" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="lcv_three_eleven" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="lcv_three_twelve" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="lcv_three_thirteen" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="lcv_three_fourteen" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="lcv_three_fifteen" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="lcv_three_sixteen" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="lcv_three_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="lcv_three_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="lcv_three_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="lcv_three_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="lcv_three_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="lcv_three_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="lcv_three_twentythree" class="td_txt"></td>
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 4 mfm</td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="lcv_four_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="lcv_four_one" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="lcv_four_two" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="lcv_four_three" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="lcv_four_four" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="lcv_four_five" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="lcv_four_six" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="lcv_four_seven" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="lcv_four_eight" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="lcv_four_nine" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="lcv_four_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="lcv_four_eleven" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="lcv_four_twelve" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="lcv_four_thirteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="lcv_four_fourteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="lcv_four_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="lcv_four_sixteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="lcv_four_seventeen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="lcv_four_eighteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="lcv_four_nineteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="lcv_four_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="lcv_four_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="lcv_four_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="lcv_four_twentythree" class="td_txt"></td>                     
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 5 mfm</td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="lcv_five_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="lcv_five_one" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="lcv_five_two" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="lcv_five_three" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="lcv_five_four" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="lcv_five_five" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="lcv_five_six" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="lcv_five_seven" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="lcv_five_eight" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="lcv_five_nine" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="lcv_five_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="lcv_five_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="lcv_five_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="lcv_five_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="lcv_five_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="lcv_five_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="lcv_five_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="lcv_five_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="lcv_five_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="lcv_five_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="lcv_five_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="lcv_five_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="lcv_five_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="lcv_five_twentythree" class="td_txt"></td>                       
+                          </tr>
+
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. hmr counter<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="comp_hmr_cnt_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="comp_hmr_cnt_one" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="comp_hmr_cnt_two" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="comp_hmr_cnt_three" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="comp_hmr_cnt_four" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="comp_hmr_cnt_five" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="comp_hmr_cnt_six" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="comp_hmr_cnt_seven" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="comp_hmr_cnt_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="comp_hmr_cnt_nine" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="comp_hmr_cnt_ten" class="td_txt"></td>      
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="comp_hmr_cnt_eleven" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="comp_hmr_cnt_twelve" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="comp_hmr_cnt_thirteen" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="comp_hmr_cnt_fourteen" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="comp_hmr_cnt_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="comp_hmr_cnt_sixteen" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="comp_hmr_cnt_secenteen" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="comp_hmr_cnt_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="comp_hmr_cnt_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="comp_hmr_cnt_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="comp_hmr_cnt_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="comp_hmr_cnt_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="comp_hmr_cnt_twentythree" class="td_txt"></td>                             
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. energy meter<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="comp_enrg_met_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="comp_enrg_met_one" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="comp_enrg_met_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="comp_enrg_met_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="comp_enrg_met_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="comp_enrg_met_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="comp_enrg_met_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="comp_enrg_met_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="comp_enrg_met_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="comp_enrg_met_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="comp_enrg_met_ten" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="comp_enrg_met_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="comp_enrg_met_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="comp_enrg_met_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="comp_enrg_met_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="comp_enrg_met_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="comp_enrg_met_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="comp_enrg_met_seevnteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="comp_enrg_met_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="comp_enrg_met_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="comp_enrg_met_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="comp_enrg_met_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="comp_enrg_met_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="comp_enrg_met_twentythree" class="td_txt"></td>                    
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">I Stage Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="stg_one_prsur_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="stg_one_prsur_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="stg_one_prsur_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="stg_one_prsur_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="stg_one_prsur_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="stg_one_prsur_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="stg_one_prsur_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="stg_one_prsur_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="stg_one_prsur_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="stg_one_prsur_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="stg_one_prsur_ten" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="stg_one_prsur_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="stg_one_prsur_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="stg_one_prsur_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="stg_one_prsur_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="stg_one_prsur_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="stg_one_prsur_sixteene" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="stg_one_prsur_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="stg_one_prsur_eighteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="stg_one_prsur_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="stg_one_prsur_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="stg_one_prsur_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="stg_one_prsur_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="stg_one_prsur_twentythree" class="td_txt"></td>                         
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">II Stage Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="stg_two_prsur_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="stg_two_prsur_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="stg_two_prsur_two" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="stg_two_prsur_three" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="stg_two_prsur_four" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="stg_two_prsur_five" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="stg_two_prsur_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="stg_two_prsur_seven" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="stg_two_prsur_eight" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="stg_two_prsur_nine" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="stg_two_prsur_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="stg_two_prsur_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="stg_two_prsur_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="stg_two_prsur_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="stg_two_prsur_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="stg_two_prsur_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="stg_two_prsur_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="stg_two_prsur_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="stg_two_prsur_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="stg_two_prsur_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="stg_two_prsur_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="stg_two_prsur_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="stg_two_prsur_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="stg_two_prsur_twentythree" class="td_txt"></td>                        
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">III Stage Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="stg_three_prsur_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="stg_three_prsur_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="stg_three_prsur_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="stg_three_prsur_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="stg_three_prsur_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="stg_three_prsur_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="stg_three_prsur_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="stg_three_prsur_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="stg_three_prsur_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="stg_three_prsur_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="stg_three_prsur_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="stg_three_prsur_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="stg_three_prsur_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="stg_three_prsur_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="stg_three_prsur_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="stg_three_prsur_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="stg_three_prsur_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="stg_three_prsur_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="stg_three_prsur_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="stg_three_prsur_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="stg_three_prsur_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="stg_three_prsur_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="stg_three_prsur_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="stg_three_prsur_twentythree" class="td_txt"></td>           
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">I Stage Tempreture<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="stg_one_tmp_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="stg_one_tmp_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="stg_one_tmp_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="stg_one_tmp_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="stg_one_tmp_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="stg_one_tmp_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="stg_one_tmp_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="stg_one_tmp_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="stg_one_tmp_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="stg_one_tmp_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="stg_one_tmp_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="stg_one_tmp_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="stg_one_tmp_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="stg_one_tmp_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="stg_one_tmp_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="stg_one_tmp_fifteen" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="stg_one_tmp_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="stg_one_tmp_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="stg_one_tmp_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="stg_one_tmp_nineteen" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="stg_one_tmp_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="stg_one_tmp_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="stg_one_tmp_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="stg_one_tmp_twentythree" class="td_txt"></td> 
+
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">II Stage Tempreture<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="stg_two_tmp_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="stg_two_tmp_one" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="stg_two_tmp_two" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="stg_two_tmp_three" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="stg_two_tmp_four" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="stg_two_tmp_five" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="stg_two_tmp_six" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="stg_two_tmp_seven" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="stg_two_tmp_eight" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="stg_two_tmp_nine" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="stg_two_tmp_ten" class="td_txt"></td>        
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="stg_two_tmp_eleven" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="stg_two_tmp_twelve" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="stg_two_tmp_thirteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="stg_two_tmp_fourteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="stg_two_tmp_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="stg_two_tmp_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="stg_two_tmp_seventeen" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="stg_two_tmp_eighteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="stg_two_tmp_nineteen" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="stg_two_tmp_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="stg_two_tmp_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="stg_two_tmp_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="stg_two_tmp_twentythree" class="td_txt"></td>
+
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">III Stage Tempreture<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="stg_three_tmp_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="stg_three_tmp_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="stg_three_tmp_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="stg_three_tmp_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="stg_three_tmp_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="stg_three_tmp_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="stg_three_tmp_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="stg_three_tmp_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="stg_three_tmp_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="stg_three_tmp_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="stg_three_tmp_ten" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="stg_three_tmp_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="stg_three_tmp_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="stg_three_tmp_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="stg_three_tmp_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="stg_three_tmp_fifteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="stg_three_tmp_sixteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="stg_three_tmp_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="stg_three_tmp_eighteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="stg_three_tmp_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="stg_three_tmp_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="stg_three_tmp_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="stg_three_tmp_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="stg_three_tmp_twentythree" class="td_txt"></td>                        
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">LP Oil<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="lp_oil_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="lp_oil_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="lp_oil_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="lp_oil_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="lp_oil_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="lp_oil_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="lp_oil_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="lp_oil_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="lp_oil_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="lp_oil_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="lp_oil_ten" class="td_txt"></td>                   
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="lp_oil_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="lp_oil_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="lp_oil_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="lp_oil_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="lp_oil_fifteen" class="td_txt"></td>      
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="lp_oil_sixteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="lp_oil_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="lp_oil_eighteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="lp_oil_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="lp_oil_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="lp_oil_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="lp_oil_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="lp_oil_twentythree" class="td_txt"></td>  
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">HP Oil<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="hp_oil_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="hp_oil_one" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="hp_oil_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="hp_oil_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="hp_oil_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="hp_oil_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="hp_oil_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="hp_oil_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="hp_oil_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="hp_oil_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="hp_oil_ten" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="hp_oil_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="hp_oil_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="hp_oil_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="hp_oil_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="hp_oil_fifteen" class="td_txt"></td>             
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="hp_oil_sixteen" class="td_txt"></td>      
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="hp_oil_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="hp_oil_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="hp_oil_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="hp_oil_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="hp_oil_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="hp_oil_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="hp_oil_twentythree" class="td_txt"></td>
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Low Bank Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="low_bnk_prsur_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="low_bnk_prsur_one" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="low_bnk_prsur_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="low_bnk_prsur_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="low_bnk_prsur_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="low_bnk_prsur_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="low_bnk_prsur_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="low_bnk_prsur_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="low_bnk_prsur_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="low_bnk_prsur_nine" class="td_txt"></td>           
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="low_bnk_prsur_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="low_bnk_prsur_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="low_bnk_prsur_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="low_bnk_prsur_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="low_bnk_prsur_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="low_bnk_prsur_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="low_bnk_prsur_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="low_bnk_prsur_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="low_bnk_prsur_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="low_bnk_prsur_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="low_bnk_prsur_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="low_bnk_prsur_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="low_bnk_prsur_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="low_bnk_prsur_twentythree" class="td_txt"></td>                   
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Med. Bank Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="med_bnk_prsur_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="med_bnk_prsur_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="med_bnk_prsur_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="med_bnk_prsur_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="med_bnk_prsur_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="med_bnk_prsur_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="med_bnk_prsur_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="med_bnk_prsur_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="med_bnk_prsur_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="med_bnk_prsur_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="med_bnk_prsur_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="med_bnk_prsur_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="med_bnk_prsur_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="med_bnk_prsur_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="med_bnk_prsur_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="med_bnk_prsur_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="med_bnk_prsur_sixteen" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="med_bnk_prsur_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="med_bnk_prsur_eighteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="med_bnk_prsur_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="med_bnk_prsur_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="med_bnk_prsur_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="med_bnk_prsur_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="med_bnk_prsur_twentythree" class="td_txt"></td>
+
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">High Bank Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="high_bnk_prsur_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="high_bnk_prsur_one" class="td_txt"></td>                        
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="high_bnk_prsur_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="high_bnk_prsur_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="high_bnk_prsur_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="high_bnk_prsur_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="high_bnk_prsur_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="high_bnk_prsur_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="high_bnk_prsur_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="high_bnk_prsur_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="high_bnk_prsur_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="high_bnk_prsur_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="high_bnk_prsur_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="high_bnk_prsur_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="high_bnk_prsur_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="high_bnk_prsur_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="high_bnk_prsur_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="high_bnk_prsur_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="high_bnk_prsur_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="high_bnk_prsur_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="high_bnk_prsur_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="high_bnk_prsur_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="high_bnk_prsur_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="high_bnk_prsur_twentythree" class="td_txt"></td>
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Water Level<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="water_lvl_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="water_lvl_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="water_lvl_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="water_lvl_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="water_lvl_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="water_lvl_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="water_lvl_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="water_lvl_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="water_lvl_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="water_lvl_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="water_lvl_ten" class="td_txt"></td>         
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="water_lvl_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="water_lvl_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="water_lvl_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="water_lvl_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="water_lvl_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="water_lvl_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="water_lvl_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="water_lvl_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="water_lvl_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="water_lvl_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="water_lvl_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="water_lvl_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="water_lvl_twentythree" class="td_txt"></td>            
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Oil Level<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="oil_lvl_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="oil_lvl_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="oil_lvl_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="oil_lvl_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="oil_lvl_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="oil_lvl_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="oil_lvl_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="oil_lvl_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="oil_lvl_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="oil_lvl_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="oil_lvl_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="oil_lvl_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="oil_lvl_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="oil_lvl_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="oil_lvl_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="oil_lvl_fifteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="oil_lvl_sixteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="oil_lvl_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="oil_lvl_eighteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="oil_lvl_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="oil_lvl_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="oil_lvl_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="oil_lvl_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="oil_lvl_twentythree" class="td_txt"></td>                         
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">No. of COMP. Starts<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="no_comp_start_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="no_comp_start_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="no_comp_start_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="no_comp_start_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="no_comp_start_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="no_comp_start_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="no_comp_start_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="no_comp_start_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="no_comp_start_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="no_comp_start_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="no_comp_start_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="no_comp_start_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="no_comp_start_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="no_comp_start_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="no_comp_start_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="no_comp_start_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="no_comp_start_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="no_comp_start_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="no_comp_start_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="no_comp_start_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="no_comp_start_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="no_comp_start_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="no_comp_start_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="no_comp_start_twentythree" class="td_txt"></td>                        
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Suction Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="suc_prsur_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="suc_prsur_one" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="suc_prsur_two" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="suc_prsur_three" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="suc_prsur_four" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="suc_prsur_five" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="suc_prsur_six" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="suc_prsur_seven" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="suc_prsur_eight" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="suc_prsur_nine" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="suc_prsur_ten" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="suc_prsur_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="suc_prsur_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="suc_prsur_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="suc_prsur_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="suc_prsur_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="suc_prsur_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="suc_prsur_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="suc_prsur_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="suc_prsur_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="suc_prsur_twenty" class="td_txt"></td>      
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="suc_prsur_twentyone" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="suc_prsur_twentytwo" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="suc_prsur_twentythree" class="td_txt"></td>                  
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!---------------------------- C O M P R E S S O R  E N D S -------------------------------->
+
+        <!---------------------------- D I S P E N S E R -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">dispenser</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table">    
+                      <table>
+                        <thead>
+                          <tr>            
+                            <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_zero tbl-cell"><strong id="disp_time_zero">00:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_one tbl-cell"><strong id="disp_time_one">01:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_two display-none"><strong id="disp_time_two">02:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_three display-none"><strong id="disp_time_three">03:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_four display-none"><strong id="disp_time_four">04:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_five display-none"><strong id="disp_time_five">05:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_six display-none"><strong id="disp_time_six">06:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_seven display-none"><strong id="disp_time_seven">07:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_eight display-none"><strong id="disp_time_eight">08:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_nine display-none"><strong id="disp_time_nine">09:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_ten display-none"><strong id="disp_time_ten">10:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_eleven display-none"><strong id="disp_time_eleven">11:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_twelve display-none"><strong id="disp_time_twelve">12:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_thirteen display-none"><strong id="disp_time_thirteen">13:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_fourteen display-none"><strong id="disp_time_fourteen">14:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_fifteen display-none"><strong id="disp_time_fiften">15:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_sixteen display-none"><strong id="disp_time_sixteen">16:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_seventeen display-none"><strong id="disp_time_seventeen">17:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_eighteen display-none"><strong id="disp_time_eighteen">18:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_nineteen display-none"><strong id="disp_time_nineteen">19:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_twenty display-none"><strong id="disp_time_twenty">20:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_twentyone display-none"><strong id="disp_time_twentyone">21:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_twentytwo display-none"><strong id="disp_time_twentytwo">22:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_twentythree display-none"><strong id="disp_time_twentythree">23:00</strong></th>
+                          </tr>
+                        </thead>
+                        <tbody id="sheet_data" >
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 1 A<sup class="text-red fw-600 fs-12">*</sup></td>   <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="disp1_a_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="disp1_a_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="disp1_a_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="disp1_a_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_four display-none"><input type="number" name="disp1_a_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_five display-none"><input type="number" name="disp1_a_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_six display-none"><input type="number" name="disp1_a_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_seven display-none"><input type="number" name="disp1_a_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_eight display-none"><input type="number" name="disp1_a_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_nine display-none"><input type="number" name="disp1_a_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_ten display-none"><input type="number" name="disp1_a_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_eleven display-none"><input type="number" name="disp1_a_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twelve display-none"><input type="number" name="disp1_a_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_thirteen display-none"><input type="number" name="disp1_a_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_fourteen display-none"><input type="number" name="disp1_a_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_fifteen display-none"><input type="number" name="disp1_a_fifteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_sixteen display-none"><input type="number" name="disp1_a_sixteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_seventeen display-none"><input type="number" name="disp1_a_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_eighteen display-none"><input type="number" name="disp1_a_eighteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_nineteen display-none"><input type="number" name="disp1_a_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twenty display-none"><input type="number" name="disp1_a_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentyone display-none"><input type="number" name="disp1_a_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentytwo display-none"><input type="number" name="disp1_a_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentythree display-none"><input type="number" name="disp1_a_twentythree" class="td_txt"></td>        
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 1 B<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="disp1_b_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="disp1_b_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="disp1_b_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="disp1_b_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_four display-none"><input type="number" name="disp1_b_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_five display-none"><input type="number" name="disp1_b_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_six display-none"><input type="number" name="disp1_b_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_seven display-none"><input type="number" name="disp1_b_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_eight display-none"><input type="number" name="disp1_b_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_nine display-none"><input type="number" name="disp1_b_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_ten display-none"><input type="number" name="disp1_b_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_eleven display-none"><input type="number" name="disp1_b_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twelve display-none"><input type="number" name="disp1_b_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_thirteen display-none"><input type="number" name="disp1_b_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_fourteen display-none"><input type="number" name="disp1_b_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_fifteen display-none"><input type="number" name="disp1_b_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_sixteen display-none"><input type="number" name="disp1_b_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_seventeen display-none"><input type="number" name="disp1_b_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_eighteen display-none"><input type="number" name="disp1_b_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_nineteen display-none"><input type="number" name="disp1_b_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twenty display-none"><input type="number" name="disp1_b_twenty" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_twentyone display-none"><input type="number" name="disp1_b_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twentytwo display-none"><input type="number" name="disp1_b_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twentythree display-none"><input type="number" name="disp1_b_twentythree" class="td_txt"></td>   
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 2 A</td>
+                              <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="disp2_a_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="disp2_a_one" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="disp2_a_two" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="disp2_a_three" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_four display-none"><input type="number" name="disp2_a_four" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_five display-none"><input type="number" name="disp2_a_five" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_six display-none"><input type="number" name="disp2_a_six" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_seven display-none"><input type="number" name="disp2_a_seven" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_eight display-none"><input type="number" name="disp2_a_eight" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_nine display-none"><input type="number" name="disp2_a_nine" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 disp_th_ten display-none"><input type="number" name="disp2_a_ten" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 disp_th_eleven display-none"><input type="number" name="disp2_a_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twelve display-none"><input type="number" name="disp2_a_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_thirteen display-none"><input type="number" name="disp2_a_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_fourteen display-none"><input type="number" name="disp2_a_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_fifteen display-none"><input type="number" name="disp2_a_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_sixteen display-none"><input type="number" name="disp2_a_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_seventeen display-none"><input type="number" name="disp2_a_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_eighteen display-none"><input type="number" name="disp2_a_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_nineteen display-none"><input type="number" name="disp2_a_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twenty display-none"><input type="number" name="disp2_a_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twentyone display-none"><input type="number" name="disp2_a_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twentytwo display-none"><input type="number" name="disp2_a_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twentythree display-none"><input type="number" name="disp2_a_twentythree" class="td_txt"></td>            
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 2 B</td>
+                              <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="disp2_b_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="disp2_b_one" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="disp2_b_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="disp2_b_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_four display-none"><input type="number" name="disp2_b_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_five display-none"><input type="number" name="disp2_b_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_six display-none"><input type="number" name="disp2_b_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_seven display-none"><input type="number" name="disp2_b_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_eight display-none"><input type="number" name="disp2_b_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_nine display-none"><input type="number" name="disp2_b_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_ten display-none"><input type="number" name="disp2_b_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_eleven display-none"><input type="number" name="disp2_b_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twelve display-none"><input type="number" name="disp2_b_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_thirteen display-none"><input type="number" name="disp2_b_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_fourteen display-none"><input type="number" name="disp2_b_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_fifteen display-none"><input type="number" name="disp2_b_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_sixteen display-none"><input type="number" name="disp2_b_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_seventeen display-none"><input type="number" name="disp2_b_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_eighteen display-none"><input type="number" name="disp2_b_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_nineteen display-none"><input type="number" name="disp2_b_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twenty display-none"><input type="number" name="disp2_b_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 disp_th_twentyone display-none"><input type="number" name="disp2_b_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentytwo display-none"><input type="number" name="disp2_b_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentythree display-none"><input type="number" name="disp2_b_twentythree" class="td_txt"></td>                          
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!---------------------------- D I S P E N S E R   E N D S -------------------------------->
+
+
+        <!---------------------------- E L E C T R I C A L -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">electrical</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table">    
+                      <table>
+                        <thead>
+                          <tr>            
+                            <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_zero tbl-cell"><strong id="elect_time_zero">00:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_one tbl-cell"><strong id="elect_time_one">01:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_two display-none"><strong id="elect_time_two">02:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_three display-none"><strong id="elect_time_three">03:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_four display-none"><strong id="elect_time_four">04:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_five display-none"><strong id="elect_time_five">05:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_six display-none"><strong id="elect_time_six">06:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_seven display-none"><strong id="elect_time_seven">07:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_eight display-none"><strong id="elect_time_eight">08:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_nine display-none"><strong id="elect_time_nine">09:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_ten display-none"><strong id="elect_time_ten">10:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_eleven display-none"><strong id="elect_time_eleven">11:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_twelve display-none"><strong id="elect_time_twelve">12:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_thirteen display-none"><strong id="elect_time_thirteen">13:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_fourteen display-none"><strong id="elect_time_fourteen">14:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_fifteen display-none"><strong id="elect_time_fiften">15:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_sixteen display-none"><strong id="elect_time_sixteen">16:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_seventeen display-none"><strong id="elect_time_seventeen">17:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_eighteen display-none"><strong id="elect_time_eighteen">18:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_nineteen display-none"><strong id="elect_time_nineteen">19:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_twenty display-none"><strong id="elect_time_twenty">20:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_twentyone display-none"><strong id="elect_time_twentyone">21:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_twentytwo display-none"><strong id="elect_time_twentytwo">22:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_twentythree display-none"><strong id="elect_time_twentythree">23:00</strong></th>
+                          </tr>
+                        </thead>
+                        <tbody id="sheet_data" >
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">GEB Energy Meter KWH<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="geb_enrgy_mtr_kwh_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="geb_enrgy_mtr_kwh_one" class="td_txt"></td>    
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="geb_enrgy_mtr_kwh_two" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="geb_enrgy_mtr_kwh_three" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="geb_enrgy_mtr_kwh_four" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="geb_enrgy_mtr_kwh_five" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="geb_enrgy_mtr_kwh_six" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="geb_enrgy_mtr_kwh_seven" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="geb_enrgy_mtr_kwh_eight" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="geb_enrgy_mtr_kwh_nine" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="geb_enrgy_mtr_kwh_ten" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="geb_enrgy_mtr_kwh_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="geb_enrgy_mtr_kwh_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="geb_enrgy_mtr_kwh_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="geb_enrgy_mtr_kwh_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="geb_enrgy_mtr_kwh_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="geb_enrgy_mtr_kwh_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="geb_enrgy_mtr_kwh_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="geb_enrgy_mtr_kwh_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="geb_enrgy_mtr_kwh_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="geb_enrgy_mtr_kwh_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="geb_enrgy_mtr_kwh_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="geb_enrgy_mtr_kwh_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="geb_enrgy_mtr_kwh_twentythree" class="td_txt"></td>  
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">GEB Energy Meter KVAH<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="geb_enrgy_mtr_kvah_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="geb_enrgy_mtr_kvah_one" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="geb_enrgy_mtr_kvah_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="geb_enrgy_mtr_kvah_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="geb_enrgy_mtr_kvah_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="geb_enrgy_mtr_kvah_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="geb_enrgy_mtr_kvah_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="geb_enrgy_mtr_kvah_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="geb_enrgy_mtr_kvah_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="geb_enrgy_mtr_kvah_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="geb_enrgy_mtr_kvah_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="geb_enrgy_mtr_kvah_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="geb_enrgy_mtr_kvah_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="geb_enrgy_mtr_kvah_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="geb_enrgy_mtr_kvah_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="geb_enrgy_mtr_kvah_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="geb_enrgy_mtr_kvah_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="geb_enrgy_mtr_kvah_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="geb_enrgy_mtr_kvah_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="geb_enrgy_mtr_kvah_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="geb_enrgy_mtr_kvah_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="geb_enrgy_mtr_kvah_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="geb_enrgy_mtr_kvah_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="geb_enrgy_mtr_kvah_twentythree" class="td_txt"></td>
+                            </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">GEB Energy Meter KVRH<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="geb_enrgy_mtr_kvrh_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="geb_enrgy_mtr_kvrh_one" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="geb_enrgy_mtr_kvrh_two" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="geb_enrgy_mtr_kvrh_three" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="geb_enrgy_mtr_kvrh_four" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="geb_enrgy_mtr_kvrh_five" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="geb_enrgy_mtr_kvrh_six" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="geb_enrgy_mtr_kvrh_seven" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="geb_enrgy_mtr_kvrh_eight" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="geb_enrgy_mtr_kvrh_nine" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="geb_enrgy_mtr_kvrh_ten" class="td_txt"></td>   
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="geb_enrgy_mtr_kvrh_eleven" class="td_txt"></td>      
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="geb_enrgy_mtr_kvrh_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="geb_enrgy_mtr_kvrh_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="geb_enrgy_mtr_kvrh_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="geb_enrgy_mtr_kvrh_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="geb_enrgy_mtr_kvrh_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="geb_enrgy_mtr_kvrh_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="geb_enrgy_mtr_kvrh_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="geb_enrgy_mtr_kvrh_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="geb_enrgy_mtr_kvrh_twenty" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="geb_enrgy_mtr_kvrh_twentyone" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="geb_enrgy_mtr_kvrh_twentytwo" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="geb_enrgy_mtr_kvrh_twentythree" class="td_txt"></td> 
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Delar(RO) Energy Meter<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="dlrro_enrgy_mtr_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="dlrro_enrgy_mtr_one" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="dlrro_enrgy_mtr_two" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="dlrro_enrgy_mtr_three" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="dlrro_enrgy_mtr_four" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="dlrro_enrgy_mtr_five" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="dlrro_enrgy_mtr_six" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="dlrro_enrgy_mtr_seven" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="dlrro_enrgy_mtr_eight" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="dlrro_enrgy_mtr_nine" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="dlrro_enrgy_mtr_ten" class="td_txt"></td>       
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="dlrro_enrgy_mtr_eleven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="dlrro_enrgy_mtr_twelve" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="dlrro_enrgy_mtr_thirteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="dlrro_enrgy_mtr_fourteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="dlrro_enrgy_mtr_fifteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="dlrro_enrgy_mtr_sixteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="dlrro_enrgy_mtr_seventeen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="dlrro_enrgy_mtr_eighteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="dlrro_enrgy_mtr_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="dlrro_enrgy_mtr_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="dlrro_enrgy_mtr_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="dlrro_enrgy_mtr_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="dlrro_enrgy_mtr_twentythree" class="td_txt"></td>   
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Voltage<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="voltage_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="voltage_one" class="td_txt"></td>     
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="voltage_two" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="voltage_three" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="voltage_four" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="voltage_five" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="voltage_six" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="voltage_seven" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="voltage_eight" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="voltage_nine" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="voltage_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="voltage_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="voltage_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="voltage_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="voltage_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="voltage_fifteen" class="td_txt"></td>          
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="voltage_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="voltage_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="voltage_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="voltage_nineteen" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="voltage_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="voltage_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="voltage_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="voltage_twentythree" class="td_txt"></td>         
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Amp.<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="amp_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="amp_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="amp_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="amp_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="amp_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="amp_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="amp_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="amp_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="amp_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="amp_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="amp_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="amp_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="amp_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="amp_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="amp_fourteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="amp_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="amp_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="amp_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="amp_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="amp_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="amp_twenty" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="amp_twentyone" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="amp_twentytwo" class="td_txt"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="amp_twentythree" class="td_txt"></td>            
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">PF<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="pf_zero" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="pf_one" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="pf_two" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="pf_three" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="pf_four" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="pf_five" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="pf_six" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="pf_seven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="pf_eight" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="pf_nine" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="pf_ten" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="pf_eleven" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="pf_twelve" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="pf_thirteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="pf_fourteen" class="td_txt"></td>  
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="pf_fifteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="pf_sixteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="pf_seventeen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="pf_eighteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="pf_nineteen" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="pf_twenty" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="pf_twentyone" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="pf_twentytwo" class="td_txt"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="pf_twentythree" class="td_txt"></td>                 
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            
+          </div>
+        </div>
+        <!---------------------------- E L E C T R I C A L   E N D S -------------------------------->
+        <div class="block">
+          <div class="row">
+            <div class="col-25"><button class="col button button-fill color-black" type="button">Save</button></div>
+            <div class="col-25 page1_btn"><button class="col button button-fill color-black" type="button" onclick="show_secondpg()">Next</button></div>
+            <div class="col-25 page2_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_thirdpg()">Next</button></div>
+            <div class="col-25 page3_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_forthpg()">Next</button></div>
+            <div class="col-25 page4_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_fifthpg()">Next</button></div>
+            <div class="col-25 page5_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_sixthpg()">Next</button></div>
+            <div class="col-25 page6_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_seventhpg()">Next</button></div>
+            <div class="col-25 page7_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_eighthpg()">Next</button></div>
+            <div class="col-25 page8_btn display-none"><button class="col button button-fill color-yellow" type="button" onclick="show_ninthpg()">Next</button></div>
+            <div class="col-25 page9_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_tenthpg()">Next</button></div>
+            <div class="col-25 page10_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_eleventhpg()">Next</button></div>
+            <div class="col-25 page11_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_twelthpg()">Next</button></div>
+            <div class="col-25 page12_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_thirteenthpg()">Next</button></div>
+            <div class="col-25 page13_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_forteenthpg()">Next</button></div>
+            <div class="col-25 page14_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_fifteenthpg()">Next</button></div>
+            <div class="col-25 page15_btn display-none"><button class="col button button-fill color-yellow" type="button" onclick="show_sixteenthpg()">Next</button></div>
+            <div class="col-25 page16_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_seventeenthpg()">Next</button></div>
+            <div class="col-25 page17_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_eighteenthpg()">Next</button></div>
+            <div class="col-25 page18_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_nineteenthpg()">Next</button></div>
+            <div class="col-25 page19_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_twenteenthpg()">Next</button></div>
+            <div class="col-25 page20_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_twentyonepg()">Next</button></div>
+            <div class="col-25 page21_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_twentytwopg()">Next</button></div>
+            <div class="col-25 page22_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_twentythreepg()">Next</button></div>
+            <div class="col-25 save_btn display-none"><button class="col button button-fill color-red" type="button">Save</button></div>
+
+
+
+
+
+            <div class="col-50"><button class="col button button-fill color-black" type="button">Save &amp; Next</button></div-->
+            <!--div class="col-33">ccc</div-->
+          </div>
+        </div>
+        <!--div class="block">       
+          <div class="list no-hairlines-md">
+            <ul id="dprsheet" class="no-bg">
+              
+            </ul>           
+          </div>
+        </div-->
+
+        <!--div class="card data-table">      
+          <table>
+            <thead class="" style="background-color: lightgrey!important">
+              <tr>            
+                <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">00:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">01:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">02:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">03:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">04:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">05:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">06:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">07:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">08:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">09:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">10:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">11:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">12:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">13:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">14:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">15:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">16:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">17:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">18:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">19:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">20:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">21:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">22:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">23:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">24:00</strong></th>
+                
+              </tr>
+            </thead>
+            <tbody id="sheet_data"></tbody>
+          </table>
+        </div-->
+
+      </form> 			
+  	</div>
+</div>

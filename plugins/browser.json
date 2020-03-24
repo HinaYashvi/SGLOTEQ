@@ -1,0 +1,70 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-android-support-gradle-release": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-sim": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
+    }
+  }
+}
