@@ -45,6 +45,9 @@ body{
     width: 100%;*/
     margin: 0 7px 15px 38px;
 }
+.txt-blue{
+  color: #00d1ff;
+}
 a {
     text-decoration: none;
     color: #777;
@@ -139,6 +142,9 @@ div.container4 p {
 }
 .readonly_txt{
     background-color: #fff3f347!important;
+}
+.readonlytxtbox{
+  background-color: #ecebeb!important;
 }
 .ml-12p{
     margin-left: 12%!important;

@@ -1,0 +1,1344 @@
+<div data-name="dpr_sheet" class="page">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">DPR SHEET</div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+    <div class="page-content dpr-screen-content dpr_sheet">  
+      <div class="block">
+        <div class="row">
+          <div class="col-66">
+            <div class="text-red fw-600 st_name"></div>
+          </div>
+          <div class="col-33">
+            <div class="text-red fw-600 dpr_dt"></div>
+          </div>
+        </div>  
+      </div>
+
+      <form id="form_dpr" class="form_dpr">  
+        <input type="hidden" name="hidd_stid" id="hidd_stid" />
+        <input type="hidden" name="hidd_dprdt" id="hidd_dprdt" />
+        <!---------------------------- C O M P R E S S O R -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">compressor</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table">    
+                      <table>
+                        <thead>
+                          <tr>            
+                            <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_zero tbl-cell"><strong id="comp_time_zero" >00:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_one tbl-cell"><strong id="comp_time_one" >01:00</strong></th>                             
+
+                            <th class="label-cell text-uppercase table-th comp_th_two display-none"><strong id="comp_time_two">02:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_three display-none"><strong id="comp_time_three">03:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_four display-none"><strong id="comp_time_four">04:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_five display-none"><strong id="comp_time_five">05:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_six display-none"><strong id="comp_time_six">06:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_seven display-none"><strong id="comp_time_seven">07:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_eight display-none"><strong id="comp_time_eight">08:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_nine display-none"><strong id="comp_time_nine">09:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_ten display-none"><strong id="comp_time_ten">10:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_eleven display-none"><strong id="comp_time_eleven">11:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_twelve display-none"><strong id="comp_time_twelve">12:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_thirteen display-none"><strong id="comp_time_thirteen">13:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_fourteen display-none"><strong id="comp_time_fourteen">14:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_fifteen display-none"><strong id="comp_time_fiften">15:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_sixteen display-none"><strong id="comp_time_sixteen">16:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_seventeen display-none"><strong id="comp_time_seventeen">17:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_eighteen display-none"><strong id="comp_time_eighteen">18:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_nineteen display-none"><strong id="comp_time_nineteen">19:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_twenty display-none"><strong id="comp_time_twenty">20:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_twentyone display-none"><strong id="comp_time_twentyone">21:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th comp_th_twentytwo display-none"><strong id="comp_time_twentytwo">22:00</strong></th>
+                            <th class="label-cell text-uppercase table-th comp_th_twentythree display-none"><strong id="comp_time_twentythree">23:00</strong></th>     
+                          </tr>
+                        </thead>
+                        <tbody id="sheet_data" >
+                          <tr >                             
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. suction<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[COMP_SUCTION][00_00]" class="td_txt comp_suc_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[COMP_SUCTION][01_00]" class="td_txt comp_suc_1 val_comp_1"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[COMP_SUCTION][02_00]" class="td_txt comp_suc_2 val_comp_2"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[COMP_SUCTION][03_00]" class="td_txt comp_suc_3 val_comp_3"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[COMP_SUCTION][04_00]" class="td_txt comp_suc_4 val_comp_4"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[COMP_SUCTION][05_00]" class="td_txt comp_suc_5 val_comp_5"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[COMP_SUCTION][06_00]" class="td_txt comp_suc_6 val_comp_6"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[COMP_SUCTION][07_00]" class="td_txt comp_suc_7 val_comp_7"></td>          
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[COMP_SUCTION][08_00]" class="td_txt comp_suc_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[COMP_SUCTION][09_00]" class="td_txt comp_suc_9 val_comp_9"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[COMP_SUCTION][10_00]" class="td_txt comp_suc_10 val_comp_10"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[COMP_SUCTION][11_00]" class="td_txt comp_suc_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[COMP_SUCTION][12_00]" class="td_txt comp_suc_12 val_comp_12"></td>      
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[COMP_SUCTION][13_00]" class="td_txt comp_suc_13 val_comp_13"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[COMP_SUCTION][14_00]" class="td_txt comp_suc_14 val_comp_14"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[COMP_SUCTION][15_00]" class="td_txt comp_suc_15 val_comp_15"></td> 
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[COMP_SUCTION][16_00]" class="td_txt comp_suc_16 val_comp_16"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[COMP_SUCTION][17_00]" class="td_txt comp_suc_17 val_comp_17"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[COMP_SUCTION][18_00]" class="td_txt comp_suc_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[COMP_SUCTION][19_00]" class="td_txt comp_suc_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[COMP_SUCTION][20_00]" class="td_txt comp_suc_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[COMP_SUCTION][21_00]" class="td_txt comp_suc_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[COMP_SUCTION][22_00]" class="td_txt comp_suc_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[COMP_SUCTION][23_00]" class="td_txt comp_suc_23 val_comp_23"></td>           
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. discharge<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[COMP_DISCHARGE][00_00]" class="td_txt comp_dis_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[COMP_DISCHARGE][01_00]" class="td_txt comp_dis_1 val_comp_1"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[COMP_DISCHARGE][02_00]" class="td_txt comp_dis_2 val_comp_2"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[COMP_DISCHARGE][03_00]" class="td_txt comp_dis_3 val_comp_3"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[COMP_DISCHARGE][04_00]" class="td_txt comp_dis_4 val_comp_4"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[COMP_DISCHARGE][05_00]" class="td_txt comp_dis_5 val_comp_5"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[COMP_DISCHARGE][06_00]" class="td_txt comp_dis_6 val_comp_6"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[COMP_DISCHARGE][07_00]" class="td_txt comp_dis_7 val_comp_7"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[COMP_DISCHARGE][08_00]" class="td_txt comp_dis_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[COMP_DISCHARGE][09_00]" class="td_txt comp_dis_9 val_comp_9"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[COMP_DISCHARGE][10_00]" class="td_txt comp_dis_10 val_comp_10"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[COMP_DISCHARGE][11_00]" class="td_txt comp_dis_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[COMP_DISCHARGE][12_00]" class="td_txt comp_dis_12 val_comp_12"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[COMP_DISCHARGE][13_00]" class="td_txt comp_dis_13 val_comp_13"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[COMP_DISCHARGE][14_00]" class="td_txt comp_dis_14 val_comp_14"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[COMP_DISCHARGE][15_00]" class="td_txt comp_dis_15 val_comp_15"></td> 
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[COMP_DISCHARGE][16_00]" class="td_txt comp_dis_16 val_comp_16"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[COMP_DISCHARGE][17_00]" class="td_txt comp_dis_17 val_comp_17"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[COMP_DISCHARGE][18_00]" class="td_txt comp_dis_18 val_comp_18"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[COMP_DISCHARGE][19_00]" class="td_txt comp_dis_19 val_comp_19"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[COMP_DISCHARGE][20_00]" class="td_txt comp_dis_20 val_comp_20"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[COMP_DISCHARGE][21_00]" class="td_txt comp_dis_21 val_comp_21"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[COMP_DISCHARGE][22_00]" class="td_txt comp_dis_22 val_comp_22"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[COMP_DISCHARGE][23_00]" class="td_txt comp_dis_23 val_comp_23"></td>
+
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 1 mfm<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LCV_1_MFM][00_00]" class="td_txt lcv1_mfm_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LCV_1_MFM][01_00]" class="td_txt lcv1_mfm_1 val_comp_1"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[LCV_1_MFM][02_00]" class="td_txt lcv1_mfm_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[LCV_1_MFM][03_00]" class="td_txt lcv1_mfm_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[LCV_1_MFM][04_00]" class="td_txt lcv1_mfm_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[LCV_1_MFM][05_00]" class="td_txt lcv1_mfm_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[LCV_1_MFM][06_00]" class="td_txt lcv1_mfm_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[LCV_1_MFM][07_00]" class="td_txt lcv1_mfm_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[LCV_1_MFM][08_00]" class="td_txt lcv1_mfm_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[LCV_1_MFM][09_00]" class="td_txt lcv1_mfm_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[LCV_1_MFM][10_00]" class="td_txt lcv1_mfm_10 val_comp_10"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[LCV_1_MFM][11_00]" class="td_txt lcv1_mfm_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[LCV_1_MFM][12_00]" class="td_txt lcv1_mfm_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[LCV_1_MFM][13_00]" class="td_txt lcv1_mfm_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[LCV_1_MFM][14_00]" class="td_txt lcv1_mfm_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[LCV_1_MFM][15_00]" class="td_txt lcv1_mfm_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[LCV_1_MFM][16_00]" class="td_txt lcv1_mfm_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[LCV_1_MFM][17_00]" class="td_txt lcv1_mfm_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[LCV_1_MFM][18_00]" class="td_txt lcv1_mfm_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[LCV_1_MFM][19_00]" class="td_txt lcv1_mfm_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[LCV_1_MFM][20_00]" class="td_txt lcv1_mfm_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[LCV_1_MFM][21_00]" class="td_txt lcv1_mfm_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[LCV_1_MFM][22_00]" class="td_txt lcv1_mfm_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[LCV_1_MFM][23_00]" class="td_txt lcv1_mfm_23 val_comp_23"></td>                        
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 2 mfm<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LCV_2_MFM][00_00]" class="td_txt lcv2_mfm_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LCV_2_MFM][01_00]" class="td_txt lcv2_mfm_1 val_comp_1"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[LCV_2_MFM][02_00]" class="td_txt lcv2_mfm_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[LCV_2_MFM][03_00]" class="td_txt lcv2_mfm_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[LCV_2_MFM][04_00]" class="td_txt lcv2_mfm_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[LCV_2_MFM][05_00]" class="td_txt lcv2_mfm_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[LCV_2_MFM][06_00]" class="td_txt lcv2_mfm_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[LCV_2_MFM][07_00]" class="td_txt lcv2_mfm_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[LCV_2_MFM][08_00]" class="td_txt lcv2_mfm_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[LCV_2_MFM][09_00]" class="td_txt lcv2_mfm_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[LCV_2_MFM][10_00]" class="td_txt lcv2_mfm_10 val_comp_10"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[LCV_2_MFM][11_00]" class="td_txt lcv2_mfm_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[LCV_2_MFM][12_00]" class="td_txt lcv2_mfm_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[LCV_2_MFM][13_00]" class="td_txt lcv2_mfm_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[LCV_2_MFM][14_00]" class="td_txt lcv2_mfm_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[LCV_2_MFM][15_00]" class="td_txt lcv2_mfm_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[LCV_2_MFM][16_00]" class="td_txt lcv2_mfm_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[LCV_2_MFM][17_00]" class="td_txt lcv2_mfm_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[LCV_2_MFM][18_00]" class="td_txt lcv2_mfm_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[LCV_2_MFM][19_00]" class="td_txt lcv2_mfm_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[LCV_2_MFM][20_00]" class="td_txt lcv2_mfm_20 val_comp_20"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[LCV_2_MFM][21_00]" class="td_txt lcv2_mfm_21 val_comp_21"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[LCV_2_MFM][22_00]" class="td_txt lcv2_mfm_22 val_comp_22"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[LCV_2_MFM][23_00]" class="td_txt lcv2_mfm_23 val_comp_23"></td>                      
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 3 mfm</td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LCV_3_MFM][00_00]" class="td_txt lcv3_mfm_0 "></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LCV_3_MFM][01_00]" class="td_txt lcv3_mfm_1 "></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[LCV_3_MFM][02_00]" class="td_txt lcv3_mfm_2 "></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[LCV_3_MFM][03_00]" class="td_txt lcv3_mfm_3 "></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[LCV_3_MFM][04_00]" class="td_txt lcv3_mfm_4 "></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[LCV_3_MFM][05_00]" class="td_txt lcv3_mfm_5 "></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[LCV_3_MFM][06_00]" class="td_txt lcv3_mfm_6 "></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[LCV_3_MFM][07_00]" class="td_txt lcv3_mfm_7 "></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[LCV_3_MFM][08_00]" class="td_txt lcv3_mfm_8 "></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[LCV_3_MFM][09_00]" class="td_txt lcv3_mfm_9 "></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[LCV_3_MFM][10_00]" class="td_txt lcv3_mfm_10 "></td>   
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[LCV_3_MFM][11_00]" class="td_txt lcv3_mfm_11 "></td>   
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[LCV_3_MFM][12_00]" class="td_txt lcv3_mfm_12 "></td>   
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[LCV_3_MFM][13_00]" class="td_txt lcv3_mfm_13 "></td>   
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[LCV_3_MFM][14_00]" class="td_txt lcv3_mfm_14 "></td>   
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[LCV_3_MFM][15_00]" class="td_txt lcv3_mfm_15 "></td>   
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[LCV_3_MFM][16_00]" class="td_txt lcv3_mfm_16 "></td>   
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[LCV_3_MFM][17_00]" class="td_txt lcv3_mfm_17 "></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[LCV_3_MFM][18_00]" class="td_txt lcv3_mfm_18 "></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[LCV_3_MFM][19_00]" class="td_txt lcv3_mfm_19 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[LCV_3_MFM][20_00]" class="td_txt lcv3_mfm_20 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[LCV_3_MFM][21_00]" class="td_txt lcv3_mfm_21 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[LCV_3_MFM][22_00]" class="td_txt lcv3_mfm_22 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[LCV_3_MFM][23_00]" class="td_txt lcv3_mfm_23 "></td>
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 4 mfm</td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LCV_4_MFM][00_00]" class="td_txt lcv4_mfm_0 "></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LCV_4_MFM][01_00]" class="td_txt lcv4_mfm_1 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[LCV_4_MFM][02_00]" class="td_txt lcv4_mfm_2 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[LCV_4_MFM][03_00]" class="td_txt lcv4_mfm_3 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[LCV_4_MFM][04_00]" class="td_txt lcv4_mfm_4 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[LCV_4_MFM][05_00]" class="td_txt lcv4_mfm_5 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[LCV_4_MFM][06_00]" class="td_txt lcv4_mfm_6 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[LCV_4_MFM][07_00]" class="td_txt lcv4_mfm_7 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[LCV_4_MFM][08_00]" class="td_txt lcv4_mfm_8 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[LCV_4_MFM][09_00]" class="td_txt lcv4_mfm_9 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[LCV_4_MFM][10_00]" class="td_txt lcv4_mfm_10 "></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[LCV_4_MFM][11_00]" class="td_txt lcv4_mfm_11 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[LCV_4_MFM][12_00]" class="td_txt lcv4_mfm_12 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[LCV_4_MFM][13_00]" class="td_txt lcv4_mfm_13 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[LCV_4_MFM][14_00]" class="td_txt lcv4_mfm_14 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[LCV_4_MFM][15_00]" class="td_txt lcv4_mfm_15 "></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[LCV_4_MFM][16_00]" class="td_txt lcv4_mfm_16 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[LCV_4_MFM][17_00]" class="td_txt lcv4_mfm_17 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[LCV_4_MFM][18_00]" class="td_txt lcv4_mfm_18 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[LCV_4_MFM][19_00]" class="td_txt lcv4_mfm_19 "></td>    
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[LCV_4_MFM][20_00]" class="td_txt lcv4_mfm_20 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[LCV_4_MFM][21_00]" class="td_txt lcv4_mfm_21 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[LCV_4_MFM][22_00]" class="td_txt lcv4_mfm_22 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[LCV_4_MFM][23_00]" class="td_txt lcv4_mfm_23 "></td>                     
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 5 mfm</td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LCV_5_MFM][00_00]" class="td_txt lcv5_mfm_0 "></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LCV_5_MFM][01_00]" class="td_txt lcv5_mfm_1 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[LCV_5_MFM][02_00]" class="td_txt lcv5_mfm_2 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[LCV_5_MFM][03_00]" class="td_txt lcv5_mfm_3 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[LCV_5_MFM][04_00]" class="td_txt lcv5_mfm_4 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[LCV_5_MFM][05_00]" class="td_txt lcv5_mfm_5 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[LCV_5_MFM][06_00]" class="td_txt lcv5_mfm_6 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[LCV_5_MFM][07_00]" class="td_txt lcv5_mfm_7 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[LCV_5_MFM][08_00]" class="td_txt lcv5_mfm_8 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[LCV_5_MFM][09_00]" class="td_txt lcv5_mfm_9 "></td>  
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[LCV_5_MFM][10_00]" class="td_txt lcv5_mfm_10 "></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[LCV_5_MFM][11_00]" class="td_txt lcv5_mfm_11 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[LCV_5_MFM][12_00]" class="td_txt lcv5_mfm_12 "></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[LCV_5_MFM][13_00]" class="td_txt lcv5_mfm_13 "></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[LCV_5_MFM][14_00]" class="td_txt lcv5_mfm_14 "></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[LCV_5_MFM][15_00]" class="td_txt lcv5_mfm_15 "></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[LCV_5_MFM][16_00]" class="td_txt lcv5_mfm_16 "></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[LCV_5_MFM][17_00]" class="td_txt lcv5_mfm_17 "></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[LCV_5_MFM][18_00]" class="td_txt lcv5_mfm_18 "></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[LCV_5_MFM][19_00]" class="td_txt lcv5_mfm_19 "></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[LCV_5_MFM][20_00]" class="td_txt lcv5_mfm_20 "></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[LCV_5_MFM][21_00]" class="td_txt lcv5_mfm_21 "></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[LCV_5_MFM][22_00]" class="td_txt lcv5_mfm_22 "></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[LCV_5_MFM][23_00]" class="td_txt lcv5_mfm_23 "></td>                       
+                          </tr>
+
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. hmr counter<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[Comp_HMR_Counter][00_00]" class="td_txt comp_hmr_cnt_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[Comp_HMR_Counter][01_00]" class="td_txt comp_hmr_cnt_1 val_comp_1"></td>  
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[Comp_HMR_Counter][02_00]" class="td_txt comp_hmr_cnt_2 val_comp_2"></td>  
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[Comp_HMR_Counter][03_00]" class="td_txt comp_hmr_cnt_3 val_comp_3"></td>  
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[Comp_HMR_Counter][04_00]" class="td_txt comp_hmr_cnt_4 val_comp_4"></td>  
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[Comp_HMR_Counter][05_00]" class="td_txt comp_hmr_cnt_5 val_comp_5"></td>  
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[Comp_HMR_Counter][06_00]" class="td_txt comp_hmr_cnt_6 val_comp_6"></td>  
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[Comp_HMR_Counter][07_00]" class="td_txt comp_hmr_cnt_7 val_comp_7"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[Comp_HMR_Counter][08_00]" class="td_txt comp_hmr_cnt_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[Comp_HMR_Counter][09_00]" class="td_txt comp_hmr_cnt_9 val_comp_9"></td>  
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[Comp_HMR_Counter][10_00]" class="td_txt comp_hmr_cnt_10 val_comp_10"></td>      
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[Comp_HMR_Counter][11_00]" class="td_txt comp_hmr_cnt_11 val_comp_11"></td>  
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[Comp_HMR_Counter][12_00]" class="td_txt comp_hmr_cnt_12 val_comp_12"></td>  
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[Comp_HMR_Counter][13_00]" class="td_txt comp_hmr_cnt_13 val_comp_13"></td>  
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[Comp_HMR_Counter][14_00]" class="td_txt comp_hmr_cnt_14 val_comp_14"></td>  
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[Comp_HMR_Counter][15_00]" class="td_txt comp_hmr_cnt_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[Comp_HMR_Counter][16_00]" class="td_txt comp_hmr_cnt_16 val_comp_16"></td>  
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[Comp_HMR_Counter][17_00]" class="td_txt comp_hmr_cnt_17 val_comp_17"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[Comp_HMR_Counter][18_00]" class="td_txt comp_hmr_cnt_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[Comp_HMR_Counter][19_00]" class="td_txt comp_hmr_cnt_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[Comp_HMR_Counter][20_00]" class="td_txt comp_hmr_cnt_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[Comp_HMR_Counter][21_00]" class="td_txt comp_hmr_cnt_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[Comp_HMR_Counter][22_00]" class="td_txt comp_hmr_cnt_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[Comp_HMR_Counter][23_00]" class="td_txt comp_hmr_cnt_23 val_comp_23"></td>                             
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. energy meter<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[Comp_Energy_Meter][00_00]" class="td_txt comp_energy_met_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[Comp_Energy_Meter][01_00]" class="td_txt comp_energy_met_1 val_comp_1"></td>  
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[Comp_Energy_Meter][02_00]" class="td_txt comp_energy_met_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[Comp_Energy_Meter][03_00]" class="td_txt comp_energy_met_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[Comp_Energy_Meter][04_00]" class="td_txt comp_energy_met_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[Comp_Energy_Meter][05_00]" class="td_txt comp_energy_met_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[Comp_Energy_Meter][06_00]" class="td_txt comp_energy_met_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[Comp_Energy_Meter][07_00]" class="td_txt comp_energy_met_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[Comp_Energy_Meter][08_00]" class="td_txt comp_energy_met_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[Comp_Energy_Meter][09_00]" class="td_txt comp_energy_met_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[Comp_Energy_Meter][10_00]" class="td_txt comp_energy_met_10 val_comp_10"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[Comp_Energy_Meter][11_00]" class="td_txt comp_energy_met_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[Comp_Energy_Meter][12_00]" class="td_txt comp_energy_met_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[Comp_Energy_Meter][13_00]" class="td_txt comp_energy_met_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[Comp_Energy_Meter][14_00]" class="td_txt comp_energy_met_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[Comp_Energy_Meter][15_00]" class="td_txt comp_energy_met_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[Comp_Energy_Meter][16_00]" class="td_txt comp_energy_met_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[Comp_Energy_Meter][17_00]" class="td_txt comp_energy_met_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[Comp_Energy_Meter][18_00]" class="td_txt comp_energy_met_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[Comp_Energy_Meter][19_00]" class="td_txt comp_energy_met_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[Comp_Energy_Meter][20_00]" class="td_txt comp_energy_met_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[Comp_Energy_Meter][21_00]" class="td_txt comp_energy_met_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[Comp_Energy_Meter][22_00]" class="td_txt comp_energy_met_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[Comp_Energy_Meter][23_00]" class="td_txt comp_energy_met_23 val_comp_23"></td>                    
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">I Stage Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[I_Stage_Pressure][00_00]" class="td_txt I_stg_prs_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[I_Stage_Pressure][01_00]" class="td_txt I_stg_prs_1 val_comp_1"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[I_Stage_Pressure][02_00]" class="td_txt I_stg_prs_2 val_comp_2"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[I_Stage_Pressure][03_00]" class="td_txt I_stg_prs_3 val_comp_3"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[I_Stage_Pressure][04_00]" class="td_txt I_stg_prs_4 val_comp_4"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[I_Stage_Pressure][05_00]" class="td_txt I_stg_prs_5 val_comp_5"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[I_Stage_Pressure][06_00]" class="td_txt I_stg_prs_6 val_comp_6"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[I_Stage_Pressure][07_00]" class="td_txt I_stg_prs_7 val_comp_7"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[I_Stage_Pressure][08_00]" class="td_txt I_stg_prs_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[I_Stage_Pressure][09_00]" class="td_txt I_stg_prs_9 val_comp_9"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[I_Stage_Pressure][10_00]" class="td_txt I_stg_prs_10 val_comp_10"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[I_Stage_Pressure][11_00]" class="td_txt I_stg_prs_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[I_Stage_Pressure][12_00]" class="td_txt I_stg_prs_12 val_comp_12"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[I_Stage_Pressure][13_00]" class="td_txt I_stg_prs_13 val_comp_13"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[I_Stage_Pressure][14_00]" class="td_txt I_stg_prs_14 val_comp_14"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[I_Stage_Pressure][15_00]" class="td_txt I_stg_prs_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[I_Stage_Pressure][16_00]" class="td_txt I_stg_prs_16 val_comp_16"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[I_Stage_Pressure][17_00]" class="td_txt I_stg_prs_17 val_comp_17"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[I_Stage_Pressure][18_00]" class="td_txt I_stg_prs_18 val_comp_18"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[I_Stage_Pressure][19_00]" class="td_txt I_stg_prs_19 val_comp_19"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[I_Stage_Pressure][20_00]" class="td_txt I_stg_prs_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[I_Stage_Pressure][21_00]" class="td_txt I_stg_prs_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[I_Stage_Pressure][22_00]" class="td_txt I_stg_prs_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[I_Stage_Pressure][23_00]" class="td_txt I_stg_prs_23 val_comp_23"></td>                         
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">II Stage Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[II_Stage_Pressure][00_00]" class="td_txt II_stg_prs_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[II_Stage_Pressure][01_00]" class="td_txt II_stg_prs_1 val_comp_1"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[II_Stage_Pressure][02_00]" class="td_txt II_stg_prs_2 val_comp_2"></td>   
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[II_Stage_Pressure][03_00]" class="td_txt II_stg_prs_3 val_comp_3"></td>   
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[II_Stage_Pressure][04_00]" class="td_txt II_stg_prs_4 val_comp_4"></td>   
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[II_Stage_Pressure][05_00]" class="td_txt II_stg_prs_5 val_comp_5"></td>   
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[II_Stage_Pressure][06_00]" class="td_txt II_stg_prs_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[II_Stage_Pressure][07_00]" class="td_txt II_stg_prs_7 val_comp_7"></td>   
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[II_Stage_Pressure][08_00]" class="td_txt II_stg_prs_8 val_comp_8"></td>   
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[II_Stage_Pressure][09_00]" class="td_txt II_stg_prs_9 val_comp_9"></td>   
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[II_Stage_Pressure][10_00]" class="td_txt II_stg_prs_10 val_comp_10"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[II_Stage_Pressure][11_00]" class="td_txt II_stg_prs_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[II_Stage_Pressure][12_00]" class="td_txt II_stg_prs_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[II_Stage_Pressure][13_00]" class="td_txt II_stg_prs_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[II_Stage_Pressure][14_00]" class="td_txt II_stg_prs_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[II_Stage_Pressure][15_00]" class="td_txt II_stg_prs_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[II_Stage_Pressure][16_00]" class="td_txt II_stg_prs_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[II_Stage_Pressure][17_00]" class="td_txt II_stg_prs_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[II_Stage_Pressure][18_00]" class="td_txt II_stg_prs_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[II_Stage_Pressure][19_00]" class="td_txt II_stg_prs_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[II_Stage_Pressure][20_00]" class="td_txt II_stg_prs_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[II_Stage_Pressure][21_00]" class="td_txt II_stg_prs_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[II_Stage_Pressure][22_00]" class="td_txt II_stg_prs_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[II_Stage_Pressure][23_00]" class="td_txt II_stg_prs_23 val_comp_23"></td>                        
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">III Stage Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[III_Stage_Pressure][00_00]" class="td_txt III_stg_prs_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[III_Stage_Pressure][01_00]" class="td_txt III_stg_prs_1 val_comp_1"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[III_Stage_Pressure][02_00]" class="td_txt III_stg_prs_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[III_Stage_Pressure][03_00]" class="td_txt III_stg_prs_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[III_Stage_Pressure][04_00]" class="td_txt III_stg_prs_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[III_Stage_Pressure][05_00]" class="td_txt III_stg_prs_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[III_Stage_Pressure][06_00]" class="td_txt III_stg_prs_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[III_Stage_Pressure][07_00]" class="td_txt III_stg_prs_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[III_Stage_Pressure][08_00]" class="td_txt III_stg_prs_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[III_Stage_Pressure][09_00]" class="td_txt III_stg_prs_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[III_Stage_Pressure][10_00]" class="td_txt III_stg_prs_10 val_comp_10"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[III_Stage_Pressure][11_00]" class="td_txt III_stg_prs_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[III_Stage_Pressure][12_00]" class="td_txt III_stg_prs_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[III_Stage_Pressure][13_00]" class="td_txt III_stg_prs_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[III_Stage_Pressure][14_00]" class="td_txt III_stg_prs_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[III_Stage_Pressure][15_00]" class="td_txt III_stg_prs_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[III_Stage_Pressure][16_00]" class="td_txt III_stg_prs_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[III_Stage_Pressure][17_00]" class="td_txt III_stg_prs_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[III_Stage_Pressure][18_00]" class="td_txt III_stg_prs_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[III_Stage_Pressure][19_00]" class="td_txt III_stg_prs_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[III_Stage_Pressure][20_00]" class="td_txt III_stg_prs_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[III_Stage_Pressure][21_00]" class="td_txt III_stg_prs_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[III_Stage_Pressure][22_00]" class="td_txt III_stg_prs_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[III_Stage_Pressure][23_00]" class="td_txt III_stg_prs_23 val_comp_23"></td>           
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">I Stage Tempreture<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[I_Stage_Tempreture][00_00]" class="td_txt I_stg_temp_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[I_Stage_Tempreture][01_00]" class="td_txt I_stg_temp_1 val_comp_1"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[I_Stage_Tempreture][02_00]" class="td_txt I_stg_temp_2 val_comp_2"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[I_Stage_Tempreture][03_00]" class="td_txt I_stg_temp_3 val_comp_3"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[I_Stage_Tempreture][04_00]" class="td_txt I_stg_temp_4 val_comp_4"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[I_Stage_Tempreture][05_00]" class="td_txt I_stg_temp_5 val_comp_5"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[I_Stage_Tempreture][06_00]" class="td_txt I_stg_temp_6 val_comp_6"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[I_Stage_Tempreture][07_00]" class="td_txt I_stg_temp_7 val_comp_7"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[I_Stage_Tempreture][08_00]" class="td_txt I_stg_temp_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[I_Stage_Tempreture][09_00]" class="td_txt I_stg_temp_9 val_comp_9"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[I_Stage_Tempreture][10_00]" class="td_txt I_stg_temp_10 val_comp_10"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[I_Stage_Tempreture][11_00]" class="td_txt I_stg_temp_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[I_Stage_Tempreture][12_00]" class="td_txt I_stg_temp_12 val_comp_12"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[I_Stage_Tempreture][13_00]" class="td_txt I_stg_temp_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[I_Stage_Tempreture][14_00]" class="td_txt I_stg_temp_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[I_Stage_Tempreture][15_00]" class="td_txt I_stg_temp_15 val_comp_15"></td>   
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[I_Stage_Tempreture][16_00]" class="td_txt I_stg_temp_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[I_Stage_Tempreture][17_00]" class="td_txt I_stg_temp_17 val_comp_17"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[I_Stage_Tempreture][18_00]" class="td_txt I_stg_temp_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[I_Stage_Tempreture][19_00]" class="td_txt I_stg_temp_19 val_comp_19"></td>   
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[I_Stage_Tempreture][20_00]" class="td_txt I_stg_temp_20 val_comp_20"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[I_Stage_Tempreture][21_00]" class="td_txt I_stg_temp_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[I_Stage_Tempreture][22_00]" class="td_txt I_stg_temp_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[I_Stage_Tempreture][23_00]" class="td_txt I_stg_temp_23 val_comp_23"></td> 
+
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">II Stage Tempreture<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[II_Stage_Tempreture][00_00]" class="td_txt II_stg_temp_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[II_Stage_Tempreture][01_00]" class="td_txt II_stg_temp_1 val_comp_1"></td>       
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[II_Stage_Tempreture][02_00]" class="td_txt II_stg_temp_2 val_comp_2"></td>       
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[II_Stage_Tempreture][03_00]" class="td_txt II_stg_temp_3 val_comp_3"></td>       
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[II_Stage_Tempreture][04_00]" class="td_txt II_stg_temp_4 val_comp_4"></td>       
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[II_Stage_Tempreture][05_00]" class="td_txt II_stg_temp_5 val_comp_5"></td>       
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[II_Stage_Tempreture][06_00]" class="td_txt II_stg_temp_6 val_comp_6"></td>       
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[II_Stage_Tempreture][07_00]" class="td_txt II_stg_temp_7 val_comp_7"></td>       
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[II_Stage_Tempreture][08_00]" class="td_txt II_stg_temp_8 val_comp_8"></td>       
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[II_Stage_Tempreture][09_00]" class="td_txt II_stg_temp_9 val_comp_9"></td>     
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[II_Stage_Tempreture][10_00]" class="td_txt II_stg_temp_10 val_comp_10"></td>        
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[II_Stage_Tempreture][11_00]" class="td_txt II_stg_temp_11 val_comp_11"></td>       
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[II_Stage_Tempreture][12_00]" class="td_txt II_stg_temp_12 val_comp_12"></td>       
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[II_Stage_Tempreture][13_00]" class="td_txt II_stg_temp_13 val_comp_13"></td>    
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[II_Stage_Tempreture][14_00]" class="td_txt II_stg_temp_14 val_comp_14"></td>    
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[II_Stage_Tempreture][15_00]" class="td_txt II_stg_temp_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[II_Stage_Tempreture][16_00]" class="td_txt II_stg_temp_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[II_Stage_Tempreture][17_00]" class="td_txt II_stg_temp_17 val_comp_17"></td>   
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[II_Stage_Tempreture][18_00]" class="td_txt II_stg_temp_18 val_comp_18"></td>    
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[II_Stage_Tempreture][19_00]" class="td_txt II_stg_temp_19 val_comp_19"></td>    
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[II_Stage_Tempreture][20_00]" class="td_txt II_stg_temp_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[II_Stage_Tempreture][21_00]" class="td_txt II_stg_temp_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[II_Stage_Tempreture][22_00]" class="td_txt II_stg_temp_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[II_Stage_Tempreture][23_00]" class="td_txt II_stg_temp_23 val_comp_23"></td>
+
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">III Stage Tempreture<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[III_Stage_Tempreture][00_00]" class="td_txt III_stg_temp_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[III_Stage_Tempreture][01_00]" class="td_txt III_stg_temp_1 val_comp_1"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[III_Stage_Tempreture][02_00]" class="td_txt III_stg_temp_2 val_comp_2"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[III_Stage_Tempreture][03_00]" class="td_txt III_stg_temp_3 val_comp_3"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[III_Stage_Tempreture][04_00]" class="td_txt III_stg_temp_4 val_comp_4"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[III_Stage_Tempreture][05_00]" class="td_txt III_stg_temp_5 val_comp_5"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[III_Stage_Tempreture][06_00]" class="td_txt III_stg_temp_6 val_comp_6"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[III_Stage_Tempreture][07_00]" class="td_txt III_stg_temp_7 val_comp_7"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[III_Stage_Tempreture][08_00]" class="td_txt III_stg_temp_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[III_Stage_Tempreture][09_00]" class="td_txt III_stg_temp_9 val_comp_9"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[III_Stage_Tempreture][10_00]" class="td_txt III_stg_temp_10 val_comp_10"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[III_Stage_Tempreture][11_00]" class="td_txt III_stg_temp_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[III_Stage_Tempreture][12_00]" class="td_txt III_stg_temp_12 val_comp_12"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[III_Stage_Tempreture][13_00]" class="td_txt III_stg_temp_13 val_comp_13"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[III_Stage_Tempreture][14_00]" class="td_txt III_stg_temp_14 val_comp_14"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[III_Stage_Tempreture][15_00]" class="td_txt III_stg_temp_15 val_comp_15"></td> 
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[III_Stage_Tempreture][16_00]" class="td_txt III_stg_temp_16 val_comp_16"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[III_Stage_Tempreture][17_00]" class="td_txt III_stg_temp_17 val_comp_17"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[III_Stage_Tempreture][18_00]" class="td_txt III_stg_temp_18 val_comp_18"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[III_Stage_Tempreture][19_00]" class="td_txt III_stg_temp_19 val_comp_19"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[III_Stage_Tempreture][20_00]" class="td_txt III_stg_temp_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[III_Stage_Tempreture][21_00]" class="td_txt III_stg_temp_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[III_Stage_Tempreture][22_00]" class="td_txt III_stg_temp_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[III_Stage_Tempreture][23_00]" class="td_txt III_stg_temp_23 val_comp_23"></td>                        
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">LP Oil<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LP_Oil][00_00]" class="td_txt lp_oil_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LP_Oil][001_00]" class="td_txt lp_oil_1 val_comp_1"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[LP_Oil][02_00]" class="td_txt lp_oil_2 val_comp_2"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[LP_Oil][03_00]" class="td_txt lp_oil_3 val_comp_3"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[LP_Oil][04_00]" class="td_txt lp_oil_4 val_comp_4"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[LP_Oil][05_00]" class="td_txt lp_oil_5 val_comp_5"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[LP_Oil][06_00]" class="td_txt lp_oil_6 val_comp_6"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[LP_Oil][07_00]" class="td_txt lp_oil_7 val_comp_7"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[LP_Oil][08_00]" class="td_txt lp_oil_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[LP_Oil][09_00]" class="td_txt lp_oil_9 val_comp_9"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[LP_Oil][10_00]" class="td_txt lp_oil_10 val_comp_10"></td>                   
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[LP_Oil][11_00]" class="td_txt lp_oil_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[LP_Oil][12_00]" class="td_txt lp_oil_12 val_comp_12"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[LP_Oil][13_00]" class="td_txt lp_oil_13 val_comp_13"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[LP_Oil][14_00]" class="td_txt lp_oil_14 val_comp_14"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[LP_Oil][15_00]" class="td_txt lp_oil_15 val_comp_15"></td>      
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[LP_Oil][16_00]" class="td_txt lp_oil_16 val_comp_16"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[LP_Oil][17_00]" class="td_txt lp_oil_17 val_comp_17"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[LP_Oil][18_00]" class="td_txt lp_oil_18 val_comp_18"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[LP_Oil][19_00]" class="td_txt lp_oil_19 val_comp_19"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[LP_Oil][20_00]" class="td_txt lp_oil_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[LP_Oil][21_00]" class="td_txt lp_oil_21 val_comp_21"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[LP_Oil][22_00]" class="td_txt lp_oil_22 val_comp_22"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[LP_Oil][23_00]" class="td_txt lp_oil_23 val_comp_23"></td>  
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">HP Oil<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[HP_Oil][00_00]" class="td_txt hp_oil_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[HP_Oil][01_00]" class="td_txt hp_oil_1 val_comp_1"></td>   
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[HP_Oil][02_00]" class="td_txt hp_oil_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[HP_Oil][03_00]" class="td_txt hp_oil_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[HP_Oil][04_00]" class="td_txt hp_oil_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[HP_Oil][05_00]" class="td_txt hp_oil_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[HP_Oil][06_00]" class="td_txt hp_oil_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[HP_Oil][07_00]" class="td_txt hp_oil_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[HP_Oil][08_00]" class="td_txt hp_oil_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[HP_Oil][09_00]" class="td_txt hp_oil_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[HP_Oil][10_00]" class="td_txt hp_oil_10 val_comp_10"></td>  
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[HP_Oil][11_00]" class="td_txt hp_oil_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[HP_Oil][12_00]" class="td_txt hp_oil_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[HP_Oil][13_00]" class="td_txt hp_oil_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[HP_Oil][14_00]" class="td_txt hp_oil_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[HP_Oil][15_00]" class="td_txt hp_oil_15 val_comp_15"></td>             
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[HP_Oil][16_00]" class="td_txt hp_oil_16 val_comp_16"></td>      
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[HP_Oil][17_00]" class="td_txt hp_oil_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[HP_Oil][18_00]" class="td_txt hp_oil_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[HP_Oil][19_00]" class="td_txt hp_oil_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[HP_Oil][20_00]" class="td_txt hp_oil_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[HP_Oil][21_00]" class="td_txt hp_oil_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[HP_Oil][22_00]" class="td_txt hp_oil_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[HP_Oil][23_00]" class="td_txt hp_oil_23 val_comp_23"></td>
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Low Bank Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[Low_Bank_Pressure][00_00]" class="td_txt low_bank_prs_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[Low_Bank_Pressure][01_00]" class="td_txt low_bank_prs_1 val_comp_1"></td>   
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[Low_Bank_Pressure][02_00]" class="td_txt low_bank_prs_2 val_comp_2"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[Low_Bank_Pressure][03_00]" class="td_txt low_bank_prs_3 val_comp_3"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[Low_Bank_Pressure][04_00]" class="td_txt low_bank_prs_4 val_comp_4"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[Low_Bank_Pressure][05_00]" class="td_txt low_bank_prs_5 val_comp_5"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[Low_Bank_Pressure][06_00]" class="td_txt low_bank_prs_6 val_comp_6"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[Low_Bank_Pressure][07_00]" class="td_txt low_bank_prs_7 val_comp_7"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[Low_Bank_Pressure][08_00]" class="td_txt low_bank_prs_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[Low_Bank_Pressure][09_00]" class="td_txt low_bank_prs_9 val_comp_9"></td>           
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[Low_Bank_Pressure][10_00]" class="td_txt low_bank_prs_10 val_comp_10"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[Low_Bank_Pressure][11_00]" class="td_txt low_bank_prs_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[Low_Bank_Pressure][12_00]" class="td_txt low_bank_prs_12 val_comp_12"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[Low_Bank_Pressure][13_00]" class="td_txt low_bank_prs_13 val_comp_13"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[Low_Bank_Pressure][14_00]" class="td_txt low_bank_prs_14 val_comp_14"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[Low_Bank_Pressure][15_00]" class="td_txt low_bank_prs_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[Low_Bank_Pressure][16_00]" class="td_txt low_bank_prs_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[Low_Bank_Pressure][17_00]" class="td_txt low_bank_prs_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[Low_Bank_Pressure][18_00]" class="td_txt low_bank_prs_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[Low_Bank_Pressure][19_00]" class="td_txt low_bank_prs_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[Low_Bank_Pressure][20_00]" class="td_txt low_bank_prs_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[Low_Bank_Pressure][21_00]" class="td_txt low_bank_prs_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[Low_Bank_Pressure][22_00]" class="td_txt low_bank_prs_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[Low_Bank_Pressure][23_00]" class="td_txt low_bank_prs_23 val_comp_23"></td>                   
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Med. Bank Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[Med_Bank_Pressure][00_00]" class="td_txt med_bank_prs_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[Med_Bank_Pressure][01_00]" class="td_txt med_bank_prs_1 val_comp_1"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[Med_Bank_Pressure][02_00]" class="td_txt med_bank_prs_2 val_comp_2"></td> 
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[Med_Bank_Pressure][03_00]" class="td_txt med_bank_prs_3 val_comp_3"></td> 
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[Med_Bank_Pressure][04_00]" class="td_txt med_bank_prs_4 val_comp_4"></td> 
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[Med_Bank_Pressure][05_00]" class="td_txt med_bank_prs_5 val_comp_5"></td> 
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[Med_Bank_Pressure][06_00]" class="td_txt med_bank_prs_6 val_comp_6"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[Med_Bank_Pressure][07_00]" class="td_txt med_bank_prs_7 val_comp_7"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[Med_Bank_Pressure][08_00]" class="td_txt med_bank_prs_8 val_comp_8"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[Med_Bank_Pressure][09_00]" class="td_txt med_bank_prs_9 val_comp_9"></td> 
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[Med_Bank_Pressure][10_00]" class="td_txt med_bank_prs_10 val_comp_10"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[Med_Bank_Pressure][11_00]" class="td_txt med_bank_prs_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[Med_Bank_Pressure][12_00]" class="td_txt med_bank_prs_12 val_comp_12"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[Med_Bank_Pressure][13_00]" class="td_txt med_bank_prs_13 val_comp_13"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[Med_Bank_Pressure][14_00]" class="td_txt med_bank_prs_14 val_comp_14"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[Med_Bank_Pressure][15_00]" class="td_txt med_bank_prs_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[Med_Bank_Pressure][16_00]" class="td_txt med_bank_prs_16 val_comp_16"></td>  
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[Med_Bank_Pressure][17_00]" class="td_txt med_bank_prs_17 val_comp_17"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[Med_Bank_Pressure][18_00]" class="td_txt med_bank_prs_18 val_comp_18"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[Med_Bank_Pressure][19_00]" class="td_txt med_bank_prs_19 val_comp_19"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[Med_Bank_Pressure][20_00]" class="td_txt med_bank_prs_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[Med_Bank_Pressure][21_00]" class="td_txt med_bank_prs_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[Med_Bank_Pressure][22_00]" class="td_txt med_bank_prs_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[Med_Bank_Pressure][23_00]" class="td_txt med_bank_prs_23 val_comp_23"></td>
+
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">High Bank Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[High_Bank_Pressure][00_00]" class="td_txt high_bank_prs_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[High_Bank_Pressure][01_00]" class="td_txt high_bank_prs_1 val_comp_1"></td>                        
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[High_Bank_Pressure][02_00]" class="td_txt high_bank_prs_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[High_Bank_Pressure][03_00]" class="td_txt high_bank_prs_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[High_Bank_Pressure][04_00]" class="td_txt high_bank_prs_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[High_Bank_Pressure][05_00]" class="td_txt high_bank_prs_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[High_Bank_Pressure][06_00]" class="td_txt high_bank_prs_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[High_Bank_Pressure][07_00]" class="td_txt high_bank_prs_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[High_Bank_Pressure][08_00]" class="td_txt high_bank_prs_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[High_Bank_Pressure][09_00]" class="td_txt high_bank_prs_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[High_Bank_Pressure][10_00]" class="td_txt high_bank_prs_10 val_comp_10"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[High_Bank_Pressure][11_00]" class="td_txt high_bank_prs_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[High_Bank_Pressure][12_00]" class="td_txt high_bank_prs_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[High_Bank_Pressure][13_00]" class="td_txt high_bank_prs_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[High_Bank_Pressure][14_00]" class="td_txt high_bank_prs_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[High_Bank_Pressure][15_00]" class="td_txt high_bank_prs_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[High_Bank_Pressure][16_00]" class="td_txt high_bank_prs_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[High_Bank_Pressure][17_00]" class="td_txt high_bank_prs_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[High_Bank_Pressure][18_00]" class="td_txt high_bank_prs_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[High_Bank_Pressure][19_00]" class="td_txt high_bank_prs_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[High_Bank_Pressure][20_00]" class="td_txt high_bank_prs_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[High_Bank_Pressure][21_00]" class="td_txt high_bank_prs_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[High_Bank_Pressure][22_00]" class="td_txt high_bank_prs_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[High_Bank_Pressure][23_00]" class="td_txt high_bank_prs_23 val_comp_23"></td>
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Water Level<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[Water_Level][00_00]" class="td_txt water_lvl_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[Water_Level][01_00]" class="td_txt water_lvl_1 val_comp_1"></td> 
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[Water_Level][02_00]" class="td_txt water_lvl_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[Water_Level][03_00]" class="td_txt water_lvl_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[Water_Level][04_00]" class="td_txt water_lvl_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[Water_Level][05_00]" class="td_txt water_lvl_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[Water_Level][06_00]" class="td_txt water_lvl_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[Water_Level][07_00]" class="td_txt water_lvl_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[Water_Level][08_00]" class="td_txt water_lvl_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[Water_Level][09_00]" class="td_txt water_lvl_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[Water_Level][10_00]" class="td_txt water_lvl_10 val_comp_10"></td>         
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[Water_Level][11_00]" class="td_txt water_lvl_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[Water_Level][12_00]" class="td_txt water_lvl_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[Water_Level][13_00]" class="td_txt water_lvl_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[Water_Level][14_00]" class="td_txt water_lvl_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[Water_Level][15_00]" class="td_txt water_lvl_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[Water_Level][16_00]" class="td_txt water_lvl_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[Water_Level][17_00]" class="td_txt water_lvl_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[Water_Level][18_00]" class="td_txt water_lvl_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[Water_Level][19_00]" class="td_txt water_lvl_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[Water_Level][20_00]" class="td_txt water_lvl_20 val_comp_20"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[Water_Level][21_00]" class="td_txt water_lvl_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[Water_Level][22_00]" class="td_txt water_lvl_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[Water_Level][23_00]" class="td_txt water_lvl_23 val_comp_23"></td>            
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Oil Level<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[Oil_Level][00_00]" class="td_txt oil_lvl_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[Oil_Level][01_00]" class="td_txt oil_lvl_1 val_comp_1"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[Oil_Level][02_00]" class="td_txt oil_lvl_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[Oil_Level][03_00]" class="td_txt oil_lvl_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[Oil_Level][04_00]" class="td_txt oil_lvl_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[Oil_Level][05_00]" class="td_txt oil_lvl_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[Oil_Level][06_00]" class="td_txt oil_lvl_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[Oil_Level][07_00]" class="td_txt oil_lvl_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[Oil_Level][08_00]" class="td_txt oil_lvl_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[Oil_Level][09_00]" class="td_txt oil_lvl_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[Oil_Level][10_00]" class="td_txt oil_lvl_10 val_comp_10"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[Oil_Level][11_00]" class="td_txt oil_lvl_11 val_comp_11"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[Oil_Level][12_00]" class="td_txt oil_lvl_12 val_comp_12"></td> 
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[Oil_Level][13_00]" class="td_txt oil_lvl_13 val_comp_13"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[Oil_Level][14_00]" class="td_txt oil_lvl_14 val_comp_14"></td> 
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[Oil_Level][15_00]" class="td_txt oil_lvl_15 val_comp_15"></td> 
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[Oil_Level][16_00]" class="td_txt oil_lvl_16 val_comp_16"></td> 
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[Oil_Level][17_00]" class="td_txt oil_lvl_17 val_comp_17"></td> 
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[Oil_Level][18_00]" class="td_txt oil_lvl_18 val_comp_18"></td> 
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[Oil_Level][19_00]" class="td_txt oil_lvl_19 val_comp_19"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[Oil_Level][20_00]" class="td_txt oil_lvl_20 val_comp_20"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[Oil_Level][21_00]" class="td_txt oil_lvl_21 val_comp_21"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[Oil_Level][22_00]" class="td_txt oil_lvl_22 val_comp_22"></td> 
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[Oil_Level][23_00]" class="td_txt oil_lvl_23 val_comp_23"></td>                         
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">No. of COMP. Starts<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[No_of_COMP_Starts][00_00]" class="td_txt comp_starts_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[No_of_COMP_Starts][01_00]" class="td_txt comp_starts_1 val_comp_1"></td>
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[No_of_COMP_Starts][02_00]" class="td_txt comp_starts_2 val_comp_2"></td>
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[No_of_COMP_Starts][03_00]" class="td_txt comp_starts_3 val_comp_3"></td>
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[No_of_COMP_Starts][04_00]" class="td_txt comp_starts_4 val_comp_4"></td>
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[No_of_COMP_Starts][05_00]" class="td_txt comp_starts_5 val_comp_5"></td>
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[No_of_COMP_Starts][06_00]" class="td_txt comp_starts_6 val_comp_6"></td>
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[No_of_COMP_Starts][07_00]" class="td_txt comp_starts_7 val_comp_7"></td>
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[No_of_COMP_Starts][08_00]" class="td_txt comp_starts_8 val_comp_8"></td>
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[No_of_COMP_Starts][09_00]" class="td_txt comp_starts_9 val_comp_9"></td>
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[No_of_COMP_Starts][10_00]" class="td_txt comp_starts_10 val_comp_10"></td>
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[No_of_COMP_Starts][11_00]" class="td_txt comp_starts_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[No_of_COMP_Starts][12_00]" class="td_txt comp_starts_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[No_of_COMP_Starts][13_00]" class="td_txt comp_starts_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[No_of_COMP_Starts][14_00]" class="td_txt comp_starts_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[No_of_COMP_Starts][15_00]" class="td_txt comp_starts_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[No_of_COMP_Starts][16_00]" class="td_txt comp_starts_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[No_of_COMP_Starts][17_00]" class="td_txt comp_starts_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[No_of_COMP_Starts][18_00]" class="td_txt comp_starts_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[No_of_COMP_Starts][19_00]" class="td_txt comp_starts_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[No_of_COMP_Starts][20_00]" class="td_txt comp_starts_20 val_comp_20"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[No_of_COMP_Starts][21_00]" class="td_txt comp_starts_21 val_comp_21"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[No_of_COMP_Starts][22_00]" class="td_txt comp_starts_22 val_comp_22"></td>
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[No_of_COMP_Starts][23_00]" class="td_txt comp_starts_23 val_comp_23"></td>                        
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Suction Pressure<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[Suction_Pressure][00_00]" class="td_txt suc_prs_0 val_comp_0"></td>
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[Suction_Pressure][01_00]" class="td_txt suc_prs_1 val_comp_1"></td>    
+                              <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[Suction_Pressure][02_00]" class="td_txt suc_prs_2 val_comp_2"></td>    
+                              <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[Suction_Pressure][03_00]" class="td_txt suc_prs_3 val_comp_3"></td>    
+                              <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[Suction_Pressure][04_00]" class="td_txt suc_prs_4 val_comp_4"></td>    
+                              <td class="text-uppercase pl-0 comp_th_five display-none"><input type="number" name="para[Suction_Pressure][05_00]" class="td_txt suc_prs_5 val_comp_5"></td>    
+                              <td class="text-uppercase pl-0 comp_th_six display-none"><input type="number" name="para[Suction_Pressure][06_00]" class="td_txt suc_prs_6 val_comp_6"></td>    
+                              <td class="text-uppercase pl-0 comp_th_seven display-none"><input type="number" name="para[Suction_Pressure][07_00]" class="td_txt suc_prs_7 val_comp_7"></td>    
+                              <td class="text-uppercase pl-0 comp_th_eight display-none"><input type="number" name="para[Suction_Pressure][08_00]" class="td_txt suc_prs_8 val_comp_8"></td>    
+                              <td class="text-uppercase pl-0 comp_th_nine display-none"><input type="number" name="para[Suction_Pressure][09_00]" class="td_txt suc_prs_9 val_comp_9"></td>    
+                              <td class="text-uppercase pl-0 comp_th_ten display-none"><input type="number" name="para[Suction_Pressure][10_00]" class="td_txt suc_prs_10 val_comp_10"></td>   
+                              <td class="text-uppercase pl-0 comp_th_eleven display-none"><input type="number" name="para[Suction_Pressure][11_00]" class="td_txt suc_prs_11 val_comp_11"></td>
+                              <td class="text-uppercase pl-0 comp_th_twelve display-none"><input type="number" name="para[Suction_Pressure][12_00]" class="td_txt suc_prs_12 val_comp_12"></td>
+                              <td class="text-uppercase pl-0 comp_th_thirteen display-none"><input type="number" name="para[Suction_Pressure][13_00]" class="td_txt suc_prs_13 val_comp_13"></td>
+                              <td class="text-uppercase pl-0 comp_th_fourteen display-none"><input type="number" name="para[Suction_Pressure][14_00]" class="td_txt suc_prs_14 val_comp_14"></td>
+                              <td class="text-uppercase pl-0 comp_th_fifteen display-none"><input type="number" name="para[Suction_Pressure][15_00]" class="td_txt suc_prs_15 val_comp_15"></td>
+                              <td class="text-uppercase pl-0 comp_th_sixteen display-none"><input type="number" name="para[Suction_Pressure][16_00]" class="td_txt suc_prs_16 val_comp_16"></td>
+                              <td class="text-uppercase pl-0 comp_th_seventeen display-none"><input type="number" name="para[Suction_Pressure][17_00]" class="td_txt suc_prs_17 val_comp_17"></td>
+                              <td class="text-uppercase pl-0 comp_th_eighteen display-none"><input type="number" name="para[Suction_Pressure][18_00]" class="td_txt suc_prs_18 val_comp_18"></td>
+                              <td class="text-uppercase pl-0 comp_th_nineteen display-none"><input type="number" name="para[Suction_Pressure][19_00]" class="td_txt suc_prs_19 val_comp_19"></td>
+                              <td class="text-uppercase pl-0 comp_th_twenty display-none"><input type="number" name="para[Suction_Pressure][20_00]" class="td_txt suc_prs_20 val_comp_20"></td>      
+                              <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[Suction_Pressure][21_00]" class="td_txt suc_prs_21 val_comp_21"></td>    
+                              <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[Suction_Pressure][22_00]" class="td_txt suc_prs_22 val_comp_22"></td>    
+                              <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[Suction_Pressure][23_00]" class="td_txt suc_prs_23 val_comp_23"></td>                
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!---------------------------- C O M P R E S S O R  E N D S -------------------------------->
+
+        <!---------------------------- D I S P E N S E R -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">dispenser</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table">    
+                      <table>
+                        <thead>
+                          <tr>            
+                            <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_zero tbl-cell"><strong id="disp_time_zero">00:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_one tbl-cell"><strong id="disp_time_one">01:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_two display-none"><strong id="disp_time_two">02:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_three display-none"><strong id="disp_time_three">03:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_four display-none"><strong id="disp_time_four">04:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_five display-none"><strong id="disp_time_five">05:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_six display-none"><strong id="disp_time_six">06:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_seven display-none"><strong id="disp_time_seven">07:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_eight display-none"><strong id="disp_time_eight">08:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_nine display-none"><strong id="disp_time_nine">09:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_ten display-none"><strong id="disp_time_ten">10:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_eleven display-none"><strong id="disp_time_eleven">11:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_twelve display-none"><strong id="disp_time_twelve">12:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_thirteen display-none"><strong id="disp_time_thirteen">13:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_fourteen display-none"><strong id="disp_time_fourteen">14:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_fifteen display-none"><strong id="disp_time_fiften">15:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_sixteen display-none"><strong id="disp_time_sixteen">16:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_seventeen display-none"><strong id="disp_time_seventeen">17:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_eighteen display-none"><strong id="disp_time_eighteen">18:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_nineteen display-none"><strong id="disp_time_nineteen">19:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_twenty display-none"><strong id="disp_time_twenty">20:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_twentyone display-none"><strong id="disp_time_twentyone">21:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th disp_th_twentytwo display-none"><strong id="disp_time_twentytwo">22:00</strong></th>
+                            <th class="label-cell text-uppercase table-th disp_th_twentythree display-none"><strong id="disp_time_twentythree">23:00</strong></th>
+                          </tr>
+                        </thead>
+                        <tbody id="sheet_data" >
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 1 A<sup class="text-red fw-600 fs-12">*</sup></td>   <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="para[DISP_1_A][00_00]" class="td_txt disp_1_a_0 val_disp_1_0" required></td>
+                              <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="para[DISP_1_A][01_00]" class="td_txt disp_1_a_1 val_disp_1_1"></td>
+                              <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="para[DISP_1_A][02_00]" class="td_txt disp_1_a_2 val_disp_1_2"></td>
+                              <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="para[DISP_1_A][03_00]" class="td_txt disp_1_a_3 val_disp_1_3"></td>
+                              <td class="text-uppercase pl-0 disp_th_four display-none"><input type="number" name="para[DISP_1_A][04_00]" class="td_txt disp_1_a_4 val_disp_1_4"></td>
+                              <td class="text-uppercase pl-0 disp_th_five display-none"><input type="number" name="para[DISP_1_A][05_00]" class="td_txt disp_1_a_5 val_disp_1_5"></td>
+                              <td class="text-uppercase pl-0 disp_th_six display-none"><input type="number" name="para[DISP_1_A][06_00]" class="td_txt disp_1_a_6 val_disp_1_6"></td>
+                              <td class="text-uppercase pl-0 disp_th_seven display-none"><input type="number" name="para[DISP_1_A][07_00]" class="td_txt disp_1_a_7 val_disp_1_7"></td>
+                              <td class="text-uppercase pl-0 disp_th_eight display-none"><input type="number" name="para[DISP_1_A][08_00]" class="td_txt disp_1_a_8 val_disp_1_8"></td>
+                              <td class="text-uppercase pl-0 disp_th_nine display-none"><input type="number" name="para[DISP_1_A][09_00]" class="td_txt disp_1_a_9 val_disp_1_9"></td>
+                              <td class="text-uppercase pl-0 disp_th_ten display-none"><input type="number" name="para[DISP_1_A][10_00]" class="td_txt disp_1_a_10 val_disp_1_10"></td>
+                              <td class="text-uppercase pl-0 disp_th_eleven display-none"><input type="number" name="para[DISP_1_A][11_00]" class="td_txt disp_1_a_11 val_disp_1_11"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twelve display-none"><input type="number" name="para[DISP_1_A][12_00]" class="td_txt disp_1_a_12 val_disp_1_12"></td> 
+                              <td class="text-uppercase pl-0 disp_th_thirteen display-none"><input type="number" name="para[DISP_1_A][13_00]" class="td_txt disp_1_a_13 val_disp_1_13"></td> 
+                              <td class="text-uppercase pl-0 disp_th_fourteen display-none"><input type="number" name="para[DISP_1_A][14_00]" class="td_txt disp_1_a_14 val_disp_1_14"></td> 
+                              <td class="text-uppercase pl-0 disp_th_fifteen display-none"><input type="number" name="para[DISP_1_A][15_00]" class="td_txt disp_1_a_15 val_disp_1_15"></td> 
+                              <td class="text-uppercase pl-0 disp_th_sixteen display-none"><input type="number" name="para[DISP_1_A][16_00]" class="td_txt disp_1_a_16 val_disp_1_16"></td> 
+                              <td class="text-uppercase pl-0 disp_th_seventeen display-none"><input type="number" name="para[DISP_1_A][17_00]" class="td_txt disp_1_a_17 val_disp_1_17"></td> 
+                              <td class="text-uppercase pl-0 disp_th_eighteen display-none"><input type="number" name="para[DISP_1_A][18_00]" class="td_txt disp_1_a_18 val_disp_1_18"></td> 
+                              <td class="text-uppercase pl-0 disp_th_nineteen display-none"><input type="number" name="para[DISP_1_A][19_00]" class="td_txt disp_1_a_19 val_disp_1_19"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twenty display-none"><input type="number" name="para[DISP_1_A][20_00]" class="td_txt disp_1_a_20 val_disp_1_20"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentyone display-none"><input type="number" name="para[DISP_1_A][21_00]" class="td_txt disp_1_a_21 val_disp_1_21"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentytwo display-none"><input type="number" name="para[DISP_1_A][22_00]" class="td_txt disp_1_a_22 val_disp_1_22"></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentythree display-none"><input type="number" name="para[DISP_1_A][23_00]" class="td_txt disp_1_a_23 val_disp_1_23"></td>        
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 1 B<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="para[DISP_1_B][00_00]" class="td_txt disp_1_b_0 val_disp_1_0"></td>
+                              <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="para[DISP_1_B][01_00]" class="td_txt disp_1_b_1 val_disp_1_1"></td>
+                              <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="para[DISP_1_B][02_00]" class="td_txt disp_1_b_2 val_disp_1_2"></td>
+                              <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="para[DISP_1_B][03_00]" class="td_txt disp_1_b_3 val_disp_1_3"></td>
+                              <td class="text-uppercase pl-0 disp_th_four display-none"><input type="number" name="para[DISP_1_B][04_00]" class="td_txt disp_1_b_4 val_disp_1_4"></td>
+                              <td class="text-uppercase pl-0 disp_th_five display-none"><input type="number" name="para[DISP_1_B][05_00]" class="td_txt disp_1_b_5 val_disp_1_5"></td>
+                              <td class="text-uppercase pl-0 disp_th_six display-none"><input type="number" name="para[DISP_1_B][06_00]" class="td_txt disp_1_b_6 val_disp_1_6"></td>
+                              <td class="text-uppercase pl-0 disp_th_seven display-none"><input type="number" name="para[DISP_1_B][07_00]" class="td_txt disp_1_b_7 val_disp_1_7"></td>
+                              <td class="text-uppercase pl-0 disp_th_eight display-none"><input type="number" name="para[DISP_1_B][08_00]" class="td_txt disp_1_b_8 val_disp_1_8"></td>
+                              <td class="text-uppercase pl-0 disp_th_nine display-none"><input type="number" name="para[DISP_1_B][09_00]" class="td_txt disp_1_b_9 val_disp_1_9"></td>
+                              <td class="text-uppercase pl-0 disp_th_ten display-none"><input type="number" name="para[DISP_1_B][10_00]" class="td_txt disp_1_b_10 val_disp_1_10"></td>
+                              <td class="text-uppercase pl-0 disp_th_eleven display-none"><input type="number" name="para[DISP_1_B][11_00]" class="td_txt disp_1_b_11 val_disp_1_11"></td>
+                              <td class="text-uppercase pl-0 disp_th_twelve display-none"><input type="number" name="para[DISP_1_B][12_00]" class="td_txt disp_1_b_12 val_disp_1_12"></td>
+                              <td class="text-uppercase pl-0 disp_th_thirteen display-none"><input type="number" name="para[DISP_1_B][13_00]" class="td_txt disp_1_b_13 val_disp_1_13"></td>
+                              <td class="text-uppercase pl-0 disp_th_fourteen display-none"><input type="number" name="para[DISP_1_B][14_00]" class="td_txt disp_1_b_14 val_disp_1_14"></td>
+                              <td class="text-uppercase pl-0 disp_th_fifteen display-none"><input type="number" name="para[DISP_1_B][15_00]" class="td_txt disp_1_b_15 val_disp_1_15"></td>
+                              <td class="text-uppercase pl-0 disp_th_sixteen display-none"><input type="number" name="para[DISP_1_B][16_00]" class="td_txt disp_1_b_16 val_disp_1_16"></td>
+                              <td class="text-uppercase pl-0 disp_th_seventeen display-none"><input type="number" name="para[DISP_1_B][17_00]" class="td_txt disp_1_b_17 val_disp_1_17"></td>
+                              <td class="text-uppercase pl-0 disp_th_eighteen display-none"><input type="number" name="para[DISP_1_B][18_00]" class="td_txt disp_1_b_18 val_disp_1_18"></td>
+                              <td class="text-uppercase pl-0 disp_th_nineteen display-none"><input type="number" name="para[DISP_1_B][19_00]" class="td_txt disp_1_b_19 val_disp_1_19"></td>
+                              <td class="text-uppercase pl-0 disp_th_twenty display-none"><input type="number" name="para[DISP_1_B][20_00]" class="td_txt disp_1_b_20 val_disp_1_20"></td>  
+                              <td class="text-uppercase pl-0 disp_th_twentyone display-none"><input type="number" name="para[DISP_1_B][21_00]" class="td_txt disp_1_b_21 val_disp_1_21"></td>
+                              <td class="text-uppercase pl-0 disp_th_twentytwo display-none"><input type="number" name="para[DISP_1_B][22_00]" class="td_txt disp_1_b_22 val_disp_1_22"></td>
+                              <td class="text-uppercase pl-0 disp_th_twentythree display-none"><input type="number" name="para[DISP_1_B][23_00]" class="td_txt disp_1_b_23 val_disp_1_23"></td>   
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 2 A</td>
+                              <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="para[DISP_2_A][00_00]" class="td_txt disp_2_a_0 "></td>
+                              <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="para[DISP_2_A][01_00]" class="td_txt disp_2_a_1 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="para[DISP_2_A][02_00]" class="td_txt disp_2_a_2 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="para[DISP_2_A][03_00]" class="td_txt disp_2_a_3 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_four display-none"><input type="number" name="para[DISP_2_A][04_00]" class="td_txt disp_2_a_4 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_five display-none"><input type="number" name="para[DISP_2_A][05_00]" class="td_txt disp_2_a_5 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_six display-none"><input type="number" name="para[DISP_2_A][06_00]" class="td_txt disp_2_a_6 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_seven display-none"><input type="number" name="para[DISP_2_A][07_00]" class="td_txt disp_2_a_7 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_eight display-none"><input type="number" name="para[DISP_2_A][08_00]" class="td_txt disp_2_a_8 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_nine display-none"><input type="number" name="para[DISP_2_A][09_00]" class="td_txt disp_2_a_9 "></td>  
+                              <td class="text-uppercase pl-0 disp_th_ten display-none"><input type="number" name="para[DISP_2_A][10_00]" class="td_txt disp_2_a_10 "></td>    
+                              <td class="text-uppercase pl-0 disp_th_eleven display-none"><input type="number" name="para[DISP_2_A][11_00]" class="td_txt disp_2_a_11 "></td>
+                              <td class="text-uppercase pl-0 disp_th_twelve display-none"><input type="number" name="para[DISP_2_A][12_00]" class="td_txt disp_2_a_12 "></td>
+                              <td class="text-uppercase pl-0 disp_th_thirteen display-none"><input type="number" name="para[DISP_2_A][13_00]" class="td_txt disp_2_a_13 "></td>
+                              <td class="text-uppercase pl-0 disp_th_fourteen display-none"><input type="number" name="para[DISP_2_A][14_00]" class="td_txt disp_2_a_14 "></td>
+                              <td class="text-uppercase pl-0 disp_th_fifteen display-none"><input type="number" name="para[DISP_2_A][15_00]" class="td_txt disp_2_a_15 "></td>
+                              <td class="text-uppercase pl-0 disp_th_sixteen display-none"><input type="number" name="para[DISP_2_A][16_00]" class="td_txt disp_2_a_16 "></td>
+                              <td class="text-uppercase pl-0 disp_th_seventeen display-none"><input type="number" name="para[DISP_2_A][17_00]" class="td_txt disp_2_a_17 "></td>
+                              <td class="text-uppercase pl-0 disp_th_eighteen display-none"><input type="number" name="para[DISP_2_A][18_00]" class="td_txt disp_2_a_18 "></td>
+                              <td class="text-uppercase pl-0 disp_th_nineteen display-none"><input type="number" name="para[DISP_2_A][19_00]" class="td_txt disp_2_a_19 "></td>
+                              <td class="text-uppercase pl-0 disp_th_twenty display-none"><input type="number" name="para[DISP_2_A][20_00]" class="td_txt disp_2_a_20 "></td>
+                              <td class="text-uppercase pl-0 disp_th_twentyone display-none"><input type="number" name="para[DISP_2_A][21_00]" class="td_txt disp_2_a_21 "></td>
+                              <td class="text-uppercase pl-0 disp_th_twentytwo display-none"><input type="number" name="para[DISP_2_A][22_00]" class="td_txt disp_2_a_22 "></td>
+                              <td class="text-uppercase pl-0 disp_th_twentythree display-none"><input type="number" name="para[DISP_2_A][23_00]" class="td_txt disp_2_a_23 "></td>            
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 2 B</td>
+                              <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="para[DISP_2_B][00_00]" class="td_txt disp_2_b_0 "></td>
+                              <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="para[DISP_2_B][01_00]" class="td_txt disp_2_b_1 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="para[DISP_2_B][02_00]" class="td_txt disp_2_b_2 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="para[DISP_2_B][03_00]" class="td_txt disp_2_b_3 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_four display-none"><input type="number" name="para[DISP_2_B][04_00]" class="td_txt disp_2_b_4 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_five display-none"><input type="number" name="para[DISP_2_B][05_00]" class="td_txt disp_2_b_5 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_six display-none"><input type="number" name="para[DISP_2_B][06_00]" class="td_txt disp_2_b_6 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_seven display-none"><input type="number" name="para[DISP_2_B][07_00]" class="td_txt disp_2_b_7 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_eight display-none"><input type="number" name="para[DISP_2_B][08_00]" class="td_txt disp_2_b_8 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_nine display-none"><input type="number" name="para[DISP_2_B][09_00]" class="td_txt disp_2_b_9 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_ten display-none"><input type="number" name="para[DISP_2_B][10_00]" class="td_txt disp_2_b_10 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_eleven display-none"><input type="number" name="para[DISP_2_B][11_00]" class="td_txt disp_2_b_11 "></td>
+                              <td class="text-uppercase pl-0 disp_th_twelve display-none"><input type="number" name="para[DISP_2_B][12_00]" class="td_txt disp_2_b_12 "></td>
+                              <td class="text-uppercase pl-0 disp_th_thirteen display-none"><input type="number" name="para[DISP_2_B][13_00]" class="td_txt disp_2_b_13 "></td>
+                              <td class="text-uppercase pl-0 disp_th_fourteen display-none"><input type="number" name="para[DISP_2_B][14_00]" class="td_txt disp_2_b_14 "></td>
+                              <td class="text-uppercase pl-0 disp_th_fifteen display-none"><input type="number" name="para[DISP_2_B][15_00]" class="td_txt disp_2_b_15 "></td>
+                              <td class="text-uppercase pl-0 disp_th_sixteen display-none"><input type="number" name="para[DISP_2_B][16_00]" class="td_txt disp_2_b_16 "></td>
+                              <td class="text-uppercase pl-0 disp_th_seventeen display-none"><input type="number" name="para[DISP_2_B][17_00]" class="td_txt disp_2_b_17 "></td>
+                              <td class="text-uppercase pl-0 disp_th_eighteen display-none"><input type="number" name="para[DISP_2_B][18_00]" class="td_txt disp_2_b_18 "></td>
+                              <td class="text-uppercase pl-0 disp_th_nineteen display-none"><input type="number" name="para[DISP_2_B][19_00]" class="td_txt disp_2_b_19 "></td>
+                              <td class="text-uppercase pl-0 disp_th_twenty display-none"><input type="number" name="para[DISP_2_B][20_00]" class="td_txt disp_2_b_20 "></td>
+                              <td class="text-uppercase pl-0 disp_th_twentyone display-none"><input type="number" name="para[DISP_2_B][21_00]" class="td_txt disp_2_b_21 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentytwo display-none"><input type="number" name="para[DISP_2_B][22_00]" class="td_txt disp_2_b_22 "></td> 
+                              <td class="text-uppercase pl-0 disp_th_twentythree display-none"><input type="number" name="para[DISP_2_B][23_00]" class="td_txt disp_2_b_23 "></td>                       
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!---------------------------- D I S P E N S E R   E N D S -------------------------------->
+
+        <!---------------------------- E L E C T R I C A L -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">electrical</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table">    
+                      <table>
+                        <thead>
+                          <tr>            
+                            <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_zero tbl-cell"><strong id="elect_time_zero">00:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_one tbl-cell"><strong id="elect_time_one">01:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_two display-none"><strong id="elect_time_two">02:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_three display-none"><strong id="elect_time_three">03:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_four display-none"><strong id="elect_time_four">04:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_five display-none"><strong id="elect_time_five">05:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_six display-none"><strong id="elect_time_six">06:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_seven display-none"><strong id="elect_time_seven">07:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_eight display-none"><strong id="elect_time_eight">08:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_nine display-none"><strong id="elect_time_nine">09:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_ten display-none"><strong id="elect_time_ten">10:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_eleven display-none"><strong id="elect_time_eleven">11:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_twelve display-none"><strong id="elect_time_twelve">12:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_thirteen display-none"><strong id="elect_time_thirteen">13:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_fourteen display-none"><strong id="elect_time_fourteen">14:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_fifteen display-none"><strong id="elect_time_fiften">15:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_sixteen display-none"><strong id="elect_time_sixteen">16:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_seventeen display-none"><strong id="elect_time_seventeen">17:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_eighteen display-none"><strong id="elect_time_eighteen">18:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_nineteen display-none"><strong id="elect_time_nineteen">19:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_twenty display-none"><strong id="elect_time_twenty">20:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_twentyone display-none"><strong id="elect_time_twentyone">21:00</strong></th>
+
+                            <th class="label-cell text-uppercase table-th elec_th_twentytwo display-none"><strong id="elect_time_twentytwo">22:00</strong></th>
+                            <th class="label-cell text-uppercase table-th elec_th_twentythree display-none"><strong id="elect_time_twentythree">23:00</strong></th>
+                          </tr>
+                        </thead>
+                        <tbody id="sheet_data" >
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">GEB Energy Meter KWH<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="para[GEB_Energy_Meter_KWH][00_00]" class="td_txt GEB_energy_mtr_KWH_0 val_elec_0"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="para[GEB_Energy_Meter_KWH][01_00]" class="td_txt GEB_energy_mtr_KWH_1 val_elec_1"></td>    
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][02_00]" class="td_txt GEB_energy_mtr_KWH_2 val_elec_2"></td>     
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][03_00]" class="td_txt GEB_energy_mtr_KWH_3 val_elec_3"></td>     
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][04_00]" class="td_txt GEB_energy_mtr_KWH_4 val_elec_4"></td>     
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][05_00]" class="td_txt GEB_energy_mtr_KWH_5 val_elec_5"></td>     
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][06_00]" class="td_txt GEB_energy_mtr_KWH_6 val_elec_6"></td>     
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][07_00]" class="td_txt GEB_energy_mtr_KWH_7 val_elec_7"></td>     
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][08_00]" class="td_txt GEB_energy_mtr_KWH_8 val_elec_8"></td>     
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][09_00]" class="td_txt GEB_energy_mtr_KWH_9 val_elec_9"></td>     
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][10_00]" class="td_txt GEB_energy_mtr_KWH_10 val_elec_10"></td> 
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][11_00]" class="td_txt GEB_energy_mtr_KWH_11 val_elec_11"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][12_00]" class="td_txt GEB_energy_mtr_KWH_12 val_elec_12"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][13_00]" class="td_txt GEB_energy_mtr_KWH_13 val_elec_13"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][14_00]" class="td_txt GEB_energy_mtr_KWH_14 val_elec_14"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][15_00]" class="td_txt GEB_energy_mtr_KWH_15 val_elec_15"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][16_00]" class="td_txt GEB_energy_mtr_KWH_16 val_elec_16"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][17_00]" class="td_txt GEB_energy_mtr_KWH_17 val_elec_17"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][18_00]" class="td_txt GEB_energy_mtr_KWH_18 val_elec_18"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][19_00]" class="td_txt GEB_energy_mtr_KWH_19 val_elec_19"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][20_00]" class="td_txt GEB_energy_mtr_KWH_20 val_elec_20"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][21_00]" class="td_txt GEB_energy_mtr_KWH_21 val_elec_21"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][22_00]" class="td_txt GEB_energy_mtr_KWH_22 val_elec_22"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="para[GEB_Energy_Meter_KWH][23_00]" class="td_txt GEB_energy_mtr_KWH_23 val_elec_23"></td>  
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">GEB Energy Meter KVAH<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="para[GEB_Energy_Meter_KVAH][00_00]" class="td_txt GEB_energy_met_KVAH_0 val_elec_0"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="para[GEB_Energy_Meter_KVAH][01_00]" class="td_txt GEB_energy_met_KVAH_1 val_elec_1"></td>   
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][02_00]" class="td_txt GEB_energy_met_KVAH_2 val_elec_2"></td> 
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][03_00]" class="td_txt GEB_energy_met_KVAH_3 val_elec_3"></td> 
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][04_00]" class="td_txt GEB_energy_met_KVAH_4 val_elec_4"></td> 
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][05_00]" class="td_txt GEB_energy_met_KVAH_5 val_elec_5"></td> 
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][06_00]" class="td_txt GEB_energy_met_KVAH_6 val_elec_6"></td> 
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][07_00]" class="td_txt GEB_energy_met_KVAH_7 val_elec_7"></td> 
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][08_00]" class="td_txt GEB_energy_met_KVAH_8 val_elec_8"></td> 
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][09_00]" class="td_txt GEB_energy_met_KVAH_9 val_elec_9"></td> 
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][10_00]" class="td_txt GEB_energy_met_KVAH_10 val_elec_10"></td>
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][11_00]" class="td_txt GEB_energy_met_KVAH_11 val_elec_11"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][12_00]" class="td_txt GEB_energy_met_KVAH_12 val_elec_12"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][13_00]" class="td_txt GEB_energy_met_KVAH_13 val_elec_13"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][14_00]" class="td_txt GEB_energy_met_KVAH_14 val_elec_14"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][15_00]" class="td_txt GEB_energy_met_KVAH_15 val_elec_15"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][16_00]" class="td_txt GEB_energy_met_KVAH_16 val_elec_16"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][17_00]" class="td_txt GEB_energy_met_KVAH_17 val_elec_17"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][18_00]" class="td_txt GEB_energy_met_KVAH_18 val_elec_18"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][19_00]" class="td_txt GEB_energy_met_KVAH_19 val_elec_19"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][20_00]" class="td_txt GEB_energy_met_KVAH_20 val_elec_20"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][21_00]" class="td_txt GEB_energy_met_KVAH_21 val_elec_21"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][22_00]" class="td_txt GEB_energy_met_KVAH_22 val_elec_22"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="para[GEB_Energy_Meter_KVAH][23_00]" class="td_txt GEB_energy_met_KVAH_23 val_elec_23"></td>
+                            </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">GEB Energy Meter KVRH<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="para[GEB_Energy_Meter_KVRH][00_00]" class="td_txt GEB_energy_met_KVRH_0 val_elec_0"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="para[GEB_Energy_Meter_KVRH][01_00]" class="td_txt GEB_energy_met_KVRH_1 val_elec_1"></td>   
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][02_00]" class="td_txt GEB_energy_met_KVRH_2 val_elec_2"></td>   
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][03_00]" class="td_txt GEB_energy_met_KVRH_3 val_elec_3"></td>   
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][04_00]" class="td_txt GEB_energy_met_KVRH_4 val_elec_4"></td>   
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][05_00]" class="td_txt GEB_energy_met_KVRH_5 val_elec_5"></td>   
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][06_00]" class="td_txt GEB_energy_met_KVRH_6 val_elec_6"></td>   
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][07_00]" class="td_txt GEB_energy_met_KVRH_7 val_elec_7"></td>   
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][08_00]" class="td_txt GEB_energy_met_KVRH_8 val_elec_8"></td>   
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][09_00]" class="td_txt GEB_energy_met_KVRH_9 val_elec_9"></td>   
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][10_00]" class="td_txt GEB_energy_met_KVRH_10 val_elec_10"></td>   
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][11_00]" class="td_txt GEB_energy_met_KVRH_11 val_elec_11"></td>      
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][12_00]" class="td_txt GEB_energy_met_KVRH_12 val_elec_12"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][13_00]" class="td_txt GEB_energy_met_KVRH_13 val_elec_13"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][14_00]" class="td_txt GEB_energy_met_KVRH_14 val_elec_14"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][15_00]" class="td_txt GEB_energy_met_KVRH_15 val_elec_15"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][16_00]" class="td_txt GEB_energy_met_KVRH_16 val_elec_16"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][17_00]" class="td_txt GEB_energy_met_KVRH_17 val_elec_17"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][18_00]" class="td_txt GEB_energy_met_KVRH_18 val_elec_18"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][19_00]" class="td_txt GEB_energy_met_KVRH_19 val_elec_19"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][20_00]" class="td_txt GEB_energy_met_KVRH_20 val_elec_20"></td>     
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][21_00]" class="td_txt GEB_energy_met_KVRH_21 val_elec_21"></td>     
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][22_00]" class="td_txt GEB_energy_met_KVRH_22 val_elec_22"></td>     
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="para[GEB_Energy_Meter_KVRH][23_00]" class="td_txt GEB_energy_met_KVRH_23 val_elec_23"></td> 
+                          </tr>
+
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Delar(RO) Energy Meter<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="para[Delar|RO-_Energy_Meter][00_00]" class="td_txt delar_ro_0 val_elec_0"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="para[Delar|RO-_Energy_Meter][01_00]" class="td_txt delar_ro_1 val_elec_1"></td>       
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][02_00]" class="td_txt delar_ro_2 val_elec_2"></td>       
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][03_00]" class="td_txt delar_ro_3 val_elec_4"></td>       
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][04_00]" class="td_txt delar_ro_4 val_elec_4"></td>       
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][05_00]" class="td_txt delar_ro_5 val_elec_5"></td>       
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][06_00]" class="td_txt delar_ro_6 val_elec_6"></td>       
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][07_00]" class="td_txt delar_ro_7 val_elec_7"></td>       
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][08_00]" class="td_txt delar_ro_8 val_elec_8"></td>       
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][09_00]" class="td_txt delar_ro_9 val_elec_9"></td>       
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][10_00]" class="td_txt delar_ro_10 val_elec_10"></td>       
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][11_00]" class="td_txt delar_ro_11 val_elec_11"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][12_00]" class="td_txt delar_ro_12 val_elec_12"></td> 
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][13_00]" class="td_txt delar_ro_13 val_elec_13"></td> 
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][14_00]" class="td_txt delar_ro_14 val_elec_14"></td> 
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][15_00]" class="td_txt delar_ro_15 val_elec_15"></td> 
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][16_00]" class="td_txt delar_ro_16 val_elec_16"></td> 
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][17_00]" class="td_txt delar_ro_17 val_elec_17"></td> 
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][18_00]" class="td_txt delar_ro_18 val_elec_18"></td> 
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][19_00]" class="td_txt delar_ro_19 val_elec_19"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][20_00]" class="td_txt delar_ro_20 val_elec_20"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][21_00]" class="td_txt delar_ro_21 val_elec_21"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][22_00]" class="td_txt delar_ro_22 val_elec_22"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][23_00]" class="td_txt delar_ro_23 val_elec_23"></td>   
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Voltage<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="para[Voltage][00_00]" class="td_txt voltage_0 val_elec_0"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="para[Voltage][01_00]" class="td_txt voltage_1 val_elec_1"></td>     
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="para[Voltage][02_00]" class="td_txt voltage_2 val_elec_2"></td> 
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[Voltage][03_00]" class="td_txt voltage_3 val_elec_3"></td> 
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="para[Voltage][04_00]" class="td_txt voltage_4 val_elec_4"></td> 
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="para[Voltage][05_00]" class="td_txt voltage_5 val_elec_5"></td> 
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="para[Voltage][06_00]" class="td_txt voltage_6 val_elec_6"></td> 
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="para[Voltage][07_00]" class="td_txt voltage_7 val_elec_7"></td> 
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="para[Voltage][08_00]" class="td_txt voltage_8 val_elec_8"></td> 
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="para[Voltage][09_00]" class="td_txt voltage_9 val_elec_9"></td> 
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="para[Voltage][10_00]" class="td_txt voltage_10 val_elec_10"></td>
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="para[Voltage][11_00]" class="td_txt voltage_11 val_elec_11"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="para[Voltage][12_00]" class="td_txt voltage_12 val_elec_12"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="para[Voltage][13_00]" class="td_txt voltage_13 val_elec_13"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="para[Voltage][14_00]" class="td_txt voltage_14 val_elec_14"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="para[Voltage][15_00]" class="td_txt voltage_15 val_elec_15"></td>          
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="para[Voltage][16_00]" class="td_txt voltage_16 val_elec_16"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="para[Voltage][17_00]" class="td_txt voltage_17 val_elec_17"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="para[Voltage][18_00]" class="td_txt voltage_18 val_elec_18"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="para[Voltage][19_00]" class="td_txt voltage_19 val_elec_19"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="para[Voltage][20_00]" class="td_txt voltage_20 val_elec_20"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="para[Voltage][21_00]" class="td_txt voltage_21 val_elec_21"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="para[Voltage][22_00]" class="td_txt voltage_22 val_elec_22"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="para[Voltage][23_00]" class="td_txt voltage_23 val_elec_23"></td>         
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">Amp.<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="para[Amp][00_00]" class="td_txt amp_0 val_elec_0"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="para[Amp][01_00]" class="td_txt amp_1 val_elec_1"></td>
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="para[Amp][02_00]" class="td_txt amp_2 val_elec_2"></td>
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[Amp][03_00]" class="td_txt amp_3 val_elec_3"></td>
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="para[Amp][04_00]" class="td_txt amp_4 val_elec_4"></td>
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="para[Amp][05_00]" class="td_txt amp_5 val_elec_5"></td>
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="para[Amp][06_00]" class="td_txt amp_6 val_elec_6"></td>
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="para[Amp][07_00]" class="td_txt amp_7 val_elec_7"></td>
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="para[Amp][08_00]" class="td_txt amp_8 val_elec_8"></td>
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="para[Amp][09_00]" class="td_txt amp_9 val_elec_9"></td>
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="para[Amp][10_00]" class="td_txt amp_10 val_elec_10"></td>
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="para[Amp][11_00]" class="td_txt amp_11 val_elec_11"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="para[Amp][12_00]" class="td_txt amp_12 val_elec_12"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="para[Amp][13_00]" class="td_txt amp_13 val_elec_13"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="para[Amp][14_00]" class="td_txt amp_14 val_elec_14"></td>
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="para[Amp][15_00]" class="td_txt amp_15 val_elec_15"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="para[Amp][16_00]" class="td_txt amp_16 val_elec_16"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="para[Amp][17_00]" class="td_txt amp_17 val_elec_17"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="para[Amp][18_00]" class="td_txt amp_18 val_elec_18"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="para[Amp][19_00]" class="td_txt amp_19 val_elec_19"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="para[Amp][20_00]" class="td_txt amp_20 val_elec_20"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="para[Amp][21_00]" class="td_txt amp_21 val_elec_21"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="para[Amp][22_00]" class="td_txt amp_22 val_elec_22"></td> 
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="para[Amp][23_00]" class="td_txt amp_23 val_elec_23"></td>            
+                          </tr>
+
+                          <tr >                            
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">PF<sup class="text-red fw-600 fs-12">*</sup></td>
+                              <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="para[PF][00_00]" class="td_txt pf_0 val_elec_0"></td>
+                              <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="para[PF][01_00]" class="td_txt pf_1 val_elec_1"></td>
+                              <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="para[PF][02_00]" class="td_txt pf_2 val_elec_2"></td>
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[PF][03_00]" class="td_txt pf_3 val_elec_3"></td>
+                              <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="para[PF][04_00]" class="td_txt pf_4 val_elec_4"></td>
+                              <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="para[PF][05_00]" class="td_txt pf_5 val_elec_5"></td>
+                              <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="para[PF][06_00]" class="td_txt pf_6 val_elec_6"></td>
+                              <td class="text-uppercase pl-0 elec_th_seven display-none"><input type="number" name="para[PF][07_00]" class="td_txt pf_7 val_elec_7"></td>
+                              <td class="text-uppercase pl-0 elec_th_eight display-none"><input type="number" name="para[PF][08_00]" class="td_txt pf_8 val_elec_8"></td>
+                              <td class="text-uppercase pl-0 elec_th_nine display-none"><input type="number" name="para[PF][09_00]" class="td_txt pf_9 val_elec_9"></td>
+                              <td class="text-uppercase pl-0 elec_th_ten display-none"><input type="number" name="para[PF][10_00]" class="td_txt pf_10 val_elec_10"></td>
+                              <td class="text-uppercase pl-0 elec_th_eleven display-none"><input type="number" name="para[PF][11_00]" class="td_txt pf_11 val_elec_11"></td>
+                              <td class="text-uppercase pl-0 elec_th_twelve display-none"><input type="number" name="para[PF][12_00]" class="td_txt pf_12 val_elec_12"></td>
+                              <td class="text-uppercase pl-0 elec_th_thirteen display-none"><input type="number" name="para[PF][13_00]" class="td_txt pf_13 val_elec_13"></td>
+                              <td class="text-uppercase pl-0 elec_th_fourteen display-none"><input type="number" name="para[PF][14_00]" class="td_txt pf_14 val_elec_14"></td>  
+                              <td class="text-uppercase pl-0 elec_th_fifteen display-none"><input type="number" name="para[PF][15_00]" class="td_txt pf_15 val_elec_15"></td>
+                              <td class="text-uppercase pl-0 elec_th_sixteen display-none"><input type="number" name="para[PF][16_00]" class="td_txt pf_16 val_elec_16"></td>
+                              <td class="text-uppercase pl-0 elec_th_seventeen display-none"><input type="number" name="para[PF][17_00]" class="td_txt pf_17 val_elec_17"></td>
+                              <td class="text-uppercase pl-0 elec_th_eighteen display-none"><input type="number" name="para[PF][18_00]" class="td_txt pf_18 val_elec_18"></td>
+                              <td class="text-uppercase pl-0 elec_th_nineteen display-none"><input type="number" name="para[PF][19_00]" class="td_txt pf_19 val_elec_19"></td>
+                              <td class="text-uppercase pl-0 elec_th_twenty display-none"><input type="number" name="para[PF][20_00]" class="td_txt pf_20 val_elec_20"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentyone display-none"><input type="number" name="para[PF][21_00]" class="td_txt pf_21 val_elec_21"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentytwo display-none"><input type="number" name="para[PF][22_00]" class="td_txt pf_22 val_elec_22"></td>
+                              <td class="text-uppercase pl-0 elec_th_twentythree display-none"><input type="number" name="para[PF][23_00]" class="td_txt pf_23 val_elec_23"></td>                 
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>            
+          </div>
+        </div>
+        <!---------------------------- E L E C T R I C A L   E N D S -------------------------------->
+        <div class="block">
+          <div class="row">
+            <div class="col-25"><button class="col button button-fill color-black" type="button" onclick="addDPR()">Save</button></div>
+
+            <!--- PREVIOUS BUTTONS ----->
+            <div class="col-35 prev1_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_firstpg()">Previous</button></div>
+            <div class="col-35 prev2_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_secondpg()">Previous</button></div>
+            <div class="col-35 prev3_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_thirdpg()">Previous</button></div>
+            <div class="col-35 prev4_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_forthpg()">Previous</button></div>
+            <div class="col-35 prev5_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_fifthpg()">Previous</button></div>
+            <div class="col-35 prev6_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_sixthpg()">Previous</button></div>
+            <div class="col-35 prev7_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_seventhpg()">Previous</button></div>
+            <div class="col-35 prev8_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_eighthpg()">Previous</button></div>
+            <div class="col-35 prev9_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_ninethpg()">Previous</button></div>
+            <div class="col-35 prev10_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_tenthpg()">Previous</button></div>
+            <div class="col-35 prev11_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_eleventhpg()">Previous</button></div>
+            <div class="col-35 prev12_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_twelvethpg()">Previous</button></div>
+            <div class="col-35 prev13_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_thirteenthpg()">Previous</button></div>
+            <div class="col-35 prev14_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_forteenthpg()">Previous</button></div>
+            <div class="col-35 prev15_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_fifteenthpg()">Previous</button></div>
+            <div class="col-35 prev16_btn display-none"><button class="col button button-fill color-green" type="button" onclick="prev_show_sixteenthpg()">Previous</button></div>
+            <div class="col-35 prev17_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_seventeenthpg()">Previous</button></div>
+            <div class="col-35 prev18_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_eighteenthpg()">Previous</button></div>
+            <div class="col-35 prev19_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_nineteenthpg()">Previous</button></div>
+            <div class="col-35 prev20_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="prev_show_twentythpg()">Previous</button></div>
+            <div class="col-35 prev21_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_twentyonepg()">Previous</button></div>
+            <div class="col-35 prev22_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="prev_show_twentytwopg()">Previous</button></div>
+
+
+            <!---- SAVE & NEXT BUTTONS ---->
+            <div class="col-40 page1_btn display-none"><button class="col button button-fill color-black" type="button" onclick="show_secondpg()">Save &amp; Next</button></div>
+            <div class="col-40 page2_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_thirdpg()">Save &amp; Next</button></div>
+            <div class="col-40 page3_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_forthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page4_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_fifthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page5_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_sixthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page6_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_seventhpg()">Save &amp; Next</button></div>
+            <div class="col-40 page7_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_eighthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page8_btn display-none"><button class="col button button-fill color-yellow" type="button" onclick="show_ninthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page9_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_tenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page10_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_eleventhpg()">Save &amp; Next</button></div>
+            <div class="col-40 page11_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_twelthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page12_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_thirteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page13_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_forteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page14_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_fifteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page15_btn display-none"><button class="col button button-fill color-yellow" type="button" onclick="show_sixteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page16_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_seventeenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page17_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_eighteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page18_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_nineteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page19_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_twenteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page20_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_twentyonepg()">Save &amp; Next</button></div>
+            <div class="col-40 page21_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_twentytwopg()">Save &amp; Next</button></div>
+            <div class="col-40 page22_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_twentythreepg()">Save &amp; Next</button></div>
+            <div class="col-33 save_btn display-none" onclick="addDPR()"><button class="col button button-fill color-red" type="button">Submit</button></div>
+
+
+
+
+
+            <!--div class="col-40"><button class="col button button-fill color-black" type="button">Save &amp; Save &amp; Next</button></div-->
+            <!--div class="col-33">ccc</div-->
+          </div>
+        </div>
+        <!--div class="block">       
+          <div class="list no-hairlines-md">
+            <ul id="dprsheet" class="no-bg">
+              
+            </ul>           
+          </div>
+        </div-->
+
+        <!--div class="card data-table">      
+          <table>
+            <thead class="" style="background-color: lightgrey!important">
+              <tr>            
+                <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">00:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">01:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">02:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">03:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">04:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">05:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">06:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">07:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">08:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">09:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">10:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">11:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">12:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">13:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">14:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">15:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">16:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">17:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">18:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">19:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">20:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">21:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">22:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">23:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">24:00</strong></th>
+                
+              </tr>
+            </thead>
+            <tbody id="sheet_data"></tbody>
+          </table>
+        </div-->
+
+      </form>       
+    </div>
+</div>

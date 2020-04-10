@@ -15,10 +15,15 @@
   </div>
 		
   	<div class="page-content dpr-screen-content dpr_sheet">  
-      <form id="form_dpr" class="form_dpr">  
+      <form id="form_dprdata" class="form_dprdata">  
         <div class="block">       
           <div class="list no-hairlines-md">
-            <ul id="dprul" class="no-bg">
+            <div class="block dpr_rep_btn display-none">
+              <div class="row">
+                <div class="col"><a class="button col button button-fill color-black no-radius" href="#" onclick="showdprkpi_inputs()">DPR KPI Report</a></div>
+              </div>
+            </div>
+            <ul id="dprul" class="no-bg display-none">
               <li class="item-content item-input ">
                 <div class="item-inner">
                   <div class="item-title item-floating-label floatlbl_placeholder">Stations<sup class="text-red fw-600 font-12">*</sup></div>
@@ -39,11 +44,17 @@
               </li>
             </ul>           
           </div>
-          <div class="block">
+          <div class="block submitbtn display-none">
               <div class="row">
                 <div class="col"><a class="button col button button-fill color-black no-radius" href="#" onclick="opendprsheet()">Submit</a></div>
               </div>
           </div>
+          <div class="block genrptbtn display-none">
+              <div class="row">
+                <div class="col"><a class="button col button button-fill color-red no-radius" href="#" onclick="dpr_kpi_repsheet()">Generate Report</a></div>
+              </div>
+          </div>
+
 
         </div>  
       </form> 			
