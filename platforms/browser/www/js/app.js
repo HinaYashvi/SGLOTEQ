@@ -1534,7 +1534,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       // -------------------------------- COMPRESSOR ------------------------------------ //
       var comp_0=0;
       $(".val_comp_0").each(function(){ 
-        //alert($(this).val());
+        alert($(this).val());
         if( $.trim($(this).val()).length == 0){  comp_0++;
           console.log("if@@@@@@@@@");
           //$(this).css("background", "#f99c9c36");   
@@ -1549,7 +1549,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       // --------------------------------- DISPENSER ---------------------------------- //
       var disp_0=0;
       $('.val_disp_1_0').each(function(){
-      //alert("***"+$(this).val()+"----------");    
+      alert("***"+$(this).val()+"----------");    
         if( $.trim($(this).val()).length == 0){ disp_0++;
           //$(this).css("background", "#f99c9c36");
         }        
