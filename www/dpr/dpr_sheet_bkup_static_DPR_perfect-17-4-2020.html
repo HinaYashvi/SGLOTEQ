@@ -1,5 +1,5 @@
 <div data-name="dpr_sheet" class="page">
-  <div class="navbar">
+	<div class="navbar">
     <div class="navbar-bg"></div>
     <div class="navbar-inner sliding navbg">
       <div class="left">
@@ -14,21 +14,31 @@
     </div>
   </div>
 
-    <div class="page-content dpr-screen-content dpr_sheet">  
+  	<div class="page-content dpr-screen-content dpr_sheet">  
       <div class="block">
         <div class="row">
           <div class="col-66">
-            <div class="text-red fw-600 st_name"></div>
+            <div class="txt-blue fw-600 st_name"></div>
           </div>
           <div class="col-33">
-            <div class="text-red fw-600 dpr_dt"></div>
+            <div class="txt-blue fw-600 dpr_dt"></div>
           </div>
-        </div>  
+        </div>
+        <br/>
+        <div class="text-red fw-600">All (*) fields are mandatory to fill.</div>  
       </div>
 
       <form id="form_dpr" class="form_dpr">  
         <input type="hidden" name="hidd_stid" id="hidd_stid" />
         <input type="hidden" name="hidd_dprdt" id="hidd_dprdt" />
+
+        <!--input type="hidden" name="hidd_comp_0" id="hidd_comp_0" >
+        <input type="hidden" name="hidd_disp_0" id="hidd_disp_0" >
+        <input type="hidden" name="hidd_elec_0" id="hidd_elec_0" >
+
+        <input type="hidden" name="hidd_comp_1" id="hidd_comp_1" >
+        <input type="hidden" name="hidd_disp_1" id="hidd_disp_1" >
+        <input type="hidden" name="hidd_elec_1" id="hidd_elec_1" -->
         <!---------------------------- C O M P R E S S O R -------------------------------->
         <div class="card">
           <div class="card-content card-content-padding">
@@ -834,9 +844,10 @@
                             <th class="label-cell text-uppercase table-th disp_th_twentythree display-none"><strong id="disp_time_twentythree">23:00</strong></th>
                           </tr>
                         </thead>
-                        <tbody id="sheet_data" >
+                        <tbody id="sheet_data disp_data" class="disp_data">
                           <tr >                            
-                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 1 A<sup class="text-red fw-600 fs-12">*</sup></td>   <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="para[DISP_1_A][00_00]" class="td_txt disp_1_a_0 val_disp_1_0" required></td>
+                              <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 1 A<sup class="text-red fw-600 fs-12">*</sup></td>   
+                              <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="para[DISP_1_A][00_00]" class="td_txt disp_1_a_0 val_disp_1_0" required></td>
                               <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="para[DISP_1_A][01_00]" class="td_txt disp_1_a_1 val_disp_1_1"></td>
                               <td class="text-uppercase pl-0 disp_th_two display-none"><input type="number" name="para[DISP_1_A][02_00]" class="td_txt disp_1_a_2 val_disp_1_2"></td>
                               <td class="text-uppercase pl-0 disp_th_three display-none"><input type="number" name="para[DISP_1_A][03_00]" class="td_txt disp_1_a_3 val_disp_1_3"></td>
@@ -1104,7 +1115,7 @@
                               <td class="text-uppercase pl-0 elec_th_zero"><input type="number" name="para[Delar|RO-_Energy_Meter][00_00]" class="td_txt delar_ro_0 val_elec_0"></td>
                               <td class="text-uppercase pl-0 elec_th_one"><input type="number" name="para[Delar|RO-_Energy_Meter][01_00]" class="td_txt delar_ro_1 val_elec_1"></td>       
                               <td class="text-uppercase pl-0 elec_th_two display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][02_00]" class="td_txt delar_ro_2 val_elec_2"></td>       
-                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][03_00]" class="td_txt delar_ro_3 val_elec_4"></td>       
+                              <td class="text-uppercase pl-0 elec_th_three display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][03_00]" class="td_txt delar_ro_3 val_elec_3"></td>       
                               <td class="text-uppercase pl-0 elec_th_four display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][04_00]" class="td_txt delar_ro_4 val_elec_4"></td>       
                               <td class="text-uppercase pl-0 elec_th_five display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][05_00]" class="td_txt delar_ro_5 val_elec_5"></td>       
                               <td class="text-uppercase pl-0 elec_th_six display-none"><input type="number" name="para[Delar|RO-_Energy_Meter][06_00]" class="td_txt delar_ro_6 val_elec_6"></td>       
@@ -1222,8 +1233,6 @@
         <!---------------------------- E L E C T R I C A L   E N D S -------------------------------->
         <div class="block">
           <div class="row">
-            <div class="col-25"><button class="col button button-fill color-black" type="button" onclick="addDPR()">Save</button></div>
-
             <!--- PREVIOUS BUTTONS ----->
             <div class="col-35 prev1_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_firstpg()">Previous</button></div>
             <div class="col-35 prev2_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_secondpg()">Previous</button></div>
@@ -1248,6 +1257,7 @@
             <div class="col-35 prev21_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_twentyonepg()">Previous</button></div>
             <div class="col-35 prev22_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="prev_show_twentytwopg()">Previous</button></div>
 
+            <div class="col-25"><button class="col button button-fill color-black svbtn" type="button" onclick="addDPR('save')">Save</button></div>
 
             <!---- SAVE & NEXT BUTTONS ---->
             <div class="col-40 page1_btn display-none"><button class="col button button-fill color-black" type="button" onclick="show_secondpg()">Save &amp; Next</button></div>
@@ -1272,7 +1282,7 @@
             <div class="col-40 page20_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_twentyonepg()">Save &amp; Next</button></div>
             <div class="col-40 page21_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_twentytwopg()">Save &amp; Next</button></div>
             <div class="col-40 page22_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_twentythreepg()">Save &amp; Next</button></div>
-            <div class="col-33 save_btn display-none" onclick="addDPR()"><button class="col button button-fill color-red" type="button">Submit</button></div>
+            <div class="col-33 save_btn display-none" onclick="addDPR('submit')"><button class="col button button-fill color-red" type="button">Submit</button></div>
 
 
 
@@ -1339,6 +1349,6 @@
           </table>
         </div-->
 
-      </form>       
-    </div>
+      </form> 			
+  	</div>
 </div>

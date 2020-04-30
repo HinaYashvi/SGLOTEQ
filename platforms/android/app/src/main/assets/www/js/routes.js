@@ -67,5 +67,10 @@ var routes = [
     url: './dpr/dpr_kpi_rep.html?station_id={{station_id}}/demo_calendar_modal_dpr={{demo_calendar_modal_dpr}}/st_name={{st_name}}',
     name: 'dpr_kpi_rep',
   },
+  /*{
+    path: '/dpr_kpi_rep/:station_id/:demo_calendar_modal_dpr/:st_name/',
+    url: './dpr/dpr_kpi_rep.html?station_id={{station_id}}/dpr_month={{dpr_month}}/dpr_year={{dpr_year}}/st_name={{st_name}}',
+    name: 'dpr_kpi_rep',
+  }*/
   
 ];

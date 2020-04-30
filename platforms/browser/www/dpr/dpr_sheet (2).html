@@ -1,11 +1,11 @@
 <div data-name="dpr_sheet" class="page">
-  <div class="navbar">
+	<div class="navbar">
     <div class="navbar-bg"></div>
     <div class="navbar-inner sliding navbg">
       <div class="left">
         <a class="link back">
           <i class="f7-icons text-white">arrow_left</i>          
-        </a>  
+        </a>
       </div>
       <div class="title text-white">DPR SHEET</div>
       <div class="right">
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-    <div class="page-content dpr-screen-content dpr_sheet">  
+  	<div class="page-content dpr-screen-content dpr_sheet">  
       <div class="block">
         <div class="row">
           <div class="col-66">
@@ -26,13 +26,11 @@
         </div>
         <br/>
         <div class="text-red fw-600">All (*) fields are mandatory to fill.</div>  
-      </div> 
+      </div>
 
       <form id="form_dpr" class="form_dpr">  
         <input type="hidden" name="hidd_stid" id="hidd_stid" />
         <input type="hidden" name="hidd_dprdt" id="hidd_dprdt" />
-        <input type="hidden" name="hidd_dispcnt" id="hidd_dispcnt" />
-        <input type="hidden" name="hidd_lcvcnt" id="hidd_lcvcnt" />
 
         <!--input type="hidden" name="hidd_comp_0" id="hidd_comp_0" >
         <input type="hidden" name="hidd_disp_0" id="hidd_disp_0" >
@@ -53,7 +51,7 @@
                     </div>
                   </a>
                   <div class="accordion-item-content" style="background-color: #fff;">
-                    <div class="data-table compdata">    
+                    <div class="data-table">    
                       <table>
                         <thead>
                           <tr>            
@@ -152,25 +150,9 @@
                               <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[COMP_DISCHARGE][23_00]" class="td_txt comp_dis_23 val_comp_23"></td>
 
                           </tr>
-                        </tbody>
-                      </table>
-                          <!--td>
-                            <div>
-                              <table>
-                                <tr>
-                                  <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 1 mfm<sup class="text-red fw-600 fs-12">*</sup></td>
-                              <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LCV_1_MFM][00_00]" class="td_txt lcv1_mfm_0 val_comp_0"></td>
-                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LCV_1_MFM][01_00]" class="td_txt lcv1_mfm_1 val_comp_1"></td>
-                                </tr>
-                              </table>
-                            </div>
-                          </td-->
-                          <table>
-                            <tbody class="lcv_data"></tbody>
-                          </table>
 
-                          <!--p class="lcv_data"></p-->
-                          <!--tr >                            
+
+                          <tr >                            
                               <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">lcv 1 mfm<sup class="text-red fw-600 fs-12">*</sup></td>
                               <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LCV_1_MFM][00_00]" class="td_txt lcv1_mfm_0 val_comp_0"></td>
                               <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LCV_1_MFM][01_00]" class="td_txt lcv1_mfm_1 val_comp_1"></td>
@@ -312,10 +294,10 @@
                               <td class="text-uppercase pl-0 comp_th_twentyone display-none"><input type="number" name="para[LCV_5_MFM][21_00]" class="td_txt lcv5_mfm_21 "></td> 
                               <td class="text-uppercase pl-0 comp_th_twentytwo display-none"><input type="number" name="para[LCV_5_MFM][22_00]" class="td_txt lcv5_mfm_22 "></td> 
                               <td class="text-uppercase pl-0 comp_th_twentythree display-none"><input type="number" name="para[LCV_5_MFM][23_00]" class="td_txt lcv5_mfm_23 "></td>                       
-                          </tr-->
+                          </tr>
 
-                          <table>
-                            <tbody>
+
+
                           <tr >                            
                               <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">comp. hmr counter<sup class="text-red fw-600 fs-12">*</sup></td>
                               <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[Comp_HMR_Counter][00_00]" class="td_txt comp_hmr_cnt_0 val_comp_0"></td>
@@ -546,7 +528,7 @@
                           <tr >                            
                               <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">LP Oil<sup class="text-red fw-600 fs-12">*</sup></td>
                               <td class="text-uppercase pl-0 comp_th_zero"><input type="number" name="para[LP_Oil][00_00]" class="td_txt lp_oil_0 val_comp_0"></td>
-                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LP_Oil][01_00]" class="td_txt lp_oil_1 val_comp_1"></td> 
+                              <td class="text-uppercase pl-0 comp_th_one"><input type="number" name="para[LP_Oil][001_00]" class="td_txt lp_oil_1 val_comp_1"></td> 
                               <td class="text-uppercase pl-0 comp_th_two display-none"><input type="number" name="para[LP_Oil][02_00]" class="td_txt lp_oil_2 val_comp_2"></td> 
                               <td class="text-uppercase pl-0 comp_th_three display-none"><input type="number" name="para[LP_Oil][03_00]" class="td_txt lp_oil_3 val_comp_3"></td> 
                               <td class="text-uppercase pl-0 comp_th_four display-none"><input type="number" name="para[LP_Oil][04_00]" class="td_txt lp_oil_4 val_comp_4"></td> 
@@ -862,7 +844,7 @@
                             <th class="label-cell text-uppercase table-th disp_th_twentythree display-none"><strong id="disp_time_twentythree">23:00</strong></th>
                           </tr>
                         </thead>
-                        <tbody id="sheet_data disp_data" class="disp_data">
+                        <tbody id="sheet_data" >
                           <!--tr >                            
                               <td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP 1 A<sup class="text-red fw-600 fs-12">*</sup></td>   <td class="text-uppercase pl-0 disp_th_zero"><input type="number" name="para[DISP_1_A][00_00]" class="td_txt disp_1_a_0 val_disp_1_0" required></td>
                               <td class="text-uppercase pl-0 disp_th_one"><input type="number" name="para[DISP_1_A][01_00]" class="td_txt disp_1_a_1 val_disp_1_1"></td>
@@ -1366,6 +1348,6 @@
           </table>
         </div-->
 
-      </form>       
-    </div>
+      </form> 			
+  	</div>
 </div>

@@ -29,6 +29,9 @@ body{
     background:rgba(0, 0, 0, 0) url("../img/login_bg10.jpg") no-repeat fixed center center / cover;*/
     background-size: cover;
 }
+.dark-blue{
+  color: #0551bf;
+}
 .login-content,.text-center{
     text-align: center;
 }
