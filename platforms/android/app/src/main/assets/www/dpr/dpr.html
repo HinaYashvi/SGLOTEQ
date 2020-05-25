@@ -18,17 +18,18 @@
       <form id="form_dprdata" class="form_dprdata">  
         <div class="block">       
           <div class="list no-hairlines-md">
-            <div class="block dpr_rep_btn display-none">
+            <!--div class="block dpr_rep_btn display-none">
               <div class="row">
                 <div class="col"><a class="button col button button-fill color-black no-radius" href="#" onclick="showdprkpi_inputs()">DPR KPI Report</a></div>
               </div>
-            </div>
-            <ul id="dprul" class="no-bg display-none">
+            </div-->
+            <!--ul id="dprul" class="no-bg display-none"-->
+            <ul id="dprul" class="no-bg">
               <li class="item-content item-input ">
                 <div class="item-inner">
                   <div class="item-title item-floating-label floatlbl_placeholder">Stations<sup class="text-red fw-600 font-12">*</sup></div>
                   <div class="item-input-wrap txtbox_border input-dropdown-wrap">
-                    <select class="form-control" name="station_id" id="station_id">                    
+                    <select class="form-control" name="station_id" id="station_id" onchange="getst_Start(this.value)">                    
                     </select>
                   </div>
                 </div>
@@ -65,16 +66,22 @@
                
             </ul>           
           </div>
-          <div class="block submitbtn display-none">
+          <!--div class="block submitbtn display-none"-->
+          <div class="block submitbtn">
               <div class="row">
-                <div class="col"><a class="button col button button-fill color-black no-radius" href="#" onclick="opendprsheet()">Submit</a></div>
+                <div class="col"><a class="button col button button-fill sgl-blue no-radius" href="#" onclick="opendprsheet()">create dpr</a></div> 
               </div>
           </div>
           <div class="block genrptbtn display-none">
+            <div class="row">
+                <div class="col"><a class="button col button button-fill sgl-green no-radius" href="#" onclick="dpr_kpi_repsheet()">Generate Report</a></div>
+              </div>
+          </div>  
+          <!--div class="block genrptbtn">
               <div class="row">
                 <div class="col"><a class="button col button button-fill color-red no-radius" href="#" onclick="dpr_kpi_repsheet()">Generate Report</a></div>
               </div>
-          </div>
+          </div-->
 
 
         </div>  

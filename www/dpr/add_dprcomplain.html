@@ -1,0 +1,120 @@
+<div data-name="add_dprcomplain" class="page pagebg_clr">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">Add correction</div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">      
+    <form id="form_dprcomp" >  
+      <div class="block">       
+        <div class="list no-hairlines-md">
+          <input type="hidden" name="hidd_dpr_id" id="hidd_dpr_id">
+          <input type="hidden" name="hidd_created" id="hidd_created">
+          <input type="hidden" name="hidd_sheetid" id="hidd_sheetid">
+          <input type="hidden" name="hidd_sess_user" id="hidd_sess_user">
+          <input type="hidden" name="hidd_slot_sel" id="hidd_slot_sel">
+          <input type="hidden" name="hidd_slot_sel_str" id="hidd_slot_sel_str">
+          <ul id="adddpr_comp " class="no-bg">
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Station<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="u_stations" id="u_stations" onchange="getallDPRs(this.value)">
+                  </select>
+                </div>
+              </div>
+            </li>
+
+            <!--li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Dpr dates<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="date_dpr" id="date_dpr" onchange="loadtimeslots()">
+                  </select>
+                </div>
+              </div>
+            </li-->
+
+            <!--li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Date<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border">
+                  <input type="text" placeholder="Select date" name="dpr_date" readonly="readonly" id="addcorr-cal"/>
+                </div>                                    
+              </div>
+            </li-->
+
+            <li class="w-100">                       
+              <a href="#" class="item-link smart-select smart-select-init" data-searchbar="true" data-searchbar-placeholder="Search DPR Date">
+                <select name="date_dpr" id="date_dpr" class="form-txtbox" maxlength="1" onchange="loadtimeslots()"></select>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">DPR Dates</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+            <li class="item-content item-input item-input-focused w-100">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Time<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="timeslots" id="timeslots" onchange="getoldval(this.value)">
+                  </select>
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused w-100">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Parameters<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="dpr_params" id="dpr_params" onchange="getoldpara_val(this.value)">
+                  </select>
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused w-100">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Old value<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="text" name="dpr_oldval" id="dpr_oldval" readonly>
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused w-100">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Description<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border ">
+                  <textarea rows="4" name="dpr_desc" id="dpr_desc"></textarea>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="block">
+          <div class="row">
+            <div class="col-50"><button class="button col button button-fill color-black no-radius" type="button" onclick="dprcompadd()" id="savecomp">Save</button></div>
+            <div class="col-50"><a class="button col button button-fill color-gray no-radius back" href="#" 
+            >back</a></div>
+          </div>
+        </div>
+      </div>    
+    </form>
+  </div>
+</div>

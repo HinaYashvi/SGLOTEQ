@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
     <meta content="width=device-width, initial-scale=1" name="viewport">    
     
     <!--link rel="stylesheet" type="text/css" href="css/framework7.css"-->
@@ -12,6 +14,7 @@
     
     <!--link rel="stylesheet" type="text/css" href="css/material-icons.css"-->
     <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="css/material-icons.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <title>Sabarmati Gas Limited</title>
 </head> 
@@ -20,8 +23,8 @@
 <div id="app">
   <div class="panel panel-left panel-right-2 panel-cover panel-init theme-dark">
     <div class="page">
-      <div class="block">        
-        <p><a class="text-white link" href="#" onclick="logOut()">Logout</a></p>
+      <div class="block menulist">        
+        <!--p><a class="text-white link" href="#" onclick="logOut()">Logout</a></p-->
       </div>
     </div>
   </div>
@@ -47,14 +50,14 @@
                   
           <div class="inputbox">
               <i class="f7-icons text-white">lock_fill</i>
-              <span class="showpass" ><span onclick="showpassword('show')" class="f7-icons text-white display-none fs-18" >eye</span></span>
+              <span class="showpass" ><span onclick="showpassword('show')" class="f7-icons text-white display-none fs-18" >eye_fill</span></span>
               <input type="password" placeholder="Password" id='pass' name="upass" class="pholder pass l_pass" onkeyup="showeye()">
               <!--input type="password" name="upass" class="pholder pass l_pass" id="pas" placeholder="Password"-->
           </div>
           <span class="text-left text-red mt-0" id='passerror'></span>
                   
           <div class="login-button submit-box text-uppercase">
-              <a href="#" onclick="return logincheck()">Log In</a>
+              <a href="#" class="text-white" onclick="return logincheck()">Log In</a>
           </div>
 
           <!--div class="submit-box text-uppercase mt-5">

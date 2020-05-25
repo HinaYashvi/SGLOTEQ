@@ -1,0 +1,229 @@
+<div data-name="dpr_sheet" class="page">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>  
+      </div>
+      <div class="title text-white">DPR SHEET</div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+    <div class="page-content dpr-screen-content dpr_sheet">  
+      <div class="block">
+        <div class="row">
+          <div class="col-66">
+            <div class="txt-blue fw-600 st_name"></div>
+          </div>
+          <div class="col-33">
+            <div class="txt-blue fw-600 dpr_dt"></div>
+          </div>
+        </div>
+        <br/>
+        <div class="text-red fw-600">All (*) fields are mandatory to fill.</div>  
+      </div> 
+
+      <form id="form_dpr" class="form_dpr">  
+        <input type="hidden" name="hidd_stid" id="hidd_stid" />
+        <input type="hidden" name="hidd_dprdt" id="hidd_dprdt" />
+        <input type="hidden" name="hidd_dispcnt" id="hidd_dispcnt" />
+        <input type="hidden" name="hidd_lcvcnt" id="hidd_lcvcnt" />
+
+        <!--input type="hidden" name="hidd_comp_0" id="hidd_comp_0" >
+        <input type="hidden" name="hidd_disp_0" id="hidd_disp_0" >
+        <input type="hidden" name="hidd_elec_0" id="hidd_elec_0" >
+
+        <input type="hidden" name="hidd_comp_1" id="hidd_comp_1" >
+        <input type="hidden" name="hidd_disp_1" id="hidd_disp_1" >
+        <input type="hidden" name="hidd_elec_1" id="hidd_elec_1" -->
+        <!---------------------------- C O M P R E S S O R -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">compressor</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table compdata">                          
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!---------------------------- C O M P R E S S O R  E N D S -------------------------------->
+
+        <!---------------------------- D I S P E N S E R -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">dispenser</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table dispsec">                      
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!---------------------------- D I S P E N S E R   E N D S -------------------------------->
+
+        <!---------------------------- E L E C T R I C A L -------------------------------->
+        <div class="card">
+          <div class="card-content card-content-padding">
+            <div class="list accordion-list">
+              <ul>
+                <li class="accordion-item" style="background-color: lightgrey!important">
+                  <a href="#" class="item-content item-link">
+                    <div class="item-inner">
+                      <div class="item-title text-uppercase">electrical</div>
+                    </div>
+                  </a>
+                  <div class="accordion-item-content" style="background-color: #fff;">
+                    <div class="data-table elecsec">                      
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>            
+          </div>
+        </div>
+        <!---------------------------- E L E C T R I C A L   E N D S -------------------------------->
+        <div class="block">
+          <div class="row">
+            <!--- PREVIOUS BUTTONS ----->
+            <div class="col-35 prev1_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_firstpg()">Previous</button></div>
+            <div class="col-35 prev2_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_secondpg()">Previous</button></div>
+            <div class="col-35 prev3_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_thirdpg()">Previous</button></div>
+            <div class="col-35 prev4_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_forthpg()">Previous</button></div>
+            <div class="col-35 prev5_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_fifthpg()">Previous</button></div>
+            <div class="col-35 prev6_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_sixthpg()">Previous</button></div>
+            <div class="col-35 prev7_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_seventhpg()">Previous</button></div>
+            <div class="col-35 prev8_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_eighthpg()">Previous</button></div>
+            <div class="col-35 prev9_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_ninethpg()">Previous</button></div>
+            <div class="col-35 prev10_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_tenthpg()">Previous</button></div>
+            <div class="col-35 prev11_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_eleventhpg()">Previous</button></div>
+            <div class="col-35 prev12_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_twelvethpg()">Previous</button></div>
+            <div class="col-35 prev13_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_thirteenthpg()">Previous</button></div>
+            <div class="col-35 prev14_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_forteenthpg()">Previous</button></div>
+            <div class="col-35 prev15_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_fifteenthpg()">Previous</button></div>
+            <div class="col-35 prev16_btn display-none"><button class="col button button-fill color-green" type="button" onclick="prev_show_sixteenthpg()">Previous</button></div>
+            <div class="col-35 prev17_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_seventeenthpg()">Previous</button></div>
+            <div class="col-35 prev18_btn display-none"><button class="col button button-fill color-red" type="button" onclick="prev_show_eighteenthpg()">Previous</button></div>
+            <div class="col-35 prev19_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_nineteenthpg()">Previous</button></div>
+            <div class="col-35 prev20_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="prev_show_twentythpg()">Previous</button></div>
+            <div class="col-35 prev21_btn display-none"><button class="col button button-fill color-black" type="button" onclick="prev_show_twentyonepg()">Previous</button></div>
+            <div class="col-35 prev22_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="prev_show_twentytwopg()">Previous</button></div>
+
+            <div class="col-25"><button class="col button button-fill color-black svbtn" type="button" onclick="addDPR('save')">Save</button></div>
+
+            <!---- SAVE & NEXT BUTTONS ---->
+            <div class="col-40 page1_btn display-none"><button class="col button button-fill color-black" type="button" onclick="show_secondpg()">Save &amp; Next</button></div>
+            <div class="col-40 page2_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_thirdpg()">Save &amp; Next</button></div>
+            <div class="col-40 page3_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_forthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page4_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_fifthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page5_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_sixthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page6_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_seventhpg()">Save &amp; Next</button></div>
+            <div class="col-40 page7_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_eighthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page8_btn display-none"><button class="col button button-fill color-yellow" type="button" onclick="show_ninthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page9_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_tenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page10_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_eleventhpg()">Save &amp; Next</button></div>
+            <div class="col-40 page11_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_twelthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page12_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_thirteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page13_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_forteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page14_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_fifteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page15_btn display-none"><button class="col button button-fill color-yellow" type="button" onclick="show_sixteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page16_btn display-none"><button class="col button button-fill color-gray" type="button" onclick="show_seventeenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page17_btn display-none"><button class="col button button-fill color-green" type="button" onclick="show_eighteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page18_btn display-none"><button class="col button button-fill color-orange" type="button" onclick="show_nineteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page19_btn display-none"><button class="col button button-fill color-pink" type="button" onclick="show_twenteenthpg()">Save &amp; Next</button></div>
+            <div class="col-40 page20_btn display-none"><button class="col button button-fill color-blue" type="button" onclick="show_twentyonepg()">Save &amp; Next</button></div>
+            <div class="col-40 page21_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_twentytwopg()">Save &amp; Next</button></div>
+            <div class="col-40 page22_btn display-none"><button class="col button button-fill color-red" type="button" onclick="show_twentythreepg()">Save &amp; Next</button></div>
+            <div class="col-33 save_btn display-none" onclick="addDPR('submit')"><button class="col button button-fill color-red" type="button">Submit</button></div>
+
+
+
+
+
+            <!--div class="col-40"><button class="col button button-fill color-black" type="button">Save &amp; Save &amp; Next</button></div-->
+            <!--div class="col-33">ccc</div-->
+          </div>
+        </div>
+        <!--div class="block">       
+          <div class="list no-hairlines-md">
+            <ul id="dprsheet" class="no-bg">
+              
+            </ul>           
+          </div>
+        </div-->
+
+        <!--div class="card data-table">      
+          <table>
+            <thead class="" style="background-color: lightgrey!important">
+              <tr>            
+                <th class="label-cell text-uppercase table-th"><strong>Parameters</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">00:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">01:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">02:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">03:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">04:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">05:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">06:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">07:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">08:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">09:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">10:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">11:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">12:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">13:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">14:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">15:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">16:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">17:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">18:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">19:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">20:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">21:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">22:00</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong id="time_one">23:00</strong></th>
+
+                <th class="label-cell text-uppercase table-th"><strong id="time_zero">24:00</strong></th>
+                
+              </tr>
+            </thead>
+            <tbody id="sheet_data"></tbody>
+          </table>
+        </div-->
+
+      </form>       
+    </div>
+</div>

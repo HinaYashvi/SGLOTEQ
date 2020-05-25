@@ -1,0 +1,70 @@
+<div data-name="dpr_complain" class="page">
+	<div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white ml-0">DPR Corrections
+      <!---a class="col plus_icon" href="/add_dprcomplain/"><i class="f7-icons mr-5 fs-20 text-white pl-8p" >plus</i></a-->
+
+      <span class="bell_icon"><a class="col float-right pos-fix bell_noti pl-0" ><i class="f7-icons mr-5 fs-20 text-white ">bell<span class="bgcnt"></span></i><!--span class="fs-12"> Correction</span--></a></span>
+
+    </div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fab fab-right-bottom">
+    <a href="/add_dprcomplain/" class="color-fbtn">
+      <i class="f7-icons">plus</i>
+      <i class="f7-icons">multiply</i>
+    </a>
+  </div>
+		
+  	<div class="page-content"> 
+
+    <div class="">       
+
+      <div class="list no-hairlines-md">
+        <ul id="dprul" class="no-bg row">  
+          
+          <li class="item-content item-input col stn">
+            <div class="item-inner">                    
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="station_id_comps" id="station_id_comps" onchange="getcorrData()"></select>
+                </div>
+            </div>
+          </li> 
+          <!--li class="item-content item-input col-40">
+            <a class="col button button-fill color-red" href="/add_dprcomplain/"><i class="f7-icons mr-5 fs-12 mt-5">plus</i><span class="fs-12"> Correction</span></a>
+          </li-->               
+        </ul>           
+      </div> 
+
+      
+      <div class="block m-0">
+        <div class="row">
+          <div class="col">
+            <span class="total_comps fw-600 text-red "></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card data-table">      
+          <table>
+            <thead class="light-thead">
+              <tr>
+                <th class="label-cell text-uppercase table-th"><strong>Correction details</strong></th>
+                <th class="label-cell text-uppercase table-th"><strong>Status</strong></th>
+              </tr>
+            </thead>
+            <tbody id="comp_list"></tbody>
+          </table>
+        </div>
+    </div>  			
+</div>

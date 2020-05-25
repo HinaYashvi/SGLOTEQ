@@ -16,6 +16,11 @@ var routes = [
     name: 'dashboard',
   },
   {
+    path: '/dpr_list/',
+    url: './dpr/dpr_list.html',
+    name: 'dpr_list',
+  },
+  {
     path: '/veh_search/:veh_msg/:status/:owner_name/:mobile_one/:mob2/:email/:vehicle_type/:att_hydrotest_metal_plate_cirty/:att_rcbook/:att_form24/:att_number_plate/:vehicle_no/:due_yr/:due_mm/:due_dd/',
     url: './veh_search.html?veh_msg={{veh_msg}}/status={{status}}/owner_name={{owner_name}}/mobile_one={{mobile_one}}/mob2={{mob2}}/email={{email}}/vehicle_type={{vehicle_type}}/att_hydrotest_metal_plate_cirty={{att_hydrotest_metal_plate_cirty}}/att_rcbook={{att_rcbook}}/att_form24={{att_form24}}/att_number_plate={{att_number_plate}}/vehicle_no={{vehicle_no}}/due_yr={{due_yr}}/due_mm={{due_mm}}/due_dd={{due_dd}}',
     //path: '/veh_search/:veh_msg/:status/:owner_name/:mobile_one/',
@@ -56,7 +61,22 @@ var routes = [
     path: '/dpr/',
     url: './dpr/dpr.html',
     name: 'dpr',
-  }, 
+  },
+  {
+    path: '/add_dprcomplain/',
+    url: './dpr/add_dprcomplain.html',
+    name: 'add_dprcomplain',
+  },
+  {
+    path: '/dpr_view_complain/:dc_id/:stn_name/:dc_dttm/',
+    url: './dpr/dpr_view_complain.html?dc_id={{dc_id}}/stn_name={{stn_name}}/dc_dttm={{dc_dttm}}',
+    name: 'dpr_view_complain',
+  },
+  /*{
+    path: '/dpr_sheet/',
+    url: './dpr/dpr_sheet.html',
+    name: 'dpr_sheet',
+  },*/ 
   {
     path: '/dpr_sheet/:station_id/:demo_calendar_modal_dpr/:st_name/',
     url: './dpr/dpr_sheet.html?station_id={{station_id}}/demo_calendar_modal_dpr={{demo_calendar_modal_dpr}}/st_name={{st_name}}',
@@ -66,6 +86,16 @@ var routes = [
     path: '/dpr_kpi_rep/:station_id/:demo_calendar_modal_dpr/:st_name/',
     url: './dpr/dpr_kpi_rep.html?station_id={{station_id}}/demo_calendar_modal_dpr={{demo_calendar_modal_dpr}}/st_name={{st_name}}',
     name: 'dpr_kpi_rep',
+  },
+  /*{
+    path: '/dpr_kpi_rep/',
+    url: './dpr/dpr_kpi_rep.html',
+    name: 'dpr_kpi_rep',
+  },*/
+  {
+    path: '/dpr_complain/',
+    url: './dpr/dpr_complain.html',
+    name: 'dpr_complain',
   },
   /*{
     path: '/dpr_kpi_rep/:station_id/:demo_calendar_modal_dpr/:st_name/',
