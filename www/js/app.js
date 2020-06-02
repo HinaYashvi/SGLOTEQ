@@ -47,7 +47,7 @@ var app = new Framework7({
   onAjaxComplete: function (xhr) {
     app.hideIndicator();
   }
-});
+}); 
 var base_url = 'http://oteqprojects.co.in/sabarmati/';
 var mainView = app.views.create('.view-main');
 var dt = new Date();
@@ -265,7 +265,7 @@ $(document).on('page:init', '.page[data-name="dashboard"]', function (e) {
   var session_uid = window.localStorage.getItem("session_uid"); 
   $.ajax({ 
     type:'POST', 
-    url:base_url+'APP/Appcontroller/getModules',
+    url:base_url+'APP/Appcontroller/getModules',   
     data:{'session_uid':session_uid},
     success:function(module){
       var parsemodule = $.parseJSON(module);
@@ -385,7 +385,20 @@ function menuload(){
 }
 $(document).on('page:init', '.page[data-name="index"]', function (e) {
   //console.log(e);
-  menuload();  
+  menuload();
+  /*var calendarModal_dpr = app.calendar.create({    
+    inputEl: '#demo-calendar-modal-dpr',
+    openIn: 'customModal',
+    dateFormat: 'dd-mm-yyyy',
+    header: true,
+    footer: true,
+    renderToolbar: function () {    
+      return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
+    },
+    //disabled: {
+    //    from: new Date(yr, mnth, dt)
+    //}
+  });  */
 });
 function scanQR(){
   cordova.plugins.barcodeScanner.scan(function (result) {
@@ -660,7 +673,7 @@ function vstadd(){
   var old_rcbook='NULL';
   var old_from24='NULL';
   var old_numplate='NULL';
-
+ 
   var np_one = $('input[name="np_one"]').val();
   var np_two = $('input[name="np_two"]').val();
   var np_three = $('input[name="np_three"]').val();
@@ -987,7 +1000,7 @@ function getPhoto_formtf(source){
     destinationType: destinationType.FILE_URI,
     sourceType: source
   });
-}
+}   
 function onPhotoURISuccess_formtf(imageURI_gallery_formtf) {
   checkConnection();  
   var galleryImage_formtf = document.getElementById('image_formtf');
@@ -1091,12 +1104,7 @@ function searchByveh(){
         var checkvehno = parseData.checkvehno;
         var status = parseData.status;
         var code_chk = parseData.code_chk;
-        var perm_msg = parseData.perm_msg;
-
-        console.log(veh_msg+"----- veh_msg");
-        console.log(status+"----- status");
-        console.log(code_chk+"----- code_chk");
-        console.log(perm_msg+"----- perm_msg");
+        var perm_msg = parseData.perm_msg;        
         if(status=='success'){
           if(veh_msg=='exist'){
             if(code_chk=='barcode_notexists'){
@@ -1374,6 +1382,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   var g2 = new Date(today_yr, today_mn, today_dt);
   var arr_ser = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty","twentyone","twentytwo","twentythree"];
   app.preloader.show();
+
+  // FETCH DISPENSERS (ENABLE - DISABLE) //
   $.ajax({
     type:'POST', 
     url:base_url+'APP/Appcontroller/getDispensors',
@@ -1392,14 +1402,18 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       var st_start_date = parse_res.st_start_date;
       //var st_start_time = parse_res.st_start_time-1;
       var st_start_time = parse_res.st_start_time;
-      //alert(st_start_time);
 
       $("#hidd_dispcnt").val(dispanser_count);
+      var DISP_A = parse_res.DISP_A;   // DYNAMIC //
+      var DISP_B = parse_res.DISP_B;   // DYNAMIC //
       //console.log("ENABLE:: "+enable_disps);
       //console.log("TODAY ENABLE:: "+today_enable_arr);      
       
       var disp_html = '';
       for(var i=1;i<=dispanser_count;i++){
+
+        // DISPENSER A-SIDE SCRIPT //
+
         disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' A <sup class="text-red fw-600 fs-12">*</sup></td>'; 
         for(var d_a=0;d_a<=23;d_a++){
           if(d_a <= 9){
@@ -1443,7 +1457,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
             if(typeof today_enable_arr==='string'){ 
             //alert("hello");
               if(addzero_a < today_slot){
-                //console.log("ARE --- "+addzero_a);
                 if(enable_disps.indexOf(i) != -1){
                   //console.log("if "+enable_disps+"---"+i);
                   disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
@@ -1451,7 +1464,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                   disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                 }
               }else if(addzero_a >= today_slot){ 
-                //console.log("OH --- "+addzero_a);
                 if(today_enable_arr.indexOf(i) != -1){
                   disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                 }else{
@@ -1461,12 +1473,10 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               }
             }else{ 
               //alert("hi");
-              //console.log("HINA");
               //console.log(enable_disps.length);
               //alert(dpr_date+"======="+cur_date);
               if(dpr_date==cur_date){
-                console.log("current day multiple entry");
-              
+              //console.log("current day multiple entry");              
               var aa='';
               var enble_prev='';
               var enable_html='';
@@ -1479,8 +1489,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 var to_datetm=test_arr[z].to_datetm;
                 var full_fromdt=test_arr[z].full_fromdt;
                 var full_todt=test_arr[z].full_todt;
-
-
                 var to_dt=to_datetm.split(" ");
                 var dbtodt=to_dt[0];
                 var split_dtto = dbtodt.split("-");
@@ -1489,85 +1497,18 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 var todd=split_dtto[2];
                 var final_todt = todd+"-"+tomm+"-"+toyr;
               //console.log("hi "+to_dt_slot);
-
-
               if(cur_date != dbdate){      
-              console.log("not same" +"cur_date====="+cur_date+"------dbdate "+dbdate);
+              //console.log("not same" +"cur_date====="+cur_date+"------dbdate "+dbdate);
                 //console.log("in cond "+dbdate+"====="+to_dt_slot);
                 aa=to_dt_slot; 
                 enble_prev=enable;
-                //if(from_datetm!=final_todt && final_todt!="00-00-0000"){
-/*                if(from_datetm!=final_todt){
-                  //console.log("IF "+from_datetm+" "+enble_prev +"----"+ d_a +"===="+aa);
-                  if(d_a < aa){
-                    //console.log(enble_prev +" "+ d_a+ "===="+aa);
-                    if(enble_prev.indexOf(i) != -1){
-                     //console.log(d_a+"========"+i+"====enable prev"+enble_prev);
-                     enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
-                    }else{
-                      //console.log(d_a+"*******"+i+"====  prev disabled");
-                      enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
-                    }
-                  }
-                  if(final_todt=="00-00-0000"){
-                  console.log("FROM "+from_dt_slot+" TO "+to_dt_slot+" AA "+aa+" ==> "+d_a);
-                   //if(from_dt_slot >= d_a || to_dt_slot > d_a){
-                    if(from_dt_slot <= d_a ){
-                    //console.log("***************FROM "+from_dt_slot+" TO "+to_dt_slot+" "+enable+" aa :: "+aa+ "   "+d_a);
-                    if(enable.indexOf(i) != -1){
-                     //console.log(d_a+"========"+i+"====enable prev"+enble_prev);
-                     enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
-                    }else{
-                      //console.log(d_a+"*******"+i+"====  prev disabled");
-                      enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
-                    }
-                   }
-                    
-                      
-                    
-                  }
-                } */
-                /*if(from_datetm==final_todt){
-                  console.log(final_todt);
-                  console.log("ELSE "+from_dt_slot+" TO "+to_dt_slot+ " "+enble_prev +" "+ d_a+ "===="+aa);
-                  if(to_dt_slot >= d_a && from_dt_slot <= d_a){
-                      //console.log(to_dt_slot+" >= "+d_a +" && "+from_dt_slot+" <= "+d_a + " enable "+enable);
-                      //console.log("IN ELSE'S IF");
-                      if(enable.indexOf(i) != -1){
-                      //console.log(d_a+"========"+i+"====enable "+enable);
-                      enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
-                      }else{
-                        //console.log(d_a+"*******"+i+"==== disabled");
-                        enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
-                      }
-                      //console.log("IF-----"+d_a+" from date "+from_dt_slot +"to date "+to_dt_slot+ "enable "+enable );
-                    }else{
-                      //console.log(to_dt_slot+" <= "+d_a +" && "+from_dt_slot+" >= "+d_a + " enable "+enable);
-                      //console.log("IN ELSE'S IF'S ELSE");
-                      if(to_dt_slot <= d_a && from_dt_slot <= d_a){
-                        console.log("ELSE ======"+d_a+" from date "+from_dt_slot +"to date "+to_dt_slot+ "enable "+enable);
-                        if(enable.indexOf(i) != -1){
-                        //console.log(d_a+"========"+i+"====enable "+enable);
-                        enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
-                        }else{
-                          //console.log(d_a+"*******"+i+"==== disabled");
-                          enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
-                        }
-                      }
-
-
-                      //console.log("ELSE ======"+d_a+" from date "+from_dt_slot +"to date "+to_dt_slot+ "enable "+enable);
-                    } 
-                } */
-
               }       
                //0000-00-00 00:00:00
               //console.log('outside '+aa);
               if(cur_date === dbdate){ 
-               console.log("~~~~ same dates"+final_todt);
-                //console.log(dbdate+"====="+z);
+               //console.log("~~~~ same dates"+final_todt);
                 if(final_todt=="00-00-0000"){
-                  console.log("FROM "+from_dt_slot+" TO "+to_dt_slot+" AA "+aa+" ==> "+d_a+" enable "+enable);
+                  //console.log("FROM "+from_dt_slot+" TO "+to_dt_slot+" AA "+aa+" ==> "+d_a+" enable "+enable);
                    //if(from_dt_slot >= d_a || to_dt_slot > d_a){
                     if(from_dt_slot <= d_a ){
                     //console.log("***************FROM "+from_dt_slot+" TO "+to_dt_slot+" "+enable+" aa :: "+aa+ "   "+d_a);
@@ -1584,7 +1525,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 if(from_dt_slot < d_a || to_dt_slot > d_a){
                   //console.log("main if :: FROM "+from_dt_slot+ " TO "+to_dt_slot);
                   if(aa > d_a){
-                    //console.log("IF "+dbdate+"==== loop tm :"+d_a+"--frm "+from_dt_slot+" to "+to_dt_slot + "---"+enable);
                     //console.log("IF "+" FROM "+from_dt_slot+" TO "+to_dt_slot + "---  ENABLE "+enble_prev);
                     if(enble_prev.indexOf(i) != -1){
                      //console.log(d_a+"========"+i+"====enable prev"+enble_prev);
@@ -1594,12 +1534,9 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                     }                    
                   }else{
-                    //console.log("ELSE "+" FROM "+from_dt_slot+" TO "+to_dt_slot + "---  ENABLE"+enable);
-                      //console.log("ENABLE "+enable+" to_dt_slot "+to_dt_slot); 
                     if(to_dt_slot >= d_a && from_dt_slot <= d_a){
                       //console.log(to_dt_slot+" >= "+d_a +" && "+from_dt_slot+" <= "+d_a + " enable "+enable);
-             //         console.log("ELSE "+" FROM "+from_dt_slot+" TO "+to_dt_slot + "---  ENABLE "+enable);
-                      //console.log("IN ELSE'S IF");
+                      //console.log("ELSE "+" FROM "+from_dt_slot+" TO "+to_dt_slot + "---  ENABLE "+enable);
                       if(enable.indexOf(i) != -1){
                       //console.log(d_a+"========"+i+"====enable "+enable);
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
@@ -1607,12 +1544,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                         //console.log(d_a+"*******"+i+"==== disabled");
                         enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                       }
-                      //console.log("IF-----"+d_a+" from date "+from_dt_slot +"to date "+to_dt_slot+ "enable "+enable );
                     }else{
-                      //console.log(to_dt_slot+" <= "+d_a +" && "+from_dt_slot+" >= "+d_a + " enable "+enable);
-                      //console.log("IN ELSE'S IF'S ELSE"); 
-
-                      
+                      //console.log(to_dt_slot+" <= "+d_a +" && "+from_dt_slot+" >= "+d_a + " enable "+enable);                     
                       if(to_dt_slot <= d_a && from_dt_slot <= d_a){
                         //console.log("ELSE ======"+d_a+" from date "+from_dt_slot +"to date "+to_dt_slot+ "enable "+enable);
                         if(enable.indexOf(i) != -1){
@@ -1623,11 +1556,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                           enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                         }
                       }
-
-
-                      //console.log("ELSE ======"+d_a+" from date "+from_dt_slot +"to date "+to_dt_slot+ "enable "+enable);
-                    }     
-                    
+                    }                    
                   }                    
                 }else{
                   //console.log("ELSE "+dbdate+"==== loop tm :"+d_a+" if ======="+enable+"==== frm "+from_dt_slot+"===== to "+to_dt_slot);
@@ -1663,11 +1592,10 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 //console.log("not same" +"cur_date====="+cur_date+"------dbdate "+past_dbdate+"---- "+past_enble_prev);
               }
               if(past_from_datetm!=past_final_todt){
-
                 if(past_from_datetm > past_final_todt){
                   //alert(past_from_datetm +" is bigger than "+past_final_todt);
                   if(past_final_todt=="00-00-0000"){
-                    console.log("IN "+past_from_dt_slot+" TO "+past_to_dt_slot+" AA "+past_aa+" ==> "+d_a+" enable "+past_enable);
+                    //console.log("IN "+past_from_dt_slot+" TO "+past_to_dt_slot+" AA "+past_aa+" ==> "+d_a+" enable "+past_enable);
                      //if(from_dt_slot >= d_a || to_dt_slot > d_a){
                     if(past_from_dt_slot <= d_a ){
                       //console.log("***************FROM "+from_dt_slot+" TO "+to_dt_slot+" "+enable+" aa :: "+aa+ "   "+d_a);
@@ -1678,10 +1606,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                       }
                     }
                   }
-                }/*else if(past_from_datetm < past_final_todt){
-                  alert(past_from_datetm +" is samller than "+past_final_todt);
-                }*/
-                //console.log("FROM "+past_from_datetm+" TO "+past_final_todt);
+                }
                 if(dpr_date > past_from_datetm){
                   //console.log("--- FROM "+past_from_dt_slot+ " TO "+past_to_dt_slot+" enable "+past_enble_prev +" d_a "+d_a+" aa "+past_to_dt_slot);
                   if(d_a < past_to_dt_slot){
@@ -1705,10 +1630,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     //}
                   }                  
                 }
-
-              }else {
-                                
-                console.log("*** FROM "+past_from_dt_slot+ " TO "+past_to_dt_slot+" enable "+past_enable+" d_a "+d_a+" aa "+past_to_dt_slot);
+              }else {                                
+                //console.log("*** FROM "+past_from_dt_slot+ " TO "+past_to_dt_slot+" enable "+past_enable+" d_a "+d_a+" aa "+past_to_dt_slot);
                 if(past_to_dt_slot >= d_a && past_from_dt_slot <= d_a){
                   if(past_enable.indexOf(i) != -1){
                     enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
@@ -1716,11 +1639,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                     }
                 }
-
-                
-
               }
-
             }
           }
             disp_html+=enable_html;
@@ -1737,12 +1656,12 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               }
            }
         }
+        //disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+'></td>'; 
+      }
+      disp_html+='</tr>';
+      disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' B<sup class="text-red fw-600 fs-12">*</sup></td>';
 
-
-//         disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+'></td>'; 
-        }
-        disp_html+='</tr>';
-        disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' B<sup class="text-red fw-600 fs-12">*</sup></td>';
+        // DISPENSER B-SIDE SCRIPT //
 
         for(var d_b=0;d_b<=23;d_b++){
           if(d_b <= 9){
@@ -1786,7 +1705,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           if(today_enable_arr!='') { 
           if(typeof today_enable_arr==='string'){          
             if(addzero_b < today_slot){
-              //console.log("ARE --- "+addzero_b);
               //alert("hello");
               if(enable_disps.indexOf(i) != -1){
                 //console.log("if "+enable_disps+"---"+i);
@@ -1795,7 +1713,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 disp_html+='<td class="text-center text-uppercase disp_tr_'+i+' '+dis_b+' pl-9 disp_th_'+arr_ser[d_b]+'">--</td>';
               }
             }else if(addzero_b >= today_slot){ 
-              //console.log("OH --- "+addzero_b);
               if(today_enable_arr.indexOf(i) != -1){
                 //console.log("if "+enable_disps+"---"+i);
                 //alert("hi");
@@ -1829,55 +1746,20 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               if(cur_date != dbdate_b){
                 bb=to_dt_slot_b;
                 enble_prev_b=enable_b;
-/*                if(from_datetm_b!=final_todt_b){
-                  if(d_b < bb){
-                    if(enble_prev_b.indexOf(i) != -1){
-                     enable_html_b='<td class="text-uppercase disp_tr_'+i+' '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_1'+'_'+d_b+'" '+read_only+' id="DISP_'+i+'_B_'+d_b+'"></td>';
-                    }else{
-                      enable_html_b='<td class="text-center text-uppercase disp_tr_'+i+' '+dis_b+' pl-9 disp_th_'+arr_ser[d_b]+'">--</td>';
-                    }
-                  }
-                  if(final_todt_b=="00-00-0000"){
-                    if(from_dt_slot_b <= d_b){
-                    if(enable_b.indexOf(i) != -1){
-                     enable_html_b='<td class="text-uppercase disp_tr_'+i+' '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_1'+'_'+d_b+'" '+read_only+' id="DISP_'+i+'_B_'+d_b+'"></td>';
-                    }else{
-                      enable_html_b='<td class="text-center text-uppercase disp_tr_'+i+' '+dis_b+' pl-9 disp_th_'+arr_ser[d_b]+'">--</td>';
-                    }
-                   }   
-                  }
-                }else if(from_datetm_b==final_todt_b){
-                  if(to_dt_slot_b >= d_b && from_dt_slot_b <= d_b){
-                      if(enable_b.indexOf(i) != -1){
-                      enable_html_b='<td class="text-uppercase disp_tr_'+i+' '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_1'+'_'+d_b+'" '+read_only+' id="DISP_'+i+'_B_'+d_b+'"></td>';
-                      }else{
-                        enable_html_b='<td class="text-center text-uppercase disp_tr_'+i+' '+dis_b+' pl-9 disp_th_'+arr_ser[d_b]+'">--</td>';
-                      }
-                    }else{
-                      if(to_dt_slot_b <= d_b && from_dt_slot_b <= d_b){
-                        if(enable_b.indexOf(i) != -1){
-                        enable_html_b='<td class="text-uppercase disp_tr_'+i+' '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_1'+'_'+d_b+'" '+read_only+' id="DISP_'+i+'_B_'+d_b+'"></td>';
-                        }else{
-                          enable_html_b='<td class="text-center text-uppercase disp_tr_'+i+' '+dis_b+' pl-9 disp_th_'+arr_ser[d_b]+'">--</td>';
-                        }
-                      }
-                    } 
-                }
-*/
               }       
               //console.log('outside '+bb);
 
               if(cur_date === dbdate_b){ 
                 //console.log(dbdate_b+"====="+z);
                 if(final_todt_b=="00-00-0000"){
-                    if(from_dt_slot_b <= d_b){
-                    if(enable_b.indexOf(i) != -1){
-                     enable_html_b='<td class="text-uppercase disp_tr_'+i+' '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_1'+'_'+d_b+'" '+read_only+' id="DISP_'+i+'_B_'+d_b+'"></td>';
-                    }else{
-                      enable_html_b='<td class="text-center text-uppercase disp_tr_'+i+' '+dis_b+' pl-9 disp_th_'+arr_ser[d_b]+'">--</td>';
-                    }
-                   }   
+                  if(from_dt_slot_b <= d_b){
+                  if(enable_b.indexOf(i) != -1){
+                   enable_html_b='<td class="text-uppercase disp_tr_'+i+' '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_1'+'_'+d_b+'" '+read_only+' id="DISP_'+i+'_B_'+d_b+'"></td>';
+                  }else{
+                    enable_html_b='<td class="text-center text-uppercase disp_tr_'+i+' '+dis_b+' pl-9 disp_th_'+arr_ser[d_b]+'">--</td>';
                   }
+                 }   
+                }
                 if(from_dt_slot_b < d_b || to_dt_slot_b > d_b){
                   if(bb > d_b){
                     //console.log("IF "+dbdate_b+"==== loop tm :"+d_a+"--frm "+from_dt_slot_b+" to "+to_dt_slot_b + "---"+enable);
@@ -1960,10 +1842,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                       }
                     }
                   }
-                }/*else if(past_from_datetm_b < past_final_todt_b){
-                  alert(past_from_datetm_b +" is samller than "+past_final_todt_b);
-                }*/
-                //console.log("FROM "+past_from_datetm_b+" TO "+past_final_todt_b);
+                }                
                 if(dpr_date > past_from_datetm_b){
                   //console.log("--- FROM "+past_from_dt_slot_b+ " TO "+past_to_dt_slot_b+" enable "+past_enble_prev_b +" d_b "+d_b+" aa "+past_to_dt_slot_b);
                   if(d_b < past_to_dt_slot_b){
@@ -1998,18 +1877,9 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 }
               }
             }
-
-
           }
-          if(st_start_date == dpr_date){
-            for(var col=0;col<st_start_time;col++){
-              $(".disp_th_"+col).html("---");
-              $(".disp_th_"+col).removeClass("pl-0");
-              $(".disp_th_"+col).addClass("text-center pl-9");
-            }
-          }
-
-            disp_html+=enable_html_b;
+          
+      //    disp_html+=enable_html_b;
           }          
         }else{
           if(sel_dpr > fromdttm) {
@@ -2022,14 +1892,168 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               }
            }
         }
-
-         
-
-   //       disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_1'+'_'+d_b+'" '+read_only+'></td>';
+        disp_html+=enable_html_b;    
+        /*if(st_start_date == dpr_date){
+          for(var col=0;col<st_start_time;col++){
+            $(".disp_th_"+col).html("---");
+            $(".disp_th_"+col).removeClass("pl-0");
+            $(".disp_th_"+col).addClass("text-center pl-9");
+          }
+        }*/
+        //disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_1'+'_'+d_b+'" '+read_only+'></td>';
         }        
         disp_html+='</tr>';
-      }
+      } // for loop ends //
       $(".disp_data").html(disp_html);
+
+      if(st_start_date==dpr_date){ 
+        if(st_start_time=="00"){
+          st_start_time=0;
+        }else{
+          st_start_time=st_start_time;
+        }
+        //console.log(DISP_A);
+        //alert("st_start_time "+st_start_time);  
+        for(var disp_aa=0;disp_aa<dispanser_count;disp_aa++){
+              for(var l_a=st_start_time;l_a<=23;l_a++){    
+                //console.log(".disp_"+(disp_aa+1)+"_a_"+l_a);
+                var txtbox_id = $(".disp_"+(disp_aa+1)+"_a_"+l_a).attr('id');
+                //console.log("txtbox_id "+txtbox_id);
+                if(txtbox_id!=undefined){
+                  var split_txt = txtbox_id.split("_");
+                  var dispno = split_txt[1];
+                  var disptm = split_txt[3];
+                    var disp_a_val = DISP_A[l_a][0].slot_param_val;
+                    var time_slot_a = DISP_A[l_a][0].time_slot; 
+                    var param = DISP_A[l_a][0].dpr_params;
+                    //console.log(param+" "+time_slot_a+" "+disp_a_val);
+                    var split_tm = time_slot_a.split(":");
+                    var splited_tm = split_tm[0];
+                    var timeslot = splited_tm.replace(/^0+/, "");
+                    if(time_slot_a=="00:00"){
+                      timeslot=0;
+                    }else{ 
+                      timeslot=timeslot;
+                    }
+                    if(timeslot==disptm){
+                      console.log(disp_a_val);
+                      //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
+                      $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
+                    }
+                  }
+              }
+            }
+            
+            for(var disp_bb=0;disp_bb<dispanser_count;disp_bb++){
+              for(var l_b=st_start_time;l_b<=23;l_b++){ 
+                //console.log(".disp_"+(disp_bb+1)+"_b_"+l_b);
+                var txtbox_id_b = $(".disp_"+(disp_bb+1)+"_b_"+l_b).attr('id');
+                //console.log("txtbox_id_b "+txtbox_id_b);
+                if(txtbox_id_b!=undefined){
+                  var split_txt_b = txtbox_id_b.split("_");
+                  var dispno = split_txt_b[1];
+                  var disptm_b = split_txt_b[3];
+                    var disp_b_val = DISP_B[l_b][0].slot_param_val;
+                    var time_slot_b = DISP_B[l_b][0].time_slot; 
+                    var param = DISP_B[l_b][0].dpr_params;
+                    //console.log(param+" "+time_slot_b+" "+disp_b_val);
+                    var split_tm_b = time_slot_b.split(":");
+                    var splited_tm_b = split_tm_b[0];
+                    var timeslot_b = splited_tm_b.replace(/^0+/, "");
+                    if(time_slot_b=="00:00"){
+                      timeslot_b=0;
+                    }else{
+                      timeslot_b=timeslot_b;
+                    }
+                    if(timeslot_b==disptm_b){
+                      console.log(disp_b_val);
+                      //console.log(txtbox_id+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_a_'+timeslot_b+").val="+disp_b_val);
+                      $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
+                    }
+                  }
+              }
+          }
+        }else{
+          for(var disp_aa=0;disp_aa<DISP_A.length;disp_aa++){
+            var cnt_d = DISP_A[disp_aa].length;
+            //alert(cnt_d);
+            for(var l_a=0;l_a<=23;l_a++){
+              var txtbox_id = $(".disp_"+(disp_aa+1)+"_a_"+l_a).attr('id');
+              if(txtbox_id!=undefined){
+                //alert(txtbox_id);
+                var split_txt = txtbox_id.split("_");
+                var dispno = split_txt[1];
+                var disptm = split_txt[3]; 
+                for(var d_aa=0;d_aa<cnt_d;d_aa++){ 
+                  var disp_a_val = DISP_A[disp_aa][d_aa].slot_param_val;
+                  var time_slot_a = DISP_A[disp_aa][d_aa].time_slot; 
+                  var param = DISP_A[disp_aa][d_aa].dpr_params;
+                  //console.log(param+" "+time_slot_a+" "+disp_a_val+" === "+d_aa);
+                  var split_tm = time_slot_a.split(":");
+                  var splited_tm = split_tm[0];
+                  var timeslot = splited_tm.replace(/^0+/, "");
+                  if(time_slot_a=="00:00"){
+                    timeslot=0;
+                  }else{
+                    timeslot=timeslot;
+                  }                
+                  if(timeslot==disptm){
+                    console.log("DISP A"+disp_a_val);
+                    //console.log(disptm+" "+timeslot);
+                    //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
+                    $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
+                  }
+                }
+              }
+
+            }
+            //console.log("----------------------------------");
+          } 
+
+          for(var disp_bb=0;disp_bb<DISP_B.length;disp_bb++){
+            var cnt_d = DISP_B[disp_bb].length;
+            for(var l_b=0;l_b<=23;l_b++){
+              var txtbox_id_b = $(".disp_"+(disp_bb+1)+"_b_"+l_b).attr('id');
+              if(txtbox_id_b!=undefined){
+                //alert(txtbox_id_b);
+                var split_txt_b = txtbox_id_b.split("_");
+                var dispno = split_txt_b[1];
+                var disptm_b = split_txt_b[3]; 
+                for(var d_bb=0;d_bb<cnt_d;d_bb++){ 
+                  var disp_b_val = DISP_B[disp_bb][d_bb].slot_param_val;
+                  var time_slot_b = DISP_B[disp_bb][d_bb].time_slot; 
+                  var param = DISP_B[disp_bb][d_bb].dpr_params;
+                  //console.log(param+" "+time_slot_b+" "+disp_b_val+" === "+d_bb);
+                  var split_tm_b = time_slot_b.split(":");
+                  var splited_tm_b = split_tm_b[0];
+                  var timeslot_b = splited_tm_b.replace(/^0+/, "");
+                  if(time_slot_b=="00:00"){
+                    timeslot_b=0;
+                  }else{
+                    timeslot_b=timeslot_b;
+                  }                
+                  if(timeslot_b==disptm_b){
+                    console.log("DISP B"+disp_b_val);
+                    //console.log(disptm_b+" "+timeslot_b);
+                    //console.log(txtbox_id_b+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_b_'+timeslot_b+").val="+disp_b_val);
+                    $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
+                  }
+                }
+              }
+
+            }
+            //console.log("----------------------------------");
+          }
+        }
+
+
+      if(st_start_date == dpr_date){        
+        for(var col=0;col<st_start_time;col++){          
+          $(".disp_th_"+col).html("---");
+          $(".disp_th_"+col).removeClass("pl-0");
+          $(".disp_th_"+col).addClass("text-center pl-9");
+        }
+      }
     }
   });
   
@@ -2194,85 +2218,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   $(".disp_th_twentythree input").addClass("readonlytxtbox");
   $(".elec_th_twentythree input").addClass("readonlytxtbox");
 
-  /*var hidd_dprdt = $("#hidd_dprdt").val();
-  //alert("hidd_dprdt "+hidd_dprdt);
-  var d = new Date();
-  var month = d.getMonth()+1;
-  var day = d.getDate();
-  //var today_dt = ((''+day).length<2 ? '0' : '') + day +'-' +    ((''+month).length<2 ? '0' : '') + month + '-' +    d.getFullYear();
-  var today_dt = d.getFullYear()+'-'+((''+month).length<2 ? '0' : '') + month + '-'+((''+day).length<2 ? '0' : '') + day;
-  var split_hiddt = hidd_dprdt.split("-");
-  var split_yr = split_hiddt[2];
-  var split_mn = split_hiddt[1];
-  var split_dt = split_hiddt[0];
-  var today_yr =d.getFullYear();
-  var today_mn = month;
-  var today_dt = day;
-  var hiddt = split_yr+"-"+split_mn+"-"+split_dt;
-  var g1 = new Date(split_yr, split_mn, split_dt);  
-  var g2 = new Date(today_yr, today_mn, today_dt);
-
-  $.ajax({
-    type:'POST', 
-    url:base_url+'APP/Appcontroller/getDispensors',
-    data:{'station_id':station_id},
-    success:function(result){
-      var parse_res = $.parseJSON(result);
-      var dispanser_count = parse_res.dispanser_count;
-      var disp_html = '';
-      var arr_ser = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty","twentyone","twentytwo","twentythree"];
-      //console.log(arr_ser);
-      for(var i=1;i<=dispanser_count;i++){
-        if(i==1){
-          var req='<sup class="text-red fw-600 fs-12">*</sup>';
-        }else{
-          var req='';
-        }
-        if(g1 < g2){
-          //alert("arey");
-          var read_only="readonly='readonly'";
-          var readonly_cls = "readonlytxtbox";
-        }else{
-          var read_only="";
-          var readonly_cls = "";
-        }
-        disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' A'+req+'</td>';        
-        for(var d_a=0;d_a<=23;d_a++){
-          if(d_a <= 9){
-            var addzero_a = "0"+d_a;
-          }else{
-            var addzero_a = d_a;
-          }
-          if(d_a==0 || d_a==1){
-            var dis_a = '';
-          }else{
-            var dis_a = 'display-none';
-          }
-          disp_html+='<td class="text-uppercase '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_'+i+'_'+d_a+'" '+read_only+'></td>';
-        }
-        disp_html+='</tr>';
-
-        disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' B'+req+'</td>';
-        for(var d_b=0;d_b<=23;d_b++){
-          if(d_b <= 9){
-            var addzero_b = "0"+d_b;
-          }else{
-            var addzero_b = d_b;
-          }
-          if(d_b==0 || d_b==1){
-            var dis_b = '';
-          }else{ 
-            var dis_b = 'display-none';
-          }
-          disp_html+='<td class="text-uppercase '+dis_b+' pl-0 disp_th_'+arr_ser[d_b]+' disp_th_'+[d_b]+'"><input type="number" name="para[DISP_'+i+'_B]['+addzero_b+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_b_'+d_b+' val_disp_'+i+'_'+d_b+'" '+read_only+'></td>';
-        }        
-        disp_html+='</tr>';
-      }
-      $(".disp_data").html(disp_html); 
-    }
-  });*/
   app.preloader.hide();
-  $.ajax({
+  /*$.ajax({
     type:'POST',  
     dataType:'json',
     url:base_url+'APP/Appcontroller/getStationStart',
@@ -2299,7 +2246,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       }
       //$("#sheet_data").html(result);
     }    
-  });
+  });*/
   app.preloader.show();
   $.ajax({
     type:'POST', 
@@ -2365,148 +2312,172 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
         var PF = prsejson.PF;
        // alert("ajax");
         
-        if(start_dt==dpr_date){               
+        if(start_dt==dpr_date){ 
+
           for(var cs=0;cs<COMP_SUCTION.length;cs++){
             if(COMP_SUCTION[cs]!=''){ 
               var cs_slot_param_val = COMP_SUCTION[cs][0].slot_param_val;
+              console.log(cs_slot_param_val);
               $(".comp_suc_"+cs).val(cs_slot_param_val);
             }            
           }
           for(var cd=0;cd<COMP_DISCHARGE.length;cd++){
             if(COMP_DISCHARGE[cd]!=''){
               var cd_slot_param_val = COMP_DISCHARGE[cd][0].slot_param_val;
+              console.log(cd_slot_param_val);
               $(".comp_dis_"+cd).val(cd_slot_param_val);
             }            
           }
           for(var lcv1=0;lcv1<LCV_1_MFM.length;lcv1++){
             if(LCV_1_MFM[lcv1]!=''){
               var lcv1_mfm = LCV_1_MFM[lcv1][0].slot_param_val;
+              console.log(lcv1_mfm);
               $(".lcv1_mfm_"+lcv1).val(lcv1_mfm);
             }
           }
           for(var lcv2=0;lcv2<LCV_2_MFM.length;lcv2++){
             if(LCV_2_MFM[lcv2]!=''){
               var lcv2_mfm = LCV_2_MFM[lcv2][0].slot_param_val;
+              console.log(lcv2_mfm);
               $(".lcv2_mfm_"+lcv2).val(lcv2_mfm);
             }
           }
           for(var lcv3=0;lcv3<LCV_3_MFM.length;lcv3++){
             if(LCV_3_MFM[lcv3]!=''){
               var lcv3_mfm = LCV_3_MFM[lcv3][0].slot_param_val;
+              console.log(lcv3_mfm);
               $(".lcv3_mfm_"+lcv3).val(lcv3_mfm);
             }
           }
           for(var lcv4=0;lcv4<LCV_4_MFM.length;lcv4++){
             if(LCV_4_MFM[lcv4]!=''){
               var lcv4_mfm = LCV_4_MFM[lcv4][0].slot_param_val;
+              console.log(lcv4_mfm);
               $(".lcv4_mfm_"+lcv4).val(lcv4_mfm);
             }
           }
           for(var chc=0;chc<COMP_HMR_COUNTER.length;chc++){
             if(COMP_HMR_COUNTER[chc]!=''){
               var chc_val = COMP_HMR_COUNTER[chc][0].slot_param_val;
+              console.log(chc_val);
               $(".comp_hmr_cnt_"+chc).val(chc_val);
             }
           }
           for(var cem=0;cem<COMP_ENR_METER.length;cem++){
             if(COMP_ENR_METER[cem]!=''){
               var cem_val = COMP_ENR_METER[cem][0].slot_param_val;
+              console.log(cem_val);
               $(".comp_energy_met_"+cem).val(cem_val);
             }
           }
           for(var isp=0;isp<I_stg_prs.length;isp++){
             if(I_stg_prs[isp]!=''){
               var isp_val = I_stg_prs[isp][0].slot_param_val;
+              console.log(isp_val);
               $(".I_stg_prs_"+isp).val(isp_val);
             }
           }
           for(var iisp=0;iisp<II_stg_prs.length;iisp++){
             if(II_stg_prs[iisp]!=''){
               var iisp_val = II_stg_prs[iisp][0].slot_param_val;
+              console.log(iisp_val);
               $(".II_stg_prs_"+iisp).val(iisp_val);
             }
           }
           for(var iiips=0;iiips<III_stg_prs.length;iiips++){
             if(III_stg_prs[iiips]!=''){
               var iiips_val = III_stg_prs[iiips][0].slot_param_val;
+              console.log(iiips_val);
               $(".III_stg_prs_"+iiips).val(iiips_val);
             }
           }
           for(var ist=0;ist<I_stg_TEMP.length;ist++){
             if(I_stg_TEMP[ist]!=''){
               var ist_val = I_stg_TEMP[ist][0].slot_param_val;
+              console.log(ist_val);
               $(".I_stg_temp_"+ist).val(ist_val);
             }
           }
           for(var iist=0;iist<II_stg_TEMP.length;iist++){
             if(II_stg_TEMP[iist]!=''){
               var iist_val = II_stg_TEMP[iist][0].slot_param_val;
+              console.log(iist_val);
               $(".II_stg_temp_"+iist).val(iist_val);
             }
           }
           for(var iiist=0;iiist<III_stg_TEMP.length;iiist++){
             if(III_stg_TEMP[iiist]!=''){
               var iiist_val = III_stg_TEMP[iiist][0].slot_param_val;
+              console.log(iiist_val);
               $(".III_stg_temp_"+iiist).val(iiist_val);
             }
           }
           for(var lpo=0;lpo<LP_OIL.length;lpo++){
             if(LP_OIL[lpo]!=''){
               var lpo_val = LP_OIL[lpo][0].slot_param_val;
+              console.log(lpo_val);
               $(".lp_oil_"+lpo).val(lpo_val);
             }
           }
           for(var hpo=0;hpo<HP_OIL.length;hpo++){
             if(HP_OIL[hpo]!=''){
               var hpo_val = HP_OIL[hpo][0].slot_param_val;
+              console.log(hpo_val);
               $(".hp_oil_"+hpo).val(hpo_val);
             }
           }
           for(var lbp=0;lbp<LOW_BANK_PRS.length;lbp++){
             if(LOW_BANK_PRS[lbp]!=''){
               var lbp_val = LOW_BANK_PRS[lbp][0].slot_param_val;
+              console.log(lbp_val);
               $(".low_bank_prs_"+lbp).val(lbp_val);
             }
           }
           for(var mbp=0;mbp<MED_BANK_PRS.length;mbp++){
             if(MED_BANK_PRS[mbp]!=''){
               var mbp_val = MED_BANK_PRS[mbp][0].slot_param_val;
+              console.log(mbp_val);
               $(".med_bank_prs_"+mbp).val(mbp_val);
             }
           }
           for(var hbp=0;hbp<HIGH_BANK_PRS.length;hbp++){
             if(HIGH_BANK_PRS[hbp]!=''){
               var hbp_val = HIGH_BANK_PRS[hbp][0].slot_param_val;
+              console.log(hbp_val);
               $(".high_bank_prs_"+hbp).val(hbp_val);
             }
           }
           for(var wl=0;wl<WATER_LVL.length;wl++){
             if(WATER_LVL[wl]!=''){
               var wl_val = WATER_LVL[wl][0].slot_param_val;
+              console.log(wl_val);
               $(".water_lvl_"+wl).val(wl_val);
             }
           }
           for(var ol=0;ol<OIL_LVL.length;ol++){
             if(OIL_LVL[ol]!=''){
               var ol_val = OIL_LVL[ol][0].slot_param_val;
+              console.log(ol_val);
               $(".oil_lvl_"+ol).val(ol_val);
             }
           }
           for(var nocs=0;nocs<NO_OF_COMP_STARTS.length;nocs++){
             if(NO_OF_COMP_STARTS[nocs]!=''){
               var nocs_val = NO_OF_COMP_STARTS[nocs][0].slot_param_val;
+              console.log(nocs_val);
               $(".comp_starts_"+nocs).val(nocs_val);
             }
           }
           for(var sucp=0;sucp<SUC_PRS.length;sucp++){
             if(SUC_PRS[sucp]!=''){
               var sucp_val = SUC_PRS[sucp][0].slot_param_val;
+              console.log(sucp_val);
               $(".suc_prs_"+sucp).val(sucp_val);
             }
           }
                     
 
-          for(var disp_aa=0;disp_aa<dispanser_count;disp_aa++){
+          /*for(var disp_aa=0;disp_aa<dispanser_count;disp_aa++){
             for(var l_a=st_strt_tm;l_a<=23;l_a++){ 
               //console.log(".disp_"+(disp_aa+1)+"_a_"+l_a);
               var txtbox_id = $(".disp_"+(disp_aa+1)+"_a_"+l_a).attr('id');
@@ -2528,6 +2499,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     timeslot=timeslot;
                   }
                   if(timeslot==disptm){
+                    console.log(disp_a_val);
                     //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
                     $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
                   }
@@ -2557,68 +2529,93 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     timeslot_b=timeslot_b;
                   }
                   if(timeslot_b==disptm_b){
+                    console.log(disp_b_val);
                     //console.log(txtbox_id+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_a_'+timeslot_b+").val="+disp_b_val);
                     $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
                   }
                 }
             }
-          }
+          }*/
            
 
           for(var gmk=0;gmk<GEB_MET_KWH.length;gmk++){
             if(GEB_MET_KWH[gmk]!=''){
               var gmk_slot_param_val = GEB_MET_KWH[gmk][0].slot_param_val;
+              console.log(gmk_slot_param_val);
               $(".GEB_energy_mtr_KWH_"+gmk).val(gmk_slot_param_val);
             }
           }
-          for(var gmk=0;gmk<GEB_MET_KVAH.length;gmk++){
-            if(GEB_MET_KVAH[gmk]!=''){
-              var gmk_slot_param_val = GEB_MET_KVAH[gmk][0].slot_param_val;
-              $(".GEB_energy_met_KVAH_"+gmk).val(gmk_slot_param_val);
+          for(var gmkv=0;gmkv<GEB_MET_KVAH.length;gmkv++){
+            if(GEB_MET_KVAH[gmkv]!=''){
+              var gmk_kvah_slot_param_val = GEB_MET_KVAH[gmkv][0].slot_param_val;
+              console.log(gmk_kvah_slot_param_val);
+              $(".GEB_energy_met_KVAH_"+gmkv).val(gmk_kvah_slot_param_val);
             }
           }
           for(var gmkrh=0;gmkrh<GEB_MET_KVRH.length;gmkrh++){
             if(GEB_MET_KVRH[gmkrh]!=''){
               var gmkrh_slot_param_val = GEB_MET_KVRH[gmkrh][0].slot_param_val;
+              console.log(gmkrh_slot_param_val);
               $(".GEB_energy_met_KVRH_"+gmkrh).val(gmkrh_slot_param_val);
             }
           }
           for(var dro=0;dro<DELAR_RO.length;dro++){
             if(DELAR_RO[dro]!=''){
               var dro_slot_param_val = DELAR_RO[dro][0].slot_param_val;
+              console.log(dro_slot_param_val);
               $(".delar_ro_"+dro).val(dro_slot_param_val);
             }
           }
           for(var vltg=0;vltg<VLTG.length;vltg++){
             if(VLTG[vltg]!=''){
               var vltg_slot_param_val = VLTG[vltg][0].slot_param_val;
+              console.log(vltg_slot_param_val);
               $(".voltage_"+vltg).val(vltg_slot_param_val);
             }
           }
           for(var amp=0;amp<AMP.length;amp++){
             if(AMP[amp]!=''){
               var amp_slot_param_val = AMP[amp][0].slot_param_val;
+              console.log(amp_slot_param_val);
               $(".amp_"+amp).val(amp_slot_param_val);
             }
           }
           for(var pf=0;pf<PF.length;pf++){
             if(PF[pf]!=''){
               var pf_slot_param_val = PF[pf][0].slot_param_val;
+              console.log(pf_slot_param_val);
               $(".pf_"+pf).val(pf_slot_param_val);
             }
           }
 
+          if(start_dt == dpr_date){
+          for(var col=0;col<st_start_time;col++){
+            $(".comp_th_"+col).html("---");
+            $(".comp_th_"+col).removeClass("pl-0");
+            $(".comp_th_"+col).addClass("text-center pl-9");
 
+            $(".disp_th_"+col).html("---");
+            $(".disp_th_"+col).removeClass("pl-0");
+            $(".disp_th_"+col).addClass("text-center pl-9");
 
-        }else{         
+            $(".elec_th_"+col).html("---");
+            $(".elec_th_"+col).removeClass("pl-0");
+            $(".elec_th_"+col).addClass("text-center pl-9");
+          }
+        } 
+
+        }else{   // station start date is not = dpr_date DPR data display //      
           //console.log(COMP_SUCTION);
           // ---------------------------- COMPRESSOR ---------------------------- //
           for(var cs=0;cs<COMP_SUCTION.length;cs++){
             var cs_slot_param_val = COMP_SUCTION[cs].slot_param_val;
+            //alert(cs_slot_param_val+"*****");
+            console.log(cs_slot_param_val);
             $(".comp_suc_"+cs).val(cs_slot_param_val);
           }
           for(var cd=0;cd<COMP_DISCHARGE.length;cd++){
             var cd_slot_param_val = COMP_DISCHARGE[cd].slot_param_val;
+            console.log(cd_slot_param_val);
             $(".comp_dis_"+cd).val(cd_slot_param_val);
           }
           /*for(var lcvmfm=0;lcvmfm<LCV_MFM.length;lcvmfm++){
@@ -2630,18 +2627,22 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           } // DYNAMIC //*/
           for(var lcv1=0;lcv1<LCV_1_MFM.length;lcv1++){
             var lcv1_mfm = LCV_1_MFM[lcv1].slot_param_val;
+            console.log(lcv1_mfm);
             $(".lcv1_mfm_"+lcv1).val(lcv1_mfm);
           }
           for(var lcv2=0;lcv2<LCV_2_MFM.length;lcv2++){
             var lcv2_mfm = LCV_2_MFM[lcv2].slot_param_val;
+            console.log(lcv2_mfm);
             $(".lcv2_mfm_"+lcv2).val(lcv2_mfm);
           }
           for(var lcv3=0;lcv3<LCV_3_MFM.length;lcv3++){
             var lcv3_mfm = LCV_3_MFM[lcv3].slot_param_val;
+            console.log(lcv3_mfm);
             $(".lcv3_mfm_"+lcv3).val(lcv3_mfm);
           }
           for(var lcv4=0;lcv4<LCV_4_MFM.length;lcv4++){
             var lcv4_mfm = LCV_4_MFM[lcv4].slot_param_val;
+            console.log(lcv4_mfm);
             $(".lcv4_mfm_"+lcv4).val(lcv4_mfm);
           }
           /*for(var lcv5=0;lcv5<LCV_5_MFM.length;lcv5++){
@@ -2650,70 +2651,87 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           } // STATIC // */
           for(var chc=0;chc<COMP_HMR_COUNTER.length;chc++){
             var chc_val = COMP_HMR_COUNTER[chc].slot_param_val;
+            console.log(chc_val);
             $(".comp_hmr_cnt_"+chc).val(chc_val);
           }
           for(var cem=0;cem<COMP_ENR_METER.length;cem++){
             var cem_val = COMP_ENR_METER[cem].slot_param_val;
+            console.log(cem_val);
             $(".comp_energy_met_"+cem).val(cem_val);
           }
           for(var isp=0;isp<I_stg_prs.length;isp++){
             var isp_val = I_stg_prs[isp].slot_param_val;
+            //console.log(isp_val);
             $(".I_stg_prs_"+isp).val(isp_val);
           }
           for(var iisp=0;iisp<II_stg_prs.length;iisp++){
             var iisp_val = II_stg_prs[iisp].slot_param_val;
+            console.log(iisp_val);
             $(".II_stg_prs_"+iisp).val(iisp_val);
           }
           for(var iiips=0;iiips<III_stg_prs.length;iiips++){
             var iiips_val = III_stg_prs[iiips].slot_param_val;
+            console.log(iiips_val);
             $(".III_stg_prs_"+iiips).val(iiips_val);
           }
           for(var ist=0;ist<I_stg_TEMP.length;ist++){
             var ist_val = I_stg_TEMP[ist].slot_param_val;
+            console.log(ist_val);
             $(".I_stg_temp_"+ist).val(ist_val);
           }
           for(var iist=0;iist<II_stg_TEMP.length;iist++){
             var iist_val = II_stg_TEMP[iist].slot_param_val;
+            console.log(iist_val);
             $(".II_stg_temp_"+iist).val(iist_val);
           }
           for(var iiist=0;iiist<III_stg_TEMP.length;iiist++){
             var iiist_val = III_stg_TEMP[iiist].slot_param_val;
+            console.log(iiist_val);
             $(".III_stg_temp_"+iiist).val(iiist_val);
           }
           for(var lpo=0;lpo<LP_OIL.length;lpo++){
             var lpo_val = LP_OIL[lpo].slot_param_val;
+            console.log(lpo_val);
             $(".lp_oil_"+lpo).val(lpo_val);
           }
           for(var hpo=0;hpo<HP_OIL.length;hpo++){
             var hpo_val = HP_OIL[hpo].slot_param_val;
+            console.log(hpo_val);
             $(".hp_oil_"+hpo).val(hpo_val);
           }
           for(var lbp=0;lbp<LOW_BANK_PRS.length;lbp++){
             var lbp_val = LOW_BANK_PRS[lbp].slot_param_val;
+            console.log(lbp_val);
             $(".low_bank_prs_"+lbp).val(lbp_val);
           }
           for(var mbp=0;mbp<MED_BANK_PRS.length;mbp++){
             var mbp_val = MED_BANK_PRS[mbp].slot_param_val;
+            console.log(mbp_val);
             $(".med_bank_prs_"+mbp).val(mbp_val);
           }
           for(var hbp=0;hbp<HIGH_BANK_PRS.length;hbp++){
             var hbp_val = HIGH_BANK_PRS[hbp].slot_param_val;
+            console.log(hbp_val);
             $(".high_bank_prs_"+hbp).val(hbp_val);
           }
           for(var wl=0;wl<WATER_LVL.length;wl++){
             var wl_val = WATER_LVL[wl].slot_param_val;
+            console.log(wl_val);
             $(".water_lvl_"+wl).val(wl_val);
           }
           for(var ol=0;ol<OIL_LVL.length;ol++){
             var ol_val = OIL_LVL[ol].slot_param_val;
+            console.log(ol_val);
             $(".oil_lvl_"+ol).val(ol_val);
           }
           for(var nocs=0;nocs<NO_OF_COMP_STARTS.length;nocs++){
             var nocs_val = NO_OF_COMP_STARTS[nocs].slot_param_val;
+            console.log(nocs_val);
             $(".comp_starts_"+nocs).val(nocs_val);
           }
           for(var sucp=0;sucp<SUC_PRS.length;sucp++){
             var sucp_val = SUC_PRS[sucp].slot_param_val;
+           console.log(sucp_val);
             $(".suc_prs_"+sucp).val(sucp_val);
           }
 
@@ -2739,8 +2757,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               }
             }
           }*/ 
-          console.log(DISP_A);
-          for(var disp_aa=0;disp_aa<DISP_A.length;disp_aa++){
+          //console.log(DISP_A);
+          /*for(var disp_aa=0;disp_aa<DISP_A.length;disp_aa++){
             var cnt_d = DISP_A[disp_aa].length;
             //alert(cnt_d);
             for(var l_a=0;l_a<=23;l_a++){
@@ -2764,6 +2782,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     timeslot=timeslot;
                   }                
                   if(timeslot==disptm){
+                    console.log("DISP A"+disp_a_val);
                     //console.log(disptm+" "+timeslot);
                     //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
                     $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
@@ -2798,6 +2817,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     timeslot_b=timeslot_b;
                   }                
                   if(timeslot_b==disptm_b){
+                    console.log("DISP B"+disp_b_val);
                     //console.log(disptm_b+" "+timeslot_b);
                     //console.log(txtbox_id_b+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_b_'+timeslot_b+").val="+disp_b_val);
                     $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
@@ -2807,58 +2827,9 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
 
             }
             //console.log("----------------------------------");
-          }
-
-          //console.log(DISP_B);
-          // for(var disp_bb=0;disp_bb<DISP_B.length;disp_bb++){
-          //   var cnt_b = DISP_B[disp_bb].length;
-          //   for(var d_bb=0;d_bb<cnt_b;d_bb++){            
-          //     var disp_b_val = DISP_B[disp_bb][d_bb].slot_param_val;
-          //     var time_slot_b = DISP_B[disp_bb][d_bb].time_slot;
-          //     var txtbox_id_b = $(".disp_"+(disp_bb+1)+"_a_"+d_bb).attr('id');
-
-          //     //console.log("DISP "+(disp_bb+1)+" B --- "+ time_slot_b + (".disp_"+(disp_bb+1)+"_b_"+d_bb) +" => "+disp_b_val); 
-
-          //     if(txtbox_id_b!=undefined) {
-          //       //alert(txtbox_id); 
-          //       var split_txt_b = txtbox_id_b.split("_");
-          //       var dispno_b = split_txt_b[1];
-          //       var disptm_b = split_txt_b[3];
-          //       var d_no_b=disp_bb+1; 
-          //       //console.log(dispno_b+"=="+d_no_b+" "+disptm_b+"=="+d_bb+" =>"+disp_b_val+" "+".disp_"+d_no_b+"_b_"+d_bb);
-          //       if(dispno_b == d_no_b && disptm_b == d_bb){
-          //         //console.log("DISP "+d_no_b+" B ---- "+ d_bb+":00 "+(".disp_"+d_no_b+"_b_"+d_bb) +" => "+disp_b_val);
-          //         //$(".disp_"+d_no_b+"_b_"+d_bb).val(disp_b_val); 
-          //       }     
-          //     }
-          //     //$(".disp_"+(disp_bb+1)+"_b_"+d_bb).val(disp_b_val);
-          //   }
-          //   console.log("________________________");
-          // }
-
-   
-
-
-
-          /*for(var dloop_b=0;dloop_b<23;dloop_b++){
-            if(dloop_b <= 9){
-              var addzero_disp_b="0"+dloop_b;
-            }else{
-              var addzero_disp_b=dloop_b;
-            }
-            for(var disp_bb=0;disp_bb<DISP_B.length;disp_bb++){
-              //console.log(disp_bb);
-              var cnt_d = DISP_B[disp_bb].length;
-              for(var d_bb=0;d_bb<cnt_d;d_bb++){
-                var disp_b_val = DISP_B[disp_bb][d_bb].slot_param_val;
-                var slot_b=DISP_B[disp_bb][d_bb].time_slot;
-                var split_slot_b=slot_b.split(":");
-                if(split_slot_b[0]==addzero_disp_b){
-                  $(".disp_"+(disp_bb+1)+"_b_"+d_bb).val(disp_b_val);
-                }
-              }
-            }
           }*/
+
+
           /*for(var disp1a=0;disp1a<DISP_1A.length;disp1a++){
             var disp1a_val = DISP_1A[disp1a].slot_param_val;
             $(".disp_1_a_"+disp1a).val(disp1a_val);
@@ -2878,30 +2849,37 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           // ----------------------------- ELECTRICAL --------------------------------//
           for(var gmk=0;gmk<GEB_MET_KWH.length;gmk++){
             var gmk_slot_param_val = GEB_MET_KWH[gmk].slot_param_val;
+            console.log(gmk_slot_param_val);
             $(".GEB_energy_mtr_KWH_"+gmk).val(gmk_slot_param_val);
           }
-          for(var gmk=0;gmk<GEB_MET_KVAH.length;gmk++){
-            var gmk_slot_param_val = GEB_MET_KVAH[gmk].slot_param_val;
-            $(".GEB_energy_met_KVAH_"+gmk).val(gmk_slot_param_val);
+          for(var gmkvh=0;gmkvh<GEB_MET_KVAH.length;gmkvh++){
+            var gmkvah_slot_param_val = GEB_MET_KVAH[gmkvh].slot_param_val;
+            console.log(gmkvah_slot_param_val);
+            $(".GEB_energy_met_KVAH_"+gmkvh).val(gmkvah_slot_param_val);
           }
           for(var gmkrh=0;gmkrh<GEB_MET_KVRH.length;gmkrh++){
             var gmkrh_slot_param_val = GEB_MET_KVRH[gmkrh].slot_param_val;
+            console.log(gmkrh_slot_param_val);
             $(".GEB_energy_met_KVRH_"+gmkrh).val(gmkrh_slot_param_val);
           }
           for(var dro=0;dro<DELAR_RO.length;dro++){
             var dro_slot_param_val = DELAR_RO[dro].slot_param_val;
+            //console.log(dro_slot_param_val);
             $(".delar_ro_"+dro).val(dro_slot_param_val);
           }
           for(var vltg=0;vltg<VLTG.length;vltg++){
             var vltg_slot_param_val = VLTG[vltg].slot_param_val;
+            console.log(vltg_slot_param_val);
             $(".voltage_"+vltg).val(vltg_slot_param_val);
           }
           for(var amp=0;amp<AMP.length;amp++){
             var amp_slot_param_val = AMP[amp].slot_param_val;
+            console.log(amp_slot_param_val);
             $(".amp_"+amp).val(amp_slot_param_val);
           }
           for(var pf=0;pf<PF.length;pf++){
             var pf_slot_param_val = PF[pf].slot_param_val;
+            console.log(pf_slot_param_val);
             $(".pf_"+pf).val(pf_slot_param_val);
           }
         } // else ends //
@@ -2915,7 +2893,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       $(".val_comp_0").each(function(){ 
         //alert($(this).val());
         if( $.trim($(this).val()).length == 0){  comp_0++;
-          console.log("if@@@@@@@@@");
+          //console.log("if@@@@@@@@@");
           //$(this).css("background", "#fde0e0");   
         }        
       });
@@ -2989,8 +2967,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
         } 
       }    commented on 12-05-2020 7:01 PM */
 
-      if(g1 >= g2){
-        // -------------------------------- COMPRESSOR ------------------------------------ //
+if(g1 >= g2){
+  // -------------------------------- COMPRESSOR ------------------------------------ //
   var c_two =0;
   $(".val_comp_2").each(function(){  
     if( $.trim($(this).val()).length == 0){ c_two++;
@@ -3511,9 +3489,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
         //if(current_time >= "01:00:00"){ // cmnt on 30-4-2020 //
         if(current_time >= "02:00:00"){
           //alert("arey");
-          
-
-          
           col_zero(comp_0,disp_0,elec_0,comp_1,disp_1,elec_1,current_time);
           show_secondpg();
           $(".page1_btn").removeClass("display-block");
@@ -4140,8 +4115,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           //show_nineteenthpg();
           show_eighteenthpg();
         }
-      }
-      
+      }      
 
       if(c_eighteen==0 && disp_eightteen==0 && elec_eighteen==0 && c_nineteen==0 && disp_nineteen==0 && elec_nineteen==0){
         //if(current_time >= "19:00:00"){
@@ -4177,7 +4151,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
         }
       }
 
-
       if(c_nineteen==0 && disp_nineteen==0 && elec_nineteen==0 && c_twenty==0 && disp_twenty==0 && elec_twenty==0){
         //if(current_time >= "20:00:00"){
         if(current_time >= "21:00:00"){
@@ -4211,7 +4184,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           show_twenteenthpg();
         }
       }
-
       if(c_twenty==0 && disp_twenty==0 && elec_twenty==0 && c_twentyone==0 && disp_twentyone==0 && elec_twentyone==0){
         //if(current_time >= "21:00:00"){
         if(current_time >= "22:00:00"){
@@ -4245,7 +4217,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           show_twentyonepg();
         }
       }
-
       if(c_twentyone==0 && disp_twentyone==0 && elec_twentyone==0 && c_twentytwo==0 && disp_twentytwo==0 && elec_twentytwo==0){
         //if(current_time >= "22:00:00"){
         if(current_time >= "23:00:00"){
@@ -4256,13 +4227,11 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           $(".prev20_btn").addClass("display-none");
           $(".prev21_btn").removeClass("display-block");
           $(".prev21_btn").addClass("display-none");
-          //col_nine(c_eight,disp_eight,elec_eight,c_nine,disp_nine,elec_nine,current_time);
-          
+          //col_nine(c_eight,disp_eight,elec_eight,c_nine,disp_nine,elec_nine,current_time);          
           col_twentyone(c_twenty,disp_twenty,elec_twenty,c_twentyone,disp_twentyone,elec_twentyone,current_time);
           show_twentythreepg();
         }
       }
-
       if(c_twentyone==0 && disp_twentyone==0 && elec_twentyone==0 && c_twentytwo!=0 && disp_twentytwo!=0 && elec_twentytwo!=0){
         //if(current_time >= "22:00:00"){
         if(current_time >= "23:00:00"){
@@ -4280,7 +4249,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           show_twentytwopg();
         }
       }
-
       if(c_twentytwo==0 && disp_twentytwo==0 && elec_twentytwo==0 && c_twentythree==0 && disp_twentythree==0 && elec_twentythree==0){
         //if(current_time >= "23:00:00"){
         if(current_time >= "24:00:00"){
@@ -4313,8 +4281,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           show_twentytwopg();
         }
       }
-      }
-      app.preloader.hide();
+    }
+    app.preloader.hide();
       // if(g1 <= g2){
       //   alert("HINA ############"+comp_0+" "+disp_0+" "+elec_0+" "+comp_1+" "+disp_1+" "+elec_1);
       //   if(comp_0==0 && disp_0==0 && elec_0 && comp_1!=0 && disp_1!=0 && elec_1!=0){
@@ -4324,15 +4292,9 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       //     }
       //   }
       // }
-    }    
-
-
-  });
-
-  
-  
-  
-  window.setInterval(function(){
+    } 
+});
+window.setInterval(function(){
     var d = new Date();
     var hour = d.getHours();
     var minute = d.getMinutes();
@@ -4378,7 +4340,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
     } 
     
     var quarter_minutes = ["00:45:00","01:45:00","02:45:00","03:45:00","04:45:00","05:45:00","06:45:00","07:45:00","08:45:00","09:45:00","10:45:00","11:45:00","12:45:00","13:45:00","14:45:00","15:45:00","16:45:00","17:45:00","18:45:00","19:45:00","20:45:00","21:45:00","22:45:00","23:45:00"];
-    //var quarter_minutes = ["00:55:00","01:55:00","02:55:00","03:55:00","04:55:00","05:55:00","06:55:00","07:55:00","08:55:00","09:55:00","10:55:00","11:55:00","12:55:00","13:55:00","14:55:00","15:55:00","16:55:00","17:55:00","18:55:00","19:55:00","20:55:00","21:55:00","22:55:00","23:55:00"];
     var slot_hour = hour+":00";
     console.log(comp_var + "==========" + slot_hour+ "==========="+hour);
     
@@ -4396,22 +4357,44 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           var empty_slot = encode_res.empty_slot;
           var unexp_slot = encode_res.unexp_slot;
           //alert(empty_slot+"----"+unexp_slot);
-          if(empty_slot <= 11){
+          if(empty_slot <= 11){ 
             var time_string = "AM";
           }else{
             var time_string = "PM";
-          }
-          if(empty_slot=="00"){
+          } 
+          if(empty_slot==0){
+            //alert("if");
             empty_slot=12;
+            //var e_slot = empty_slot % 12;
             var alert_hr = empty_slot+":00 "+time_string;
           }else{
-            var oneless_hr = empty_slot - 1;
+            //alert("else-----");
+            if(empty_slot > 12){
+              var oneless_hr = empty_slot % 12;
+            }else{
+              var oneless_hr = empty_slot ;
+            }
+            //var oneless_hr = empty_slot ;
+            //var oneless_hr = hour - 1;
+            //var e_slot = oneless_hr % 12;
             var alert_hr = oneless_hr+":00 "+time_string;
-          }
-          if(slotcnt >= 1){
-            alert("Please fill all required values for "+alert_hr);
+            //alert(alert_hr);    
+          }  
+           
+          //alert("alert_hr "+alert_hr);       
+          //alert("slotcnt ===="+slotcnt); 
+          //alert(i+" "+empty_slot);
+          //alert(hour+" "+empty_slot);                  
+          if(hour==empty_slot){
+            console.log("no alert");                
           }else{
-            alert("Please fill all required values for "+alert_hr);
+            if(slotcnt==0){          
+              console.log("All required fields are filled"); 
+            }else if(slotcnt >= 1){ 
+              app.dialog.alert("Please fill all required values for "+alert_hr);
+            }else{
+              app.dialog.alert("Please fill all required values for "+alert_hr);
+            }
           }
         }
       });
@@ -4436,24 +4419,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   }, 60000); //60000 
 //300000
 
-  // var hidd_dprdt = $("#hidd_dprdt").val();
-  // //alert("hidd_dprdt "+hidd_dprdt);
-  // var d = new Date();
-  // var month = d.getMonth()+1;
-  // var day = d.getDate();
-  // //var today_dt = ((''+day).length<2 ? '0' : '') + day +'-' +    ((''+month).length<2 ? '0' : '') + month + '-' +    d.getFullYear();
-  // var today_dt = d.getFullYear()+'-'+((''+month).length<2 ? '0' : '') + month + '-'+((''+day).length<2 ? '0' : '') + day;
-  // var split_hiddt = hidd_dprdt.split("-");
-  // var split_yr = split_hiddt[2];
-  // var split_mn = split_hiddt[1];
-  // var split_dt = split_hiddt[0];
-  // var today_yr =d.getFullYear();
-  // var today_mn = month;
-  // var today_dt = day;
-  // var hiddt = split_yr+"-"+split_mn+"-"+split_dt;
-  // var g1 = new Date(split_yr, split_mn, split_dt);  
-  // var g2 = new Date(today_yr, today_mn, today_dt);
-  //alert(g1+"======"+g2);
   if(g1 < g2){
    //alert("#####@@@@@@");
     /*$(".comp_th_zero input").attr("readonly",true);
@@ -4567,15 +4532,15 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   //     if(g1<=g2){
   //     alert("HEY");
   //     if(current_time >= "01:00:00"){
-  //       alert("DON'T LIE");
+  //       
   //       col_zero(comp_0,disp_0,elec_0,comp_1,disp_1,elec_1,current_time);
   //     }
   //   }
   // }
   /*if(comp_1!=0 && disp_1!=0 && elec_1!=0){
-    alert("BIG");
+    
     if(g1 <= g2){
-      alert("BOSS");
+      
       $(".val_comp_1").attr("readonly",false);
       $(".val_comp_1").removeClass("readonlytxtbox");
       $(".lcv3_mfm_1").attr("readonly",false);
@@ -4603,15 +4568,6 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       }
     }
   }*/
-  /*$.ajax({
-    type:'PUT', 
-    url:base_url+'APP/Appcontroller/getDPRsheetFields',
-    //data:{'session_uid':session_uid},
-    success:function(result){
-      console.log(result);
-      $("#sheet_data").html(result);
-    }    
-  });*/
   //alert(dpr_date);
   /*$.ajax({
     type:'POST',  
@@ -4652,48 +4608,59 @@ function getst_Start(st_id){
     data:{'station_id':st_id},
     success:function(data_res){      
       var st_start_date = data_res.st_start_date;
+      var db_st_val = data_res.db_st_val;
       var split_stdt = st_start_date.split("-");
       var stddt_dd = split_stdt[0]-1;
       var stddt_mm = split_stdt[1]-1;
       var stddt_yr = split_stdt[2];
       // } });
-
-      var myDate=new Date();
-      myDate.setDate(myDate.getDate()+1);
-      // format a date    
-      var dt = myDate.getDate();
-      var yr = myDate.getFullYear();
-      var mnth = myDate.getMonth();   
-      console.log(new Date(stddt_yr, stddt_mm, stddt_dd));
-      //alert("tomorrow "+myDate.getMonth());
-      var calendarModal_dpr = app.calendar.create({      
-        inputEl: '#demo-calendar-modal-dpr',
-        openIn: 'customModal',
-        dateFormat: 'dd-mm-yyyy',
-        header: true, 
-        footer: true,
-        closeByOutsideClick: true,
-        closeOnSelect: true,
-        //toolbar: true,
-        //minDate: new Date(yr, mnth, dt),
-        //maxDate: new Date(stddt_yr, stddt_mm, stddt_dd),
-        renderToolbar: function () {    
-          return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
-        },
-        on: {
-          close: function () {
-            //\hcalendarModal_dpr.close();
-          }
-        },
-        disabled: [{
-            //from: new Date(yr, mnth, dt),
-            to: new Date(stddt_yr, stddt_mm, stddt_dd),
+      if(db_st_val=='0000-00-00 00:00:00'){
+        var toastWithButton = app.toast.create({
+          text: 'Station is not started',
+          closeButton: true,
+        });
+        toastWithButton.open();
+        return false;
+      }else{
+        var myDate=new Date();
+        myDate.setDate(myDate.getDate()+1);
+        // format a date    
+        var dt = myDate.getDate();
+        var yr = myDate.getFullYear();
+        var mnth = myDate.getMonth();   
+        //console.log(new Date(stddt_yr, stddt_mm, stddt_dd));
+        //alert("tomorrow "+myDate.getMonth());
+        var calendarModal_dpr = app.calendar.create({      
+          inputEl: '#demo-calendar-modal-dpr',
+          openIn: 'customModal',
+          dateFormat: 'dd-mm-yyyy',
+          header: true, 
+          footer: true,
+          closeByOutsideClick: true,
+          closeOnSelect: true,
+          //toolbar: true,
+          //minDate: new Date(yr, mnth, dt),
+          //maxDate: new Date(stddt_yr, stddt_mm, stddt_dd),
+          renderToolbar: function () {    
+            return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
           },
-          {
-            from: new Date(yr, mnth, dt),
-          }
-        ],
-      });
+          on: {
+            close: function () {
+              //calendarModal_dpr.destroy();
+              //calendarModal_dpr.close();
+              calendarModal_dpr.update();
+            }
+          },
+          disabled: [{
+              //from: new Date(yr, mnth, dt),
+              to: new Date(stddt_yr, stddt_mm, stddt_dd),
+            },
+            {
+              from: new Date(yr, mnth, dt),
+            }
+          ],
+        });
+      }
     }
   }); // ajax //
   app.preloader.hide();
@@ -16990,7 +16957,7 @@ function dpr_kpi_repsheet(){
 }
 $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
   menuload();
-  checkConnection();
+  checkConnection(); 
   var station_id = page.detail.route.params.station_id;
   var dpr_date = page.detail.route.params.demo_calendar_modal_dpr;
   var station_name = page.detail.route.params.st_name;
@@ -16998,7 +16965,7 @@ $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
   $("#hidd_stid_rep").val(station_id);
   $("#hidd_dprdt_rep").val(dpr_date);
   $(".st_name_rep").html(station_name);
-  $(".dpr_dt_rep").html(dpr_date);
+  $(".dpr_dt_rep").html(dpr_date); 
 
   app.preloader.show();   
   $.ajax({
@@ -17043,11 +17010,9 @@ $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
         $(".form_dpr").addClass("display-block");
       }
        
-      
-
-      //var dpr_kpi = parsedpr.dpr_kpi;
-//      $(".form_dpr").removeClass("display-none");
-//      $(".form_dpr").addClass("display-block");
+//     var dpr_kpi = parsedpr.dpr_kpi;
+//     $(".form_dpr").removeClass("display-none");
+//     $(".form_dpr").addClass("display-block");
       // ------------- SALE -------------- //
       var final_sale_sum = parsedpr.final_sale_sum;
       jQuery.each( final_sale_sum, function( i, val ) {
@@ -17083,109 +17048,11 @@ $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
       jQuery.each( final_dgl, function( i, val ) {
         $("." +i).html(val);        
       });
-      /*var disp_gain_loss_1 = parsedpr.disp_gain_loss_one;
-      var disp_gain_loss_2 = parsedpr.disp_gain_loss_two;
-      var disp_gain_loss_3 = parsedpr.disp_gain_loss_three;
-      var disp_gain_loss_4 = parsedpr.disp_gain_loss_four;
-      var disp_gain_loss_5 = parsedpr.disp_gain_loss_five;
-      var disp_gain_loss_6 = parsedpr.disp_gain_loss_six;
-      var disp_gain_loss_7 = parsedpr.disp_gain_loss_seven;
-      var disp_gain_loss_8 = parsedpr.disp_gain_loss_eight;
-      var disp_gain_loss_9 = parsedpr.disp_gain_loss_nine;
-      var disp_gain_loss_10 = parsedpr.disp_gain_loss_ten;
-      var disp_gain_loss_11 = parsedpr.disp_gain_loss_eleven;
-      var disp_gain_loss_12 = parsedpr.disp_gain_loss_twelve;
-      var disp_gain_loss_13 = parsedpr.disp_gain_loss_thirteen;
-      var disp_gain_loss_14 = parsedpr.disp_gain_loss_fourteen;
-      var disp_gain_loss_15 = parsedpr.disp_gain_loss_fifteen;
-      var disp_gain_loss_16 = parsedpr.disp_gain_loss_sixteen;
-      var disp_gain_loss_17 = parsedpr.disp_gain_loss_seventeen;
-      var disp_gain_loss_18 = parsedpr.disp_gain_loss_eighteen;
-      var disp_gain_loss_19 = parsedpr.disp_gain_loss_nineteen;
-      var disp_gain_loss_20 = parsedpr.disp_gain_loss_twenty;
-      var disp_gain_loss_21 = parsedpr.disp_gain_loss_twentyone;
-      var disp_gain_loss_22 = parsedpr.disp_gain_loss_twentytwo;
-      var disp_gain_loss_23 = parsedpr.disp_gain_loss_twentythree;
-
-      $(".disp_gain_loss_1").html(disp_gain_loss_1);
-      $(".disp_gain_loss_2").html(disp_gain_loss_2);
-      $(".disp_gain_loss_3").html(disp_gain_loss_3);
-      $(".disp_gain_loss_4").html(disp_gain_loss_4);
-      $(".disp_gain_loss_5").html(disp_gain_loss_5);
-      $(".disp_gain_loss_6").html(disp_gain_loss_6);
-      $(".disp_gain_loss_7").html(disp_gain_loss_7);
-      $(".disp_gain_loss_8").html(disp_gain_loss_8);
-      $(".disp_gain_loss_9").html(disp_gain_loss_9);
-      $(".disp_gain_loss_10").html(disp_gain_loss_10);
-      $(".disp_gain_loss_11").html(disp_gain_loss_11);
-      $(".disp_gain_loss_12").html(disp_gain_loss_12);
-      $(".disp_gain_loss_13").html(disp_gain_loss_13);
-      $(".disp_gain_loss_14").html(disp_gain_loss_14);
-      $(".disp_gain_loss_15").html(disp_gain_loss_15);
-      $(".disp_gain_loss_16").html(disp_gain_loss_16);
-      $(".disp_gain_loss_17").html(disp_gain_loss_17);
-      $(".disp_gain_loss_18").html(disp_gain_loss_18);
-      $(".disp_gain_loss_19").html(disp_gain_loss_19);
-      $(".disp_gain_loss_20").html(disp_gain_loss_20);
-      $(".disp_gain_loss_21").html(disp_gain_loss_21);
-      $(".disp_gain_loss_22").html(disp_gain_loss_22);
-      $(".disp_gain_loss_23").html(disp_gain_loss_23);*/
-
-
       // -------------  DISP. GAIN LOSS ---------------- //
       var final_sgl = parsedpr.final_sgl;
       jQuery.each( final_sgl, function( i, val ) {
         $("." +i).html(val);        
       });
-      /*var stn_gain_loss_1 = parsedpr.stn_gain_loss_one;
-      var stn_gain_loss_2 = parsedpr.stn_gain_loss_two;
-      var stn_gain_loss_3 = parsedpr.stn_gain_loss_three;
-      var stn_gain_loss_4 = parsedpr.stn_gain_loss_four;
-      var stn_gain_loss_5 = parsedpr.stn_gain_loss_five;
-      var stn_gain_loss_6 = parsedpr.stn_gain_loss_six;
-      var stn_gain_loss_7 = parsedpr.stn_gain_loss_seven;
-      var stn_gain_loss_8 = parsedpr.stn_gain_loss_eight;
-      var stn_gain_loss_9 = parsedpr.stn_gain_loss_nine;
-      var stn_gain_loss_10 = parsedpr.stn_gain_loss_ten;
-      var stn_gain_loss_11 = parsedpr.stn_gain_loss_eleven;
-      var stn_gain_loss_12 = parsedpr.stn_gain_loss_twelve;
-      var stn_gain_loss_13 = parsedpr.stn_gain_loss_thirteen;
-      var stn_gain_loss_14 = parsedpr.stn_gain_loss_fourteen;
-      var stn_gain_loss_15 = parsedpr.stn_gain_loss_fifteen;
-      var stn_gain_loss_16 = parsedpr.stn_gain_loss_sixteen;
-      var stn_gain_loss_17 = parsedpr.stn_gain_loss_seventeen;
-      var stn_gain_loss_18 = parsedpr.stn_gain_loss_eighteen;
-      var stn_gain_loss_19 = parsedpr.stn_gain_loss_nineteen;
-      var stn_gain_loss_20 = parsedpr.stn_gain_loss_twenty;
-      var stn_gain_loss_21 = parsedpr.stn_gain_loss_twentyone;
-      var stn_gain_loss_22 = parsedpr.stn_gain_loss_twentytwo;
-      var stn_gain_loss_23 = parsedpr.stn_gain_loss_twentythree;
-
-      $(".stn_gain_loss_1").html(stn_gain_loss_1);
-      $(".stn_gain_loss_2").html(stn_gain_loss_2);
-      $(".stn_gain_loss_3").html(stn_gain_loss_3);
-      $(".stn_gain_loss_4").html(stn_gain_loss_4);
-      $(".stn_gain_loss_5").html(stn_gain_loss_5);
-      $(".stn_gain_loss_6").html(stn_gain_loss_6);
-      $(".stn_gain_loss_7").html(stn_gain_loss_7);
-      $(".stn_gain_loss_8").html(stn_gain_loss_8);
-      $(".stn_gain_loss_9").html(stn_gain_loss_9);
-      $(".stn_gain_loss_10").html(stn_gain_loss_10);
-      $(".stn_gain_loss_11").html(stn_gain_loss_11);
-      $(".stn_gain_loss_12").html(stn_gain_loss_12);
-      $(".stn_gain_loss_13").html(stn_gain_loss_13);
-      $(".stn_gain_loss_14").html(stn_gain_loss_14);
-      $(".stn_gain_loss_15").html(stn_gain_loss_15);
-      $(".stn_gain_loss_16").html(stn_gain_loss_16);
-      $(".stn_gain_loss_17").html(stn_gain_loss_17);
-      $(".stn_gain_loss_18").html(stn_gain_loss_18);
-      $(".stn_gain_loss_19").html(stn_gain_loss_19);
-      $(".stn_gain_loss_20").html(stn_gain_loss_20);
-      $(".stn_gain_loss_21").html(stn_gain_loss_21);
-      $(".stn_gain_loss_22").html(stn_gain_loss_22);
-      $(".stn_gain_loss_23").html(stn_gain_loss_23);*/
-      
-
       // -------------  REACTIVE CHARGES ---------------- //
       var final_reactive = parsedpr.final_reactive;
       jQuery.each( final_reactive, function( i, val ) {
@@ -17241,7 +17108,6 @@ $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
       jQuery.each( final_noof_rick, function( i, val ) {
         $("." +i).html(val);        
       });
-
       // ---------------------- Dryout hours ----------------------- //
       var final_arr = parsedpr.final_arr;
       jQuery.each( final_arr, function( i, val ) {
@@ -17324,13 +17190,13 @@ $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
       $(".monthly_avg_compsuc").html(monthly_avg_compsuc);
 
       var monthly_avg_compdischrg = parsedpr.monthly_avg_compdischrg;
-      $(".monthly_avg_compdischrg").html(monthly_avg_compdischrg);
+      $(".monthly_avg_compdischrg").html(monthly_avg_compdischrg); 
 
       var monthly_avg_reactive_chrg = parsedpr.monthly_avg_reactive_chrg;
       $(".monthly_avg_reactive_chrg").html(monthly_avg_reactive_chrg);
 
       var monthly_avg_pf = parsedpr.monthly_avg_pf;
-      $(".monthly_avg_pf").html(monthly_avg_pf);
+      $(".monthly_avg_pf").html(monthly_avg_pf); 
 
       var monthly_avg_cmp_run_hrs = parsedpr.monthly_avg_cmp_run_hrs;
       $(".monthly_avg_cmp_run_hrs").html(monthly_avg_cmp_run_hrs);
@@ -17338,54 +17204,107 @@ $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
       var monthly_avg_suc_prs = parsedpr.monthly_avg_suc_prs;
       $(".monthly_avg_suc_prs").html(monthly_avg_suc_prs);
 
+      var monthly_avg_carno = parsedpr.monthly_avg_carno;
+      $(".monthly_avg_carno").html(monthly_avg_carno);
 
-      $(".sale_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_sale+"</span> / <span class='text-red fw-600'>"+monthly_avg_sale+"</span>");
+      var monthly_avg_rickno = parsedpr.monthly_avg_rickno;
+      $(".monthly_avg_rickno").html(monthly_avg_rickno);
 
-      $(".compsuc_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_compsuc+"</span> / <span class='text-red fw-600'>"+monthly_avg_compsuc+"</span>");
+      var monthly_avg_compgain = parsedpr.monthly_avg_compgain;
+      $(".monthly_avg_compgain").html(monthly_avg_compgain);
+
+      var monthly_avg_util_16 = parsedpr.monthly_avg_util_16;
+      $(".monthly_avg_util_16").html(monthly_avg_util_16);
+
+      var monthly_avg_util_24 = parsedpr.monthly_avg_util_24;
+      $(".monthly_avg_util_24").html(monthly_avg_util_24);
+
+      var monthly_avg_comp_flw = parsedpr.monthly_avg_comp_flw;
+      $(".monthly_avg_comp_flw").html(monthly_avg_comp_flw);
+
+      var monthly_avg_kwh_eqip = parsedpr.monthly_avg_kwh_eqip;
+      $(".monthly_avg_kwh_eqip").html(monthly_avg_kwh_eqip);
+
+      var monthly_avg_kwh_stn = parsedpr.monthly_avg_kwh_stn;
+      $(".monthly_avg_kwh_stn").html(monthly_avg_kwh_stn);
+
+      var monthly_avg_dryout_hr = parsedpr.monthly_avg_dryout_hr;
+      $(".monthly_avg_dryout_hr").html(monthly_avg_dryout_hr);
+
+      var monthly_avg_dryout_per = parsedpr.monthly_avg_dryout_per;
+      $(".monthly_avg_dryout_per").html(monthly_avg_dryout_per);
+
+      var monthly_avg_bd_hr = parsedpr.monthly_avg_bd_hr;
+      $(".monthly_avg_bd_hr").html(monthly_avg_bd_hr); 
+
+      var monthly_avg_pm_hr = parsedpr.monthly_avg_pm_hr;
+      $(".monthly_avg_pm_hr").html(monthly_avg_pm_hr);
+
+      var monthly_avg_avail = parsedpr.monthly_avg_avail;
+      $(".monthly_avg_avail").html(monthly_avg_avail);
+
+      var monthly_avg_compgain = parsedpr.monthly_avg_compgain;
+      $(".monthly_avg_compgain").html(monthly_avg_compgain);
+
+      var monthly_avg_dispsale = parsedpr.monthly_avg_dispsale;
+      $(".monthly_avg_dispsale").html(monthly_avg_dispsale);
+
+      var monthly_avg_lcvsale = parsedpr.monthly_avg_lcvsale;
+      $(".monthly_avg_lcvsale").html(monthly_avg_lcvsale);
+
+      var monthly_avg_dispgain = parsedpr.monthly_avg_dispgain;
+      $(".monthly_avg_dispgain").html(monthly_avg_dispgain);
+
+      var monthly_avg_stngain = parsedpr.monthly_avg_stngain;
+      $(".monthly_avg_stngain").html(monthly_avg_stngain);
+
+      $(".sale_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_sale+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_sale+"</span>");
+
+      $(".compsuc_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_compsuc+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_compsuc+"</span>");
       
-      $(".compdischrge_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_compdischrg+"</span> / <span class='text-red fw-600'>"+monthly_avg_compdischrg+"</span>");
+      $(".compdischrge_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_compdischrg+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_compdischrg+"</span>");
 
-      $(".dispsale_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_dispsale+"</span> / <span class='text-red fw-600'></span>");
+      $(".dispsale_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_dispsale+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_dispsale+"</span>");
 
-      $(".dispgl_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_dispgain+"</span> / <span class='text-red fw-600'></span>");
+      $(".dispgl_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_dispgain+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_dispgain+"</span>");
 
-      $(".stngl_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_stngain+"</span> / <span class='text-red fw-600'></span>");
+      $(".stngl_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_stngain+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_stngain+"</span>");
 
-      $(".react_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_reactive_chrg+"</span> / <span class='text-red fw-600'>"+monthly_avg_reactive_chrg+"</span>");
+      $(".react_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_reactive_chrg+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_reactive_chrg+"</span>");
 
-      $(".pf_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_pf+"</span> / <span class='text-red fw-600'>"+monthly_avg_pf+"</span>");
+      $(".pf_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_pf+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_pf+"</span>");
 
-      $(".compgain_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_compgain+"</span> / <span class='text-red fw-600'></span>");
+      $(".compgain_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_compgain+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_compgain+"</span>"); 
 
-      $(".comprunhr_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_cmp_run_hrs+"</span> / <span class='text-red fw-600'>"+monthly_avg_cmp_run_hrs+"</span>");
+      $(".comprunhr_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_cmp_run_hrs+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_cmp_run_hrs+"</span>");
 
-      $(".sucprs_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_suc_prs+"</span> / <span class='text-red fw-600'>"+monthly_avg_suc_prs+"</span>");
+      $(".sucprs_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_suc_prs+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_suc_prs+"</span>");
 
-      $(".compflow_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_comp_flw+"</span> / <span class='text-red fw-600'></span>");
+      $(".compflow_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_comp_flw+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_comp_flw+"</span>");
 
-      $(".kwhkg_eq_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_kwh_eqip+"</span> / <span class='text-red fw-600'></span>");
+      $(".kwhkg_eq_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_kwh_eqip+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_kwh_eqip+"</span>");
 
-      $(".kwhkgstn_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_kwh_stn+"</span> / <span class='text-red fw-600'></span>");
+      $(".kwhkgstn_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_kwh_stn+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_kwh_stn+"</span>"); 
 
-      $(".util_16_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_util_16+"</span> / <span class='text-red fw-600'></span>");
+      $(".util_16_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_util_16+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_util_16+"</span>");
 
-      $(".util_24_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_util_24+"</span> / <span class='text-red fw-600'></span>");
+      $(".util_24_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_util_24+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_util_24+"</span>");
 
-      $(".noof_car_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_carno+"</span> / <span class='text-red fw-600'></span>");
+      $(".noof_car_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_carno+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_carno+"</span>");
 
-      $(".noof_rick_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_rickno+"</span> / <span class='text-red fw-600'></span>");
+      $(".noof_rick_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_rickno+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_rickno+"</span>");
 
-      $(".dryouthr_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_dryout_hr+"</span> / <span class='text-red fw-600'></span>");
+      $(".dryouthr_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_dryout_hr+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_dryout_hr+"</span>");
 
-      $(".dryoutper_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_dryout_per+"</span> / <span class='text-red fw-600'></span>");
+      $(".dryoutper_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_dryout_per+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_dryout_per+"</span>");
 
-      $(".bdhr_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_bd_hr+"</span> / <span class='text-red fw-600'></span>");
+      $(".bdhr_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_bd_hr+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_bd_hr+"</span>");
 
-      $(".pmhr_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_pm_hr+"</span> / <span class='text-red fw-600'></span>");
+      $(".pmhr_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_pm_hr+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_pm_hr+"</span>");
 
-      $(".availability_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_avail+"</span> / <span class='text-red fw-600'></span>");
+      $(".availability_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_avail+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_avail+"</span>");
 
-      $(".lcv_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_lcvsale+"</span> / <span class='text-red fw-600'></span>");
+      $(".lcv_avgs").html("<span class='dark-blue fw-600'>"+daily_avg_lcvsale+"</span> / <span class='color-sgl-green fw-600'>"+monthly_avg_lcvsale+"</span>");
 
       app.preloader.hide();
     }
@@ -17537,21 +17456,27 @@ function checkPrevHourVal(prev_slot,val,param){
   var hidd_stid = $("#hidd_stid").val();
   var hidd_dprdt = $("#hidd_dprdt").val();
   var entered_val = $(val).val();
-  console.log(entered_val+"entered_val");
-  if(entered_val!=''){
-    $.ajax({
-      type:'POST',  
-      url:base_url+'APP/Appcontroller/checkPrevSlotVal',
-      data:{'hidd_stid':hidd_stid,'hidd_dprdt':hidd_dprdt,'prev_slot':prev_slot,'entered_val':entered_val,'param':param},
-      //dataType:'json',
-      success:function(result){ 
-        var res = result.trim()
-        if(res=="sameval"){
-          app.dialog.alert("Current and previous value for "+param+" can not be same");
-          $(val).val('');  
-        }
-      }    
-    });
+  //alert(entered_val+"entered_val");             
+  if(entered_val!=''){  
+    //setTimeout(function() {   //calls click event after a certain time //    
+      $.ajax({
+        type:'POST',  
+        url:base_url+'APP/Appcontroller/checkPrevSlotVal',
+        data:{'hidd_stid':hidd_stid,'hidd_dprdt':hidd_dprdt,'prev_slot':prev_slot,'entered_val':entered_val,'param':param},
+        //dataType:'json',
+        success:function(result){ 
+          var res = result.trim();
+          //alert(res);
+          if(res=="sameval"){
+            app.dialog.alert("Current and previous value for "+param+" can not be same");
+            $(val).val('');  
+          }else if(res=="notsame"){
+            //alert("IN ELSE");
+            return false;
+          }
+        }    
+      });
+    //}, 6000);
   }
   app.preloader.hide();
 }
@@ -17614,14 +17539,6 @@ function getcorrData(){
       $("#station_id_comps").html(stns);
     }    
   });
-  /*$.ajax({
-    type:'POST', 
-    url:base_url+'APP/Appcontroller/getEICUserStations',
-    data:{'session_uid':session_uid},
-    success:function(result){
-      $("#station_id_comps").html(result);
-    }    
-  });*/
   app.preloader.hide();
 }
 $(document).on('page:init', '.page[data-name="add_dprcomplain"]', function (page) {

@@ -119,7 +119,8 @@ body{
     background-size: cover;
 } 
 .dark-blue{
-  color: #0551bf;
+  /*color: #0551bf;*/
+  color:#0174C5;
 }
 .link-blue{
   color: #4689e9;
@@ -522,4 +523,7 @@ div.container4 p {
 }
 .sgl-blue{
   background-color: #0174C5;
+}
+.color-sgl-green{
+  color: #018137;
 }
