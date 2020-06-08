@@ -1,0 +1,128 @@
+<div data-name="jmr" class="page">
+	<div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">JMR</div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+  <!--div class="fab fab-right-bottom">
+    <a href="/add/" class="color-fbtn">
+      <i class="f7-icons">plus</i>
+      <i class="f7-icons">multiply</i>
+    </a>
+  </div>  
+		
+  	<div class="page-content"> 
+    <div class="">       
+      <div class="list no-hairlines-md m-0">
+        <ul id="dprul" class="no-bg row">  
+          <li class="item-content item-input col-50">
+            <div class="item-inner">                                    
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="jmr_month" id="jmr_month" onchange="getJMRList()"></select>
+                </div>                  
+            </div>
+          </li>
+          <li class="item-content item-input col-50">
+            <div class="item-inner">                    
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="jmr_year" id="jmr_year" onchange="getJMRList()"></select>
+                </div>
+            </div>
+          </li>
+          <li class="item-content item-input col">
+            <div class="item-inner">                    
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="jmr_station_id" id="jmr_station_id" onchange="getJMRList()"></select>
+                </div>
+            </div>
+          </li>               
+        </ul>           
+      </div> 
+
+      
+      <div class="block m-0"><div class="row"><div class="col"><span class="total_jmr fw-600 sgl-orange"></span></div><div class="col"></div></div></div>
+      <div class="card data-table">      
+          <table>
+            <thead class="light-thead">
+              <tr>
+                <th class="label-cell text-uppercase table-th"><strong>JMR Details</strong></th>
+                
+              </tr>
+            </thead>
+            <tbody id="jmr_list"></tbody>
+          </table>
+        </div>
+    </div>        
+</div-->
+
+<div class="page-content dpr-screen-content dpr_sheet">  
+  <form id="form_dprdata" class="form_dprdata">  
+    <div class="block">       
+      <div class="list no-hairlines-md">
+        <!--div class="block dpr_rep_btn display-none">
+          <div class="row">
+            <div class="col"><a class="button col button button-fill color-black no-radius" href="#" onclick="showdprkpi_inputs()">DPR KPI Report</a></div>
+          </div>
+        </div-->
+        <!--ul id="dprul" class="no-bg display-none"-->
+        <ul id="dprul" class="no-bg">
+          <li class="item-content item-input item-input-focused">
+            <div class="item-inner">
+              <div class="item-title item-floating-label floatlbl_placeholder">Stations<sup class="text-red fw-600 font-12">*</sup></div>
+              <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                <select class="form-control" name="jmr_station_id" id="jmr_station_id" >                    
+                </select>
+              </div>
+            </div>
+          </li>
+
+          <!--li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label floatlbl_placeholder">Date<sup class="text-red fw-600 font-12">*</sup></div>
+              <div class="item-input-wrap txtbox_border">
+                <input type="text" placeholder="Select date" name="dpr_date" readonly="readonly" id="demo-calendar-modal-dpr"/>
+              </div>                                    
+            </div>
+          </li-->
+
+          <!--li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label floatlbl_placeholder">Month<sup class="text-red fw-600 font-12">*</sup></div>
+                                
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="dpr_month" id="dpr_month"></select>
+                </div>                  
+            </div>
+          </li>
+
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label floatlbl_placeholder">Year<sup class="text-red fw-600 font-12">*</sup></div>                    
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="dpr_year" id="dpr_year"></select>
+                </div>
+            </div>
+          </li-->
+
+           
+        </ul>           
+      </div>
+      <!--div class="block submitbtn display-none"-->
+      <div class="block jmr_submitbtn">
+          <div class="row">
+            <div class="col"><a class="button col button button-fill sgl-blue no-radius" href="#" onclick="getStationJMRList()">View JMR</a></div> 
+          </div>
+      </div>        
+    </div>  
+  </form>       
+</div>

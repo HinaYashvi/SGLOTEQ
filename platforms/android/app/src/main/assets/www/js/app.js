@@ -523,7 +523,7 @@ function openpopup(owner,mob1,mob2,email,vtype,metal_plate,rcbook,form24,num_pla
   content: '<div class="popup over_scroll">'+'<div class="block"><p><a href="#" class="link popup-close text-red fw-600">CLOSE ME</a></p><div class="block-title">Name of Owner / Driver</div><div class="block"><p class="text-uppercase">'+owner+'</p></div><div class="block-title">Mobile No 1</div><div class="block"><p class="text-uppercase">'+mob1+'</p></div>'+mobile_two+emailID+veh_type+'<div class="block-title">Hydrotest Due Date</div><div class="block"><p class="text-uppercase">'+hydro_date+'</p></div>'+filling_img+'</div>',
   });
   dynamicPopup.open();
-}
+} 
 function scan_qr(){
   cordova.plugins.barcodeScanner.scan(function (result) {
     //app.dialog.alert("Barcode/QR code data\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
@@ -17958,12 +17958,288 @@ function dprcompupdateval(){
 function modulename(sel_module){
   window.localStorage.setItem("module_name",sel_module);
 }
+// -------------------------------- JMR MODULE STARTS -------------------------- //
+$(document).on('page:init', '.page[data-name="jmr"]', function (page) {
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var session_uid = window.localStorage.getItem("session_uid");
+  $.ajax({
+    type:'POST', 
+    dataType:'json',
+    url:base_url+'APP/Appcontroller/getstartedStations',
+    data:{'session_uid':session_uid},
+    success:function(result){
+      $("#jmr_station_id").html(result.html);
+    }    
+  });
+  //getJMRList();   
+  app.preloader.hide();
+});
+function getStationJMRList(){
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var jmr_station_id = $("#jmr_station_id").val();
+  if(jmr_station_id==''){
+    app.dialog.alert("Select Station");
+  }else{
+    mainView.router.navigate("/jmr_list/"+jmr_station_id+"/");
+  }
+  app.preloader.hide(); 
+}
+$(document).on('page:init', '.page[data-name="jmr_list"]', function (page) {
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var jmr_station_id = page.detail.route.params.jmr_station_id;
+  $("#hidd_stnid").val(jmr_station_id);
+  //alert("jmr_list page "+jmr_station_id);
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var months_arr = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var mon_list='';
+  var d = new Date();
+  var c_mnth = d.getMonth()+1;
+  var cur_mnth = c_mnth-1;
+  mon_list+="<option value=''></option>";
+  for(var m=0;m<months_arr.length;m++){
+    if(m < 9){
+      var mn = "0"+(m+1);
+    }else{
+      var mn = m+1;
+    }
+    if(m==cur_mnth){
+      var sel_mn = 'selected';
+    }else{
+      var sel_mn='';
+    }
+    mon_list+="<option value='"+mn+"' "+sel_mn+">"+months_arr[m]+"</option>";
+  } 
+  $("#jmr_month").html(mon_list);
+  var yrs='';
+  
+  var c_year = new Date().getFullYear();
+  for(var y=2012;y<=c_year;y++){
+    if(y==c_year){
+      var sel_yr = 'selected';
+    }else{
+      var sel_yr='';
+    }
+    yrs+="<option value='"+y+"' "+sel_yr+">"+y+"</option>";
+  }
+  $("#jmr_year").html(yrs);
+  var hidd_stnid = $("#hidd_stnid").val();
+  //alert("jmr_list page hidden id "+hidd_stnid);  
+  getJMRList(hidd_stnid);
+  app.preloader.hide();
+});
+function getJMRList(jmr_station_id){  
+  //alert(jmr_station_id);
+  menuload(); 
+  checkConnection();
+  app.preloader.show();  
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  
+  //console.log("===="+hidd_stnid);
+  //var jmr_station_id = $("#jmr_station_id").val();
+    if(jmr_station_id=='' || jmr_station_id==undefined){
+      var hidd_stnid = $("#hidd_stnid").val();
+      jmr_station_id = hidd_stnid;
+      //jmr_station_id=null;
+    }else{
+      jmr_station_id=jmr_station_id;
+    }
+    var jmr_month = $("#jmr_month").val();
+    var jmr_year = $("#jmr_year").val();
+    $.ajax({
+      type:'POST', 
+      //dataType:'json', 
+      url:base_url+'APP/Appcontroller/getStationJMRs',
+      data:{'jmr_station_id':jmr_station_id,'jmr_month':jmr_month,'jmr_year':jmr_year,'session_uid':session_uid,'sess_designation':sess_designation},
+      success:function(result){
+        //console.log(result);
+        var upcoming_jmr_dt='';
+        var parseRes = $.parseJSON(result);
+        var jmrList = parseRes.jmr_list;
+        var st_name = parseRes.st_name;
+        var total_jmr = parseRes.total_jmr;
+        
+        var jmr = parseRes.jmr;
+        if(sess_designation=='COMP. OPERATOR'){
+          if(jmr!='' || jmr!=undefined){
+            var jmrdt = parseRes.jmrdt;
+            var jmr_create = jmr.jmr_create;
+            var station_id = jmr.station_id;
+            var start_time = jmr.start_time;
+            var jmr_date = jmr.jmr_date;
+            var first_date = jmr.first_date;
+            var last_date = jmr.last_date;
+            var msg = jmr.msg;            
+            if(jmr_create == 1){              
+                upcoming_jmr_dt+='<a class="button button-fill button-small sgl-blue" onclick="getJMRdateJMRReding('+"'"+station_id+"'"+','+"'"+start_time+"'"+','+"'"+jmr_date+"'"+','+"'"+first_date+"'"+','+"'"+last_date+"'"+')">'+jmrdt+'</a>';        
+            }else{ 
+              if((msg.indexOf("between") !== -1)){
+                upcoming_jmr_dt+='<a class="button button-fill button-small sgl-blue" onclick="showmsg('+"'"+msg+"'"+')">'+jmrdt+'</a>';                
+              }            
+            }
+            $(".upcoming_jmrdate").html(upcoming_jmr_dt);
+          }
+        }
+        $(".stname").html(st_name);
+        $(".total_jmr").html("Total Records: ("+total_jmr+")");
+        $("#jmr_list").html(jmrList);
+      }    
+    });
+  app.preloader.hide();
+}
+function showmsg(msg){
+  app.dialog.alert(msg);
+}
+function getJMRdateJMRReding(station_id,start_time,jmr_date,first_date,last_date){
+  menuload();
+  checkConnection();
+  app.preloader.show(); 
+  mainView.router.navigate("/jmr_readings/"+station_id+"/"+start_time+"/"+jmr_date+"/"+first_date+"/"+last_date+"/");
+  app.preloader.hide();
+}
+$(document).on('page:init', '.page[data-name="jmr_readings"]', function (page) {
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var station_id = page.detail.route.params.station_id;
+  var start_time = page.detail.route.params.start_time;
+  var jmr_date = page.detail.route.params.jmr_date;
+  var first_date = page.detail.route.params.first_date;
+  var last_date = page.detail.route.params.last_date;
+  var session_uid = window.localStorage.getItem("session_uid");
+  $.ajax({
+    type:'POST',  
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/getJMRReading',
+    data:{'station_id':station_id,'start_time':start_time,'jmr_date':jmr_date,'first_date':first_date,'last_date':last_date,'session_uid':session_uid},
+    success:function(result){
+      $(".jmr_reading_details").html(result);
+    }
+  });
+  app.preloader.hide();
+});
+function jmradd(station_id){
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var jmr_readingdata = $(".jmr_readingdata").serialize();
+  //console.log(jmr_readingdata);
+  $.ajax({
+    type:'POST',  
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/addJMR',
+    data:jmr_readingdata,
+    success:function(result){
+      if(result=='inserted'){
+        app.dialog.alert("JMR has been created");
+        mainView.router.navigate("/jmr_list/"+station_id+"/");
+        //getJMRList(station_id);
+      }
+    }    
+  });
+  app.preloader.hide();
+}
+function getJMR(jmr_ID){
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  mainView.router.navigate("/jmr_view/"+jmr_ID+"/");
+  app.preloader.hide();
+}
+$(document).on('page:init', '.page[data-name="jmr_view"]', function (page) {
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var jmr_ID = page.detail.route.params.jmr_ID;  
+  $.ajax({  
+    type:'POST',  
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/getJMR',
+    data:{'jmr_ID':jmr_ID,'sess_designation':sess_designation},
+    success:function(result){
+      $(".jmr_view_details").html(result);
+    }
+  });
+
+  /*$.ajax({  
+    type:'POST',  
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/checkJMRapproved',
+    data:{'jmr_ID':jmr_ID},
+    success:function(result){
+     var parseResult = $.parseJSON(result);
+     var app_one = parseResult.app_one;
+     var app_two = parseResult.app_two;
+     var app_three = parseResult.app_three;
+     var jmr_ID = parseResult.jmr_ID;
+     var aprv_btn='';
+     if(app_one!=0 && app_two==0){
+      aprv_btn+='<a class="button col button button-fill sgl-blue no-radius" href="#" onclick="jmr_approve('."'".$jmr_ID."'".')">Approve</a>';
+     }
+     $(".").html(aprv_btn);
+    }
+  });*/
+  app.preloader.hide();
+});
+function jmr_approve(jmr_ID){
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var eic_email = $("#eic_email").val();
+  var stn_mgr_email = $("#stn_mgr_email").val();
+  var operator_email = $("#operator_email").val();
+  $.ajax({
+    type:'POST',  
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/approveJMR',
+    data:{'session_uid':session_uid,'sess_designation':sess_designation,'jmr_ID':jmr_ID,'eic_email':eic_email,'stn_mgr_email':stn_mgr_email,'operator_email':operator_email},
+    success:function(result){ 
+      var parse_res = $.parseJSON(result);
+      var station_id = parse_res.station_id;     
+      app.dialog.alert("JMR has been updated");
+      mainView.router.navigate("/jmr_list/"+station_id+"/");
+      //getJMRList(station_id);      
+    }    
+  });
+  app.preloader.hide();
+}
+/*function jmradd(station_id){
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var jmr_readingdata = $(".jmr_readingdata").serialize();
+  //console.log(jmr_readingdata);
+  $.ajax({
+    type:'POST',  
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/addJMR',
+    data:jmr_readingdata,
+    success:function(result){
+      if(result=='inserted'){
+        app.dialog.alert("JMR has been created");
+        mainView.router.navigate("/jmr_list/"+station_id+"/");
+        //getJMRList(station_id);
+      }
+    }    
+  });
+  app.preloader.hide();
+} */
 // -------------------------------- L O G O U T -------------------------------- //
 function logOut(){
   checkConnection();
   window.localStorage.removeItem("session_uid"); 
   window.localStorage.removeItem("session_utype"); 
-  window.localStorage.removeItem("session_uclass"); 
+  window.localStorage.removeItem("session_uclass");   
   window.localStorage.removeItem("session_uname"); 
   window.localStorage.removeItem("session_stid"); 
   window.localStorage.removeItem("session_email"); 

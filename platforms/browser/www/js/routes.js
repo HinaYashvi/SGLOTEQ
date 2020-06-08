@@ -97,6 +97,27 @@ var routes = [
     url: './dpr/dpr_complain.html',
     name: 'dpr_complain',
   },
+
+  {
+    path: '/jmr/',
+    url: './jmr/jmr.html',
+    name: 'jmr',
+  },
+  {
+    path: '/jmr_list/:jmr_station_id/',
+    url: './jmr/jmr_list.html?jmr_station_id={{jmr_station_id}}',
+    name: 'jmr_list',
+  },
+  {
+    path: '/jmr_readings/:station_id/:start_time/:jmr_date/:first_date/:last_date/',
+    url: './jmr/jmr_readings.html?station_id={{station_id}}/start_time={{start_time}}/jmr_date={{jmr_date}}/first_date={{first_date}}/last_date={{last_date}}',
+    name: 'jmr_readings',
+  },
+  {
+    path: '/jmr_view/:jmr_ID/',
+    url: './jmr/jmr_view.html?jmr_ID={{jmr_ID}}',
+    name: 'jmr_view',
+  },
   /*{
     path: '/dpr_kpi_rep/:station_id/:demo_calendar_modal_dpr/:st_name/',
     url: './dpr/dpr_kpi_rep.html?station_id={{station_id}}/dpr_month={{dpr_month}}/dpr_year={{dpr_year}}/st_name={{st_name}}',

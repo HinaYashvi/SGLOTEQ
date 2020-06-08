@@ -1,0 +1,80 @@
+<div data-name="jmr_list" class="page">
+	<div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">JMR List
+      <!--a class="col plus_icon" href="/dpr/"><i class="f7-icons mr-5 fs-20 text-white pl-90p" >plus</i></a-->
+    </div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+  <!--div class="fab fab-right-bottom">
+    <a href="/dpr/" class="color-fbtn">
+      <i class="f7-icons">plus</i>
+      <i class="f7-icons">multiply</i>
+    </a>
+  </div-->     
+		
+  	<div class="page-content"> 
+    <form class="jmrlist">       
+      <div class="list no-hairlines-md m-0">
+        <ul id="dprul" class="no-bg row">  
+          <input type="hidden" name="hidd_stnid" id="hidd_stnid">
+          <li class="item-content item-input col-50">
+            <div class="item-inner">                                    
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="jmr_month" id="jmr_month" onchange="getJMRList()"></select>
+                </div>                  
+            </div>
+          </li>
+          <li class="item-content item-input col-50">
+            <div class="item-inner">                    
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="jmr_year" id="jmr_year" onchange="getJMRList()"></select>
+                </div>
+            </div>
+          </li>
+          <!--li class="item-content item-input col">
+            <div class="item-inner">                    
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="station_id_lists" id="station_id_lists" onchange="getJMRList()"></select>
+                </div>
+            </div>
+          </li-->               
+        </ul>           
+      </div> 
+
+      
+      <div class="block m-0">
+        <div class="row">
+          <div class="col-65">
+            <div class="fw-600 sgl-orange stname fs-12">             
+            </div>
+            <span class="total_jmr fw-600 sgl-orange fs-12"></span>
+          </div>
+          <div class="col-35">
+            <span class="upcoming_jmrdate"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card data-table">      
+        <table>
+          <thead class="light-thead">
+            <tr>
+              <th class="label-cell text-uppercase table-th"><strong>JMR Details</strong></th>
+              <th class="label-cell text-uppercase table-th"><strong>JMR Date</strong></th>
+          </thead>
+          <tbody id="jmr_list"></tbody>
+        </table>
+      </div>
+    </form>  			
+</div>
