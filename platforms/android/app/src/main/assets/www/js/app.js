@@ -18034,7 +18034,7 @@ $(document).on('page:init', '.page[data-name="jmr_list"]', function (page) {
   getJMRList(hidd_stnid);
   app.preloader.hide();
 });
-function getJMRList(jmr_station_id){  
+function getJMRList(jmr_station_id){   
   //alert(jmr_station_id);
   menuload(); 
   checkConnection();

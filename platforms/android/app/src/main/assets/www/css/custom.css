@@ -306,6 +306,9 @@ div.container4 p {
 .text-red{
     color: red;
 }
+.mt-2{
+    margin-top: 2%!important;
+}
 .mt-5{
     margin-top: 5%!important;
 }
