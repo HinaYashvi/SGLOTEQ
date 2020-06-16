@@ -525,11 +525,14 @@ function openpopup(owner,mob1,mob2,email,vtype,metal_plate,rcbook,form24,num_pla
   dynamicPopup.open();
 } 
 function scan_qr(){
+  var hidd_vehno=$("#hidd_vehno").val();
+  //alert("### "+hidd_vehno);
   cordova.plugins.barcodeScanner.scan(function (result) {
     //app.dialog.alert("Barcode/QR code data\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
     var qr_code = result.text; 
     //gotoRecheckView(qr_code);
-    mainView.router.navigate("/recheckQR/"+qr_code+"/");
+    //mainView.router.navigate("/recheckQR/"+qr_code+"/"); // old 15-06-2020 //
+    mainView.router.navigate("/recheckQR/"+qr_code+"/"+hidd_vehno+"/"); // new 15-06-2020 //
     //alert(qr_code);
                     
     //alert("Barcode/QR code data\n" + "Result: " + result.text + "\n" + "Format: " + result.format + "\n" + "Cancelled: " + result.cancelled);
@@ -558,16 +561,19 @@ function scan_qr(){
 $(document).on('page:init', '.page[data-name="recheckQR"]', function (page) {
   menuload();
   var qr_code = page.detail.route.params.qr_code;
+  var hidd_vehno = page.detail.route.params.hidd_vehno;
   $.ajax({
       type:'POST', 
-      url:base_url+'APP/Appcontroller/checkVehicleQR',
-      data:{'qr_code':qr_code},
+      //url:base_url+'APP/Appcontroller/checkVehicleQR',
+      url:base_url+'APP/Appcontroller/checkVehicle_recheckQR/'+qr_code+"/"+hidd_vehno,
+      //data:{'qr_code':qr_code},
+      //data:{'qr_code':qr_code,'hidd_vehno':hidd_vehno},
       success:function(data){
         var parseData = $.parseJSON(data);
         var veh_msg = parseData.veh_msg;
         var checkQR = parseData.checkQR;  
         var status = parseData.status;
-        //console.log(checkQR+status);
+        console.log(veh_msg+"====="+checkQR+"====="+status);
         var vst_html = '';
         if(status=='success'){
           var owner_name = checkQR[0].owner_name;
@@ -683,6 +689,8 @@ function vstadd(){
   var vtype = $('input[name="vtype"]').val();
   var demo_calendar_modal = $("#demo-calendar-modal").val();
 
+
+  var hidd_vehno = np_one+"-"+np_two+"-"+np_three+"-"+np_four;
   if(np_one=='' || np_two=='' || np_three=='' || np_four==''){
     app.dialog.alert("Enter valid vehicle number");
     return false;
@@ -708,14 +716,22 @@ function vstadd(){
         upload_rcbook(lastid,old_rcbook,v_type,barcode_code);
         upload_form24(lastid,old_from24,v_type,barcode_code);
         upload_numplate(lastid,old_numplate,v_type,barcode_code);
-        mainView.router.navigate("/vst_submited/");
+        //mainView.router.navigate("/vst_submited/");
+        mainView.router.navigate("/vst_submited/"+hidd_vehno+"/");
       }    
     });
   }
 }
-
+$(document).on('page:init', '.page[data-name="vst_submited"]', function (page) {
+  menuload();
+  checkConnection();  
+  app.preloader.show(); 
+  var hidd_vehno = page.detail.route.params.hidd_vehno; 
+  $("#hidd_vehno").val(hidd_vehno);
+  app.preloader.hide(); 
+});
 function getCodeBoxElement(index) {
-    return document.getElementById('codeBox' + index);
+    return document.getElementById('codeBox'+index);
   }
 function onKeyUpEvent(index, event) {
   const eventCode = event.which || event.keyCode;
@@ -724,13 +740,26 @@ function onKeyUpEvent(index, event) {
   if ((index!=3 && getCodeBoxElement(index).value.length === 2) || (index==3 && getCodeBoxElement(index).value.length === 3 || index==3 && getCodeBoxElement(index).value.length === 2)) {
     console.log("called");
     searchByveh();
-    if (index !== 4) {      
+    if(index == 1 || index == 2 || index == 3){
+      if(getCodeBoxElement(index).value.length === 2){
+        getCodeBoxElement(index+ 1).focus();
+      }else if(getCodeBoxElement(index).value.length === 2){
+        getCodeBoxElement(index+ 1).focus();
+      }      
+    }else if (index !== 4) {      
       getCodeBoxElement(index+ 1).focus();
     } else {
       getCodeBoxElement(index).blur();
       // Submit code
       console.log('submit code ');
     }
+    /*if (index !== 4) {      
+      getCodeBoxElement(index+ 1).focus();
+    } else {
+      getCodeBoxElement(index).blur();
+      // Submit code
+      console.log('submit code ');
+    }*/
   }
 
   if (eventCode === 8 && index !== 1) {
@@ -739,7 +768,7 @@ function onKeyUpEvent(index, event) {
 }
   function onFocusEvent(index) {
     for (item = 1; item < index; item++) {
-      const currentElement = getCodeBoxElement(item);
+      var currentElement = getCodeBoxElement(item);
       if (!currentElement.value) {
           currentElement.focus();
           break;
@@ -747,6 +776,164 @@ function onKeyUpEvent(index, event) {
     }
   }
 
+
+function onKeyUpEvent_noveh(index, event) {
+  const eventCode = event.which || event.keyCode;
+  console.log(getCodeBoxElement_noveh(index).value.length);
+  //if(index == '3'){var len = 3}else{ var len = 2}
+
+  if(index == 1){    
+    if(getCodeBoxElement_noveh(index).value.length == 2){
+      getCodeBoxElement_noveh(index+ 1).focus();
+    }else if(getCodeBoxElement_noveh(index).value.length < 2){
+      getCodeBoxElement_noveh(index).focus();
+    }      
+  }else if(index == 2){
+    if(getCodeBoxElement_noveh(index).value.length == 2){
+      getCodeBoxElement_noveh(index+ 1).focus();
+    }else if(getCodeBoxElement_noveh(index).value.length < 2){
+      getCodeBoxElement_noveh(index).focus();
+    }
+  }else if(index == 3){
+    if(getCodeBoxElement_noveh(index).value.length == 2){
+      getCodeBoxElement_noveh(index+ 1).focus();
+    }else if(getCodeBoxElement_noveh(index).value.length < 2){
+      getCodeBoxElement_noveh(index).focus();
+    }
+  }
+
+
+  if ((index!=3 && getCodeBoxElement_noveh(index).value.length === 2) || (index==3 && getCodeBoxElement_noveh(index).value.length === 3 || index==3 && getCodeBoxElement_noveh(index).value.length === 2)) {
+    console.log("called");
+    //searchByveh();
+    if (index !== 4) {      
+      getCodeBoxElement_noveh(index+ 1).focus();
+    } else {
+      getCodeBoxElement_noveh(index).blur();
+      // Submit code
+      console.log('submit code ');
+      searchByveh_noveh();
+    }
+    /*if (index !== 4) {      
+      getCodeBoxElement(index+ 1).focus();
+    } else {
+      getCodeBoxElement(index).blur();
+      // Submit code
+      console.log('submit code ');
+    }*/
+  } 
+  if (eventCode === 8 && index !== 1) {
+    getCodeBoxElement_noveh(index - 1).focus();
+  }
+}
+function onFocusEvent_noveh(index) {
+  for (item = 1; item < index; item++) {
+    var currentElement = getCodeBoxElement_noveh(item);
+    if (!currentElement.value) {
+        currentElement.focus();
+        break;
+    }
+  }
+}
+function getCodeBoxElement_noveh(index) {
+  return document.getElementById('codeBox'+index+"_"+index);
+}
+function searchByveh_noveh(){
+  var codeBox1 = $("#codeBox1_1").val();
+  var codeBox2 = $("#codeBox2_2").val();
+  var codeBox3 = $("#codeBox3_3").val();
+  var codeBox4 = $("#codeBox4_4").val();
+  var veh_no = codeBox1+"-"+codeBox2+"-"+codeBox3+"-"+codeBox4;
+  vehno = codeBox1+codeBox2+codeBox3+codeBox4;
+  if(codeBox1!='' && codeBox2!='' && codeBox3!='' && codeBox4!=''){  
+    $.ajax({
+      type:'POST', 
+      url:base_url+'APP/Appcontroller/checkVehicleNo',
+      data:{'veh_no':veh_no,'vehno':vehno},
+      success:function(data){
+        var parseData = $.parseJSON(data);
+        //console.log(parseData);
+        var veh_msg = parseData.veh_msg;
+        var checkvehno = parseData.checkvehno;
+        var status = parseData.status;
+        var code_chk = parseData.code_chk;
+        var perm_msg = parseData.perm_msg;        
+        if(status=='success'){
+          if(veh_msg=='exist'){
+            if(code_chk=='barcode_notexists'){
+              //mainView.router.navigate("/veh_exists/");
+              mainView.router.navigate("/veh_exists/"+veh_no+"/");
+            }else if(code_chk=='barcode_exists'){
+              //console.log("success");
+              var owner_name = checkvehno[0].owner_name;
+              var mobile_one = checkvehno[0].mobile_one;
+              var mobile_two = checkvehno[0].mobile_two;
+              var email = checkvehno[0].email;
+              var vehicle_type = checkvehno[0].vehicle_type;
+              var att_hydrotest_metal_plate_cirty = checkvehno[0].att_hydrotest_metal_plate_cirty;
+              var att_rcbook = checkvehno[0].att_rcbook;
+              var att_form24 = checkvehno[0].att_form24;
+              var att_number_plate = checkvehno[0].att_number_plate;
+
+              //console.log(mobile_two+"----");
+              if(mobile_two!='' && mobile_two!=undefined && mobile_two!=null){
+                //console.log("if");
+                var mob2 = mobile_two;
+              }else{
+                //console.log("else");
+                var mob2=null;
+              }
+              if(email!='' && email!=undefined && email!=null){
+                var email=email;
+              }else{
+                var email=null;
+              }
+              if(vehicle_type!='' && vehicle_type!=undefined && vehicle_type!=null){
+                var vehicle_type = vehicle_type;
+              }else{
+                var vehicle_type = null;
+              }
+              //console.log("mob2 "+mob2);
+              var vehicle_no = checkvehno[0].vehicle_no;
+              var hydrotest_due_date = checkvehno[0].hydrotest_due_date;
+              var split_duedt = hydrotest_due_date.split("-");
+              var due_yr = split_duedt[0];
+              var due_mm = split_duedt[1];
+              var due_dd = split_duedt[2];
+              //var hydro_due_dt = due_dd+" - "+due_mm+" - "+due_yr;
+              //mainView.router.navigate("/veh_search/"+veh_msg+"/"+status+"/"+owner_name+"/"+mobile_one+"/");
+              //alert("hello");
+              //console.log("/veh_search/"+veh_msg+"/"+status+"/"+owner_name+"/"+mobile_one+"/"+mob2+"/"+email+"/"+vehicle_type+"/null/null/null/null/"+vehicle_no+"/"+due_yr+"/"+due_mm+"/"+due_dd+"/"); 
+              mainView.router.navigate("/veh_search/"+veh_msg+"/"+status+"/"+owner_name+"/"+mobile_one+"/"+mob2+"/"+email+"/"+vehicle_type+"/null/null/null/null/"+vehicle_no+"/"+due_yr+"/"+due_mm+"/"+due_dd+"/"+perm_msg+"/");
+            }
+          }
+          
+          //alert("hello hiiiiiiiiii");
+        }else if(status=='fail'){
+          //console.log("fail");
+          $(".vstdata").html('');
+          if(veh_msg=='not_exist'){
+            //mainView.router.navigate("/no_vehdata/null/"); 
+            mainView.router.navigate("/add_vst/null/"); 
+          }
+        }      
+        //mainView.router.navigate("/veh_search/"+parseData+"/");
+      }
+    });  
+  }else{
+    return false;
+  }
+}
+function gotonext_four_noveh(txtval){
+  var txtlen = txtval.value.length;  
+  if(txtlen>5){
+    $("#codeBox4_4").val('');
+    //searchByveh();
+    app.dialog.alert("Enter valid vehicle number");
+  }else if(txtlen==4 || txtlen==5){    
+    searchByveh_noveh();
+  }
+}
 function upload_numplate(lastid,old_numplate,v_type,barcode_code){
   //alert("called");
   var session_uid = window.localStorage.getItem("session_uid");
@@ -1108,7 +1295,8 @@ function searchByveh(){
         if(status=='success'){
           if(veh_msg=='exist'){
             if(code_chk=='barcode_notexists'){
-              mainView.router.navigate("/veh_exists/")
+              //mainView.router.navigate("/veh_exists/");
+              mainView.router.navigate("/veh_exists/"+veh_no+"/");
             }else if(code_chk=='barcode_exists'){
               //console.log("success");
               var owner_name = checkvehno[0].owner_name;
@@ -1150,7 +1338,7 @@ function searchByveh(){
               //mainView.router.navigate("/veh_search/"+veh_msg+"/"+status+"/"+owner_name+"/"+mobile_one+"/");
               //alert("hello");
               //console.log("/veh_search/"+veh_msg+"/"+status+"/"+owner_name+"/"+mobile_one+"/"+mob2+"/"+email+"/"+vehicle_type+"/null/null/null/null/"+vehicle_no+"/"+due_yr+"/"+due_mm+"/"+due_dd+"/"); 
-              mainView.router.navigate("/veh_search/"+veh_msg+"/"+status+"/"+owner_name+"/"+mobile_one+"/"+mob2+"/"+email+"/"+vehicle_type+"/null/null/null/null/"+vehicle_no+"/"+due_yr+"/"+due_mm+"/"+due_dd+"/");
+              mainView.router.navigate("/veh_search/"+veh_msg+"/"+status+"/"+owner_name+"/"+mobile_one+"/"+mob2+"/"+email+"/"+vehicle_type+"/null/null/null/null/"+vehicle_no+"/"+due_yr+"/"+due_mm+"/"+due_dd+"/"+perm_msg+"/");
             }
           }
           
@@ -1170,6 +1358,15 @@ function searchByveh(){
     return false;
   }
 }
+
+$(document).on('page:init', '.page[data-name="veh_exists"]', function (page) {
+  menuload();
+  checkConnection();  
+  app.preloader.show(); 
+  var veh_no = page.detail.route.params.veh_no; 
+  $("#hidd_vehno").val(veh_no);
+  app.preloader.hide(); 
+});
 $(document).on('page:init', '.page[data-name="veh_search"]', function (page) {
   menuload();
   checkConnection();  
@@ -1190,18 +1387,19 @@ $(document).on('page:init', '.page[data-name="veh_search"]', function (page) {
   var due_mm = page.detail.route.params.due_mm;
   var due_dd = page.detail.route.params.due_dd;
   var hydro_due_dt = due_dd+" - "+due_mm+" - "+due_yr;
+  var perm_msg = page.detail.route.params.perm_msg;
   var vst_html = '';
-  //console.log("hiiiiiiiiiiiiiii"+status+"*****"+veh_msg);
+  console.log(status+"*****"+veh_msg);
   if(status=='success'){    
     vst_html+='<div class="block-title">Name of Owner / Driver</div><div class="block"><p class="text-uppercase">'+owner_name+'</p></div><div class="block-title">Mobile No</div><div class="block"><p class="text-uppercase">'+mobile_one+'</p></div><div class="block-title">Vehicle No</div><div class="block"><p class="text-uppercase">'+vehicle_no+'</p></div><div class="block-title">Hydrotest Due Date</div><div class="block"><p class="text-uppercase">'+hydro_due_dt+'</p></div>';    
     //console.log(veh_msg);
-    if(veh_msg=='allow'){
+    if(perm_msg=='allow'){
       vst_html+='<div class="text-center"><div class="text-uppercase"><h2>cng filling permission</h2></div><img src="img/right-2.png" width="150" /></div>';      
-      vst_html+='<a class="button dynamic-popup" onclick="openpopup('+"'"+owner_name+"'"+','+"'"+mobile_one+"'"+','+"'"+mob2+"'"+','+"'"+email+"'"+','+"'"+vehicle_type+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+vehicle_no+"'"+','+"'"+hydro_due_dt+"'"+','+"'"+veh_msg+"'"+')" href="#">View Details</a>';
+      vst_html+='<a class="button dynamic-popup" onclick="openpopup('+"'"+owner_name+"'"+','+"'"+mobile_one+"'"+','+"'"+mob2+"'"+','+"'"+email+"'"+','+"'"+vehicle_type+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+vehicle_no+"'"+','+"'"+hydro_due_dt+"'"+','+"'"+perm_msg+"'"+')" href="#">View Details</a>';
     $(".vstdata").html(vst_html);  
-    }else if(veh_msg=='deny'){
+    }else if(perm_msg=='deny'){
       vst_html+='<div class="text-center"><div class="text-uppercase"><h2>cng filling permission</h2></div><img src="img/wrong.jpg" width="200" /></div>';      
-      vst_html+='<a class="button dynamic-popup" onclick="openpopup('+"'"+owner_name+"'"+','+"'"+mobile_one+"'"+','+"'"+mob2+"'"+','+"'"+email+"'"+','+"'"+vehicle_type+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+vehicle_no+"'"+','+"'"+hydro_due_dt+"'"+','+"'"+veh_msg+"'"+')" href="#">View Details</a>';          
+      vst_html+='<a class="button dynamic-popup" onclick="openpopup('+"'"+owner_name+"'"+','+"'"+mobile_one+"'"+','+"'"+mob2+"'"+','+"'"+email+"'"+','+"'"+vehicle_type+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+"null"+"'"+','+"'"+vehicle_no+"'"+','+"'"+hydro_due_dt+"'"+','+"'"+perm_msg+"'"+')" href="#">View Details</a>';          
       $(".vstdata").html(vst_html);
     }
   }else if(status=='fail'){
@@ -1406,6 +1604,10 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       $("#hidd_dispcnt").val(dispanser_count);
       var DISP_A = parse_res.DISP_A;   // DYNAMIC //
       var DISP_B = parse_res.DISP_B;   // DYNAMIC //
+
+      var getstart = parse_res.getstart;
+
+      //console.log(getstart);
       //console.log("ENABLE:: "+enable_disps);
       //console.log("TODAY ENABLE:: "+today_enable_arr);      
       
@@ -1413,8 +1615,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       for(var i=1;i<=dispanser_count;i++){
 
         // DISPENSER A-SIDE SCRIPT //
-
-        disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' A <sup class="text-red fw-600 fs-12">*</sup></td>'; 
+        var dispsrno = getstart[0]['dispen'+i+'_sr_no'];
+        disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' A <sup class="text-red fw-600 fs-12">*</sup><br/><span class="dark-blue">('+dispsrno+')</span></td>'; 
         for(var d_a=0;d_a<=23;d_a++){
           if(d_a <= 9){
             var addzero_a = "0"+d_a;
@@ -1655,11 +1857,11 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
               }
            }
-        }
+        } 
         //disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+'></td>'; 
       }
       disp_html+='</tr>';
-      disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' B<sup class="text-red fw-600 fs-12">*</sup></td>';
+      disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' B<sup class="text-red fw-600 fs-12">*</sup><br/><span class="dark-blue">('+dispsrno+')</span></td>';
 
         // DISPENSER B-SIDE SCRIPT //
 
@@ -18036,7 +18238,7 @@ $(document).on('page:init', '.page[data-name="jmr_list"]', function (page) {
 });
 function getJMRList(jmr_station_id){   
   //alert(jmr_station_id);
-  menuload(); 
+  menuload();  
   checkConnection();    
   app.preloader.show();  
   var session_uid = window.localStorage.getItem("session_uid");
@@ -18146,7 +18348,7 @@ function jmradd(station_id){
   });
   app.preloader.hide();
 }
-function getJMR(jmr_ID){
+function getJMR(jmr_ID){  
   menuload();
   checkConnection();
   app.preloader.show();
