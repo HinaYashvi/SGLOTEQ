@@ -380,7 +380,7 @@ function menuload(){
     }
   }else{
     if(sess_module_name==='dpr'){
-      menulist+='<br/><p><a class="text-white link" href="/dpr_list/">DPR</a></p><p><a class="text-white link" href="/dpr_complain/">DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='vst'){
       menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
