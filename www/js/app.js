@@ -261,6 +261,7 @@ function gotonext_four(txtval){
 $(document).on('page:init', '.page[data-name="dashboard"]', function (e) {
   menuload();
   app.panel.close();
+
   checkConnection(); 
   //logOut();  
   var session_uid = window.localStorage.getItem("session_uid"); 
@@ -269,6 +270,7 @@ $(document).on('page:init', '.page[data-name="dashboard"]', function (e) {
     url:base_url+'APP/Appcontroller/getModules',   
     data:{'session_uid':session_uid},
     success:function(module){
+      window.localStorage.removeItem("module_name"); 
       var parsemodule = $.parseJSON(module);
       var html = parsemodule.html;
       //console.log(html);
@@ -354,7 +356,8 @@ function approvecomp(dc_id,apr_status,stn_name,dttm){
   }
   $(".menulist").html(menulist);
 });*/
-function menuload(){  
+function menuload(){ 
+
   var session_uid = window.localStorage.getItem("session_uid"); 
   var sess_designation = window.localStorage.getItem("sess_designation"); 
   var sess_module_name =window.localStorage.getItem("module_name");
