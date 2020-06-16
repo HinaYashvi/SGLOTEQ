@@ -260,6 +260,7 @@ function gotonext_four(txtval){
 }
 $(document).on('page:init', '.page[data-name="dashboard"]', function (e) {
   menuload();
+  app.panel.close();
   checkConnection(); 
   //logOut();  
   var session_uid = window.localStorage.getItem("session_uid"); 
@@ -359,14 +360,33 @@ function menuload(){
   var sess_module_name =window.localStorage.getItem("module_name");
   //alert(sess_module_name);
   //console.log(sess_designation);       
-  var menulist=''; 
+  var menulist='';   
+  var session_umob = window.localStorage.getItem("session_umob");
+  var session_utype = window.localStorage.getItem("session_utype");
+  var session_email = window.localStorage.getItem("session_email");
+  var session_uname = window.localStorage.getItem("session_uname");
+
+  menulist+='<p><center><img id="user_pic" src="img/nouser.png" height="100" width="100" class="img-circle"></center></p><p ><center id="userName" class="text-uppercase">'+session_uname+'</center></p><p ><center id="userdesg_type" class="text-uppercase"><span class="fs-12">['+sess_designation+' - '+session_utype+']</span></center></p><p ><center id="userEmail" class=""><i class="f7-icons fs-14 mr-5">envelope_fill</i><span class="fs-12">'+session_email+'</span></center></p><p ><center id="userMo" class="text-uppercase"><i class="f7-icons fs-14 mr-5">phone_circle_fill</i>'+session_umob+'</center></p>';
+
   if(sess_designation == 'SGL EIC'){
     if(sess_module_name==='dpr'){
-      menulist+='<p><a class="text-white link" href="/dpr_list/">DPR</a></p><p><a class="text-white link" href="/dpr_complain/">DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/dpr/">DPR KPI Report</a></p><p><a class="text-white link" href="#" onclick="logOut()">Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/dpr/"><i class="f7-icons fs-16 mr-5">chart_bar_alt_fill</i>DPR KPI Report</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+    }
+    if(sess_module_name==='vst'){
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+    }
+    if(sess_module_name==='jmr'){
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
   }else{
     if(sess_module_name==='dpr'){
-      menulist+='<p><a class="text-white link" href="/dpr_list/">DPR</a></p><p><a class="text-white link" href="/dpr_complain/">DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="#" onclick="logOut()">Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dpr_list/">DPR</a></p><p><a class="text-white link" href="/dpr_complain/">DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+    }
+    if(sess_module_name==='vst'){
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+    }
+    if(sess_module_name==='jmr'){
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
   }
   $(".menulist").html(menulist);
@@ -399,6 +419,10 @@ $(document).on('page:init', '.page[data-name="index"]', function (e) {
     //    from: new Date(yr, mnth, dt)
     //}
   });  */
+});
+$(document).on('page:init', '.page[data-name="vst"]', function (e) {
+  //console.log(e);
+  menuload();
 });
 function scanQR(){
   cordova.plugins.barcodeScanner.scan(function (result) {
