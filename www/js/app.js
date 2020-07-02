@@ -711,7 +711,7 @@ $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
 });
 function vstadd(){
   checkConnection();
-  app.preloader.show(); 
+  
   var form_vst = $("#form_vst").serialize();
   //var v_type = $('input[name="vtype"]').val();
   var v_type = $("#vtype").val();
@@ -750,6 +750,7 @@ function vstadd(){
     app.dialog.alert("Enter Hydro test due date");
     return false;
   }else{ 
+    app.preloader.show(); 
     $.ajax({
       type:'POST', 
       url:base_url+'APP/Appcontroller/addVST',
@@ -763,8 +764,9 @@ function vstadd(){
         mainView.router.navigate("/vst_submited/"+hidd_vehno+"/");
       }    
     });
+    app.preloader.hide();
   }
-  app.preloader.hide(); 
+   
 }
 $(document).on('page:init', '.page[data-name="vst_submited"]', function (page) {
   menuload();
