@@ -670,19 +670,7 @@ $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
   checkConnection();
   var prev_page = page.detail.pageFrom.name;
   var qrcode_txt = page.detail.route.params.qr_code_txt;
-  var hidden_vehno = $("#hidden_vehno").val();
-  //alert(hidden_vehno);
-
-  var split_vehno = hidden_vehno.split("-");
-  var split_one = split_vehno[0];
-  var split_two = split_vehno[1];
-  var split_three = split_vehno[2];
-  var split_four = split_vehno[3];
-
-  $("#codeBox1").val(split_one);
-  $("#codeBox2").val(split_two);
-  $("#codeBox3").val(split_three);
-  $("#codeBox4").val(split_four);
+  
   if(qrcode_txt==undefined || qrcode_txt=="null"){
     //alert("if----------");
     qrcode_txt='';
@@ -703,7 +691,20 @@ $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
     renderToolbar: function () {   
       return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
     }
-  });  
+  }); 
+  var hidden_vehno = $("#hidden_vehno").val();
+  //alert(hidden_vehno);
+
+  var split_vehno = hidden_vehno.split("-");
+  var split_one = split_vehno[0];
+  var split_two = split_vehno[1];
+  var split_three = split_vehno[2]; 
+  var split_four = split_vehno[3];
+
+  $("#codeBox1").val(split_one);
+  $("#codeBox2").val(split_two);
+  $("#codeBox3").val(split_three);
+  $("#codeBox4").val(split_four); 
   $("#codeBox1").focus();
   //var qrcode_txt = page.detail.route.params.qr_code_txt;
   //$("#barcode_code").val(qrcode_txt);
