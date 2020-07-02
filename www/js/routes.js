@@ -138,5 +138,19 @@ var routes = [
     url: './dpr/dpr_kpi_rep.html?station_id={{station_id}}/dpr_month={{dpr_month}}/dpr_year={{dpr_year}}/st_name={{st_name}}',
     name: 'dpr_kpi_rep',
   }*/
-  
+  {
+    path: '/cms/',
+    url: './cms/cms.html',
+    name: 'cms',
+  },
+  {
+    path: '/add_cms/',
+    url: './cms/add_cms.html',
+    name: 'add_cms',
+  },
+  {
+    path: '/cms_details/:c_id/:st_name/',
+    url: './cms/cms_details.html?c_id={{c_id}}/st_name={{st_name}}',
+    name: 'cms_details',
+  },
 ];

@@ -532,7 +532,7 @@ function openpopup(owner,mob1,mob2,email,vtype,metal_plate,rcbook,form24,num_pla
     var mobile_two='<div class="block-title">Mobile No 2</div><div class="block"><p class="text-uppercase">'+mob2+'</p></div>';
   }else{    
     var mobile_two='';
-  }
+  }   
 
   if(email!="null" && email!=""){    
     var emailID='<div class="block-title">Email</div><div class="block"><p class="text-uppercase">'+email+'</p></div>';
@@ -668,7 +668,21 @@ function addvstPage(){
 $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
   menuload();
   checkConnection();
+  var prev_page = page.detail.pageFrom.name;
   var qrcode_txt = page.detail.route.params.qr_code_txt;
+  var hidden_vehno = $("#hidden_vehno").val();
+  //alert(hidden_vehno);
+
+  var split_vehno = hidden_vehno.split("-");
+  var split_one = split_vehno[0];
+  var split_two = split_vehno[1];
+  var split_three = split_vehno[2];
+  var split_four = split_vehno[3];
+
+  $("#codeBox1").val(split_one);
+  $("#codeBox2").val(split_two);
+  $("#codeBox3").val(split_three);
+  $("#codeBox4").val(split_four);
   if(qrcode_txt==undefined || qrcode_txt=="null"){
     //alert("if----------");
     qrcode_txt='';
@@ -806,6 +820,7 @@ function onKeyUpEvent(index, event) {
 
 function onKeyUpEvent_noveh(index, event) {
   const eventCode = event.which || event.keyCode;
+  var hidd_qrtxt=$("#hidd_qrtxt").val();
   console.log(getCodeBoxElement_noveh(index).value.length);
   //if(index == '3'){var len = 3}else{ var len = 2}
 
@@ -839,7 +854,7 @@ function onKeyUpEvent_noveh(index, event) {
       getCodeBoxElement_noveh(index).blur();
       // Submit code
       console.log('submit code ');
-      searchByveh_noveh();
+      searchByveh_noveh(hidd_qrtxt);
     }
     /*if (index !== 4) {      
       getCodeBoxElement(index+ 1).focus();
@@ -865,7 +880,9 @@ function onFocusEvent_noveh(index) {
 function getCodeBoxElement_noveh(index) {
   return document.getElementById('codeBox'+index+"_"+index);
 }
-function searchByveh_noveh(){
+//function searchByveh_noveh(){
+function searchByveh_noveh(hidd_qrtxt){
+  //alert("searchByveh_noveh");
   var codeBox1 = $("#codeBox1_1").val();
   var codeBox2 = $("#codeBox2_2").val();
   var codeBox3 = $("#codeBox3_3").val();
@@ -941,7 +958,8 @@ function searchByveh_noveh(){
           $(".vstdata").html('');
           if(veh_msg=='not_exist'){
             //mainView.router.navigate("/no_vehdata/null/"); 
-            mainView.router.navigate("/add_vst/null/"); 
+            //mainView.router.navigate("/add_vst/null/"); 
+            mainView.router.navigate("/add_vst/"+hidd_qrtxt+"/");
           }
         }      
         //mainView.router.navigate("/veh_search/"+parseData+"/");
@@ -952,13 +970,22 @@ function searchByveh_noveh(){
   }
 }
 function gotonext_four_noveh(txtval){
-  var txtlen = txtval.value.length;  
+  var txtlen = txtval.value.length; 
+  var hidd_qrtxt = $("#hidd_qrtxt").val();
+  var codeBox1_1 = $("#codeBox1_1").val();
+  var codeBox2_2 = $("#codeBox2_2").val();
+  var codeBox3_3 = $("#codeBox3_3").val();
+  var codeBox4_4 = $("#codeBox4_4").val();
+  var veh_no = codeBox1_1+"-"+codeBox2_2+"-"+codeBox3_3+"-"+codeBox4_4;
+  vehno = codeBox1_1+codeBox2_2+codeBox3_3+codeBox4_4;
+  $("#hidden_vehno").val(veh_no);
   if(txtlen>5){
     $("#codeBox4_4").val('');
     //searchByveh();
     app.dialog.alert("Enter valid vehicle number");
   }else if(txtlen==4 || txtlen==5){    
-    searchByveh_noveh();
+    //searchByveh_noveh();
+    searchByveh_noveh(hidd_qrtxt);
   }
 }
 function upload_numplate(lastid,old_numplate,v_type,barcode_code){
@@ -1300,6 +1327,7 @@ function hidecard(){
   $("#codeBox4").val('');
 }
 function searchByveh(){
+  //alert("searchByveh");
   var codeBox1 = $("#codeBox1").val();
   var codeBox2 = $("#codeBox2").val();
   var codeBox3 = $("#codeBox3").val();
@@ -1375,7 +1403,7 @@ function searchByveh(){
           $(".vstdata").html('');
           if(veh_msg=='not_exist'){
             //mainView.router.navigate("/no_vehdata/null/"); 
-            mainView.router.navigate("/add_vst/null/"); 
+            //mainView.router.navigate("/add_vst/null/"); 
           }
         }      
         //mainView.router.navigate("/veh_search/"+parseData+"/");
@@ -18463,6 +18491,187 @@ function jmr_approve(jmr_ID){
   });
   app.preloader.hide();
 } */
+// -------------------------------- C M S  M O D U L E ------------------------- //
+$(document).on('page:init', '.page[data-name="cms"]', function (page) {
+  menuload();
+  checkConnection();
+  //var prevPageName = page.el.prev('.page').attr('data-name');
+  //var prevPageName = page.$el.prev('.page').attr('data-name');
+  //console.log(page.detail);
+  var prev_page = page.detail.pageFrom.name;
+  console.log(prev_page);
+  var months_arr = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var mon_list='';
+  var d = new Date();
+  var c_mnth = d.getMonth()+1;
+  var cur_mnth = c_mnth-1;
+  mon_list+="<option value=''></option>";
+  for(var m=0;m<months_arr.length;m++){
+    if(m < 9){
+      var mn = "0"+(m+1);
+    }else{
+      var mn = m+1;
+    }
+    if(m==cur_mnth){
+      var sel_mn = 'selected';
+    }else{
+      var sel_mn='';
+    }
+    mon_list+="<option value='"+mn+"' "+sel_mn+">"+months_arr[m]+"</option>";
+  } 
+  $("#cms_month").html(mon_list);
+  var yrs='';
+  
+  var c_year = new Date().getFullYear();
+  for(var y=2012;y<=c_year;y++){
+    if(y==c_year){
+      var sel_yr = 'selected';
+    }else{
+      var sel_yr='';
+    }
+    yrs+="<option value='"+y+"' "+sel_yr+">"+y+"</option>";
+  }
+  $("#cms_year").html(yrs);
+  var session_uid = window.localStorage.getItem("session_uid");
+  $.ajax({
+    type:'POST', 
+    url:base_url+'APP/Appcontroller/getEICUserStations',
+    data:{'session_uid':session_uid},
+    dataType:'json',
+    success:function(result){
+      $("#station_cms_lists").html(result.html);
+    }    
+  });
+  //getDPRList(prev_page,c_mnth,c_year);
+  getCMSList(prev_page);
+});
+function getCMSList(prev_page){
+  app.preloader.show();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var session_utype = window.localStorage.getItem("session_utype");
+  if(prev_page=='add_cms'){
+    //console.log("FORM "+prev_page);
+    var station_id = null;
+    var cms_month = $("#cms_month").val();
+    var cms_year = $("#cms_year").val();
+    console.log("======"+station_id+"----"+cms_month+"-----"+cms_year);
+  }else{
+    var station_id = $("#station_cms_lists").val();
+    if(station_id==''){
+      station_id=null;
+    }else{
+      station_id=station_id;
+    }
+    var cms_month = $("#cms_month").val();
+    var cms_year = $("#cms_year").val();
+    console.log(station_id+"----"+cms_month+"-----"+cms_year);
+  }
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/getCMSlist',
+    data:{'session_uid':session_uid,'sess_designation':sess_designation,'station_id':station_id,'cms_month':cms_month,'cms_year':cms_year,'session_utype':session_utype},
+    dataType:'json',
+    success:function(result){    
+      //console.log(result.cms_list);
+      var cmsList = result.cms_list;
+      var total_cms = result.total_cms;
+      if(total_cms==undefined){
+        total_cms=0;
+      }else{
+        total_cms=total_cms;
+      }
+      $("#cms_list").html(cmsList); 
+      $(".total_cms").html("Total Records: ("+total_cms+")");
+    }
+  });
+  app.preloader.hide();
+}
+$(document).on('page:init', '.page[data-name="add_cms"]', function (page) {
+  menuload();
+  checkConnection();
+  var session_utype = window.localStorage.getItem("session_utype");
+  var session_stid = window.localStorage.getItem("session_stid");
+  $.ajax({
+    type:'POST', 
+    url:base_url+'APP/Appcontroller/getMasterdata',
+    data:{'session_utype':session_utype,'session_stid':session_stid},
+    dataType:'json',
+    success:function(result){
+      $("#stations").html(result.stns);
+      $("#sap_notification").val(result.sap_notification);
+      $("#comp_equip").html(result.comp_equip);
+      $("#equip_make").html(result.equip_make);
+      $("#comp_prob").html(result.comp_prob);
+    }    
+  });
+});
+function cmsadd(){
+  menuload();
+  checkConnection();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var form_cms = $(".form_cms").serialize();
+  var stations = $('input[name="stations"]').val();
+  var comp_equip = $('input[name="comp_equip"]').val();
+  var equip_make = $('input[name="equip_make"]').val();
+  var comp_prob = $('input[name="comp_prob"]').val();
+  if(stations==''){
+    app.dialog.alert("Select station");
+    return false;
+  }else if(comp_equip==''){
+    app.dialog.alert("Select complaint equipment");
+    return false;
+  }else if(equip_make==''){
+    app.dialog.alert("Select equipment make");
+    return false;
+  }else if(comp_prob==''){
+    app.dialog.alert("Select complaint problem");
+    return false;
+  }else{
+    $.ajax({
+      type:'POST', 
+      url:base_url+'APP/Appcontroller/addCMS',
+      data:form_cms+"&session_uid="+session_uid,  
+      success:function(res_cms){
+        var parse_msg = $.parseJSON(res_cms);
+        var msg = parse_msg.msg;
+        if(msg=='inserted'){
+          app.dialog.alert("Complaint added successfully!");
+          mainView.router.navigate("/cms/");
+        }else if(msg=='available'){
+          app.dialog.alert("Given SAP notification is already available.");
+        }
+      } 
+    });
+  }
+}
+function getcmsdetails(c_id,stname){
+  app.preloader.show();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var session_utype = window.localStorage.getItem("session_utype");
+  mainView.router.navigate("/cms_details/"+c_id+"/"+stname+"/");
+  app.preloader.hide();
+}
+$(document).on('page:init', '.page[data-name="cms_details"]', function (page) {
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var c_id = page.detail.route.params.c_id; 
+  var st_name = page.detail.route.params.st_name; 
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/getcmsdata',
+    data:{'c_id':c_id,'stname':st_name},
+    dataType:'json',
+    success:function(result){    
+      //console.log(result.cms_list);
+      var comp_det = result.comp_det;
+      $(".comp_det").html(comp_det); 
+    }
+  });
+  app.preloader.hide();
+});
 // -------------------------------- L O G O U T -------------------------------- //
 function logOut(){
   checkConnection();

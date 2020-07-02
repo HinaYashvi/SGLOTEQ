@@ -229,6 +229,9 @@ a {
 .color-green{
   background-color: #008036!important;
 }
+.color-orange{
+  background-color: #F69000!important;
+}
 .sgl-orange{
   color: #F69000;
 }
@@ -563,7 +566,9 @@ div.container4 p {
 .pr-9p{
   padding-right:9%;
 }
-
+.list .item-link .item-inner:before{
+  content: none!important;
+}
 /*.data-table th:first-child,.data-table th.cell-label,.data-table td:first-child{
   f7-table-cell-padding-left: 0!important; 
   f7-table-cell-padding-right: 0!important;  
@@ -589,6 +594,6 @@ div.container4 p {
 .head img{height:30px;}
 .mb0{margin-bottom:0px;}
 .mt0{margin-top:0px;}
-.total{
+.total,.cms-right{
   text-align:right;
 }

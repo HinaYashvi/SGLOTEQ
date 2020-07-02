@@ -1,0 +1,109 @@
+<div data-name="add_cms" class="page pagebg_clr">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">Add complain</div>
+      <div class="right">
+        <a class="link panel-open" href="#" data-panel=".panel-right-2" onclick="menuload()"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">      
+    <form id="form_cms" class="form_cms">  
+      <div class="block">       
+        <div class="list no-hairlines-md">
+          <!--input type="hidden" name="hidd_dpr_id" id="hidd_dpr_id">
+          <input type="hidden" name="hidd_created" id="hidd_created">
+          <input type="hidden" name="hidd_sheetid" id="hidd_sheetid">
+          <input type="hidden" name="hidd_sess_user" id="hidd_sess_user">
+          <input type="hidden" name="hidd_slot_sel" id="hidd_slot_sel">
+          <input type="hidden" name="hidd_slot_sel_str" id="hidd_slot_sel_str"-->
+          <ul id="addcms " class="no-bg">
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Station<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="stations" id="stations" >
+                  </select>
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused w-100">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">SAP Notification</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="text" name="sap_notification" id="sap_notification" readonly>
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Complaint Equipment<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="comp_equip" id="comp_equip" >
+                  </select>
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Equipment Make<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="equip_make" id="equip_make" >
+                  </select>
+                </div>
+              </div>
+            </li>
+            
+            <li class="item-content item-input item-input-focused w-100">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Equipment No</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="text" name="equip_no" id="equip_no">
+                </div>
+              </div>
+            </li>
+
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Complaint Problem<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="comp_prob" id="comp_prob" >
+                  </select>
+                </div>
+              </div>
+            </li>           
+
+            <li class="item-content item-input item-input-focused w-100">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Complaint Details</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <textarea rows="4" name="comp_details" id="comp_details"></textarea>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="block">
+          <div class="row">
+            <div class="col-50"><button class="button col button button-fill color-black no-radius" type="button" onclick="cmsadd()" id="savecomp">Save</button></div>
+            <div class="col-50"><a class="button col button button-fill color-gray no-radius back" href="#" 
+            >back</a></div>
+          </div>
+        </div>
+      </div>    
+    </form>
+  </div>
+</div>

@@ -668,21 +668,7 @@ function addvstPage(){
 $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
   menuload();
   checkConnection();
-  var prev_page = page.detail.pageFrom.name;
   var qrcode_txt = page.detail.route.params.qr_code_txt;
-  var hidden_vehno = $("#hidden_vehno").val();
-  //alert(hidden_vehno);
-
-  var split_vehno = hidden_vehno.split("-");
-  var split_one = split_vehno[0];
-  var split_two = split_vehno[1];
-  var split_three = split_vehno[2];
-  var split_four = split_vehno[3];
-
-  $("#codeBox1").val(split_one);
-  $("#codeBox2").val(split_two);
-  $("#codeBox3").val(split_three);
-  $("#codeBox4").val(split_four);
   if(qrcode_txt==undefined || qrcode_txt=="null"){
     //alert("if----------");
     qrcode_txt='';
@@ -820,7 +806,6 @@ function onKeyUpEvent(index, event) {
 
 function onKeyUpEvent_noveh(index, event) {
   const eventCode = event.which || event.keyCode;
-  var hidd_qrtxt=$("#hidd_qrtxt").val();
   console.log(getCodeBoxElement_noveh(index).value.length);
   //if(index == '3'){var len = 3}else{ var len = 2}
 
@@ -854,7 +839,7 @@ function onKeyUpEvent_noveh(index, event) {
       getCodeBoxElement_noveh(index).blur();
       // Submit code
       console.log('submit code ');
-      searchByveh_noveh(hidd_qrtxt);
+      searchByveh_noveh();
     }
     /*if (index !== 4) {      
       getCodeBoxElement(index+ 1).focus();
@@ -880,9 +865,7 @@ function onFocusEvent_noveh(index) {
 function getCodeBoxElement_noveh(index) {
   return document.getElementById('codeBox'+index+"_"+index);
 }
-//function searchByveh_noveh(){
-function searchByveh_noveh(hidd_qrtxt){
-  //alert("searchByveh_noveh");
+function searchByveh_noveh(){
   var codeBox1 = $("#codeBox1_1").val();
   var codeBox2 = $("#codeBox2_2").val();
   var codeBox3 = $("#codeBox3_3").val();
@@ -958,8 +941,7 @@ function searchByveh_noveh(hidd_qrtxt){
           $(".vstdata").html('');
           if(veh_msg=='not_exist'){
             //mainView.router.navigate("/no_vehdata/null/"); 
-            //mainView.router.navigate("/add_vst/null/"); 
-            mainView.router.navigate("/add_vst/"+hidd_qrtxt+"/");
+            mainView.router.navigate("/add_vst/null/"); 
           }
         }      
         //mainView.router.navigate("/veh_search/"+parseData+"/");
@@ -970,22 +952,13 @@ function searchByveh_noveh(hidd_qrtxt){
   }
 }
 function gotonext_four_noveh(txtval){
-  var txtlen = txtval.value.length; 
-  var hidd_qrtxt = $("#hidd_qrtxt").val();
-  var codeBox1_1 = $("#codeBox1_1").val();
-  var codeBox2_2 = $("#codeBox2_2").val();
-  var codeBox3_3 = $("#codeBox3_3").val();
-  var codeBox4_4 = $("#codeBox4_4").val();
-  var veh_no = codeBox1_1+"-"+codeBox2_2+"-"+codeBox3_3+"-"+codeBox4_4;
-  vehno = codeBox1_1+codeBox2_2+codeBox3_3+codeBox4_4;
-  $("#hidden_vehno").val(veh_no);
+  var txtlen = txtval.value.length;  
   if(txtlen>5){
     $("#codeBox4_4").val('');
     //searchByveh();
     app.dialog.alert("Enter valid vehicle number");
   }else if(txtlen==4 || txtlen==5){    
-    //searchByveh_noveh();
-    searchByveh_noveh(hidd_qrtxt);
+    searchByveh_noveh();
   }
 }
 function upload_numplate(lastid,old_numplate,v_type,barcode_code){
@@ -1325,9 +1298,8 @@ function hidecard(){
   $("#codeBox2").val('');
   $("#codeBox3").val('');
   $("#codeBox4").val('');
-} 
+}
 function searchByveh(){
-  //alert("searchByveh");
   var codeBox1 = $("#codeBox1").val();
   var codeBox2 = $("#codeBox2").val();
   var codeBox3 = $("#codeBox3").val();
@@ -1403,7 +1375,7 @@ function searchByveh(){
           $(".vstdata").html('');
           if(veh_msg=='not_exist'){
             //mainView.router.navigate("/no_vehdata/null/"); 
-            //mainView.router.navigate("/add_vst/null/"); 
+            mainView.router.navigate("/add_vst/null/"); 
           }
         }      
         //mainView.router.navigate("/veh_search/"+parseData+"/");
