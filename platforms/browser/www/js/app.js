@@ -137,7 +137,7 @@ function logincheck(){
           //permissions.checkPermission(permissions, successCallback, errorCallback);
           var user_id = result.user_session[0].user_id;          
           var permissions = cordova.plugins.permissions;
-          /*window.plugins.sim.getSimInfo(function(res){
+          window.plugins.sim.getSimInfo(function(res){
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
             var imei_1 = res.cards[0].deviceId;
@@ -155,7 +155,7 @@ function logincheck(){
             //alert("error "+error);
             app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
             return false;
-          });  */
+          });  
           mainView.router.navigate("/dashboard/"); 
           window.localStorage.setItem("session_uid",result.user_session[0].user_id);
           window.localStorage.setItem("session_utype",result.user_session[0].user_type);
