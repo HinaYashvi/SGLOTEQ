@@ -66,8 +66,8 @@ function onDeviceReady() {
   //alert("HELLO");  
   pictureSource = navigator.camera.PictureSourceType;
   destinationType = navigator.camera.DestinationType;
-  //hasReadPermission(); // uncomment //
-  //requestReadPermission();   // uncomment //
+  hasReadPermission(); // uncomment //
+  requestReadPermission();   // uncomment //
 }
 function onBackKeyDown() {
   checkConnection(); 
@@ -1013,7 +1013,10 @@ function upload_numplate(lastid,old_numplate,v_type,barcode_code){
   var actual_imgname1 = split_imgfilename[0];
   var img_filename1 = actual_imgname1.split('%20').join('_');
   //var test="img/gallery.png";
-  var uploadControllerURL_noplate = base_url+"APP/Appcontroller/photoupload_numplate/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_numplate+"/"+img_filename1;
+  //var uploadControllerURL_noplate = base_url+"APP/Appcontroller/photoupload_numplate/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_numplate+"/"+img_filename1;
+
+   var uploadControllerURL_noplate = base_url+"APP/Appcontroller/photoupload_numplate/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_numplate+"/"+img_filename1+"/"+barcode_code;
+
  //var uploadControllerURL = base_url+"APP/Appcontroller/photoupload_metal/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_metalplate+"/"+test;  
   //alert(uploadControllerURL);
   //console.log(uploadControllerURL);    
@@ -1045,7 +1048,10 @@ function upload_metalplate(lastid,old_metalplate,v_type,barcode_code){
   var actual_imgname1 = split_imgfilename[0];
   var img_filename1 = actual_imgname1.split('%20').join('_');
   //var test="img/gallery.png";
-  var uploadControllerURL = base_url+"APP/Appcontroller/photoupload_metal/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_metalplate+"/"+img_filename1;
+  //var uploadControllerURL = base_url+"APP/Appcontroller/photoupload_metal/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_metalplate+"/"+img_filename1;
+
+  var uploadControllerURL = base_url+"APP/Appcontroller/photoupload_metal/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_metalplate+"/"+img_filename1+"/"+barcode_code;
+
  //var uploadControllerURL = base_url+"APP/Appcontroller/photoupload_metal/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_metalplate+"/"+test;  
   //alert(uploadControllerURL);
   //console.log(uploadControllerURL);    
@@ -1074,7 +1080,10 @@ function upload_rcbook(lastid,old_rcbook,v_type,barcode_code){
   var ft = new FileTransfer();
   var actual_imgname1 = split_imgfilename[0];
   var img_filename1 = actual_imgname1.split('%20').join('_');
-  var uploadControllerURL_RC = base_url+"APP/Appcontroller/photoupload_RC/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_rcbook+"/"+img_filename1; 
+  //var uploadControllerURL_RC = base_url+"APP/Appcontroller/photoupload_RC/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_rcbook+"/"+img_filename1; 
+
+  var uploadControllerURL_RC = base_url+"APP/Appcontroller/photoupload_RC/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_rcbook+"/"+img_filename1+"/"+barcode_code;
+
   //console.log(uploadControllerURL_RC);
   ft.upload(imageURI,uploadControllerURL_RC, win, fail, options,true);
 }
@@ -1100,7 +1109,10 @@ function upload_form24(lastid,old_from24,v_type,barcode_code){
   var ft = new FileTransfer();
   var actual_imgname2 = split_imgfilename[0];
   var img_filename2 = actual_imgname2.split('%20').join('_');
-  var uploadControllerURL_form24 = base_url+"APP/Appcontroller/photoupload_form24/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_from24+"/"+img_filename2; 
+  //var uploadControllerURL_form24 = base_url+"APP/Appcontroller/photoupload_form24/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_from24+"/"+img_filename2; 
+
+  var uploadControllerURL_form24 = base_url+"APP/Appcontroller/photoupload_form24/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_from24+"/"+img_filename2+"/"+barcode_code;
+
   //alert(uploadControllerURL_form24);
   //console.log(uploadControllerURL_form24);
   ft.upload(imageURI,uploadControllerURL_form24, win, fail, options,true);
@@ -1325,7 +1337,7 @@ function hidecard(){
   $("#codeBox2").val('');
   $("#codeBox3").val('');
   $("#codeBox4").val('');
-}
+} 
 function searchByveh(){
   //alert("searchByveh");
   var codeBox1 = $("#codeBox1").val();
