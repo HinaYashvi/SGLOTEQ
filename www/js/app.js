@@ -711,7 +711,7 @@ $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
 });
 function vstadd(){
   checkConnection();
-  
+  var session_uid = window.localStorage.getItem("session_uid");
   var form_vst = $("#form_vst").serialize();
   //var v_type = $('input[name="vtype"]').val();
   var v_type = $("#vtype").val();
@@ -754,17 +754,17 @@ function vstadd(){
     $.ajax({
       type:'POST', 
       url:base_url+'APP/Appcontroller/addVST',
-      data:form_vst,
+      data:form_vst+"&session_uid="+session_uid,
       success:function(lastid){
         upload_metalplate(lastid,old_metalplate,v_type,barcode_code);
         upload_rcbook(lastid,old_rcbook,v_type,barcode_code);
         upload_form24(lastid,old_from24,v_type,barcode_code);
         upload_numplate(lastid,old_numplate,v_type,barcode_code);
         //mainView.router.navigate("/vst_submited/");
+        app.preloader.hide();
         mainView.router.navigate("/vst_submited/"+hidd_vehno+"/");
       }    
-    });
-    app.preloader.hide();
+    });    
   }
    
 }
