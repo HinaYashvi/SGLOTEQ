@@ -66,11 +66,12 @@ function onDeviceReady() {
   //alert("HELLO");  
   pictureSource = navigator.camera.PictureSourceType;
   destinationType = navigator.camera.DestinationType;
-  hasReadPermission(); // uncomment //
-  requestReadPermission();   // uncomment //
+  //hasReadPermission(); // uncomment //
+  //requestReadPermission();   // uncomment //
 }
 function onBackKeyDown() {
   checkConnection(); 
+  //alert(app.views.main.router.history.length==2);
   if(app.views.main.router.history.length==2 || app.views.main.router.url=='/'){
     app.dialog.confirm('Do you want to Exit ?', function () {
       navigator.app.clearHistory(); navigator.app.exitApp();
@@ -137,7 +138,7 @@ function logincheck(){
           //permissions.checkPermission(permissions, successCallback, errorCallback);
           var user_id = result.user_session[0].user_id;          
           var permissions = cordova.plugins.permissions;
-          window.plugins.sim.getSimInfo(function(res){
+          /*window.plugins.sim.getSimInfo(function(res){
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
             var imei_1 = res.cards[0].deviceId;
@@ -155,7 +156,7 @@ function logincheck(){
             //alert("error "+error);
             app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
             return false;
-          });  
+          });*/  
           mainView.router.navigate("/dashboard/"); 
           window.localStorage.setItem("session_uid",result.user_session[0].user_id);
           window.localStorage.setItem("session_utype",result.user_session[0].user_type);
@@ -1301,7 +1302,7 @@ function getPhoto_noplt(source){
     destinationType: destinationType.FILE_URI,
     sourceType: source
   });
-}
+} 
 function onPhotoURISuccess_noplt(imageURI_gallery_noplt){
   checkConnection();  
   var galleryImage_noplt = document.getElementById('image_noplt');
@@ -1311,7 +1312,99 @@ function onPhotoURISuccess_noplt(imageURI_gallery_noplt){
   $("#imageblock_noplt").addClass("display-block");
   galleryImage_noplt.src = imageURI_gallery_noplt;
 }
-function onFail(message) {
+function capturePhoto_cms() {
+  checkConnection();   
+  navigator.camera.getPicture(onPhotoDataSuccess_cms, onFail, {
+  quality: 100,
+  targetWidth: 600,
+  targetHeight: 600,
+  destinationType: destinationType.FILE_URI,
+  //saveToPhotoAlbum: true
+  saveToPhotoAlbum: false,
+  correctOrientation: true,
+  }); 
+}
+function onPhotoDataSuccess_cms(imageURI){
+  checkConnection();  
+  var cameraImage = document.getElementById('image_cms_0');
+  //alert(cameraImage);
+  //cameraImage.style.display = 'block';
+  $("#imageblock_cms_0").removeClass("display-none");
+  $("#imageblock_cms_0").addClass("display-block");
+  cameraImage.src = imageURI;
+}
+function onPhotoDataSuccess_cms(imageURI){
+  checkConnection();  
+  var cameraImage = document.getElementById('image_cms_0');
+  //alert(cameraImage);
+  //cameraImage.style.display = 'block';
+  $("#imageblock_cms_0").removeClass("display-none");
+  $("#imageblock_cms_0").addClass("display-block");
+  cameraImage.src = imageURI;
+}
+function getPhoto_cms(source) {
+  checkConnection();    
+  navigator.camera.getPicture(onPhotoURISuccess_cms, onFail, {
+    quality: 100,
+    correctOrientation: 1,
+    targetWidth: 600,
+    targetHeight: 600,
+    destinationType: destinationType.FILE_URI,
+    sourceType: source
+  });
+}  
+function onPhotoURISuccess_cms(imageURI_gallery1) {
+  checkConnection();  
+  var galleryImage_cms = document.getElementById('image_cms_0');
+  //galleryImage_cms.style.display = 'block';
+  $("#imageblock_cms_0").removeClass("display-none");
+  $("#imageblock_cms_0").addClass("display-block");
+  galleryImage_cms.src = imageURI_gallery1;
+}
+function capturePhoto_cms_adddiv(divid){
+  checkConnection();   
+  var options = {
+    quality: 100,
+    targetWidth: 600,
+    targetHeight: 600,
+    destinationType: destinationType.FILE_URI,
+    //saveToPhotoAlbum: true
+    saveToPhotoAlbum: false,
+    correctOrientation: true,
+  };
+  navigator.camera.getPicture(function(imageData){
+    onPhotoDataSuccess_cms_adddiv(imageData,divid);
+  }, onFail, options);
+}
+function onPhotoDataSuccess_cms_adddiv(imageURI,divid){
+  checkConnection();  
+  var cameraImage = document.getElementById('image_cms_'+divid);
+  $("#imageblock_cms_"+divid).removeClass("display-none");
+  $("#imageblock_cms_"+divid).addClass("display-block");
+  cameraImage.src = imageURI;
+}
+function getPhoto_cms_adddiv(source,divid){
+  checkConnection();  
+  var options = {
+    quality: 100,
+    correctOrientation: 1,
+    targetWidth: 600,
+    targetHeight: 600,
+    destinationType: destinationType.FILE_URI,
+    sourceType: source
+  };
+  navigator.camera.getPicture(function(imageData) {
+    onPhotoURISuccess_cms_adddiv(imageData,divid);
+  }, onFail, options);
+}
+function onPhotoURISuccess_cms_adddiv(imageURI_gallery1,divid){
+  checkConnection();  
+  var galleryImage_cms = document.getElementById('image_cms_'+divid);
+  $("#imageblock_cms_"+divid).removeClass("display-none");
+  $("#imageblock_cms_"+divid).addClass("display-block");
+  galleryImage_cms.src = imageURI_gallery1;
+}
+function onFail(message){
   checkConnection();  
   app.dialog.alert('Failed because: ' + message);
 }
@@ -18512,6 +18605,7 @@ function jmr_approve(jmr_ID){
 $(document).on('page:init', '.page[data-name="cms"]', function (page) {
   menuload();
   checkConnection();
+  $(".bell_icon_cms").hide();
   //var prevPageName = page.el.prev('.page').attr('data-name');
   //var prevPageName = page.$el.prev('.page').attr('data-name');
   //console.log(page.detail);
@@ -18562,17 +18656,48 @@ $(document).on('page:init', '.page[data-name="cms"]', function (page) {
   //getDPRList(prev_page,c_mnth,c_year);
   getCMSList(prev_page);
 });
-function getCMSList(prev_page){
+function getPendingComps(){
+  checkConnection();
   app.preloader.show();
   var session_uid = window.localStorage.getItem("session_uid");
   var sess_designation = window.localStorage.getItem("sess_designation");
   var session_utype = window.localStorage.getItem("session_utype");
+  var session_stid = window.localStorage.getItem("session_stid");
+  mainView.router.navigate("/pending_cms/");
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/getPendingCMSlist',
+    data:{'session_uid':session_uid,'sess_designation':sess_designation,'session_utype':session_utype,'session_stid':session_stid},
+    dataType:'json',
+    success:function(result){    
+      //console.log(result.cms_list);
+      var pending_cmsList = result.cms_list;
+      var pending_cnts = result.pending_cnts;
+      //if(pending_cnts >=1){
+        $(".bgcnt_pending").html("<span class='badge rd-badge bell_badge'>"+pending_cnts+"</span>");
+        $(".bell_icon_cms").show();
+      //}else{
+      //  $(".bell_icon_cms").hide();
+      //}
+      $("#pending_cms_list").html(pending_cmsList); 
+      $(".totalpending_cms").html("Total Records: ("+pending_cnts+")");
+    }
+  });
+  app.preloader.hide();
+}
+function getCMSList(prev_page){
+  checkConnection();
+  app.preloader.show();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var session_utype = window.localStorage.getItem("session_utype");
+  var session_stid = window.localStorage.getItem("session_stid");
   if(prev_page=='add_cms'){
     //console.log("FORM "+prev_page);
     var station_id = null;
     var cms_month = $("#cms_month").val();
     var cms_year = $("#cms_year").val();
-    console.log("======"+station_id+"----"+cms_month+"-----"+cms_year);
+    //console.log("======"+station_id+"----"+cms_month+"-----"+cms_year);
   }else{
     var station_id = $("#station_cms_lists").val();
     if(station_id==''){
@@ -18582,22 +18707,30 @@ function getCMSList(prev_page){
     }
     var cms_month = $("#cms_month").val();
     var cms_year = $("#cms_year").val();
-    console.log(station_id+"----"+cms_month+"-----"+cms_year);
+    //console.log(station_id+"----"+cms_month+"-----"+cms_year);
   }
   $.ajax({
     type:'POST',  
     url:base_url+'APP/Appcontroller/getCMSlist',
-    data:{'session_uid':session_uid,'sess_designation':sess_designation,'station_id':station_id,'cms_month':cms_month,'cms_year':cms_year,'session_utype':session_utype},
+    data:{'session_uid':session_uid,'sess_designation':sess_designation,'station_id':station_id,'cms_month':cms_month,'cms_year':cms_year,'session_utype':session_utype,'session_stid':session_stid},
     dataType:'json',
     success:function(result){    
       //console.log(result.cms_list);
       var cmsList = result.cms_list;
       var total_cms = result.total_cms;
+      var pending_cnts = result.pending_cnts;
+      //alert(pending_cnts);
       if(total_cms==undefined){
         total_cms=0;
       }else{
         total_cms=total_cms;
       }
+      //if(pending_cnts >=1){
+        $(".bgcnt_pending").html("<span class='badge rd-badge bell_badge'>"+pending_cnts+"</span>");
+        $(".bell_icon_cms").show();
+      //}else{
+      //  $(".bell_icon_cms").hide();
+      //}
       $("#cms_list").html(cmsList); 
       $(".total_cms").html("Total Records: ("+total_cms+")");
     }
@@ -18662,12 +18795,12 @@ function cmsadd(){
     });
   }
 }
-function getcmsdetails(c_id,stname){
-  app.preloader.show();
+function getcmsdetails(c_id,stname,complainer_nm,status,clr){
+  app.preloader.show();   
   var session_uid = window.localStorage.getItem("session_uid");
   var sess_designation = window.localStorage.getItem("sess_designation");
   var session_utype = window.localStorage.getItem("session_utype");
-  mainView.router.navigate("/cms_details/"+c_id+"/"+stname+"/");
+  mainView.router.navigate("/cms_details/"+c_id+"/"+stname+"/"+complainer_nm+"/"+status+"/"+clr+"/");
   app.preloader.hide();
 }
 $(document).on('page:init', '.page[data-name="cms_details"]', function (page) {
@@ -18676,19 +18809,242 @@ $(document).on('page:init', '.page[data-name="cms_details"]', function (page) {
   app.preloader.show();
   var c_id = page.detail.route.params.c_id; 
   var st_name = page.detail.route.params.st_name; 
+  var complainer_nm = page.detail.route.params.complainer_nm;
+  var status = page.detail.route.params.status;
+  var clr = page.detail.route.params.clr;
   $.ajax({
     type:'POST',  
     url:base_url+'APP/Appcontroller/getcmsdata',
-    data:{'c_id':c_id,'stname':st_name},
+    data:{'c_id':c_id,'stname':st_name,'complainer_nm':complainer_nm,'status':status,'clr':clr},
     dataType:'json',
     success:function(result){    
       //console.log(result.cms_list);
       var comp_det = result.comp_det;
+      var html = result.html;
       $(".comp_det").html(comp_det); 
+      $(".replace_tbl").html(html);
     }
   });
   app.preloader.hide();
 });
+function editcomplain(c_id){
+  checkConnection();
+  mainView.router.navigate("/edit_cms/"+c_id+"/");
+}
+$(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
+  menuload();
+  checkConnection();  
+  var c_id = page.detail.route.params.c_id;
+  var session_utype = window.localStorage.getItem("session_utype");
+  var session_stid = window.localStorage.getItem("session_stid");  
+  app.preloader.show();
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/editcmsdata',
+    data:{'c_id':c_id,'session_utype':session_utype,'session_stid':session_stid},
+    dataType:'json',
+    success:function(result){    
+      //console.log(result.cms_list);            
+      var edit_cmt_det = result.edit_cmt_det;
+      $(".editcms_form").html(edit_cmt_det);
+      var calendarModal_edit = app.calendar.create({
+        inputEl: '#start_dt_edit',
+        openIn: 'customModal',
+        dateFormat: 'dd-mm-yyyy',
+        header: true,
+        footer: true,
+        renderToolbar: function () {   
+          return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
+        }
+      });
+
+      
+      app.preloader.hide(); 
+    }
+  }); 
+});
+function cmsedit(){
+  checkConnection();
+  app.preloader.show();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var form_cms_edit = $(".form_cms_edit").serialize();
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/editcms',
+    data:form_cms_edit+"&session_uid="+session_uid,
+    success:function(result){
+      var parseupdate = $.parseJSON(result);
+      var msg = parseupdate.msg;
+      if(msg=='updated'){
+        app.dialog.alert("Complain updated successfully!");
+        mainView.router.navigate("/cms/");
+      }
+    }
+  });
+  app.preloader.hide();
+}
+
+function receive_comp(complain_id){
+  checkConnection();
+  app.preloader.show();
+  mainView.router.navigate("/receive_cms/");
+  var session_uid = window.localStorage.getItem("session_uid");
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/receive_cms',
+    data:{'session_uid':session_uid,'complain_id':complain_id},
+    success:function(result){
+      var parse_res = $.parseJSON(result);
+      var msg = parse_res.msg;
+      var receive_comp = parse_res.receive_comp;
+      /*if(msg=='received'){
+        app.dialog.alert("Complaint Received!");
+      }*/
+      $(".receive_comp").html(receive_comp);
+    },
+    /*complete: function (data) {
+      $(".tab_logic").hide();
+    }*/
+  });
+  app.preloader.hide();
+}
+function show_block(chkd){
+  if($(chkd).prop('checked') === true){
+    $(".tab_logic").show();
+    $(".divname input").prop('required',true);
+    $(".divname select").prop('required',true);
+  }else{
+    $(".tab_logic").hide();
+  }
+}
+function getotherparts(divid){
+  checkConnection();
+  app.preloader.show();
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/otherparts',    
+    success:function(result){
+      var parseRes = $.parseJSON(result);
+      var complain_part = parseRes.complain_part;
+      var sel_vals='';
+      sel_vals+='<option value="">--- SELECT ---</option>';
+      for(var i=0;i<complain_part.length;i++){
+        var part_name = complain_part[i].part_name;
+        sel_vals+='<option value="'+part_name+'">'+part_name+'</option>';
+      }
+      $(".other_part_"+divid).html(sel_vals);
+    }
+  })
+  app.preloader.hide();
+}
+var i=1;
+var divhtml='';
+function addrow(){
+  $(".addr"+i).html('<div class="card mt0"><div class="card-content card-content-padding"><div class="list accordion-list"><ul><li class="accordion-item elevation-9 accordion-item-opened" style="background-color: lightgrey!important"><a href="#" class="item-content item-link"><div class="item-inner"><!--div class="item-title text-uppercase fs-14">replace item - '+(i+1)+'</div--><div class="item-title text-uppercase fs-14">replace item</div><div class="item-title text-uppercase float-right"><span class="fs-12"></span></div></div></a><div class="accordion-item-content" style="background-color: #fff;"><div class="block p-5"><div class="row"><div class="col-90 item-title text-uppercase fs-14 float-left" ></div><div class="col-10 item-title text-uppercase fs-14 float-right" ><i class="txtrd fw-600 f7-icons mr-20 fs-20" onclick="dltdiv('+i+')">trash</i></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">sap code <label class="item-checkbox item-content"><input type="checkbox" name="na_sap_check[]" id="na_sap_check_'+i+'" onchange="readonly_saptxt(this,'+i+')"/><i class="icon icon-checkbox"></i><div class="item-inner"><div class="item-title">NA</div></div></label></span></div><div class="col-60 rep_txt"><input type="text" name="sap_code[]" id="sap_code_'+i+'" class="sapcode" required /></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">Part<label class="item-checkbox item-content"><input type="checkbox" name="other_part_check[]" id="other_part_check_'+i+'" onchange="show_oparttxt(this,'+i+')"/><i class="icon icon-checkbox"></i><div class="item-inner min-w-auto"><div class="item-title">Other</div></div></label></span></div><div class="col-60 rep_txt hideselpart_'+i+'"><select class="form-control otherpart_sel" name="other_part[]" id="other_part_'+i+'" required></select></div>    <div class="col-60 rep_txt txthidepart hidetxtpart_'+i+'"><input type="text" name="other_part[]" id="other_part_'+i+'" /></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">Make<label class="item-checkbox item-content"><input type="checkbox" name="other_make_check[]" id="other_make_check_'+i+'" onchange="show_maketxt(this,'+i+')"/><i class="icon icon-checkbox"></i><div class="item-inner min-w-auto"><div class="item-title">Other</div></div></label></span></div><div class="col-60 rep_txt hideselmake_'+i+'"><select class="form-control othermake_sel" name="other_make[]" id="other_make_'+i+'" required></select></div>      <div class="col-60 rep_txt txthidemake hidetxtmake_'+i+'"><input type="text" name="other_make[]" id="other_make_'+i+'" required /></div></div><div class="row"><div class="col-20 mt-10"><span class="">UOM</span></div><div class="col-80 rep_txt"><input type="text" name="uom[]" id="uom_'+i+'" /></div></div><div class="row"><div class="col-20 mt-10"><span class="">QTY</span></div><div class="col-80 rep_txt"><input type="number" name="qty[]" id="qty_'+i+'" /></div></div><br/><div class="list"><ul><li class="item-content item-input showtwoBlocks"><div class="item-inner"><span class="item-title item-label floatlbl_placeholder mb-15">Image</span><div class="item-input-wrap"><div class="uploadDiv w-100 "><div class="col-100"><div class="row"><div class="20"></div><div class="col-50 picbox text-white" ><span onclick="capturePhoto_cms_adddiv('+i+');" ><div class="innerDiv"><img src="img/photo-camera-1.png" height="30" width="30" /><br/><span class="picbox-text">Capture</span></span></div></div><div class="col-50 picbox text-white" ><a onclick="getPhoto_cms_adddiv(pictureSource.PHOTOLIBRARY,'+i+');"><div class="innerDiv"><img src="img/gallery.png" height="30" width="30" /><br/><span class="picbox-text">Photo Gallery</span></div></a></div><div class="20"></div></div></div></div></div></li><li class="item-content item-input imageblock_cms_'+i+' display-none" style="width:100%;" id="imageblock_cms_'+i+'"><div class="item-inner"><div class="item-input-wrap"><img id="image_cms_'+i+'" src="" class="" style="width:100%;"></div></div></li></ul></div></div><!--- block p-5 --></div><!--- accordion-item-content --></li></ul></div><!--- list accordion-list --></div><!--- card-content --></div><!-- first_block -->');  
+      $.ajax({
+        type:'POST',  
+        url:base_url+'APP/Appcontroller/otherparts',    
+        success:function(result){
+          var parseRes = $.parseJSON(result);
+          var complain_part = parseRes.complain_part;
+          var company = parseRes.company;
+          var sel_vals='';
+          var sel_comp='';
+          sel_vals+='<option value="">--- SELECT ---</option>';
+          for(var i1=0;i1<complain_part.length;i1++){
+            var part_name = complain_part[i1].part_name;
+            sel_vals+='<option value="'+part_name+'">'+part_name+'</option>';
+          }
+          $(".otherpart_sel").html(sel_vals);
+
+          sel_comp+='<option value="">--- SELECT ---</option>';
+          for(var i2=0;i2<company.length;i2++){
+            var comp_name = company[i2].comp_name;
+            sel_comp+='<option value="'+comp_name+'">'+comp_name+'</option>';
+          }
+          $(".othermake_sel").html(sel_comp);
+        }
+      });
+    $(".txthidepart").hide(); 
+    $(".txthidemake").hide();  
+    $('#tab_logic').append('<div class="addr'+(i+1)+' mt-5 divname"></tr>');
+    i++; 
+   // n++;
+}
+function dltdiv(divid){
+  $(".addr"+(divid)).html('');
+  divid--;
+}
+function readonly_saptxt(obj,divid){
+  if($(obj).prop('checked') === true){
+    $("#sap_code_"+divid).val('NA');
+    $("#sap_code_"+divid).prop('readonly',true);
+    $("#sap_code_"+divid).addClass("readonly");
+  }else{
+    $("#sap_code_"+divid).val('');
+    $("#sap_code_"+divid).prop('readonly',false);
+    $("#sap_code_"+divid).removeClass("readonly");
+  }
+}
+function show_oparttxt(obj,divid){
+  if($(obj).prop('checked') === true){
+    $(".hideselpart_"+divid).hide();
+    $(".hidetxtpart_"+divid).show();
+
+    $(".hideselpart_"+divid+" select").prop('disabled',true);
+    $(".hidetxtpart_"+divid+" input").prop('disabled',false);
+
+    $(".hidetxtpart_"+divid+" input").prop('required',true);
+    $(".hideselpart_"+divid+" select").prop('required',false);
+
+  }else{
+    $(".hideselpart_"+divid).show(); 
+    $(".hidetxtpart_"+divid).hide();
+
+    $(".hideselpart_"+divid+" select").prop('disabled',false);
+    $(".hidetxtpart_"+divid+" input").prop('disabled',true);
+
+    $(".hidetxtpart_"+divid+" input").prop('required',false);
+    $(".hideselpart_"+divid+" select").prop('required',true);
+  }
+}
+function show_maketxt(obj,divid){
+  if($(obj).prop('checked') === true){
+    $(".hideselmake_"+divid).hide();
+    $(".hidetxtmake_"+divid).show();
+
+    $(".hideselmake_"+divid+" select").prop('disabled',true);
+    $(".hidetxtmake_"+divid+" input").prop('disabled',false);
+
+    $(".hidetxtmake_"+divid+" input").prop('required',true);
+    $(".hideselmake_"+divid+" select").prop('required',false);
+
+  }else{
+    $(".hideselmake_"+divid).show(); 
+    $(".hidetxtmake_"+divid).hide();
+
+    $(".hideselmake_"+divid+" select").prop('disabled',false);
+    $(".hidetxtmake_"+divid+" input").prop('disabled',true);
+
+    $(".hidetxtmake_"+divid+" input").prop('required',false);
+    $(".hideselmake_"+divid+" select").prop('required',true);
+  }
+}
+function edit_cms(){
+  checkConnection();
+  app.preloader.show();
+  var form_cms_receive = $(".form_cms_receive").serialize();
+  console.log(form_cms_receive);
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/technical_comp_update',
+    data:form_cms_receive,   
+    success:function(result){
+      //alert(result);  
+    }
+  });
+  app.preloader.hide();
+}
 // -------------------------------- L O G O U T -------------------------------- //
 function logOut(){
   checkConnection();

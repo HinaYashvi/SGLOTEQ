@@ -188,6 +188,9 @@ a {
 .mb-2{
   margin-bottom: 2px;
 }
+.mb-5p{
+  margin-bottom: 5%;
+}
 .login-button {
     /*margin: 0 auto;
     margin:0 45px 0 45px;*/
@@ -225,6 +228,9 @@ a {
 }
 .txtrd{
   color: #800000!important;
+}
+.txtgreen{
+  color: #008036!important;
 }
 .color-green{
   background-color: #008036!important;
@@ -297,6 +303,9 @@ div.container4 p {
 .ml-12p{
     margin-left: 12%!important;
 }
+.ml-25p{
+    margin-left: 25%!important;
+}
 .over_scroll{
     overflow: scroll!important;
 }
@@ -333,6 +342,12 @@ div.container4 p {
 .mr-10{
   margin-right: 10px;
 }
+.mr-20{
+  margin-right: 20px;
+}
+.readonly{
+  background-color: lightgray!important;
+}
 .fs-11{
   font-size: 11px!important;
 }
@@ -363,11 +378,19 @@ div.container4 p {
 .mt-6{
   margin-top: 6%!important;
 }
+.mt-7p{
+  margin-top: 7%!important;
+}
 .w-100{
     width: 100%;
 }
 .uploadDiv{
   height: 150px;
+}
+.ui-timepicker-standard{
+  z-index: 9999!important;
+  overflow: auto;
+    overflow-x: scroll;
 }
 .picbox{
   /*background-color: #d6d6ff!important;
@@ -405,6 +428,9 @@ div.container4 p {
 }
 .td_border{
   border: 1px solid #000;
+}
+.p-5{
+  padding: 5%;
 }
 .pl-8p{
   padding-left: 8px!important;
@@ -548,7 +574,9 @@ div.container4 p {
 .color-sgl-green{
   color: #018137;
 }
-
+.tbl-border{
+  border: 1px solid darkgray;
+}
 .jmrdata th{
   padding-right: 0px!important;
   background-color: #cfebff!important;
@@ -562,6 +590,15 @@ div.container4 p {
   padding-right: 18px!important;
   padding-left: 18px!important;
   color: #000;
+}
+.rep_txt{
+  margin-top: 8%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 2px;
+}
+.min-w-auto{
+  min-width: auto!important;
 }
 .pr-9p{
   padding-right:9%;

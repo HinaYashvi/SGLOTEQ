@@ -149,8 +149,24 @@ var routes = [
     name: 'add_cms',
   },
   {
-    path: '/cms_details/:c_id/:st_name/',
-    url: './cms/cms_details.html?c_id={{c_id}}/st_name={{st_name}}',
+    path: '/cms_details/:c_id/:st_name/:complainer_nm/:status/:clr/',
+    url: './cms/cms_details.html?c_id={{c_id}}/st_name={{st_name}}/complainer_nm={{complainer_nm}}/status={{status}}/clr={{clr}}',
     name: 'cms_details',
   },
+  {
+    path: '/edit_cms/:c_id/',
+    url: './cms/edit_cms.html?c_id={{c_id}}',
+    name: 'edit_cms',
+  },
+  {
+    path: '/pending_cms/',
+    url: './cms/pending_cms.html',
+    name: 'pending_cms',
+  },
+  {
+    path: '/receive_cms/',
+    url: './cms/receive_cms.html',
+    name: 'receive_cms',
+  },
+
 ];
