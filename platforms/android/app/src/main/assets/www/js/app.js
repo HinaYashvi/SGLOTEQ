@@ -310,6 +310,7 @@ function dltcorr(dc_id){
 } 
 $(document).on('page:init', '.page[data-name="dpr_view_complain"]', function (page) {
   checkConnection();
+  app.panel.close();
   menuload();  
   var sess_designation = window.localStorage.getItem("sess_designation");
   var dc_id = page.detail.route.params.dc_id;
@@ -374,23 +375,29 @@ function menuload(){
 
   if(sess_designation == 'SGL EIC'){
     if(sess_module_name==='dpr'){
-      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/dpr/"><i class="f7-icons fs-16 mr-5">chart_bar_alt_fill</i>DPR KPI Report</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/dpr/"><i class="f7-icons fs-16 mr-5">chart_bar_alt_fill</i>DPR KPI Report</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='vst'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='jmr'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+    }
+    if(sess_module_name==='cms'){
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/cms/"><i class="f7-icons fs-16 mr-5">house_fill</i>Complaints</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
   }else{
     if(sess_module_name==='dpr'){
-      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='vst'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='jmr'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+    }
+    if(sess_module_name==='cms'){
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/cms/"><i class="f7-icons fs-16 mr-5">house_fill</i>Complaints</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
   }
   $(".menulist").html(menulist);
@@ -410,6 +417,7 @@ function menuload(){
 $(document).on('page:init', '.page[data-name="index"]', function (e) {
   //console.log(e);
   menuload();
+  app.panel.close();
   /*var calendarModal_dpr = app.calendar.create({    
     inputEl: '#demo-calendar-modal-dpr',
     openIn: 'customModal',
@@ -427,6 +435,7 @@ $(document).on('page:init', '.page[data-name="index"]', function (e) {
 $(document).on('page:init', '.page[data-name="vst"]', function (e) {
   //console.log(e);
   menuload();
+  app.panel.close();
 });
 function scanQR(){
   cordova.plugins.barcodeScanner.scan(function (result) {
@@ -588,6 +597,7 @@ function scan_qr(){
 }
 $(document).on('page:init', '.page[data-name="recheckQR"]', function (page) {
   menuload();
+  app.panel.close();
   var qr_code = page.detail.route.params.qr_code;
   var hidd_vehno = page.detail.route.params.hidd_vehno;
   $.ajax({
@@ -624,7 +634,7 @@ $(document).on('page:init', '.page[data-name="recheckQR"]', function (page) {
           var split_duedt = hydrotest_due_date.split("-");
           var due_yr = split_duedt[0];
           var due_mm = split_duedt[1];
-          var due_dd = split_duedt[2];
+          var due_dd = split_duedt[2]; 
           var hydro_due_dt = due_dd+" - "+due_mm+" - "+due_yr;
           vst_html+='<div class="block-title">Name of Owner / Driver</div><div class="block"><p class="text-uppercase">'+owner_name+'</p></div><div class="block-title">Mobile No</div><div class="block"><p class="text-uppercase">'+mobile_one+'</p></div><div class="block-title">Vehicle No</div><div class="block"><p class="text-uppercase">'+vehicle_no+'</p></div><div class="block-title">Hydrotest Due Date</div><div class="block"><p class="text-uppercase">'+hydro_due_dt+'</p></div>';
           if(veh_msg=='allow'){
@@ -649,6 +659,7 @@ $(document).on('page:init', '.page[data-name="recheckQR"]', function (page) {
 });
 $(document).on('page:init', '.page[data-name="no_vehdata"]', function (page) {
   menuload();
+  app.panel.close();
   var qr_code = page.detail.route.params.qr_code;
   $("#hidd_qrtxt").val(qr_code);
 });
@@ -668,6 +679,7 @@ function addvstPage(){
 }
 $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
   menuload();
+  app.panel.close();
   checkConnection();
   var prev_page = page.detail.pageFrom.name;
   var qrcode_txt = page.detail.route.params.qr_code_txt;
@@ -771,6 +783,7 @@ function vstadd(){
 }
 $(document).on('page:init', '.page[data-name="vst_submited"]', function (page) {
   menuload();
+  app.panel.close();
   checkConnection();  
   app.preloader.show(); 
   var hidd_vehno = page.detail.route.params.hidd_vehno; 
@@ -1125,20 +1138,25 @@ function upload_form24(lastid,old_from24,v_type,barcode_code){
 }
 function win(r) { 
   //alert("in win ");
-  //console.log("r = "+r);
-  checkConnection();       
+  //document.writeln("r = "+r);
+   
+  checkConnection();         
   var responseCode = r.responseCode;
   //alert(responseCode+" responseCode");
+  //alert("r = "+JSON.stringify(r));
+  //document.writeln("r = "+JSON.stringify(r));
   if(responseCode==200){     
     app.dialog.close();  
   } 
 }
 function fail(error) {
-  //alert("in fail "+error); 
+  //alert("in fail");
+ // alert(error);
+  //alert("error code "+error.code); 
   checkConnection();  
-  //app.dialog.alert("An error has occurred: Code = " + error.code);
-  //app.dialog.alert("upload error source " + error.source);
-  //app.dialog.alert("upload error target " + error.target);
+  app.dialog.alert("An error has occurred: Code = " + error.code);
+  app.dialog.alert("upload error source " + error.source);
+  app.dialog.alert("upload error target " + error.target);
 }
 // ------------------------------------ BROWSE/CAPTURE IMAGE ------------------------------------------ //
 function capturePhoto() {
@@ -1527,6 +1545,7 @@ function searchByveh(){
 $(document).on('page:init', '.page[data-name="veh_exists"]', function (page) {
   menuload();
   checkConnection();  
+  app.panel.close();
   app.preloader.show(); 
   var veh_no = page.detail.route.params.veh_no; 
   $("#hidd_vehno").val(veh_no);
@@ -1534,6 +1553,7 @@ $(document).on('page:init', '.page[data-name="veh_exists"]', function (page) {
 });
 $(document).on('page:init', '.page[data-name="veh_search"]', function (page) {
   menuload();
+  app.panel.close();
   checkConnection();  
   app.preloader.show(); 
   var veh_msg = page.detail.route.params.veh_msg;  
@@ -1580,6 +1600,7 @@ $(document).on('page:init', '.page[data-name="veh_search"]', function (page) {
 $(document).on('page:init', '.page[data-name="dpr"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   app.preloader.show();
   var session_uid = window.localStorage.getItem("session_uid");
   var sess_designation = window.localStorage.getItem("sess_designation");
@@ -1665,6 +1686,7 @@ function getDprSheet(station_id,dpr_date,station_name){  //alert(dpr_date+"****"
 $(document).on('page:init', '.page[data-name="dpr_sheetphp"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   var station_id = page.detail.route.params.station_id;
   var dpr_date = page.detail.route.params.demo_calendar_modal_dpr;
   var station_name = page.detail.route.params.st_name;  
@@ -1712,6 +1734,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheetphp"]', function (page) {
 });  
 $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   menuload();
+  app.panel.close();
   checkConnection();
   var station_id = page.detail.route.params.station_id;
   var dpr_date = page.detail.route.params.demo_calendar_modal_dpr;
@@ -17325,6 +17348,7 @@ function dpr_kpi_repsheet(){
 $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
   menuload();
   checkConnection(); 
+  app.panel.close();
   var station_id = page.detail.route.params.station_id;
   var dpr_date = page.detail.route.params.demo_calendar_modal_dpr;
   var station_name = page.detail.route.params.st_name;
@@ -17684,6 +17708,7 @@ $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
 $(document).on('page:init', '.page[data-name="dpr_list"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   //var prevPageName = page.el.prev('.page').attr('data-name');
   //var prevPageName = page.$el.prev('.page').attr('data-name');
   //console.log(page.detail);
@@ -17850,6 +17875,7 @@ function checkPrevHourVal(prev_slot,val,param){
 $(document).on('page:init', '.page[data-name="dpr_complain"]', function (e) {
   menuload();
   checkConnection();
+  app.panel.close();
   $(".plus_icon").hide();
   $(".bell_icon").hide();
   $(".stn").hide();
@@ -17911,6 +17937,7 @@ function getcorrData(){
 $(document).on('page:init', '.page[data-name="add_dprcomplain"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   //$("#savecomp").attr("disabled","disabled");
   var session_uid = window.localStorage.getItem("session_uid");
   $('#hidd_sess_user').val(session_uid);
@@ -18329,6 +18356,7 @@ function modulename(sel_module){
 $(document).on('page:init', '.page[data-name="jmr"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   app.preloader.show();
   var session_uid = window.localStorage.getItem("session_uid");
   $.ajax({
@@ -18358,6 +18386,7 @@ function getStationJMRList(){
 $(document).on('page:init', '.page[data-name="jmr_list"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   app.preloader.show();
   var jmr_station_id = page.detail.route.params.jmr_station_id;
   $("#hidd_stnid").val(jmr_station_id);
@@ -18474,6 +18503,7 @@ function getJMRdateJMRReding(station_id,start_time,jmr_date,first_date,last_date
 $(document).on('page:init', '.page[data-name="jmr_readings"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   app.preloader.show();
   var station_id = page.detail.route.params.station_id;
   var start_time = page.detail.route.params.start_time;
@@ -18523,6 +18553,7 @@ function getJMR(jmr_ID){
 $(document).on('page:init', '.page[data-name="jmr_view"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   app.preloader.show();
   var sess_designation = window.localStorage.getItem("sess_designation");
   var jmr_ID = page.detail.route.params.jmr_ID;  
@@ -18605,7 +18636,16 @@ function jmr_approve(jmr_ID){
 $(document).on('page:init', '.page[data-name="cms"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   $(".bell_icon_cms").hide();
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  if(sess_designation=='COMP. OPERATOR' || sess_designation=='SGL EIC'){
+    $(".addcmsbtn").removeClass("display-none");
+    $(".addcmsbtn").addClass("display-block");
+  }else{
+    $(".addcmsbtn").removeClass("display-block");
+    $(".addcmsbtn").addClass("display-none");
+  }
   //var prevPageName = page.el.prev('.page').attr('data-name');
   //var prevPageName = page.$el.prev('.page').attr('data-name');
   //console.log(page.detail);
@@ -18658,6 +18698,7 @@ $(document).on('page:init', '.page[data-name="cms"]', function (page) {
 });
 function getPendingComps(){
   checkConnection();
+  menuload();
   app.preloader.show();
   var session_uid = window.localStorage.getItem("session_uid");
   var sess_designation = window.localStorage.getItem("sess_designation");
@@ -18687,6 +18728,7 @@ function getPendingComps(){
 }
 function getCMSList(prev_page){
   checkConnection();
+  menuload();
   app.preloader.show();
   var session_uid = window.localStorage.getItem("session_uid");
   var sess_designation = window.localStorage.getItem("sess_designation");
@@ -18740,6 +18782,7 @@ function getCMSList(prev_page){
 $(document).on('page:init', '.page[data-name="add_cms"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   var session_utype = window.localStorage.getItem("session_utype");
   var session_stid = window.localStorage.getItem("session_stid");
   $.ajax({
@@ -18806,16 +18849,18 @@ function getcmsdetails(c_id,stname,complainer_nm,status,clr){
 $(document).on('page:init', '.page[data-name="cms_details"]', function (page) {
   menuload();
   checkConnection();
+  app.panel.close();
   app.preloader.show();
   var c_id = page.detail.route.params.c_id; 
   var st_name = page.detail.route.params.st_name; 
   var complainer_nm = page.detail.route.params.complainer_nm;
   var status = page.detail.route.params.status;
   var clr = page.detail.route.params.clr;
+  var sess_designation = window.localStorage.getItem("sess_designation");
   $.ajax({
     type:'POST',  
     url:base_url+'APP/Appcontroller/getcmsdata',
-    data:{'c_id':c_id,'stname':st_name,'complainer_nm':complainer_nm,'status':status,'clr':clr},
+    data:{'c_id':c_id,'stname':st_name,'complainer_nm':complainer_nm,'status':status,'clr':clr,'sess_designation':sess_designation},
     dataType:'json',
     success:function(result){    
       //console.log(result.cms_list);
@@ -18833,6 +18878,7 @@ function editcomplain(c_id){
 }
 $(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
   menuload();
+  app.panel.close();
   checkConnection();  
   var c_id = page.detail.route.params.c_id;
   var session_utype = window.localStorage.getItem("session_utype");
@@ -18857,7 +18903,53 @@ $(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
           return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
         }
       });
-
+      var today = new Date();
+      var pickerInline = app.picker.create({
+        containerEl: '#demo-picker-time-container',
+        inputEl: '#start_tm_edit_new',
+        toolbar: false,
+        rotateEffect: true,
+        value: [
+          today.getHours(),
+          today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+        ],
+        formatValue: function (values, displayValues) {
+          return displayValues[0] + ':' + values[1];
+          //return displayValues[0] +' '+values[3] + ':' + values[4];
+        },
+        cols: [
+          
+          // Hours
+          {
+            values: (function () {
+              var arr = [];
+              for (var i = 0; i <= 23; i++) { if(i<=9){ i="0"+i;}else{ i=i; } arr.push(i); }
+                return arr;
+            })(),
+          },
+          // Divider
+          {
+            divider: true,
+            content: ':'
+          },
+          // Minutes
+          {
+            values: (function () {
+              var arr = [];
+              for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+                return arr;
+            })(),
+          }
+        ],
+        on: {
+          change: function (picker, values, displayValues) {
+            var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
+            if (values[1] > daysInMonth) {
+              picker.cols[1].setValue(daysInMonth);
+            }
+          },
+        }
+      });
       
       app.preloader.hide(); 
     }
@@ -18865,27 +18957,48 @@ $(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
 });
 function cmsedit(){
   checkConnection();
-  app.preloader.show();
+  menuload();  
   var session_uid = window.localStorage.getItem("session_uid");
   var form_cms_edit = $(".form_cms_edit").serialize();
-  $.ajax({
-    type:'POST',  
-    url:base_url+'APP/Appcontroller/editcms',
-    data:form_cms_edit+"&session_uid="+session_uid,
-    success:function(result){
-      var parseupdate = $.parseJSON(result);
-      var msg = parseupdate.msg;
-      if(msg=='updated'){
-        app.dialog.alert("Complain updated successfully!");
-        mainView.router.navigate("/cms/");
-      }
+  var sttm = $("#sttm").val();
+  var start_tm_edit_new = $("#start_tm_edit_new").val();
+  //alert(sttm+"===="+start_tm_edit_new);
+  var time1 = sttm.split(':');
+  var time2 = start_tm_edit_new.split(':');
+  if(eval(time1[0]) > eval(time2[0])){
+      app.dialog.alert("Start time must be greater than time");
+      return false;
+  }else{
+    if(eval(time1[0]) == eval(time2[0]) && eval(time1[1]) > eval(time2[1])){
+      app.dialog.alert("Start time must be greater than time");
+      return false;
+    }else{
+      app.preloader.show();
+      $.ajax({ 
+        type:'POST',  
+        url:base_url+'APP/Appcontroller/editcms',
+        data:form_cms_edit+"&session_uid="+session_uid,
+        success:function(result){
+          var parseupdate = $.parseJSON(result);
+          var msg = parseupdate.msg;
+          alert(msg);
+          if(msg=='updated'){
+            app.dialog.alert("Complaint updated successfully!");
+            mainView.router.navigate("/cms/");
+          }else if(msg=='not_updated'){
+            app.dialog.alert("Problem updating complaint!");
+            mainView.router.navigate("/cms/");
+          }
+        }
+      });
+      app.preloader.hide();
     }
-  });
-  app.preloader.hide();
+  }  
 }
 
 function receive_comp(complain_id){
   checkConnection();
+  menuload();
   app.preloader.show();
   mainView.router.navigate("/receive_cms/");
   var session_uid = window.localStorage.getItem("session_uid");
@@ -18913,6 +19026,10 @@ function show_block(chkd){
     $(".tab_logic").show();
     $(".divname input").prop('required',true);
     $(".divname select").prop('required',true);
+    $(".hidetxtpart_0 input").prop('disabled',true);
+    $(".hidetxtmake_0 input").prop('disabled',true); 
+    $(".hidetxtpart_0 input").prop('required',false);
+    $(".hidetxtmake_0 input").prop('required',false); 
   }else{
     $(".tab_logic").hide();
   }
@@ -18940,8 +19057,8 @@ function getotherparts(divid){
 var i=1;
 var divhtml='';
 function addrow(){
-  $(".addr"+i).html('<div class="card mt0"><div class="card-content card-content-padding"><div class="list accordion-list"><ul><li class="accordion-item elevation-9 accordion-item-opened" style="background-color: lightgrey!important"><a href="#" class="item-content item-link"><div class="item-inner"><!--div class="item-title text-uppercase fs-14">replace item - '+(i+1)+'</div--><div class="item-title text-uppercase fs-14">replace item</div><div class="item-title text-uppercase float-right"><span class="fs-12"></span></div></div></a><div class="accordion-item-content" style="background-color: #fff;"><div class="block p-5"><div class="row"><div class="col-90 item-title text-uppercase fs-14 float-left" ></div><div class="col-10 item-title text-uppercase fs-14 float-right" ><i class="txtrd fw-600 f7-icons mr-20 fs-20" onclick="dltdiv('+i+')">trash</i></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">sap code <label class="item-checkbox item-content"><input type="checkbox" name="na_sap_check[]" id="na_sap_check_'+i+'" onchange="readonly_saptxt(this,'+i+')"/><i class="icon icon-checkbox"></i><div class="item-inner"><div class="item-title">NA</div></div></label></span></div><div class="col-60 rep_txt"><input type="text" name="sap_code[]" id="sap_code_'+i+'" class="sapcode" required /></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">Part<label class="item-checkbox item-content"><input type="checkbox" name="other_part_check[]" id="other_part_check_'+i+'" onchange="show_oparttxt(this,'+i+')"/><i class="icon icon-checkbox"></i><div class="item-inner min-w-auto"><div class="item-title">Other</div></div></label></span></div><div class="col-60 rep_txt hideselpart_'+i+'"><select class="form-control otherpart_sel" name="other_part[]" id="other_part_'+i+'" required></select></div>    <div class="col-60 rep_txt txthidepart hidetxtpart_'+i+'"><input type="text" name="other_part[]" id="other_part_'+i+'" /></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">Make<label class="item-checkbox item-content"><input type="checkbox" name="other_make_check[]" id="other_make_check_'+i+'" onchange="show_maketxt(this,'+i+')"/><i class="icon icon-checkbox"></i><div class="item-inner min-w-auto"><div class="item-title">Other</div></div></label></span></div><div class="col-60 rep_txt hideselmake_'+i+'"><select class="form-control othermake_sel" name="other_make[]" id="other_make_'+i+'" required></select></div>      <div class="col-60 rep_txt txthidemake hidetxtmake_'+i+'"><input type="text" name="other_make[]" id="other_make_'+i+'" required /></div></div><div class="row"><div class="col-20 mt-10"><span class="">UOM</span></div><div class="col-80 rep_txt"><input type="text" name="uom[]" id="uom_'+i+'" /></div></div><div class="row"><div class="col-20 mt-10"><span class="">QTY</span></div><div class="col-80 rep_txt"><input type="number" name="qty[]" id="qty_'+i+'" /></div></div><br/><div class="list"><ul><li class="item-content item-input showtwoBlocks"><div class="item-inner"><span class="item-title item-label floatlbl_placeholder mb-15">Image</span><div class="item-input-wrap"><div class="uploadDiv w-100 "><div class="col-100"><div class="row"><div class="20"></div><div class="col-50 picbox text-white" ><span onclick="capturePhoto_cms_adddiv('+i+');" ><div class="innerDiv"><img src="img/photo-camera-1.png" height="30" width="30" /><br/><span class="picbox-text">Capture</span></span></div></div><div class="col-50 picbox text-white" ><a onclick="getPhoto_cms_adddiv(pictureSource.PHOTOLIBRARY,'+i+');"><div class="innerDiv"><img src="img/gallery.png" height="30" width="30" /><br/><span class="picbox-text">Photo Gallery</span></div></a></div><div class="20"></div></div></div></div></div></li><li class="item-content item-input imageblock_cms_'+i+' display-none" style="width:100%;" id="imageblock_cms_'+i+'"><div class="item-inner"><div class="item-input-wrap"><img id="image_cms_'+i+'" src="" class="" style="width:100%;"></div></div></li></ul></div></div><!--- block p-5 --></div><!--- accordion-item-content --></li></ul></div><!--- list accordion-list --></div><!--- card-content --></div><!-- first_block -->');  
-      $.ajax({
+  $(".addr"+i).html('<div class="card mt0"><input type="hidden" name="hidd_div_id" id="hidd_div_id_'+i+'" value="'+i+'" /><div class="card-content card-content-padding"><div class="list accordion-list"><ul><li class="accordion-item elevation-9 accordion-item-opened" style="background-color: lightgrey!important"><a href="#" class="item-content item-link"><div class="item-inner"><!--div class="item-title text-uppercase fs-14">replace item - '+(i+1)+'</div--><div class="item-title text-uppercase fs-14">replace item</div><div class="item-title text-uppercase float-right"><span class="fs-12"></span></div></div></a><div class="accordion-item-content" style="background-color: #fff;"><div class="block p-5"><div class="row"><div class="col-90 item-title text-uppercase fs-14 float-left" ></div><div class="col-10 item-title text-uppercase fs-14 float-right" ><i class="txtrd fw-600 f7-icons mr-20 fs-20" onclick="dltdiv('+i+')">trash</i></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">sap code <label class="item-checkbox item-content"><input type="checkbox" name="na_sap_check[]" id="na_sap_check_'+i+'" onchange="readonly_saptxt(this,'+i+')" novalidate/><i class="icon icon-checkbox"></i><div class="item-inner"><div class="item-title">NA</div></div></label></span></div><div class="col-60 rep_txt"><input type="text" name="sap_code[]" id="sap_code_'+i+'" class="sapcode" required /></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">Part<label class="item-checkbox item-content"><input type="checkbox" name="other_part_check[]" id="other_part_check_'+i+'" onchange="show_oparttxt(this,'+i+')" novalidate/><i class="icon icon-checkbox"></i><div class="item-inner min-w-auto"><div class="item-title">Other</div></div></label></span></div><div class="col-60 rep_txt hideselpart_'+i+'"><select class="form-control otherpart_sel" name="other_part[]" id="other_part_'+i+'" required></select></div>    <div class="col-60 rep_txt txthidepart hidetxtpart_'+i+'"><input type="text" name="other_part[]" id="other_part_'+i+'" /></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">Make<label class="item-checkbox item-content"><input type="checkbox" name="other_make_check[]" id="other_make_check_'+i+'" onchange="show_maketxt(this,'+i+')" novalidate/><i class="icon icon-checkbox"></i><div class="item-inner min-w-auto"><div class="item-title">Other</div></div></label></span></div><div class="col-60 rep_txt hideselmake_'+i+'"><select class="form-control othermake_sel" name="other_make[]" id="other_make_'+i+'" required></select></div>      <div class="col-60 rep_txt txthidemake hidetxtmake_'+i+'"><input type="text" name="other_make[]" id="other_make_'+i+'"  /></div></div><div class="row"><div class="col-20 mt-10"><span class="">UOM</span></div><div class="col-80 rep_txt"><input type="text" name="uom[]" id="uom_'+i+'" required/></div></div><div class="row"><div class="col-20 mt-10"><span class="">QTY</span></div><div class="col-80 rep_txt"><input type="number" name="qty[]" id="qty_'+i+'" required/></div></div><br/><div class="list"><ul><li class="item-content item-input showtwoBlocks"><div class="item-inner"><span class="item-title item-label floatlbl_placeholder mb-15">Image</span><div class="item-input-wrap"><div class="uploadDiv w-100 "><div class="col-100"><div class="row"><div class="20"></div><div class="col-50 picbox text-white" ><span onclick="capturePhoto_cms_adddiv('+i+');" ><div class="innerDiv"><img src="img/photo-camera-1.png" height="30" width="30" /><br/><span class="picbox-text">Capture</span></span></div></div><div class="col-50 picbox text-white" ><a onclick="getPhoto_cms_adddiv(pictureSource.PHOTOLIBRARY,'+i+');"><div class="innerDiv"><img src="img/gallery.png" height="30" width="30" /><br/><span class="picbox-text">Photo Gallery</span></div></a></div><div class="20"></div></div></div></div></div></li><li class="item-content item-input imageblock_cms_'+i+' display-none" style="width:100%;" id="imageblock_cms_'+i+'"><div class="item-inner"><div class="item-input-wrap"><img id="image_cms_'+i+'" src="" class="" style="width:100%;"></div></div></li></ul></div></div><!--- block p-5 --></div><!--- accordion-item-content --></li></ul></div><!--- list accordion-list --></div><!--- card-content --></div><!-- first_block -->');   
+      $.ajax({ 
         type:'POST',  
         url:base_url+'APP/Appcontroller/otherparts',    
         success:function(result){
@@ -18953,26 +19070,85 @@ function addrow(){
           sel_vals+='<option value="">--- SELECT ---</option>';
           for(var i1=0;i1<complain_part.length;i1++){
             var part_name = complain_part[i1].part_name;
-            sel_vals+='<option value="'+part_name+'">'+part_name+'</option>';
+            var val_part_name = part_name.split(' ').join('_');
+            sel_vals+='<option value="'+val_part_name+'">'+part_name+'</option>';
           }
-          $(".otherpart_sel").html(sel_vals);
+          $("#other_part_"+(i-1)).html(sel_vals);
 
           sel_comp+='<option value="">--- SELECT ---</option>';
           for(var i2=0;i2<company.length;i2++){
             var comp_name = company[i2].comp_name;
-            sel_comp+='<option value="'+comp_name+'">'+comp_name+'</option>';
+            var val_comp_name = comp_name.split(' ').join('_');
+            sel_comp+='<option value="'+val_comp_name+'">'+comp_name+'</option>';
           }
-          $(".othermake_sel").html(sel_comp);
+          $("#other_make_"+(i-1)).html(sel_comp);
         }
       });
-    $(".txthidepart").hide(); 
-    $(".txthidemake").hide();  
+    $(".hidetxtpart_"+i).hide(); 
+    $(".hidetxtmake_"+i).hide();  
+    $(".hidetxtpart_"+i+" input").prop('disabled',true);
+    $(".hidetxtmake_"+i+" input").prop('disabled',true); 
+    $(".hidetxtpart_"+i+" input").prop('required',false);
+    $(".hidetxtmake_"+i+" input").prop('required',false); 
     $('#tab_logic').append('<div class="addr'+(i+1)+' mt-5 divname"></tr>');
     i++; 
    // n++;
 }
+
+function addrow_change(){
+  var divname_len = $(".divname").length-1;
+  //alert(divname_len);
+  var chnage_div=divname_len;
+  $(".addr_change"+chnage_div).html('<div class="card first_block mt'+chnage_div+'"><input type="hidden" name="hidd_div_id_change" id="hidd_div_id_'+chnage_div+'" value="'+chnage_div+'"/><div class="card-content card-content-padding"><div class="list accordion-list"><ul><li class="accordion-item elevation-9 accordion-item-opened" style="background-color: lightgrey!important"><a href="#" class="item-content item-link"><div class="item-inner"><div class="item-title text-uppercase fs-14">replace item</div><div class="item-title text-uppercase float-right"><span class="fs-12"></span></div></div></a><div class="accordion-item-content" style="background-color: #fff;"><div class="block p-5"><div class="row"><div class="col-90 item-title text-uppercase fs-14 float-left" ></div><div class="col-10 item-title text-uppercase fs-14 float-right" ><i class="txtrd fw-600 f7-icons mr-20 fs-20" onclick="dltdiv_change('+chnage_div+',"NULL")">trash</i></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">sap code <label class="item-checkbox item-content"><input type="checkbox" name="na_sap_check_change[]" id="na_sap_check_'+chnage_div+'" onchange="readonly_saptxt(this,'+chnage_div+')" novalidate /><i class="icon icon-checkbox"></i><div class="item-inner"><div class="item-title">NA</div></div></label></span></div><div class="col-60 rep_txt"><input type="text" name="sap_code_change[]" id="sap_code_'+chnage_div+'" class="sapcode" required /></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">Part<label class="item-checkbox item-content"><input type="checkbox" name="other_part_check_change[]" id="other_part_check_'+chnage_div+'" onchange="show_oparttxt(this,'+chnage_div+')" novalidate/><i class="icon icon-checkbox"></i><div class="item-inner min-w-auto"><div class="item-title">Other</div></div></label></span></div><div class="col-60 rep_txt hideselpart_'+chnage_div+'"><select class="form-control otherpart_sel" name="other_part_change[]" id="other_part_'+chnage_div+'" required><option value="">--- SELECT ---</option></select></div><div class="col-60 rep_txt txthidepart hidetxtpart_'+chnage_div+' "><input type="text" name="other_part_change[]" id="other_part_'+chnage_div+'" class=""/></div></div><div class="row"><div class="col-40"><span class="text-uppercase fs-12 fw-600" style="width:55%;padding-right: 0px!important">Make<label class="item-checkbox item-content"><input type="checkbox" name="other_make_check_change[]" id="other_make_check_'+chnage_div+'" onchange="show_maketxt(this,'+chnage_div+')" novalidate/><i class="icon icon-checkbox"></i><div class="item-inner min-w-auto"><div class="item-title">Other</div></div></label></span></div><div class="col-60 rep_txt hideselmake_'+chnage_div+'"><select class="form-control othermake_sel" name="other_make_change[]" id="other_make_'+chnage_div+'" required><option value="">--- SELECT ---</option></select></div><div class="col-60 rep_txt txthidemake hidetxtmake_'+chnage_div+'"><input type="text" name="other_make_txt_chnage[]" id="other_make_txt_'+chnage_div+'" /></div></div><div class="row"><div class="col-20 mt-10"><span class="">UOM</span></div><div class="col-80 rep_txt"><input type="text" name="uom_change[]" id="uom_'+chnage_div+'" required /></div></div><div class="row"><div class="col-20 mt-10"><span class="">QTY</span></div><div class="col-80 rep_txt"><input type="number" name="qty_change[]" id="qty_'+chnage_div+'" required /></div></div><br/><div class="list"><ul><li class="item-content item-input showtwoBlocks"><div class="item-inner"><span class="item-title item-label floatlbl_placeholder mb-15">Image</span><div class="item-input-wrap"><div class="uploadDiv w-100 "><div class="col-100"><div class="row"><div class="20"></div><div class="col-50 picbox text-white" ><span onclick="capturePhoto_cms_adddiv('+chnage_div+')" ><div class="innerDiv"><img src="img/photo-camera-1.png" height="30" width="30" /><br/><span class="picbox-text">Capture</span></span></div></div><div class="col-50 picbox text-white" ><a onclick="getPhoto_cms_adddiv(pictureSource.PHOTOLIBRARY,'+chnage_div+')"><div class="innerDiv"><img src="img/gallery.png" height="30" width="30" /><br/><span class="picbox-text">Photo Gallery</span></div></a></div><div class="20"></div></div></div></div></div></li><li class="item-content item-input imageblock_cms_'+chnage_div+' display-none" style="width:100%;" id="imageblock_cms_'+chnage_div+'"><div class="item-inner"><div class="item-input-wrap"><img id="image_cms_'+chnage_div+'" src="img/dashboard.jpg" style="width:100%;"></div></div></li><li class="item-content item-input" style="width:100%;" id=""><div class="item-inner"></div></li></ul></div></div><!--- block p-5 --></div><!--- accordion-item-content --></li></ul></div><!--- list accordion-list --></div><!--- card-content --></div><!-- first_block -->'); 
+      $.ajax({ 
+        type:'POST',  
+        url:base_url+'APP/Appcontroller/otherparts',    
+        success:function(result){
+          var parseRes = $.parseJSON(result);
+          var complain_part = parseRes.complain_part;
+          var company = parseRes.company;
+          var sel_vals='';
+          var sel_comp='';
+          sel_vals+='<option value="">--- SELECT ---</option>';
+          for(var i1=0;i1<complain_part.length;i1++){
+            var part_name = complain_part[i1].part_name;
+            var val_part_name = part_name.split(' ').join('_');
+            sel_vals+='<option value="'+val_part_name+'">'+part_name+'</option>';
+          }
+          $("#other_part_"+(chnage_div-1)).html(sel_vals);
+
+          sel_comp+='<option value="">--- SELECT ---</option>';
+          for(var i2=0;i2<company.length;i2++){
+            var comp_name = company[i2].comp_name;
+            var val_comp_name = comp_name.split(' ').join('_');
+            sel_comp+='<option value="'+val_comp_name+'">'+comp_name+'</option>';
+          }
+          $("#other_make_"+(chnage_div-1)).html(sel_comp);
+        }
+      });
+    $(".hidetxtpart_"+chnage_div).hide(); 
+    $(".hidetxtmake_"+chnage_div).hide();  
+    $(".hidetxtpart_"+chnage_div+" input").prop('disabled',true);
+    $(".hidetxtmake_"+chnage_div+" input").prop('disabled',true); 
+    $(".hidetxtpart_"+chnage_div+" input").prop('required',false);
+    $(".hidetxtmake_"+chnage_div+" input").prop('required',false);
+    $('#tab_logic').append('<div class="addr_change'+(chnage_div+1)+' mt-5 divname"></tr>');
+    chnage_div++;
+}
 function dltdiv(divid){
-  $(".addr"+(divid)).html('');
+    $(".addr"+(divid)).html('');
+    divid--;
+}
+var oldimg_arr=[];
+function dltdiv_change(divid,imgold){ 
+  //alert(imgold);
+  if(imgold!="NULL"){ 
+    var todelimg=$("#hidden_old_images_"+divid).val();
+    //alert("#hidden_old_images_"+divid+"======="+todelimg);
+    oldimg_arr.push(todelimg);
+    $("#hidd_old_img_arr").val(oldimg_arr);
+  }
+  $(".addr_change"+(divid)).html('');
   divid--;
 }
 function readonly_saptxt(obj,divid){
@@ -18982,6 +19158,17 @@ function readonly_saptxt(obj,divid){
     $("#sap_code_"+divid).addClass("readonly");
   }else{
     $("#sap_code_"+divid).val('');
+    $("#sap_code_"+divid).prop('readonly',false);
+    $("#sap_code_"+divid).removeClass("readonly");
+  }
+}
+function readonly_saptxt_change(obj,divid,sapcode){
+  if($(obj).prop('checked') === true){
+    $("#sap_code_"+divid).val('NA');
+    $("#sap_code_"+divid).prop('readonly',true);
+    $("#sap_code_"+divid).addClass("readonly");
+  }else{
+    $("#sap_code_"+divid).val(sapcode);
     $("#sap_code_"+divid).prop('readonly',false);
     $("#sap_code_"+divid).removeClass("readonly");
   }
@@ -19008,43 +19195,627 @@ function show_oparttxt(obj,divid){
     $(".hideselpart_"+divid+" select").prop('required',true);
   }
 }
+function show_oparttxt_change(obj,divid,part){
+  if($(obj).prop('checked') === true){
+    $(".hideselpart_"+divid).hide();
+    $(".hidetxtpart_"+divid).removeClass('display-none');
+    $(".hidetxtpart_"+divid).show();
+
+    $(".hideselpart_"+divid+" select").prop('disabled',true);
+    $(".hidetxtpart_"+divid+" input").prop('disabled',false);
+
+    $(".hidetxtpart_"+divid+" input").prop('required',true);
+    $(".hideselpart_"+divid+" select").prop('required',false);
+
+  }else{
+    $(".hideselpart_"+divid).show(); 
+    $(".hidetxtpart_"+divid).hide();
+
+    $(".hideselpart_"+divid+" select").prop('disabled',false);
+    $(".hidetxtpart_"+divid+" input").prop('disabled',true);
+
+    $(".hidetxtpart_"+divid+" input").prop('required',false);
+    $(".hideselpart_"+divid+" select").prop('required',true);
+  }
+}
 function show_maketxt(obj,divid){
   if($(obj).prop('checked') === true){
     $(".hideselmake_"+divid).hide();
     $(".hidetxtmake_"+divid).show();
 
-    $(".hideselmake_"+divid+" select").prop('disabled',true);
-    $(".hidetxtmake_"+divid+" input").prop('disabled',false);
-
     $(".hidetxtmake_"+divid+" input").prop('required',true);
     $(".hideselmake_"+divid+" select").prop('required',false);
 
+    $(".hidetxtmake_"+divid+" input").prop('disabled',false);
+    $(".hideselmake_"+divid+" select").prop('disabled',true);
   }else{
     $(".hideselmake_"+divid).show(); 
     $(".hidetxtmake_"+divid).hide();
 
-    $(".hideselmake_"+divid+" select").prop('disabled',false);
-    $(".hidetxtmake_"+divid+" input").prop('disabled',true);
+    $(".hidetxtmake_"+divid+" input").prop('required',false);
+    $(".hideselmake_"+divid+" select").prop('required',true);
+
+    $(".hidetxtmake_"+divid+" input").prop('disabled',true); 
+    $(".hideselmake_"+divid+" select").prop('disabled',false);      
+  }
+}
+function show_maketxt_change(obj,divid,make){
+  if($(obj).prop('checked') === true){
+    $(".hideselmake_"+divid).hide();
+    $(".hidetxtmake_"+divid).removeClass('display-none');
+    $(".hidetxtmake_"+divid).show();
+
+    $(".hidetxtmake_"+divid+" input").prop('required',true);
+    $(".hideselmake_"+divid+" select").prop('required',false);
+
+    $(".hidetxtmake_"+divid+" input").prop('disabled',false);
+    $(".hideselmake_"+divid+" select").prop('disabled',true);
+  }else{
+    $(".hideselmake_"+divid).show(); 
+    $(".hidetxtmake_"+divid).hide();
 
     $(".hidetxtmake_"+divid+" input").prop('required',false);
     $(".hideselmake_"+divid+" select").prop('required',true);
+
+    $(".hidetxtmake_"+divid+" input").prop('disabled',true); 
+    $(".hideselmake_"+divid+" select").prop('disabled',false);      
   }
 }
 function edit_cms(){
   checkConnection();
-  app.preloader.show();
+  menuload();
+  //app.preloader.show();
   var form_cms_receive = $(".form_cms_receive").serialize();
-  console.log(form_cms_receive);
+  var hidd_complain_id = $("#hidd_complain_id").val();
+  //console.log(form_cms_receive);
+  var total = $(".divname").length-1;  
+  var title = [];  
+  for (var j=0; j<total; j++) {
+    var hidd_div_id = $("#hidd_div_id_"+j).val();
+    var sapcode = $("#sap_code_"+j).val();
+    var other_part_chk = $('#other_part_check_'+j).prop('checked');
+    if(other_part_chk === true){
+      var other_part = $(".hidetxtpart_"+j+" input").val();
+    }else{
+      var other_part = $(".hideselpart_"+j+" select").val();
+    }
+    var make_chk = $('#other_make_check_'+j).prop('checked');
+    if(make_chk === true){
+      var ohter_make = $(".hidetxtmake_"+j+" input").val();
+    }else{
+      var ohter_make = $(".hideselmake_"+j+" select").val();
+    }
+    var uom = $("#uom_"+j).val();
+    var qty = $("#qty_"+j).val();    
+    var img = $('#imageblock_cms_'+j+' img').attr('src');
+    //alert("@@@@@@@@@@@@@@@@ "+uploadvar);
+    title[j] = {
+        sapcode: sapcode,
+        part: other_part,
+        make: ohter_make, 
+        uom: uom,
+        qty: qty,
+        image: img,
+
+    };
+  }  
+  var arrsend=JSON.stringify(title);
+  //console.log(arrsend+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
   $.ajax({
     type:'POST',  
+    dataType: 'json', 
     url:base_url+'APP/Appcontroller/technical_comp_update',
-    data:form_cms_receive,   
+    data:form_cms_receive+"&arr="+arrsend,   
     success:function(result){
-      //alert(result);  
+      //var resparsejson = $.parseJSON(result);
+      //var msg = resparsejson.msg;
+      //var img_arr = resparsejson.img_arr;  
+      //alert("in success "+result);
+      var msg = result.msg;
+      var img_arr = result.img_arr; 
+      var source = result.source;      
+      if(msg=='updated'){        
+        app.dialog.alert("Items replaced!");
+        for(var j2=0;j2<img_arr.length;j2++){
+          var hidd_div = $("#hidd_div_id_"+j2).val();
+          //var old_images='NULL';
+          //alert("!!!!!!!!! "+source[j2]);
+          //uploaditem_images(old_images,img_arr[j2],hidd_div,source[j2]);
+          var img = $('#imageblock_cms_'+j2+' img').attr('src');
+          var img_div = document.getElementById('image_cms_'+hidd_div);
+          var imageURI = img_div.src;
+          var options = new FileUploadOptions();
+          options.fileKey="file";
+          options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+          options.mimeType="image/jpeg";
+          options.chunkedMode = false;
+          options.headers = {
+             Connection: "close"  
+          };
+          var params = {};  
+          params.fullpath =imageURI;
+          params.name = options.fileName;
+          //var imgfilename = params.name;
+          var imgfilename = img_arr[j2];
+          //var split_imgfilename = imgfilename.split("?");
+          var ft = new FileTransfer();
+          //console.log("ft :::::::::: "+ft);
+          //alert(imageURI);
+          /*var actual_imgname1 = split_imgfilename[0];
+          var img_filename1 = actual_imgname1.split('%20').join('_');*/
+          //alert(img_filename1);
+          var upload_itemdets = base_url+"APP/Appcontroller/item_imgsupload/"+imgfilename;
+          //alert(upload_itemdets);
+          //var uploadvar=ft.upload(imageURI,upload_itemdets,win,fail,options,true);
+
+          ft.upload(imageURI,upload_itemdets,function(r){
+            var res_code = r.responseCode;
+            if(res_code==200){
+              mainView.router.navigate("/cms/");
+            }
+          } ,fail,options,true);          
+        }        
+      }else if(msg=='not_updated'){
+        app.dialog.alert("Problem in updating complaint");
+        mainView.router.navigate("/cms/");
+      }
+    }
+  });
+  //app.preloader.hide();
+}
+function changecomplain(c_id){
+  checkConnection();
+  mainView.router.navigate("/change_cms_eic/"+c_id+"/");
+}
+$(document).on('page:init', '.page[data-name="change_cms_eic"]', function (page) {
+  menuload();
+  app.panel.close();
+  checkConnection();  
+  var c_id = page.detail.route.params.c_id;
+  var session_utype = window.localStorage.getItem("session_utype");
+  var session_stid = window.localStorage.getItem("session_stid");  
+  app.preloader.show();
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/chnagecmsdata_eic',
+    data:{'c_id':c_id,'session_utype':session_utype,'session_stid':session_stid},
+    dataType:'json',
+    success:function(result){               
+      var changecms_form = result.changecms_form;
+      $(".changecms_form").html(changecms_form);
+      var rep_sttm = $("#rep_sttm").val();
+      var rep_endtm = $("#rep_endtm").val();
+
+        var calendarModal_edit = app.calendar.create({
+          inputEl: '#rep_start_dt_change',
+          openIn: 'customModal',
+          dateFormat: 'dd-mm-yyyy',
+          header: true,
+          footer: true,
+          renderToolbar: function () {   
+            return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
+          }
+        });
+        // rep start time picker //
+        var today = new Date();
+        var pickerInline = app.picker.create({
+          containerEl: '#demo-picker-repstarttime-container',
+          inputEl: '#repst_tm_change_new',
+          toolbar: false,
+          rotateEffect: true,
+          value: [
+            today.getHours(),
+            today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+          ],
+          formatValue: function (values, displayValues) {            
+            return displayValues[0] + ':' + values[1];
+            //return displayValues[0] +' '+values[3] + ':' + values[4];
+          },
+          cols: [
+            
+            // Hours
+            {
+              values: (function () {
+                var arr = [];
+                for (var i = 0; i <= 23; i++) { if(i<=9){ i="0"+i;}else{ i=i; } arr.push(i); }
+                  return arr;
+              })(),
+            },
+            // Divider
+            {
+              divider: true,
+              content: ':'
+            },
+            // Minutes
+            {
+              values: (function () {
+                var arr = [];
+                for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+                  return arr;
+              })(),
+            }
+          ],
+          on: {
+            change: function (picker, values, displayValues) {
+              var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
+              if (values[1] > daysInMonth) {
+                picker.cols[1].setValue(daysInMonth);                
+              }
+            },
+          }
+        });
+        // rep end time picker //
+        var today = new Date();
+        var pickerInline = app.picker.create({
+          containerEl: '#demo-picker-rependtime-container',
+          inputEl: '#end_tm_rep_change_new',
+          toolbar: false,
+          rotateEffect: true,
+          value: [
+          
+            today.getHours(),
+            today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+          ],
+
+          formatValue: function (values, displayValues) {            
+            return displayValues[0] + ':' + values[1];
+            //return displayValues[0] +' '+values[3] + ':' + values[4];
+          },
+          cols: [
+            
+            // Hours
+            {
+              values: (function () {
+                var arr = [];
+                for (var i = 0; i <= 23; i++) { if(i<=9){ i="0"+i;}else{ i=i; } arr.push(i); }
+                  return arr;
+              })(),
+            },
+            // Divider
+            {
+              divider: true,
+              content: ':'
+            },
+            // Minutes
+            {
+              values: (function () {
+                var arr = [];
+                for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+                  return arr;
+              })(),
+            }
+          ],
+          on: {
+            change: function (picker, values, displayValues) {
+            console.log("called");              
+              /*var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
+              if (values[1] > daysInMonth) {
+                picker.cols[1].setValue(daysInMonth);                              
+              }*/
+            },
+          }
+        });
+        $("#repst_tm_change_new").val("");
+        $("#end_tm_rep_change_new").val("");
+    }
+  });
+  app.preloader.hide();
+});
+function openimage(divid,image){
+  var dynamicPopup = app.popup.create({
+  content: '<div class="popup popup-img_'+divid+'">'+
+            '<div class="block">'+                
+              '<p><a href="#" class="link popup-close">Close me</a></p>'+
+              '<p><img src="'+base_url+'uploads/cms/'+image+'" /></p>'+
+            '</div>'+
+          '</div>',
+  });
+  dynamicPopup.open();
+}
+function EIC_cmschange(){
+  menuload();
+  //alert("called");
+  var form_cms_chnage = $(".form_cms_chnage").serialize();
+  var hidd_cid = $("#hidd_cid").val();
+  //alert(form_cms_chnage);
+  var total_change = $(".divname").length-1;  
+  var title_change = [];  
+  for (var j=0; j<total_change; j++) {
+    var hidd_div_id = $("#hidd_div_id_"+j).val();
+    var sapcode = $("#sap_code_"+j).val();
+    var other_part_chk = $('#other_part_check_'+j).prop('checked');
+    if(other_part_chk === true){
+      var other_part = $(".hidetxtpart_"+j+" input").val();
+    }else{
+      var other_part = $(".hideselpart_"+j+" select").val();
+    }
+    var make_chk = $('#other_make_check_'+j).prop('checked');
+    if(make_chk === true){
+      var ohter_make = $(".hidetxtmake_"+j+" input").val();
+    }else{
+      var ohter_make = $(".hideselmake_"+j+" select").val();
+    }
+    var uom = $("#uom_"+j).val();
+    var qty = $("#qty_"+j).val();    
+    //var img = $('#hidden_old_images_'+j).val();
+    //alert("######################## "+img);
+    var img = $('#imageblock_cms_'+j+' img').attr('src');
+    //alert(img);
+    /*if(img==undefined){
+      // new image //
+      var img_old = 'NULL';
+      var upload_new = $('#imageblock_cms_'+j+' img').attr('src');
+      var new_image = upload_new;
+    }else{
+      // old images //
+      var img_old = img;
+      var new_image = 'NULL';
+    }*/
+    //alert("sapcode "+sapcode);
+    if(img==''){
+      var img_old = $('#hidden_old_images_'+j).val();
+      var new_image = img_old;
+    }else{
+      var img_old = 'NULL';
+      var upload_new = $('#imageblock_cms_'+j+' img').attr('src');
+      var new_image = upload_new;
+    }
+    if(sapcode!=undefined || sapcode!=null){
+    //alert("OLD "+img_old+" @@@@@@@@@@@@@@@@ NEW"+new_image);
+      title_change[j] = {
+          sapcode: sapcode,
+          part: other_part,
+          make: ohter_make, 
+          uom: uom,
+          qty: qty,
+          image: img_old,
+          newimage:new_image,
+      }; 
+    }
+  }  
+  var arrsend_change=JSON.stringify(title_change);
+  //console.log(form_cms_chnage);
+  console.log(arrsend_change);
+  var hidd_old_img_arr = $("#hidd_old_img_arr").val();
+  var unlink_imgs = JSON.stringify(hidd_old_img_arr);
+  //alert(arrsend_change);
+  $.ajax({
+    type:'POST',  
+    dataType: 'json', 
+    url:base_url+'APP/Appcontroller/eic_comp_update',
+    data:form_cms_chnage+"&arr="+arrsend_change+"&unlink_imgs="+unlink_imgs,   
+    success:function(result){
+      //alert("RESULT "+result);
+      var msg = result.msg;
+      var new_img_arr = result.new_img_arr;
+      //alert(msg+"============= "+new_img_arr);
+      if(msg=='updated'){ 
+        for(var j2=0;j2<new_img_arr.length;j2++){
+          var hidd_div = $("#hidd_div_id_"+j2).val();
+          var img_old = $('#hidden_old_images_'+j2).val();
+          var img_div = document.getElementById('image_cms_'+hidd_div);
+          var imageURI = img_div.src;
+          var options = new FileUploadOptions();
+          options.fileKey="file";
+          options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+          options.mimeType="image/jpeg";
+          options.chunkedMode = false;
+          options.headers = {
+             Connection: "close"  
+          };
+          var params = {};    
+          params.fullpath =imageURI;
+          params.name = options.fileName;
+          //var imgfilename = params.name;
+          var imgfilename = new_img_arr[j2];
+          //var split_imgfilename = imgfilename.split("?");
+          var ft = new FileTransfer();
+          //console.log("ft :::::::::: "+ft);
+          //alert(imageURI);
+          /*var actual_imgname1 = split_imgfilename[0];
+          var img_filename1 = actual_imgname1.split('%20').join('_');*/
+          //alert(imgfilename+"======="+img_old);
+          if(imgfilename!='NA'){ 
+            if(img_old!=imgfilename){
+              var upload_itemdets = base_url+"APP/Appcontroller/item_imgsupload_change/"+imgfilename;
+              ft.upload(imageURI,upload_itemdets,function(r){
+                var res_code = r.responseCode;
+                //alert(res_code+"res_code");
+                if(res_code==200){
+                  mainView.router.navigate("/cms/");
+                }
+              } ,fail,options,true);
+            }else{
+              mainView.router.navigate("/cms/");
+            }
+          }else{
+            //mainView.router.navigate("/cms/");
+          }          
+        } 
+      }else if(msg=='not_updated'){
+        app.dialog.alert("Problem in updating complaint");
+        mainView.router.navigate("/cms/");
+      }
+    } 
+  });
+}
+function approve_comp(approve_comp_id){
+  checkConnection();
+  menuload();
+  app.preloader.show();
+  mainView.router.navigate("/approve_cms/");
+  var session_uid = window.localStorage.getItem("session_uid");
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/approve_cms',
+    data:{'session_uid':session_uid,'complain_id':approve_comp_id},
+    success:function(result){
+      var parse_res = $.parseJSON(result);
+      var approve = parse_res.approve;
+      $(".approve_comp").html(approve);
     }
   });
   app.preloader.hide();
 }
+function apprv_status(status,approve_comp_id){
+  checkConnection();
+  menuload();
+  app.preloader.show();
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/approve_cms_status',
+    data:{'status':status,'approve_comp_id':approve_comp_id},
+    success:function(result){
+      var parse_res = $.parseJSON(result);
+      var msg = parse_res.msg;
+      if(msg=='updated'){
+        if(status==1){
+          app.dialog.alert("Complaint approved successfully!");
+        }else if(status==2){
+          app.dialog.alert("Complaint rejected!");
+        }
+      }else{
+        app.dialog.alert("Problem updating complaint status");
+      }
+      mainView.router.navigate("/cms/");
+    }
+  });
+  app.preloader.hide();
+}
+function save_password(){
+  checkConnection();
+  var form_chnagepass = $(".form_chnagepass").serialize();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var old_pass = $("#old_pass").val();
+  var new_pass = $("#new_pass").val();
+  var reent_pass = $("#reent_pass").val();
+  if(old_pass==''){
+    app.dialog.alert("Old password is required");
+    return false;
+  }else if(new_pass==''){
+    app.dialog.alert("Enter new password");
+    return false;
+  }else if(reent_pass==''){
+    app.dialog.alert("Re-type password is required");
+    return false;
+  }else{
+    var chksamepass=compare_passwords_submit();
+    if(chksamepass==false){
+      $("#notsame_pass").html("<i class='f7-icons fs-14 mr-5'>xmark_circle_fill</i>Passwords not matched.");
+      return false;
+    }else{
+    app.preloader.show();
+      $.ajax({
+        type:'POST', 
+        url:base_url+'APP/Appcontroller/changepassword',
+        data:form_chnagepass+"&session_uid="+session_uid,  
+        success:function(authRes){ 
+          var parsedata = $.parseJSON(authRes);
+          var msg = parsedata.msg;
+          if(msg=='updated'){
+            app.dialog.alert("Password updated successfully!");
+            mainView.router.navigate("/dashboard/");
+            return false;
+          }else if(msg=='wrong_old'){
+            $("#old_pass").val('');
+            $("#new_pass").val('');
+            $("#reent_pass").val('');
+            app.dialog.alert("Incorrect old password");
+            return false;
+          }
+        }
+      });
+      app.preloader.hide(); 
+    }
+  }
+}
+function compare_passwords(){
+  checkConnection();  
+  var new_pass = $("#new_pass").val();
+  var reent_pass = $("#reent_pass").val();
+  if(new_pass!='' && reent_pass!=''){
+    if(new_pass!=reent_pass){
+      $("#notsame_pass").html("<i class='f7-icons fs-14 mr-5'>xmark_circle_fill</i>Passwords not matched.");
+      return false;
+    }else{
+      $("#notsame_pass").html("");
+      return false;
+    }
+  }
+}
+$(document).on('page:init', '.page[data-name="change_password"]', function (page) {
+  menuload();
+  checkConnection();
+  app.panel.close();
+});
+function compare_passwords_submit(){
+  checkConnection();  
+  var new_pass = $("#new_pass").val();
+  var reent_pass = $("#reent_pass").val();
+  if(new_pass!='' && reent_pass!=''){
+    if(new_pass!=reent_pass){
+      return false;
+    }else{
+      return true;
+    }
+  }
+}
+/*function uploaditem_images(old_images,img_nm,hidd_div,source){
+  //alert("******** "+img_nm+'======='+hidd_div);
+  var img = document.getElementById('image_cms_'+hidd_div);
+  var imageURI = img.src;
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"  
+  };  
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  //var imgfilename = params.name;  
+  var imgfilename = img_nm; 
+  //alert("imgfilename "+imgfilename);
+  //var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  //var actual_imgname1 = split_imgfilename[0];
+  //var img_filename1 = actual_imgname1.split('%20').join('_');
+  //alert(img_filename1);
+  var upload_itemdets = base_url+"APP/Appcontroller/item_imgsupload/"+old_images+"/"+imgfilename+"/"+source;
+  //alert(upload_itemdets)
+  ft.upload(imageURI,upload_itemdets,win,fail,options,true);
+}
+function upload_itemdetails(hidd_complain_id,old_images,sapcode,other_part,ohter_make,uom,qty,hidd_div_id){
+  //alert("called upload_itemdetails "+hidd_div_id);
+  var img = document.getElementById('image_cms_'+hidd_div_id);
+  var imageURI = img.src;
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"  
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname1 = split_imgfilename[0];
+  var img_filename1 = actual_imgname1.split('%20').join('_');
+  //alert(img_filename1);
+  var upload_itemdets = base_url+"APP/Appcontroller/item_detailsupload/"+hidd_complain_id+"/"+old_images+"/"+sapcode+"/"+other_part+"/"+ohter_make+"/"+uom+"/"+qty+"/"+img_filename1;
+  alert(upload_itemdets)
+  ft.upload(imageURI,upload_itemdets,win,fail,options,true);
+}*/
 // -------------------------------- L O G O U T -------------------------------- //
 function logOut(){
   checkConnection();

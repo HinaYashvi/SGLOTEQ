@@ -168,5 +168,19 @@ var routes = [
     url: './cms/receive_cms.html',
     name: 'receive_cms',
   },
-
+  {
+    path: '/change_cms_eic/:c_id/',
+    url: './cms/change_cms_eic.html?c_id={{c_id}}',
+    name: 'change_cms_eic',
+  },
+  {
+    path: '/approve_cms/',
+    url: './cms/approve_cms.html',
+    name: 'approve_cms',
+  },  
+  {
+    path: '/change_password/',
+    url: './change_password.html',
+    name: 'change_password',
+  },
 ];
