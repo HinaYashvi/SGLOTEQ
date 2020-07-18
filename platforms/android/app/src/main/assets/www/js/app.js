@@ -375,29 +375,29 @@ function menuload(){
 
   if(sess_designation == 'SGL EIC'){
     if(sess_module_name==='dpr'){
-      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/dpr/"><i class="f7-icons fs-16 mr-5">chart_bar_alt_fill</i>DPR KPI Report</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/dpr/"><i class="f7-icons fs-16 mr-5">chart_bar_alt_fill</i>DPR KPI Report</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='vst'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='jmr'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='cms'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/cms/"><i class="f7-icons fs-16 mr-5">house_fill</i>Complaints</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/cms/"><i class="f7-icons fs-16 mr-5">house_fill</i>Complaints</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
   }else{
     if(sess_module_name==='dpr'){
-      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dpr_list/"><i class="f7-icons fs-16 mr-5">speedometer</i>DPR</a></p><p><a class="text-white link" href="/dpr_complain/"><i class="f7-icons fs-16 mr-5">checkmark_shield_fill</i>DPR Corrections</a><span class="cntnoti float-right"></span></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='vst'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='jmr'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
     if(sess_module_name==='cms'){
-      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/cms/"><i class="f7-icons fs-16 mr-5">house_fill</i>Complaints</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Chnage Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/cms/"><i class="f7-icons fs-16 mr-5">house_fill</i>Complaints</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
   }
   $(".menulist").html(menulist);
@@ -19572,7 +19572,7 @@ function EIC_cmschange(){
           image: img_old,
           newimage:new_image,
       }; 
-    }
+    } 
   }  
   var arrsend_change=JSON.stringify(title_change);
   //console.log(form_cms_chnage);
