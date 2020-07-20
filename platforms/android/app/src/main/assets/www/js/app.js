@@ -18799,6 +18799,46 @@ $(document).on('page:init', '.page[data-name="add_cms"]', function (page) {
     }    
   });
 });
+function get_equip(){
+  var ce = $('#comp_equip').val();
+  var stp = $('#stations').val();
+  if(stp==''){
+    app.dialog.alert("Select station");
+  }else if(ce==''){
+    app.dialog.alert("Select complaint equipment");
+  }else{
+    $.ajax({
+    type:'POST', 
+    url:base_url+'APP/Appcontroller/get_eqp_make',
+    data:{'ce':ce,'stp':stp},
+    dataType:'json',
+    success:function(result){
+      $("#equip_make").html(result.html);
+      $("#comp_prob").html(result.html_cp);
+    }    
+  });
+  }
+}
+function edit_get_equip(){
+  var ce = $('#comp_equip_edit').val();
+  var stp = $('#stations_edit').val();
+  if(stp==''){
+    app.dialog.alert("Select station");
+  }else if(ce==''){
+    app.dialog.alert("Select complaint equipment");
+  }else{
+    $.ajax({
+    type:'POST', 
+    url:base_url+'APP/Appcontroller/get_eqp_make',
+    data:{'ce':ce,'stp':stp},
+    dataType:'json',
+    success:function(result){
+      $("#equip_make_edit").html(result.html);
+      $("#comp_prob_edit").html(result.html_cp);
+    }    
+  });
+  }
+}
 function cmsadd(){
   menuload();
   checkConnection();
@@ -18950,7 +18990,25 @@ $(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
           },
         }
       });
-      
+      $("#start_tm_edit_new").val("");
+      var ce = $('#comp_equip_edit').val();
+      var stp = $('#stations_edit').val();
+      var hidd_comp_id = $("#hidd_comp_id").val();
+      var hidd_prob_id = $("#hidd_prob_id").val();
+
+      //alert(ce + '==='+stp);
+      $.ajax({
+        type:'POST', 
+        url:base_url+'APP/Appcontroller/get_eqp_make',
+        data:{'ce':ce,'stp':stp},
+        dataType:'json',
+        success:function(result){
+          $("#equip_make_edit").html(result.html);
+          $("#comp_prob_edit").html(result.html_cp);
+          $("#equip_make_edit").val(hidd_comp_id);
+          $("#comp_prob_edit").val(hidd_prob_id); 
+        }    
+      });
       app.preloader.hide(); 
     }
   }); 
@@ -18993,7 +19051,7 @@ function cmsedit(){
       });
       app.preloader.hide();
     }
-  }  
+  }   
 }
 
 function receive_comp(complain_id){
@@ -19760,6 +19818,17 @@ function compare_passwords_submit(){
       return true;
     }
   }
+}
+function show_cmsimg(sapcode_img,imgpath){
+  var dynamicPopup_img = app.popup.create({
+  content: '<div class="popup popupsap-img_'+sapcode_img+'">'+
+            '<div class="block">'+                
+              '<p><a href="#" class="link popup-close">Close me</a></p>'+
+              '<p><img src="'+imgpath+'" / width="330"></p>'+
+            '</div>'+
+          '</div>',
+  });
+  dynamicPopup_img.open();
 }
 /*function uploaditem_images(old_images,img_nm,hidd_div,source){
   //alert("******** "+img_nm+'======='+hidd_div);

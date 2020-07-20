@@ -12,6 +12,7 @@
     <preference name="android-minSdkVersion" value="23" />
     <preference name="orientation" value="portrait" />
     <preference name="android-build-tool" value="gradle" />
+    <preference name="EnableViewportScale" value="true"/>
     <icon src="icon.png" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />

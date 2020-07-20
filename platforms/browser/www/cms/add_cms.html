@@ -25,12 +25,12 @@
           <input type="hidden" name="hidd_sess_user" id="hidd_sess_user">
           <input type="hidden" name="hidd_slot_sel" id="hidd_slot_sel">
           <input type="hidden" name="hidd_slot_sel_str" id="hidd_slot_sel_str"-->
-          <ul id="addcms " class="no-bg">
+          <ul id="addcms" class="no-bg">
             <li class="item-content item-input item-input-focused">
               <div class="item-inner">
                 <div class="item-title item-floating-label floatlbl_placeholder">Station<sup class="text-red fw-600 font-12">*</sup></div>
                 <div class="item-input-wrap txtbox_border input-dropdown-wrap">
-                  <select class="form-control" name="stations" id="stations" >
+                  <select class="form-control" name="stations" id="stations" onchange="get_equip()">
                   </select>
                 </div>
               </div>
@@ -49,7 +49,7 @@
               <div class="item-inner">
                 <div class="item-title item-floating-label floatlbl_placeholder">Complaint Equipment<sup class="text-red fw-600 font-12">*</sup></div>
                 <div class="item-input-wrap txtbox_border input-dropdown-wrap">
-                  <select class="form-control" name="comp_equip" id="comp_equip" >
+                  <select class="form-control" name="comp_equip" id="comp_equip" onchange="get_equip()">
                   </select>
                 </div>
               </div>
