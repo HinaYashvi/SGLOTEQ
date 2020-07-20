@@ -19053,7 +19053,7 @@ function cmsedit(){
     }
   }   
 }
-
+ 
 function receive_comp(complain_id){
   checkConnection();
   menuload();
