@@ -1,0 +1,112 @@
+<div data-name="add_hcvtime" class="page">
+	<div class="navbar">
+    <div class="navbar-bg"></div>
+	  <div class="navbar-inner sliding navbg">
+	    <div class="left ">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+	    </div>
+	    <div class="title text-uppercase text-white">add hcv info</div>
+	    <div class="right">
+        <a class="link" href="/dashboard/"><i class="f7-icons text-white">house_fill</i></a>
+        <a class="link panel-open" href="#" data-panel=".panel-right-2" onclick="menuload()"><i class="f7-icons text-white">bars</i></a>
+      </div>
+	  </div>
+	</div> 
+
+  <div class="fab_btn"></div>  
+
+  <div class="page-content"> 
+      <div class="list no-hairlines">
+        <form name="hcvtime" id="hcvtime">
+          <div class="block">       
+            <div class="list no-hairlines-md">
+              <input type="hidden" name="hidd_hrid" id="hidd_hrid">
+              <input type="hidden" value="0" name="in_mfm" id="in_mfm">
+              <ul id="addhcvtm"> 
+
+                <li class="item-content item-input item-input-focused">   
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label floatlbl_placeholder">Mother Station<sup class="text-red fw-600 font-12">*</sup></div>
+                    <div class="item-input-wrap txtbox_border input-dropdown-wrap">               
+                      <select name="sold_to_party_tm" id="sold_to_party_tm" required onchange="getDBStations(this.value)">                        
+                      </select>
+                    </div> 
+                  </div>                
+                </li>
+
+                <li class="item-content item-input item-input-focused">   
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label floatlbl_placeholder">DB Station<sup class="text-red fw-600 font-12">*</sup></div>
+                    <div class="item-input-wrap txtbox_border input-dropdown-wrap">               
+                      <select name="db_stations" id="db_stations" required >
+                        <option value="">---DB Station---</option>
+                      </select>
+                    </div> 
+                  </div>                
+                </li>
+
+                <h4>IN / START</h4>
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label floatlbl_placeholder">Time</div>
+                    <div class="item-input-wrap txtbox_border">
+                      <input type="text" placeholder="" name="hcv_time" id="hcv_time" class="hcv_time" /> 
+                    </div>
+                  </div>        
+                </li>
+              
+                <div class="block block-strong no-padding no-margin margin-bottom">
+                  <div id="hcv-picker-time-container"></div>
+                </div>
+
+                <li class="item-content item-input item-input-focused w-100">
+                  <div class="item-inner">
+                    <div class="item-title floatlbl_placeholder">KM<sup class="text-red fw-600 font-12">*</sup></div>
+                    <div class="item-input-wrap txtbox_border ">
+                      <input type="number" name="hcv_km" id="hcv_km" >
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input item-input-focused w-100">
+                  <div class="item-inner">
+                    <div class="item-title floatlbl_placeholder">Pressure<sup class="text-red fw-600 font-12">*</sup></div>
+                    <div class="item-input-wrap txtbox_border ">
+                      <input type="number" name="hcv_pressure" id="hcv_pressure" >
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label floatlbl_placeholder">Filling Time/Decanting Time</div>
+                    <div class="item-input-wrap txtbox_border">
+                      <input type="text" placeholder="" name="hcv_filltime" id="hcv_filltime" class="hcv_filltime" /> 
+                    </div>
+                  </div>        
+                </li>
+              
+                <div class="block block-strong no-padding no-margin margin-bottom">
+                  <div id="hcvfilling-picker-time-container"></div>
+                </div>
+
+                <div class="block">
+                  <div class="row">
+                    <div class="col-50"><a class="button col button button-fill color-black no-radius" href="#" onclick="hcvtimeadd()">Save</a></div>
+                    <div class="col-50"><a class="button col button button-fill color-gray no-radius back" href="#" 
+                    >back</a></div>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </form>
+        <!--ul id="viewmotherhcv"></ul>
+        <div class="block"><ul class="block_inout"></ul></div-->         
+      </div>
+    </div>
+  </div> <!-- .page-content --> 
+</div><!-- page -->

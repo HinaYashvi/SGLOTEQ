@@ -92,7 +92,7 @@ body{
     /*background:#afd89f;    
     background: #0d0850;*/
     /*background: #afd89f;*/
-    background:rgba(0, 0, 0, 0) url("../img/login.jpg") no-repeat fixed center center / cover;
+    background:rgba(0, 0, 0, 0) url("../img/login.jpg") no-repeat fixed center center / cover; 
     /*background:rgba(0, 0, 0, 0) url("../img/login_bg.jpg") no-repeat fixed center center / cover;*/
 
 
@@ -135,7 +135,7 @@ body{
 #reg_formDiv{
     margin: 0 auto;
     display: block;
-} 
+}
 .inputbox{
 	/*margin: 0 45px 15px 45px;
     width: 100%;*/
@@ -239,7 +239,7 @@ a {
   background-color: #F69000!important;
 }
 .sgl-orange{
-  color: #F69000;
+  color: #F69000!important;
 }
 .showpass{
   position: absolute;
@@ -323,6 +323,9 @@ div.container4 p {
 }
 .text-red{
     color: red;
+}
+.mt-0{
+  margin-top: 0px!important;
 }
 .mt-2{
     margin-top: 2%!important;
@@ -421,6 +424,9 @@ div.container4 p {
 .innerDiv{
   margin-top: 25%!important;
 }
+.text-capitalize{
+  text-transform: capitalize;
+}
 .wh-70{
   height: 70px;
   width: 70px;
@@ -434,6 +440,9 @@ div.container4 p {
 }
 .td_border{
   border: 1px solid #000;
+}
+.p-2{
+  padding: 2%;
 }
 .p-5{
   padding: 5%;
@@ -580,6 +589,16 @@ div.container4 p {
 .color-sgl-green{
   color: #018137;
 }
+.badge-blue {
+    color: #fff;
+    background-color: #4a81d4;
+}
+.clr-blue{
+  color:  #4a81d4!important;
+}
+.bgblue{
+  background-color: #b5d3ff;
+}
 .tbl-border{
   border: 1px solid darkgray;
 }
@@ -611,6 +630,37 @@ div.container4 p {
 }
 .list .item-link .item-inner:before{
   content: none!important;
+}
+.acc_bg{
+  background-color: #f5d9b1;
+}
+.blink_me {
+    /*animation: blinker 1s linear infinite;*/
+    animation: 1s linear 0s normal none infinite running animate-blink;
+    -webkit-animation: 1s linear 0s normal none infinite running animate-blink;
+    -moz-animation: 1s linear 0s normal none infinite running animate-blink;
+    -ms-animation: 1s linear 0s normal none infinite running animate-blink;
+    -o-animation: 1s linear 0s normal none infinite running animate-blink;
+}
+keyframes animate-blink {
+0%, 100% { opacity: 1.0; }
+50% { opacity: 0.0; }
+}
+@-moz-keyframes animate-blink {
+0%, 100% { opacity: 1.0; }
+50% { opacity: 0.0; }
+}
+@-webkit-keyframes animate-blink {
+0%, 100% { opacity: 1.0; }
+50% { opacity: 0.0; }
+}
+@-o-keyframes animate-blink {
+0%, 100% { opacity: 1.0; }
+50% { opacity: 0.0; }
+}
+@-ms-keyframes animate-blink {
+0%, 100% { opacity: 1.0; }
+50% { opacity: 0.0; }
 }
 /*.data-table th:first-child,.data-table th.cell-label,.data-table td:first-child{
   f7-table-cell-padding-left: 0!important; 

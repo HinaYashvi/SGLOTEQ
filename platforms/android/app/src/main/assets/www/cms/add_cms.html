@@ -59,7 +59,7 @@
               <div class="item-inner">
                 <div class="item-title item-floating-label floatlbl_placeholder">Equipment Make<sup class="text-red fw-600 font-12">*</sup></div>
                 <div class="item-input-wrap txtbox_border input-dropdown-wrap">
-                  <select class="form-control" name="equip_make" id="equip_make" >
+                  <select class="form-control" name="equip_make" id="equip_make" onchange="get_eqno(this.value)">
                   </select>
                 </div>
               </div>
@@ -68,8 +68,8 @@
             <li class="item-content item-input item-input-focused w-100">
               <div class="item-inner">
                 <div class="item-title floatlbl_placeholder">Equipment No</div>
-                <div class="item-input-wrap txtbox_border ">
-                  <input type="text" name="equip_no" id="equip_no">
+                <div class="item-input-wrap txtbox_border cls_com_eqp_no">
+                  <!--input type="text" name="equip_no" id="equip_no"-->
                 </div>
               </div>
             </li>

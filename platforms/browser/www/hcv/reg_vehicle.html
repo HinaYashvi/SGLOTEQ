@@ -1,0 +1,304 @@
+<div data-name="reg_vehicle" class="page pagebg_clr">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">Reg. vehicle</div>
+      <div class="right">
+        <a class="link" href="/dashboard/"><i class="f7-icons text-white">house_fill</i></a>
+        <a class="link panel-open" href="#" data-panel=".panel-right-2" onclick="menuload()"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">      
+    <form id="form_reg_veh" >  
+      <div class="block">       
+        <div class="list no-hairlines-md">
+          <ul id="addvst">
+
+            <li>
+              <a class="item-link smart-select smart-select-init" data-open-in="popup"  data-searchbar="true" data-searchbar-placeholder="Search Mother Station">
+                <select name="sold_to_party[]" multiple id="sold_to_party">      
+                </select>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">Mother Station<sup class="text-red fw-600 font-12">*</sup></div>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Vehicle No<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap notxtborder">
+                  <div class="row">
+                    <div class="col-20">
+                      <input type="text" placeholder="GJ" name="np_one" id="codeBox_reg_1" class="readonly_txt num_plt text-uppercase num_plate" onkeyup="onKeyUpEvent_reg(1, event)" onfocus="onFocusEvent_Reg(1)">
+                      
+                    </div>                  
+
+                    <div class="col-20">
+                      <input type="number" placeholder="18" name="np_two" id="codeBox_reg_2" class="readonly_txt num_plt text-uppercase num_plate pholder" onkeyup="onKeyUpEvent_reg(2, event)" onfocus="onFocusEvent_Reg(2)">
+                      
+                    </div>
+
+                    <div class="col-20">
+                      <input type="text" placeholder="BK" name="np_three" id="codeBox_reg_3" class="readonly_txt num_plt text-uppercase num_plate" onkeyup="onKeyUpEvent_reg(3, event)" onfocus="onFocusEvent_Reg(3)">     
+                    </div>
+                  
+                    <div class="col-33">
+                      <input type="number" placeholder="8807" name="np_four_reg" id="codeBox_reg_4" class="readonly_txt num_plt text-uppercase num_plate" onkeyup="gotonext_four_reg(this);">                  
+                    </div>
+                  </div> 
+                  
+                </div>
+                <div>For Ex: GJ-18-BK-8807</div>
+              </div>
+            </li>
+
+
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Driver name<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border">
+                  <input type="text" name="driver_name" id="driver_name" placeholder="Driver name">     
+                </div>
+              </div>
+            </li>
+
+
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Mobile<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border">
+                  <input type="number" name="mobile" id="mobile_one" placeholder="Mobile" onkeyup="isNumber(event,this.value);">                  
+                </div>
+              </div>
+            </li> 
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Vehicle Type<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="vtype" id="vtype">                    
+                    <option value="TRUCK">TRUCK</option>
+                  </select>
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Cascade Number<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border">
+                  <input type="text" placeholder="Cascade Number" name="cascade_code" id="cascade_code" />
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Hydrotest due date<sup class="text-red fw-600 font-12">*</sup></div>
+                <div class="item-input-wrap txtbox_border">
+                  <input type="text" placeholder="Select date" name="hydro_due_dt" id="demo-calendar-modal-reg"/>
+                </div>
+              </div>
+            </li>         
+
+
+            <li class="item-content item-input showtwoBlocks"><!-- display-none -->
+              <div class="item-inner">
+                <span class="item-title item-label floatlbl_placeholder mb-15">Number Plate</span>                  
+                    <div class="item-input-wrap">
+                      <div class="uploadDiv w-100 "> <!-- display-none -->
+                        <div class="col-100">
+                          <div class="row">
+                            <div class="20"></div>
+                            <div class="col-50 picbox text-white" >
+                              <span onclick="capturePhoto_noplt_reg();" >
+                                <div class="innerDiv">
+                              <!--i class="f7-icons picbox-text">camera</i><br/-->
+                              <img src="img/photo-camera-1.png" height="30" width="30" /><br/>
+                              <span class="picbox-text">Capture</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-50 picbox text-white" >
+                        <a onclick="getPhoto_noplt_reg(pictureSource.PHOTOLIBRARY);">
+                          <div class="innerDiv">
+                            <!--i class="f7-icons picbox-text">photos</i><br/-->
+                            <img src="img/gallery.png" height="30" width="30" /><br/>
+                            <span class="picbox-text">Photo Gallery</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="20"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </li>            
+
+            <li class="item-content item-input imageblock_noplt_reg display-none" style="width:100%;" id="imageblock_noplt_reg">
+              <div class="item-inner">
+                <div class="item-input-wrap">
+                  <img id="image_noplt_reg" src="img/round_new_logo2.png" style="width:100%;">
+                  <!--img id="image_noplt_reg" src="" style="width:100%;"--> 
+                </div>
+              </div> 
+            </li>  
+
+
+            <li class="item-content item-input showtwoBlocks"><!-- display-none -->
+              <div class="item-inner">
+                <span class="item-title item-label floatlbl_placeholder mb-15">RC Book</span>                  
+                    <div class="item-input-wrap">
+                      <div class="uploadDiv w-100 "> <!-- display-none -->
+                        <div class="col-100">
+                          <div class="row">
+                            <div class="20"></div>
+                            <div class="col-50 picbox text-white" >
+                              <span onclick="capturePhoto_rc_reg();" >
+                                <div class="innerDiv">
+                              <!--i class="f7-icons picbox-text">camera</i><br/-->
+                              <img src="img/photo-camera-1.png" height="30" width="30" /><br/>
+                              <span class="picbox-text">Capture</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-50 picbox text-white" >
+                        <a onclick="getPhoto_rc_reg(pictureSource.PHOTOLIBRARY);">
+                          <div class="innerDiv">
+                            <!--i class="f7-icons picbox-text">photos</i><br/-->
+                            <img src="img/gallery.png" height="30" width="30" /><br/>
+                            <span class="picbox-text">Photo Gallery</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="20"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </li>            
+
+            <li class="item-content item-input imageblock_rc_reg display-none" style="width:100%;" id="imageblock_rc_reg">
+              <div class="item-inner">
+                <div class="item-input-wrap">
+                  <!--img id="image_rc_reg" src="img/logo_new2.jpg" style="width:100%;"-->
+                  <img id="image_rc_reg" src="" style="width:100%;"> 
+                </div>
+              </div> 
+            </li>
+
+
+            <li class="item-content item-input showtwoBlocks"><!-- display-none -->
+              <div class="item-inner">
+                <span class="item-title item-label floatlbl_placeholder mb-15">Driver Photo</span>                  
+                    <div class="item-input-wrap">
+                      <div class="uploadDiv w-100 "> <!-- display-none -->
+                        <div class="col-100">
+                          <div class="row">
+                            <div class="20"></div>
+                            <div class="col-50 picbox text-white" >
+                              <span onclick="capturePhoto_driver_reg();" >
+                                <div class="innerDiv">
+                              <!--i class="f7-icons picbox-text">camera</i><br/-->
+                              <img src="img/photo-camera-1.png" height="30" width="30" /><br/>
+                              <span class="picbox-text">Capture</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-50 picbox text-white" >
+                        <a onclick="getPhoto_driver_reg(pictureSource.PHOTOLIBRARY);">
+                          <div class="innerDiv">
+                            <!--i class="f7-icons picbox-text">photos</i><br/-->
+                            <img src="img/gallery.png" height="30" width="30" /><br/>
+                            <span class="picbox-text">Photo Gallery</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="20"></div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+              </div>
+            </li>            
+
+            <li class="item-content item-input imageblock_reg display-none" style="width:100%;" id="imageblock_reg">
+              <div class="item-inner">
+                <div class="item-input-wrap">
+                  <!--img id="image_driver" src="img/pdf.png" style="width:100%;"-->
+                  <!--input type="file" name="file" src="img/list (3).png" style="width:100%;"-->
+                  <img id="image_driver" src="" style="width:100%;"> 
+                </div>
+              </div> 
+            </li>        
+
+
+            <li class="item-content item-input showtwoBlocks"><!-- display-none -->
+              <div class="item-inner">
+                <span class="item-title item-label floatlbl_placeholder mb-15">License</span>                  
+                    <div class="item-input-wrap">
+                      <div class="uploadDiv w-100 "> <!-- display-none -->
+                        <div class="col-100">
+                          <div class="row">
+                            <div class="20"></div>
+                            <div class="col-50 picbox text-white" >
+                              <span onclick="capturePhoto_license_reg();" >
+                                <div class="innerDiv">
+                              <!--i class="f7-icons picbox-text">camera</i><br/-->
+                              <img src="img/photo-camera-1.png" height="30" width="30" /><br/>
+                              <span class="picbox-text">Capture</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-50 picbox text-white" >
+                        <a onclick="getPhoto_license_reg(pictureSource.PHOTOLIBRARY);">
+                          <div class="innerDiv">
+                            <!--i class="f7-icons picbox-text">photos</i><br/-->
+                            <img src="img/gallery.png" height="30" width="30" /><br/>
+                            <span class="picbox-text">Photo Gallery</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="20"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </li>            
+
+            <li class="item-content item-input imageblock_license display-none" style="width:100%;" id="imageblock_license">
+              <div class="item-inner">
+                <div class="item-input-wrap">
+                  <!--img id="image_license" src="img/dashboard.jpg" style="width:100%;"-->              
+                  <img id="image_license" src="" style="width:100%;"> 
+                </div>
+              </div> 
+            </li>
+
+            
+          </ul>
+        </div>
+
+        <div class="block">
+          <div class="row">
+            <div class="col-50"><a class="button col button button-fill color-black no-radius" href="#" onclick="regvehadd()">Save</a></div>
+            <div class="col-50"><a class="button col button button-fill color-gray no-radius back" href="#" 
+            >back</a></div>
+          </div>
+        </div>
+      </div>    
+    </form>
+  </div>
+</div>

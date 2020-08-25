@@ -183,4 +183,60 @@ var routes = [
     url: './change_password.html',
     name: 'change_password',
   },
+  {
+    path: '/hcv_view/',
+    url: './hcv/hcv_view.html',
+    name: 'hcv_view',
+  },
+  
+  {
+    path: '/hcv/',
+    url: './hcv/hcv.html',
+    name: 'hcv',
+  },
+  {
+    path: '/view_mother_hcv/:hr_id/',
+    url: './hcv/view_mother_hcv.html?hr_id={{hr_id}}',
+    name: 'view_mother_hcv',
+  },
+  {
+    path: '/reg_vehicle/',
+    url: './hcv/reg_vehicle.html',
+    name: 'reg_vehicle',
+  },
+  {
+    path: '/edit_regveh/:hr_id/',
+    url: './hcv/edit_regveh.html?hr_id={{hr_id}}',
+    name: 'edit_regveh',
+  },
+  {
+    path: '/add_hcvtime/:hr_id/',
+    url: './hcv/add_hcvtime.html?hr_id={{hr_id}}',
+    name: 'add_hcvtime',
+  },
+  {
+    path: '/hcvedit_time/:hinfo_id/:hr_id/',
+    url: './hcv/hcvedit_time.html?hinfo_id={{hinfo_id}}/hr_id={{hr_id}}',
+    name: 'hcvedit_time',
+  },
+  {
+    path: '/hcv_db/',
+    url: './hcv/hcv_db.html',
+    name: 'hcv_db',
+  },
+  {
+    path: '/hcv_db_details/:hi_id/',
+    url: './hcv/hcv_db_details.html?hi_id={{hi_id}}',
+    name: 'hcv_db_details',
+  },
+  {
+    path: '/edit_dbinfo/:hi_id/',
+    url: './hcv/edit_dbinfo.html?hi_id={{hi_id}}',
+    name: 'edit_dbinfo',
+  },
+  {
+    path: '/edit_dryout/:hi_id/',
+    url: './hcv/edit_dryout.html?hi_id={{hi_id}}',
+    name: 'edit_dryout',
+  },
 ];

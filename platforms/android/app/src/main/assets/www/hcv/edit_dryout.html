@@ -1,0 +1,106 @@
+<div data-name="edit_dryout" class="page">
+	<div class="navbar">
+    <div class="navbar-bg"></div>
+	  <div class="navbar-inner sliding navbg">
+	    <div class="left ">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+	    </div>
+	    <div class="title text-uppercase text-white">edit dryout</div>
+	    <div class="right">
+        <a class="link" href="/dashboard/"><i class="f7-icons text-white">house_fill</i></a>
+        <a class="link panel-open" href="#" data-panel=".panel-right-2" onclick="menuload()"><i class="f7-icons text-white">bars</i></a>
+      </div>
+	  </div>
+	</div> 
+
+  <div class="fab_btn"></div>  
+
+  <div class="page-content"> 
+      <div class="list no-hairlines">
+        <form name="dryout_edit" id="dryout_edit">
+          <div class="block">       
+            <div class="no-hairlines-md"> 
+            <input type="hidden" name="hiid" id="hiid">  
+              <ul class="pl-zero">
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                  <div class="item-title item-floating-label floatlbl_placeholder">Start Date<sup class="text-red fw-600 font-12">*</sup></div>
+                  <div class="item-input-wrap txtbox_border">
+                    <input type="text" name="start_date_dryout" id="start_date_dryout" placeholder="Start Date" >     
+                  </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                  <div class="item-title item-floating-label floatlbl_placeholder">Start Time<sup class="text-red fw-600 font-12">*</sup></div>
+                  <div class="item-input-wrap txtbox_border">
+                    <input type="text" name="start_tm_dryout_db" id="start_tm_dryout_db" readonly class="readonly">     
+                  </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label floatlbl_placeholder">Start Time</div>
+                    <div class="item-input-wrap txtbox_border">
+                      <input type="text" placeholder="" name="dry_start_time" id="dry_start_time" class="dry_start_time" /> 
+                    </div>
+                  </div>        
+                </li>
+              
+                <div class="block block-strong no-padding no-margin margin-bottom">
+                  <div id="drystrt-time-container"></div>
+                </div>
+                
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                  <div class="item-title item-floating-label floatlbl_placeholder">End Date<sup class="text-red fw-600 font-12">*</sup></div>
+                  <div class="item-input-wrap txtbox_border">
+                    <input type="text" name="end_date_dryout" id="end_date_dryout" placeholder="End Date" >     
+                  </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                  <div class="item-title item-floating-label floatlbl_placeholder">End Time<sup class="text-red fw-600 font-12">*</sup></div>
+                  <div class="item-input-wrap txtbox_border">
+                    <input type="text" name="end_tm_dryout_db" id="end_tm_dryout_db" readonly class="readonly">     
+                  </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input item-input-focused">
+                  <div class="item-inner">
+                    <div class="item-title item-floating-label floatlbl_placeholder">End Time</div>
+                    <div class="item-input-wrap txtbox_border">
+                      <input type="text" placeholder="" name="dry_end_time" id="dry_end_time" class="dry_end_time" /> 
+                    </div>
+                  </div>        
+                </li>
+              
+                <div class="block block-strong no-padding no-margin margin-bottom">
+                  <div id="dryend-time-container"></div>
+                </div>
+
+
+              </ul>          
+            </div>
+
+            <div class="block">
+              <div class="row">
+                <div class="col-50"><a class="button col button button-fill color-black no-radius" href="#" onclick="dryoutsave()">Save</a></div>
+                <div class="col-50"><a class="button col button button-fill color-gray no-radius back" href="#" 
+                >back</a></div>
+              </div>
+            </div>
+
+          </div>
+        </form>          
+      </div>
+    </div>
+  </div> <!-- .page-content --> 
+</div><!-- page -->

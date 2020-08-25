@@ -48,8 +48,8 @@ var app = new Framework7({
     app.hideIndicator();
   }
 }); 
-//var base_url = 'http://oteqprojects.co.in/sabarmati/'; // TEST SERVER //
-var base_url = 'https://sglnext.in/'; // LIVE SERVER // 
+var base_url = 'http://oteqprojects.co.in/sabarmati/'; // TEST SERVER //
+//var base_url = 'https://sglnext.in/'; // LIVE SERVER // 
 var mainView = app.views.create('.view-main');
 var dt = new Date();
   if(dt.getMinutes() <=9){
@@ -560,7 +560,7 @@ function openpopup(owner,mob1,mob2,email,vtype,metal_plate,rcbook,form24,num_pla
   var dynamicPopup = app.popup.create({
   content: '<div class="popup over_scroll">'+'<div class="block"><p><a href="#" class="link popup-close text-red fw-600">CLOSE ME</a></p><div class="block-title">Name of Owner / Driver</div><div class="block"><p class="text-uppercase">'+owner+'</p></div><div class="block-title">Mobile No 1</div><div class="block"><p class="text-uppercase">'+mob1+'</p></div>'+mobile_two+emailID+veh_type+'<div class="block-title">Hydrotest Due Date</div><div class="block"><p class="text-uppercase">'+hydro_date+'</p></div>'+filling_img+'</div>',
   });
-  dynamicPopup.open();
+  dynamicPopup.open(); 
 } 
 function scan_qr(){
   var hidd_vehno=$("#hidd_vehno").val();
@@ -18926,7 +18926,7 @@ $(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
   var session_stid = window.localStorage.getItem("session_stid");  
   app.preloader.show();
   $.ajax({
-    type:'POST',  
+    type:'POST',   
     url:base_url+'APP/Appcontroller/editcmsdata',
     data:{'c_id':c_id,'session_utype':session_utype,'session_stid':session_stid},
     dataType:'json',
@@ -18938,7 +18938,7 @@ $(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
         inputEl: '#start_dt_edit',
         openIn: 'customModal',
         dateFormat: 'dd-mm-yyyy',
-        header: true,
+        header: true, 
         footer: true,
         renderToolbar: function () {   
           return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
@@ -19000,7 +19000,7 @@ $(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
       //alert(ce + '==='+stp);
       $.ajax({
         type:'POST', 
-        url:base_url+'APP/Appcontroller/get_eqp_make',
+        url:base_url+'APP/Appcontroller/get_eqp_make_edit',
         data:{'ce':ce,'stp':stp},
         dataType:'json',
         success:function(result){
@@ -19013,6 +19013,8 @@ $(document).on('page:init', '.page[data-name="edit_cms"]', function (page) {
       app.preloader.hide(); 
     }
   }); 
+
+
 });
 function cmsedit(){
   checkConnection();
@@ -19040,7 +19042,7 @@ function cmsedit(){
         success:function(result){
           var parseupdate = $.parseJSON(result);
           var msg = parseupdate.msg;
-          alert(msg);
+          //alert(msg);
           if(msg=='updated'){
             app.dialog.alert("Complaint updated successfully!");
             mainView.router.navigate("/cms/");
@@ -19504,6 +19506,7 @@ $(document).on('page:init', '.page[data-name="change_cms_eic"]', function (page)
             },
           }
         });
+
         // rep end time picker //
         var today = new Date();
         var pickerInline = app.picker.create({
@@ -19699,6 +19702,54 @@ function EIC_cmschange(){
     } 
   });
 }
+function get_eqno(eq_make){
+  var ce = $("#comp_equip option:selected").text();
+  var stp = $('#stations').val();
+  var em = $("#equip_make option:selected").text();
+  if(em != 'Other'){
+    $.ajax({
+      type:'POST',  
+      dataType: 'json', 
+      url:base_url+'APP/Appcontroller/get_eqp_no',
+      data:{'ce':ce,'stp':stp,'em':em},
+      success:function(result){
+        if(result.msg == 'comp'){
+            $('.cls_com_eqp_no').html(result.data);
+            //$("#equip_make").html(result.data);
+        }else if(result.msg == 'disp'){
+            $('.cls_com_eqp_no').html(result.data);
+            //$("#equip_make").html(result.data);
+        }
+      }
+    });
+  }else{
+    $('.cls_com_eqp_no').html('<input type="text" class="form-control" id="equip_no" name="equip_no" placeholder="Equipment No">');
+  }
+}
+function get_eqno_edit(eq_make){
+  var ce = $("#comp_equip_edit option:selected").text();
+  var stp = $('#stations_edit').val();
+  var em = $("#equip_make_edit option:selected").text();
+  if(em != 'Other'){
+    $.ajax({
+      type:'POST',  
+      dataType: 'json', 
+      url:base_url+'APP/Appcontroller/get_eqp_no',
+      data:{'ce':ce,'stp':stp,'em':em},
+      success:function(result){
+        if(result.msg == 'comp'){
+            $('.cls_com_eqp_no').html(result.data);
+            //$("#equip_make").html(result.data);
+        }else if(result.msg == 'disp'){
+            $('.cls_com_eqp_no').html(result.data);
+            //$("#equip_make").html(result.data);
+        }
+      }
+    });
+  }else{
+    $('.cls_com_eqp_no').html('<input type="text" class="form-control" id="equip_no_edit" name="equip_no_edit" placeholder="Equipment No">');
+  }
+}
 function approve_comp(approve_comp_id){
   checkConnection();
   menuload();
@@ -19886,6 +19937,1382 @@ function upload_itemdetails(hidd_complain_id,old_images,sapcode,other_part,ohter
   alert(upload_itemdets)
   ft.upload(imageURI,upload_itemdets,win,fail,options,true);
 }*/
+// -------------------------------- H C V -------------------------------------- //
+$(document).on('page:init', '.page[data-name="hcv"]', function (page) {
+  menuload();
+  checkConnection();
+  app.panel.close();
+  app.preloader.show();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var session_stid = window.localStorage.getItem("session_stid");
+  var session_utype = window.localStorage.getItem("session_utype");
+  $.ajax({
+    type:'POST', 
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/getHCVList',
+    data:{'session_uid':session_uid,'sess_designation':sess_designation,'session_stid':session_stid,'session_utype':session_utype},
+    success:function(result){
+      var parseRes = $.parseJSON(result);
+      var hcvList = parseRes.hcv_list;
+      var total_hcv = parseRes.total_hcv;
+      $(".total_hcv").html("Total Records: ("+total_hcv+")");
+      //$(".addbtn").html("<a class='button button-fill button-small sgl-blue' href='/reg_vehicle/'>Register Vehicle</a>");
+      $("#hcv_list").html(hcvList);
+    }
+  });
+  app.preloader.hide();
+});
+$(document).on('page:init', '.page[data-name="reg_vehicle"]', function (page) {
+  menuload();
+  checkConnection();
+  var session_stid = window.localStorage.getItem("session_stid");
+  var session_utype = window.localStorage.getItem("session_utype");
+  app.panel.close();
+  app.preloader.show();
+  $.ajax({
+    type:'POST', 
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/getHCVmotherStations',
+    data:{'session_stid':session_stid,'session_utype':session_utype},
+    success:function(res){
+      var parseRes = $.parseJSON(res);
+      var stns = parseRes.stns;
+      $("#sold_to_party").html(stns);
+    }
+  });
+
+  var calendarModal = app.calendar.create({
+    inputEl: '#demo-calendar-modal-reg',
+    openIn: 'customModal',
+    dateFormat: 'dd-mm-yyyy',
+    header: true,
+    footer: true,
+    renderToolbar: function () {   
+      return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
+    }
+  });
+
+  app.preloader.hide();
+});
+$(document).on('page:init', '.page[data-name="view_mother_hcv"]', function (page) {
+  menuload();
+  checkConnection();
+  var hr_id = page.detail.route.params.hr_id;
+  app.preloader.show();
+  $.ajax({
+    type:'POST', 
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/viewHCVList',
+    data:{'hr_id':hr_id},
+    success:function(result){
+      var parseRes = $.parseJSON(result);
+      var reg_data = parseRes.reg_data;
+      var stn_inout = parseRes.stn_inout;
+      $("#viewmotherhcv").html(reg_data); 
+      $(".fab_btn").html('<div class="fab fab-right-bottom"><a href="/add_hcvtime/'+hr_id+'/" class="color-fbtn"><i class="f7-icons">plus</i><i class="f7-icons">multiply</i></a></div>');
+      $(".block_inout").html(stn_inout);   
+    }
+  });
+  app.preloader.hide();
+});
+function getHCVmother(hr_id){
+  menuload();
+  checkConnection();
+  app.panel.close();
+  app.preloader.show();
+  mainView.router.navigate("/view_mother_hcv/"+hr_id+"/");
+  /*$.ajax({
+    type:'POST', 
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/viewHCVList',
+    data:{'hr_id':hr_id},
+    success:function(result){
+      var parseRes = $.parseJSON(result);
+      var reg_data = parseRes.reg_data;
+      var stn_inout = parseRes.stn_inout;
+      $("#viewmotherhcv").html(reg_data); 
+      $(".fab_btn").html('<div class="fab fab-right-bottom"><a href="/add_hcvtime/'+hr_id+'/" class="color-fbtn"><i class="f7-icons">plus</i><i class="f7-icons">multiply</i></a></div>');
+      $(".block_inout").html(stn_inout);   
+    }
+  });*/
+  app.preloader.hide();
+}
+function openimage_noplate(image){
+  var dynamicPopup = app.popup.create({
+  content: '<div class="popup popup_img_numplate">'+
+            '<div class="block">'+ 
+              '<p><a href="#" class="color-sgl-green">Number Plate</a></p>'+               
+              '<p><a href="#" class="link popup-close">Close me</a></p>'+
+              '<p><img src="'+image+'" height="300" width="330"/></p>'+
+            '</div>'+
+          '</div>',
+  });
+  dynamicPopup.open();
+}
+
+function openimage_rcbook(image){
+  var dynamicPopup = app.popup.create({
+  content: '<div class="popup popup_img_rcbook">'+
+            '<div class="block">'+  
+              '<p><a href="#" class="color-sgl-green">RC Book</a></p>'+                   
+              '<p><a href="#" class="link popup-close">Close me</a></p>'+
+              '<p><img src="'+image+'" height="300" width="330"/></p>'+
+            '</div>'+
+          '</div>',
+  });
+  dynamicPopup.open();
+}
+
+function openimage_driverpic(image){
+  var dynamicPopup = app.popup.create({
+  content: '<div class="popup popup_img_driverpic">'+
+            '<div class="block">'+   
+              '<p><a href="#" class="color-sgl-green">Driver Photo</a></p>'+                  
+              '<p><a href="#" class="link popup-close">Close me</a></p>'+
+              '<p><img src="'+image+'" height="300" width="330"/></p>'+
+            '</div>'+
+          '</div>',
+  });
+  dynamicPopup.open();
+}
+
+function openimage_license(image){
+  var dynamicPopup = app.popup.create({
+  content: '<div class="popup popup_img_license">'+
+            '<div class="block">'+     
+              '<p><a href="#" class="color-sgl-green">License</a></p>'+                
+              '<p><a href="#" class="link popup-close">Close me</a></p>'+
+              '<p><img src="'+image+'" height="300" width="330"/></p>'+
+            '</div>'+
+          '</div>',
+  });
+  dynamicPopup.open();
+}
+
+function getCodeBoxElement_reg(index) {
+    return document.getElementById('codeBox_reg_'+index);
+  }
+function onKeyUpEvent_reg(index, event) {
+  const eventCode = event.which || event.keyCode;
+  console.log(getCodeBoxElement_reg(index).value.length);
+  //if(index == '3'){var len = 3}else{ var len = 2}
+  if ((index!=3 && getCodeBoxElement_reg(index).value.length === 2) || (index==3 && getCodeBoxElement_reg(index).value.length === 3 || index==3 && getCodeBoxElement_reg(index).value.length === 2)) {
+    console.log("called");
+    searchByveh();
+    if(index == 1 || index == 2 || index == 3){
+      if(getCodeBoxElement_reg(index).value.length === 2){
+        getCodeBoxElement_reg(index+ 1).focus();
+      }else if(getCodeBoxElement_reg(index).value.length === 2){
+        getCodeBoxElement_reg(index+ 1).focus();
+      }      
+    }else if (index !== 4) {      
+      getCodeBoxElement_reg(index+ 1).focus();
+    } else {
+      getCodeBoxElement_reg(index).blur();
+      // Submit code
+      console.log('submit code ');
+    }
+    /*if (index !== 4) {      
+      getCodeBoxElement_reg(index+ 1).focus();
+    } else {
+      getCodeBoxElement_reg(index).blur();
+      // Submit code
+      console.log('submit code ');
+    }*/
+  }
+
+  if (eventCode === 8 && index !== 1) {
+    getCodeBoxElement_reg(index - 1).focus();
+  }
+}
+function onFocusEvent_Reg(index) {
+  for (item = 1; item < index; item++) {
+    var currentElement = getCodeBoxElement_reg(item);
+    if (!currentElement.value) {
+        currentElement.focus();
+        break;
+    }
+  }
+}
+function gotonext_four_reg(txtval){
+  var txtlen = txtval.value.length;  
+  if(txtlen>5){
+    $("#codeBox_reg_4").val('');
+    app.dialog.alert("Enter valid vehicle number");
+  }
+}
+//********************************* NUMBER PLATE *************************************//
+function capturePhoto_noplt_reg(){
+  checkConnection();   
+  navigator.camera.getPicture(onPhotoDataSuccess_noplt_reg, onFail, {
+  quality: 100,
+  targetWidth: 600,
+  targetHeight: 600,
+  destinationType: destinationType.FILE_URI,
+  //saveToPhotoAlbum: true
+  saveToPhotoAlbum: false,
+  correctOrientation: true,
+  });
+}
+function onPhotoDataSuccess_noplt_reg(imageURI_noplt){
+  //alert("in success "+imageURI_rc);
+  checkConnection();  
+  var cameraImage_noplt = document.getElementById('image_noplt_reg');
+  //alert(cameraImage_rc);
+  //cameraImage_rc.style.display = 'block';
+  $("#imageblock_noplt_reg").removeClass("display-none");
+  $("#imageblock_noplt_reg").addClass("display-block");
+  cameraImage_noplt.src = imageURI_noplt;
+}
+function getPhoto_noplt_reg(source){
+  checkConnection();    
+  navigator.camera.getPicture(onPhotoURISuccess_noplt_reg, onFail, {
+    quality: 100,
+    correctOrientation: 1,
+    targetWidth: 600,
+    targetHeight: 600,
+    destinationType: destinationType.FILE_URI,
+    sourceType: source
+  });
+} 
+function onPhotoURISuccess_noplt_reg(imageURI_gallery_noplt){
+  checkConnection();  
+  var galleryImage_noplt = document.getElementById('image_noplt_reg');
+  //alert("galleryImage "+galleryImage_rc);
+  //galleryImage_rc.style.display = 'block';
+  $("#imageblock_noplt_reg").removeClass("display-none");
+  $("#imageblock_noplt_reg").addClass("display-block");
+  galleryImage_noplt.src = imageURI_gallery_noplt;
+}
+//********************************* RC BOOK *************************************//
+function capturePhoto_rc_reg(){
+  checkConnection();   
+  navigator.camera.getPicture(onPhotoDataSuccess_rc_reg, onFail, {
+  quality: 100,
+  targetWidth: 600,
+  targetHeight: 600,
+  destinationType: destinationType.FILE_URI,
+  //saveToPhotoAlbum: true
+  saveToPhotoAlbum: false,
+  correctOrientation: true,
+  });
+}
+function onPhotoDataSuccess_rc_reg(imageURI_rc){
+  //alert("in success "+imageURI_rc);
+  checkConnection();  
+  var cameraImage_rc = document.getElementById('image_rc_reg');
+  //alert(cameraImage_rc);
+  //cameraImage_rc.style.display = 'block';
+  $("#imageblock_rc_reg").removeClass("display-none");
+  $("#imageblock_rc_reg").addClass("display-block");
+  cameraImage_rc.src = imageURI_rc;
+}
+function getPhoto_rc_reg(source) {
+  checkConnection();    
+  navigator.camera.getPicture(onPhotoURISuccess_rc_reg, onFail, {
+    quality: 100,
+    correctOrientation: 1,
+    targetWidth: 600,
+    targetHeight: 600,
+    destinationType: destinationType.FILE_URI,
+    sourceType: source
+  });
+} 
+function onPhotoURISuccess_rc_reg(imageURI_gallery_rc) {
+  checkConnection();  
+  var galleryImage_rc = document.getElementById('image_rc_reg');
+  //alert("galleryImage "+galleryImage_rc);
+  //galleryImage_rc.style.display = 'block';
+  $("#imageblock_rc_reg").removeClass("display-none");
+  $("#imageblock_rc_reg").addClass("display-block");
+  galleryImage_rc.src = imageURI_gallery_rc;
+}
+//********************************* DRIVER PHOTO *************************************//
+function capturePhoto_driver_reg() {
+  checkConnection();   
+  navigator.camera.getPicture(onPhotoDataSuccess_reg, onFail, {
+  quality: 100,
+  targetWidth: 600,
+  targetHeight: 600,
+  destinationType: destinationType.FILE_URI,
+  //saveToPhotoAlbum: true
+  saveToPhotoAlbum: false,
+  correctOrientation: true,
+  }); 
+}
+function onPhotoDataSuccess_reg(imageURI){
+  //alert("in success "+imageURI);
+  checkConnection();  
+  var cameraImage = document.getElementById('image_driver');
+  //alert(cameraImage);
+  //cameraImage.style.display = 'block';
+  $("#imageblock_reg").removeClass("display-none");
+  $("#imageblock_reg").addClass("display-block");
+  cameraImage.src = imageURI;
+}
+function getPhoto_driver_reg(source) {
+  checkConnection();    
+  navigator.camera.getPicture(onPhotoURISuccess_reg, onFail, {
+    quality: 100,
+    correctOrientation: 1,
+    targetWidth: 600,
+    targetHeight: 600,
+    destinationType: destinationType.FILE_URI,
+    sourceType: source
+  });
+} 
+function onPhotoURISuccess_reg(imageURI_gallery) {
+  checkConnection();  
+  var galleryImage = document.getElementById('image_driver');
+  //alert("galleryImage "+galleryImage);
+  //galleryImage.style.display = 'block';
+  $("#imageblock_reg").removeClass("display-none");
+  $("#imageblock_reg").addClass("display-block");
+  galleryImage.src = imageURI_gallery;
+}
+//********************************* LICENSE *************************************//
+function capturePhoto_license_reg() {
+  checkConnection();   
+  navigator.camera.getPicture(onPhotoDataSuccesslic_reg, onFail, {
+  quality: 100,
+  targetWidth: 600,
+  targetHeight: 600,
+  destinationType: destinationType.FILE_URI,
+  //saveToPhotoAlbum: true
+  saveToPhotoAlbum: false,
+  correctOrientation: true,
+  }); 
+}
+function onPhotoDataSuccesslic_reg(imageURI){
+  //alert("in success "+imageURI);
+  checkConnection();  
+  var cameraImage = document.getElementById('image_license');
+  //alert(cameraImage);
+  //cameraImage.style.display = 'block';
+  $("#imageblock_license").removeClass("display-none");
+  $("#imageblock_license").addClass("display-block");
+  cameraImage.src = imageURI;
+}
+function getPhoto_license_reg(source) {
+  checkConnection();    
+  navigator.camera.getPicture(onPhotoURISuccesslic_reg, onFail, {
+    quality: 100,
+    correctOrientation: 1,
+    targetWidth: 600,
+    targetHeight: 600,
+    destinationType: destinationType.FILE_URI,
+    sourceType: source
+  });
+} 
+function onPhotoURISuccesslic_reg(imageURI_gallery) {
+  checkConnection();  
+  var galleryImage = document.getElementById('image_license');
+  //alert("galleryImage "+galleryImage);
+  //galleryImage.style.display = 'block';
+  $("#imageblock_license").removeClass("display-none");
+  $("#imageblock_license").addClass("display-block");
+  galleryImage.src = imageURI_gallery;
+}
+
+function regvehadd(){
+  menuload();
+  checkConnection();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var form_reg_veh = $("#form_reg_veh").serialize();
+  var sold_to_party = $('input[name="sold_to_party"]').val();
+  var np_one = $('input[name="np_one"]').val();
+  var np_two = $('input[name="np_two"]').val();
+  var np_three = $('input[name="np_three"]').val();
+  var np_four_reg = $('input[name="np_four_reg"]').val();
+
+  var driver_name = $('input[name="driver_name"]').val();
+  var mobile = $('input[name="mobile"]').val();
+  var vtype = $('input[name="vtype"]').val();
+  var cascade_code = $('input[name="cascade_code"]').val();
+  var hydo_due_dt = $('input[name="hydo_due_dt"]').val();
+  //var mother_stn = $("#sold_to_party div.item-after").innerHTML;
+  var mother_stn = $(".item-after").text();
+  //alert(mother_stn);
+  if(mother_stn==''){
+    app.dialog.alert("Select Mother station(s)");
+    return false;
+  }else if(np_one=='' || np_two=='' || np_three=='' || np_four_reg==''){
+    app.dialog.alert("Enter valid vehicle number");
+    return false;
+  }else if(driver_name == ''){
+    app.dialog.alert("Enter driver name");
+    return false;
+  }else if(mobile == ''){
+    app.dialog.alert("Enter mobile number");
+    return false;
+  }else if(vtype==''){
+    app.dialog.alert("Select vehicle type");
+    return false;
+  }else if(cascade_code==''){
+    app.dialog.alert("Enter cascade code");
+    return false;
+  }else if(hydo_due_dt==''){
+    app.dialog.alert("Enter hydro due date");
+    return false;
+  }else{
+    app.preloader.show();
+    $.ajax({
+      type:'POST', 
+      url:base_url+'APP/Appcontroller/addregveh_hcv',
+      data:form_reg_veh+"&session_uid="+session_uid,
+      success:function(lastid){        
+        var code = np_one+np_two+np_three+np_four_reg;
+        upload_numplate_reg(lastid,code);
+        upload_rcbook_reg(lastid,code);
+        upload_driver_reg(lastid,code);
+        upload_license(lastid,code);  
+        app.preloader.hide();              
+        mainView.router.navigate("/hcv/");
+      }    
+    });     
+  } 
+}
+function upload_numplate_reg(lastid,code){
+  var session_uid = window.localStorage.getItem("session_uid");
+  var img = document.getElementById('image_noplt_reg');
+  //alert("img "+img);
+  var imageURI = img.src;
+  //alert("imageURI "+imageURI);
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"  
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname1 = split_imgfilename[0];
+  var img_filename1 = actual_imgname1.split('%20').join('_');
+  //alert("img_filename1 "+img_filename1);
+  var uploadControllerURL_noplate = base_url+"APP/Appcontroller/photoupload_noplate/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename1;
+  //alert("uploadControllerURL_noplate "+uploadControllerURL_noplate);
+  ft.upload(imageURI,uploadControllerURL_noplate, win, fail, options,true);
+} 
+function upload_rcbook_reg(lastid,code){
+  var session_uid = window.localStorage.getItem("session_uid");
+  var img = document.getElementById('image_rc_reg');
+
+  var imageURI = img.src;
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"  
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname2 = split_imgfilename[0];
+  var img_filename2 = actual_imgname2.split('%20').join('_');
+  var uploadControllerURL_rc = base_url+"APP/Appcontroller/photoupload_rcbook/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename2;
+  //alert("uploadControllerURL_rc "+uploadControllerURL_rc);
+  ft.upload(imageURI,uploadControllerURL_rc, win, fail, options,true);
+}
+function upload_driver_reg(lastid,code){
+  var session_uid = window.localStorage.getItem("session_uid");
+  var img = document.getElementById('image_driver');
+  var imageURI = img.src;
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"  
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname3 = split_imgfilename[0];
+  var img_filename3 = actual_imgname3.split('%20').join('_');
+  var uploadControllerURL_dpic = base_url+"APP/Appcontroller/photoupload_driverpic/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename3;
+  //alert(uploadControllerURL_dpic);
+  ft.upload(imageURI,uploadControllerURL_dpic, win, fail, options,true);
+}
+function upload_license(lastid,code){
+  var session_uid = window.localStorage.getItem("session_uid");
+  var img = document.getElementById('image_license');
+  var imageURI = img.src;
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"  
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname4 = split_imgfilename[0];
+  var img_filename4 = actual_imgname4.split('%20').join('_');
+  var uploadControllerURL_lic = base_url+"APP/Appcontroller/photoupload_license/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename4;
+  //alert(uploadControllerURL_lic);
+  ft.upload(imageURI,uploadControllerURL_lic, win, fail, options,true);
+}
+
+$(document).on('page:init', '.page[data-name="edit_regveh"]', function (page) {
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var hr_id = page.detail.route.params.hr_id;
+  var session_stid = window.localStorage.getItem("session_stid");
+  var session_utype = window.localStorage.getItem("session_utype");
+  app.panel.close();  
+    $.ajax({
+      type:'POST', 
+      url:base_url+'APP/Appcontroller/editregveh_hcv',
+      data:{'hr_id':hr_id,'session_stid':session_stid,'session_utype':session_utype},
+      success:function(res){
+        var parseRes = $.parseJSON(res);
+        var edit_data = parseRes.html;              
+        $("#editreg_veh").html(edit_data); 
+        app.preloader.hide(); 
+      }    
+    });  
+});
+function regvehedit(){
+  menuload();
+  checkConnection();
+  var editreg_veh = $("#editreg_veh").serialize();
+  var np_one_edit = $("#codeBox_reg_1").val();
+  var np_two_edit = $("#codeBox_reg_2").val();
+  var np_three_edit = $("#codeBox_reg_3").val();
+  var np_four_reg_edit = $("#codeBox_reg_4").val();
+  var code = np_one_edit+np_two_edit+np_three_edit+np_four_reg_edit;
+  var driver_name_edit = $("#driver_name_edit").val();
+  var mobile_one_edit = $("#mobile_one_edit").val();
+  var mother_stn = $(".item-after").text();
+  var hydrodate = $("#demo-calendar-modal-reg_edit").val();
+  //alert(mother_stn);
+  if(mother_stn==''){
+    app.dialog.alert("Select Mother station(s)");
+    return false;
+  }else if(driver_name_edit==""){
+    app.dialog.alert("Enter driver name");
+    return false;
+  }else if(mobile_one_edit==""){
+    app.dialog.alert("Enter mobile no");
+    return false;
+  }else if(hydrodate==""){
+    app.dialog.alert("Select hydrotest due date");
+    return false;
+  }else{
+    app.preloader.show();
+      $.ajax({
+        type:'POST', 
+        url:base_url+'APP/Appcontroller/editregveh_hcvsave',
+        data:editreg_veh,
+        success:function(res){
+          var old_noplt = $("#old_noplt").val();
+          var old_rcbook = $("#old_rcbook").val();
+          var old_driver = $("#old_driver").val();
+          var old_license = $("#old_license").val();
+          var hiddhr_id = $("#hiddhr_id").val();
+          upload_numplate_reg_edit(hiddhr_id,code,old_noplt);
+          upload_rcbook_reg_edit(hiddhr_id,code,old_rcbook);
+          upload_driver_reg_edit(hiddhr_id,code,old_driver);
+          upload_license_edit(hiddhr_id,code,old_license);
+          app.preloader.hide();
+          mainView.router.navigate("/hcv/");
+        }        
+      });
+   
+  }
+}
+function upload_numplate_reg_edit(hiddhr_id,code,old_noplt){
+  var session_uid = window.localStorage.getItem("session_uid");
+  var img = document.getElementById('image_noplt_reg');
+  //alert("img "+img);
+  var imageURI = img.src;
+  //alert("edit imageURI "+imageURI);
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"   
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname1 = split_imgfilename[0];
+  var img_filename1 = actual_imgname1.split('%20').join('_');
+  //alert("img_filename1 "+img_filename1); 
+  var uploadControllerURL_noplate_edit = base_url+"APP/Appcontroller/photoupload_noplate_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename1+"/"+code+"/"+old_noplt;
+  //alert("uploadControllerURL_noplate "+uploadControllerURL_noplate_edit);
+  if(img_filename1!=""){
+    ft.upload(imageURI,uploadControllerURL_noplate_edit, win, fail, options,true);
+  }
+}
+function upload_rcbook_reg_edit(hiddhr_id,code,old_rcbook){
+  var session_uid = window.localStorage.getItem("session_uid");
+  var img = document.getElementById('image_rc_reg');
+  var imageURI = img.src;
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"   
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname2 = split_imgfilename[0];
+  var img_filename2 = actual_imgname2.split('%20').join('_');
+  var uploadControllerURL_rc_edit = base_url+"APP/Appcontroller/photoupload_rcbook_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename2+"/"+code+"/"+old_rcbook;
+  //alert("uploadControllerURL_rc "+uploadControllerURL_rc_edit);
+  if(img_filename2!=''){
+    ft.upload(imageURI,uploadControllerURL_rc_edit, win, fail, options,true);
+  }
+}
+function upload_driver_reg_edit(hiddhr_id,code,old_driver){
+  var session_uid = window.localStorage.getItem("session_uid");
+  var img = document.getElementById('image_driver');
+  var imageURI = img.src;
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"  
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname3 = split_imgfilename[0];
+  var img_filename3 = actual_imgname3.split('%20').join('_');
+  var uploadControllerURL_dpic_edit = base_url+"APP/Appcontroller/photoupload_driverpic_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename3+"/"+code+"/"+old_driver;
+  //alert(uploadControllerURL_dpic_edit);
+  if(img_filename3!=""){
+    ft.upload(imageURI,uploadControllerURL_dpic_edit, win, fail, options,true);
+  }
+}
+function upload_license_edit(hiddhr_id,code,old_license){
+  var session_uid = window.localStorage.getItem("session_uid");
+  var img = document.getElementById('image_license');
+  var imageURI = img.src;
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+  options.chunkedMode = false;
+  options.headers = {
+     Connection: "close"  
+  };
+  var params = {};  
+  params.fullpath =imageURI;
+  params.name = options.fileName;
+  var imgfilename = params.name; 
+  //alert("imgfilename "+imgfilename);
+  var split_imgfilename = imgfilename.split("?");
+  var ft = new FileTransfer();
+  //console.log("ft :::::::::: "+ft);
+  var actual_imgname4 = split_imgfilename[0];
+  var img_filename4 = actual_imgname4.split('%20').join('_');
+  var uploadControllerURL_lic_edit = base_url+"APP/Appcontroller/photoupload_license_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename4+"/"+code+"/"+old_license;
+  //alert(uploadControllerURL_lic_edit);
+  if(img_filename4!=""){
+    ft.upload(imageURI,uploadControllerURL_lic_edit, win, fail, options,true);
+  }
+}
+$(document).on('page:init', '.page[data-name="add_hcvtime"]', function (page) {
+  menuload();
+  app.panel.close();
+  checkConnection();
+  var hr_id = page.detail.route.params.hr_id;
+  var session_stid = window.localStorage.getItem("session_stid");
+  var session_uid = window.localStorage.getItem("session_uid");
+  var session_utype = window.localStorage.getItem("session_utype");
+  var hidd_hrid = $("#hidd_hrid").val(hr_id);
+  $.ajax({
+    type:'POST', 
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/getHCVmother_Stations',
+    data:{'session_stid':session_stid,'session_utype':session_utype},
+    success:function(res){
+      var parseRes = $.parseJSON(res);
+      var stns = parseRes.stns;
+      $("#sold_to_party_tm").html(stns);
+    }
+  });
+  var today = new Date();
+  var pickerInline = app.picker.create({
+    containerEl: '#hcv-picker-time-container',
+    inputEl: '#hcv_time',
+    toolbar: false,
+    rotateEffect: true,
+    value: [
+      today.getHours(),
+      today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+    ],
+    formatValue: function (values, displayValues) {
+      if(displayValues[0] <= 11){
+        var t_string="AM";
+      }else{
+        var t_string="PM";
+      }
+      return displayValues[0] + ':' + values[1]+" "+t_string;
+      //return displayValues[0] + ':' + values[1];
+      //return displayValues[0] +' '+values[3] + ':' + values[4];
+    },
+    cols: [      
+      // Hours
+      {
+        values: (function () {
+          var arr = [];
+          for (var i = 0; i <= 23; i++) { if(i<=9){ i="0"+i;}else{ i=i; } arr.push(i); }
+            return arr;
+        })(),
+      },
+      // Divider
+      {
+        divider: true,
+        content: ':'
+      },
+      // Minutes
+      {
+        values: (function () {
+          var arr = [];
+          for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+            return arr;
+        })(),
+      },
+    ],
+    on: {
+      change: function (picker, values, displayValues) {
+        var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
+        if (values[1] > daysInMonth) {
+          picker.cols[1].setValue(daysInMonth);
+        }
+      },
+    }
+  });
+
+  // Filling time picker //
+  var pickerInline_fill = app.picker.create({
+    containerEl: '#hcvfilling-picker-time-container',
+    inputEl: '#hcv_filltime',
+    toolbar: false,
+    rotateEffect: true,
+    value: [
+      today.getHours(),
+      today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+    ],
+    formatValue: function (values, displayValues) {
+      if(displayValues[0] <= 11){
+        var t_string="AM";
+      }else{
+        var t_string="PM";
+      }
+      return displayValues[0] + ':' + values[1]+" "+t_string;
+      //return displayValues[0] + ':' + values[1];
+      //return displayValues[0] +' '+values[3] + ':' + values[4];
+    },
+    cols: [      
+      // Hours
+      {
+        values: (function () {
+          var arr = [];
+          for (var i = 0; i <= 23; i++) { if(i<=9){ i="0"+i;}else{ i=i; } arr.push(i); }
+            return arr;
+        })(),
+      },
+      // Divider
+      {
+        divider: true,
+        content: ':'
+      },
+      // Minutes
+      {
+        values: (function () {
+          var arr = [];
+          for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+            return arr;
+        })(),
+      },
+    ],
+    on: {
+      change: function (picker, values, displayValues) {
+        var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
+        if (values[1] > daysInMonth) {
+          picker.cols[1].setValue(daysInMonth);
+        }
+      },
+    }
+  });
+  //$("#hcv_time").val("");
+  //$("#hcv_filltime").val("");
+});
+function getDBStations(mother_id){
+  menuload();
+  app.panel.close();
+  checkConnection();
+  $.ajax({
+    type:'POST', 
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/getHCVDBStations',
+    data:{'mother_id':mother_id},
+    success:function(res){
+      var parseRes = $.parseJSON(res);
+      var db = parseRes.db;
+      $("#db_stations").html(db);
+    }
+  });
+}
+function hcvtimeadd(){  
+  app.panel.close();
+  menuload();
+  checkConnection();  
+  var hcvtime =$("#hcvtime").serialize();
+  var sold_to_party_tm = $("#sold_to_party_tm").val();
+  var db_stations = $("#db_stations").val();
+  var hcv_km = $("#hcv_km").val();
+  var hcv_pressure = $("#hcv_pressure").val();
+  if(sold_to_party_tm==""){
+    app.dialog.alert("Select Mother Station");
+    return false;
+  }else if(db_stations==""){
+    app.dialog.alert("Select DB Station");
+    return false;
+  }else if(hcv_km==""){
+    app.dialog.alert("Enter kilometer");
+    return false;
+  }else if(hcv_pressure==""){
+    app.dialog.alert("Enter Pressure");
+    return false;
+  }else{
+    app.preloader.show();
+    $.ajax({
+      type:'POST',  
+      url:base_url+'APP/Appcontroller/hcvtimeadd',
+      data:hcvtime,
+      success:function(result){  
+        var res=result.trim();
+        if(res=='inserted'){
+          app.dialog.alert("Time added successfully.");
+          mainView.router.navigate("/hcv/");
+        }else{
+          app.dialog.alert("Problem inserting data");
+        }  
+        app.preloader.hide();        
+      }
+    });
+  }
+}
+
+$(document).on('page:init', '.page[data-name="hcvedit_time"]', function (page) {
+  menuload();
+  checkConnection();
+  app.preloader.show();
+  var hinfo_id = page.detail.route.params.hinfo_id;
+  var hr_id = page.detail.route.params.hr_id;
+  var session_stid = window.localStorage.getItem("session_stid");
+  var session_uid = window.localStorage.getItem("session_uid");
+  var session_utype = window.localStorage.getItem("session_utype");
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/hcvtimeedit_view',
+    data:{'hinfo_id':hinfo_id,'hr_id':hr_id,'session_stid':session_stid,'session_utype':session_utype},
+    success:function(result){  
+      var parseRes = $.parseJSON(result);
+      var html = parseRes.html;              
+      $("#hcvtime_edit").html(html); 
+      app.preloader.hide();
+    }
+  });
+});
+
+function hcvtimeedit(){
+  menuload();
+  checkConnection();
+  var hcvtime_edit = $("#hcvtime_edit").serialize();  
+  var in_km = $('#hcv_km_edit').val();
+  var out_km = $('#hcvout_km_edit').val();
+  var hr_id = $("#hr_id").val();
+  var sold_to_party_tm_edit = $("#sold_to_party_tm_edit").val();
+  var db_stations_edit = $("#db_stations_edit").val();
+  var hcv_pressure_edit = $("#hcv_pressure_edit").val();
+  var hcv_outpressure_edit = $("#hcv_outpressure_edit").val();
+  var per_trip_gas_sales = $("#per_trip_gas_sales").val();
+  if(sold_to_party_tm_edit==""){
+    app.dialog.alert("Select Mother Station");
+    return false;
+  }else if(db_stations_edit==""){
+    app.dialog.alert("Select DB Station");
+    return false;
+  }else if(hcv_pressure_edit==""){
+    app.dialog.alert("Enter IN/START Pressure");
+    return false;
+  }else if(hcv_outpressure_edit==""){
+    app.dialog.alert("Enter OUT/END Pressure");
+    return false;
+  }else if(per_trip_gas_sales==""){
+    app.dialog.alert("Enter per trip gas sales");
+    return false;
+  }else if(out_km < in_km){
+    out_km = $('#hcvout_km_edit').val('');
+    app.dialog.alert("Sorry, Out KM should be greater then IN KM");
+    return false;
+  }else{
+    app.preloader.show();
+    $.ajax({
+      type:'POST', 
+      url:base_url+'APP/Appcontroller/edit_hcvtimesave',
+      data:hcvtime_edit,
+      success:function(result){        
+        var res=result.trim();
+        if(res=='updated'){
+          app.dialog.alert("Data updated successfully.");
+          mainView.router.navigate("/view_mother_hcv/"+hr_id+"/");
+        }else{
+          app.dialog.alert("Problem inserting data");
+        }  
+        app.preloader.hide();        
+      }        
+    });
+  }  
+} 
+$(document).on('page:init', '.page[data-name="hcv_db"]', function (page) {
+  menuload();
+  checkConnection();
+  app.panel.close();
+  app.preloader.show();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var session_stid = window.localStorage.getItem("session_stid");
+  var session_utype = window.localStorage.getItem("session_utype");
+  $.ajax({
+    type:'POST', 
+    //dataType:'json', 
+    url:base_url+'APP/Appcontroller/getHCV_Dbstns',
+    data:{'session_uid':session_uid,'sess_designation':sess_designation,'session_stid':session_stid,'session_utype':session_utype},
+    success:function(result){
+      var parseRes = $.parseJSON(result);
+      var hcvList = parseRes.hcv_list_db;
+      var total_hcv_db = parseRes.total_hcv_db;
+      $(".total_hcv_db").html("Total Records: ("+total_hcv_db+")");      
+      $("#hcv_list_db").html(hcvList);
+    }
+  }); 
+  app.preloader.hide();
+});
+function getHCVDB(hi_id){
+  menuload();
+  checkConnection();
+  app.panel.close();
+  app.preloader.show();
+  mainView.router.navigate("/hcv_db_details/"+hi_id+"/");
+  /*$.ajax({
+    type:'POST', 
+    //dataType:'json',  
+    url:base_url+'APP/Appcontroller/getHCV_Dbdetails',
+    //data:{'hi_id':hi_id},
+    data:{'session_uid':session_uid,'sess_designation':sess_designation,'session_stid':session_stid,'session_utype':session_utype,'hi_id':hi_id},
+    success:function(result){
+      var parseRes = $.parseJSON(result);
+      var hcv_db_data = parseRes.hcv_db_data;         
+      $("#viewdbhcv").html(hcv_db_data);
+    }
+  });*/
+  app.preloader.hide();
+}
+$(document).on('page:init', '.page[data-name="hcv_db_details"]', function (page) {
+  checkConnection();
+  app.panel.close();
+  menuload();  
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var session_stid = window.localStorage.getItem("session_stid");
+  var session_utype = window.localStorage.getItem("session_utype"); 
+  var hi_id = page.detail.route.params.hi_id;
+  app.preloader.show();
+  $.ajax({
+    type:'POST', 
+    //dataType:'json',  
+    url:base_url+'APP/Appcontroller/getHCV_Dbdetails',
+    //data:{'hi_id':hi_id},
+    data:{'session_uid':session_uid,'sess_designation':sess_designation,'session_stid':session_stid,'session_utype':session_utype,'hi_id':hi_id},
+    success:function(result){
+      var parseRes = $.parseJSON(result);
+      var hcv_db_data = parseRes.hcv_db_data;         
+      $("#viewdbhcv").html(hcv_db_data);
+    }
+  });
+  app.preloader.hide();
+  /*var calendarModal = app.calendar.create({
+    inputEl: "#start_Date",
+    openIn: "customModal",
+    dateFormat: "dd-mm-yyyy",
+    header: true,footer: 
+    true,renderToolbar: function () { 
+      return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>' 
+    } 
+  });
+  var calendarModal = app.calendar.create({
+    inputEl: "#end_Date",
+    openIn: "customModal",
+    dateFormat: "dd-mm-yyyy",
+    header: true,footer: 
+    true,renderToolbar: function () { 
+      return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>' 
+    } 
+  });*/
+});
+$(document).on('page:init', '.page[data-name="edit_dbinfo"]', function (page) {
+  checkConnection();
+  app.panel.close();
+  menuload();  
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var hi_id = page.detail.route.params.hi_id;
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/editdbinfo',
+    data:{'hi_id':hi_id},
+    success:function(res){
+      var parseRes = $.parseJSON(res);
+      var edit_db_data = parseRes.edit_db_data;         
+      $("#edit_db_data").html(edit_db_data); 
+    }
+  });
+}); 
+function dbstnedit(){
+  checkConnection();
+  app.panel.close();
+  menuload();  
+  var edit_db_data = $("#edit_db_data").serialize();
+  var hidden_hiid = $("#hidden_hiid").val();
+  var indb_km = $("#indb_km").val();
+  var indb_pressure = $("#indb_pressure").val();
+  var outdb_pressure = $("#outdb_pressure").val();
+  if(indb_km==""){
+    app.dialog.alert("Enter IN/START kilometer");
+    return false;
+  }else if(indb_pressure==""){
+    app.dialog.alert("Enter IN/START pressure");
+    return false;
+  }else if(outdb_pressure==""){
+    app.dialog.alert("Enter OUT/END pressure");
+    return false;
+  }else{
+  app.preloader.show(); 
+    $.ajax({
+      type:'POST',  
+      url:base_url+'APP/Appcontroller/editdbinfo_save',
+      data:edit_db_data,
+      success:function(res){
+        var res=res.trim();
+        if(res=='updated'){
+          app.dialog.alert("Data updated successfully.");
+          mainView.router.navigate("/hcv_db_details/"+hidden_hiid+"/");
+        }else{
+          app.dialog.alert("Problem inserting data");
+        }  
+        app.preloader.hide(); 
+      }
+    });
+  }
+}
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 24;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+function add_Dryout(hi_id,db_station){
+  checkConnection();
+  app.panel.close();
+  menuload();
+  var session_uid = window.localStorage.getItem("session_uid");  
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/adddryout_db',
+    data:{'session_uid':session_uid,'hi_id':hi_id,'db_station':db_station},
+    success:function(res){
+      var res=res.trim();
+      if(res=='inserted'){
+        //app.dialog.alert("Complain added successfully.");
+        var toastCenter = app.toast.create({
+          icon: '<i class="f7-icons">checkmark_alt_circle_fill</i>',
+          text: 'Dryout inserted successfully!',
+          position: 'center',
+          closeTimeout: 3000,
+        });
+        toastCenter.open();
+        mainView.router.navigate("/hcv_db/");
+        //mainView.router.navigate("/hcv_db_details/"+hi_id+"/");
+        //getHCVDB(hi_id);
+      }else{
+        app.dialog.alert("Problem inserting data");
+      }
+    }
+  });
+}
+function enddb_dryout(hi_id,db_station){
+  checkConnection();
+  app.panel.close();
+  menuload();
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/enddryout_db',
+    data:{'hi_id':hi_id,'db_station':db_station},
+    success:function(res){
+      var res=res.trim();
+        if(res=='updated'){
+          //app.dialog.alert("Data updated successfully.");
+          var toastCenter = app.toast.create({
+          icon: '<i class="f7-icons">checkmark_alt_circle_fill</i>',
+          text: 'Dryout updated successfully!',
+          position: 'center',
+          closeTimeout: 3000,
+        });
+        toastCenter.open();
+          mainView.router.navigate("/hcv_db/");
+          //mainView.router.navigate("/hcv_db_details/"+hi_id+"/");
+          //getHCVDB(hi_id);
+        }else{
+          app.dialog.alert("Problem updating data");
+        }  
+        app.preloader.hide(); 
+    }
+  });
+}
+function edit_dryout(hi_id){
+  mainView.router.navigate("/edit_dryout/"+hi_id+"/");
+}
+$(document).on('page:init', '.page[data-name="edit_dryout"]', function (page) {
+  checkConnection();
+  app.panel.close();
+  menuload();    
+  var hi_id = page.detail.route.params.hi_id;
+  var session_utype = window.localStorage.getItem("session_utype");
+  var session_stid = window.localStorage.getItem("session_stid");  
+  $.ajax({
+    type:'POST', 
+    dataType:'json', 
+    url:base_url+'APP/Appcontroller/editdryout_view',
+    data:{'hi_id':hi_id,'session_utype':session_utype,'session_stid':session_stid},
+    success:function(res){
+      //var parse = $.parseJSON(res);
+      var do_start_date2 = res.do_start_date2;
+      var do_end_date2 = res.do_end_date2;
+      var do_start_time = res.do_start_time;
+      var do_end_time = res.do_end_time;
+      //$(".pl-zero").html(html); 
+      //alert(do_start_date2);
+      $("#start_date_dryout").val(do_start_date2);
+      $("#end_date_dryout").val(do_end_date2); 
+      $("#start_tm_dryout_db").val(do_start_time);
+      $("#end_tm_dryout_db").val(do_end_time);
+      $("#hiid").val(hi_id);
+    }
+  }); 
+  var calendarModal = app.calendar.create({
+    inputEl: '#start_date_dryout',
+    openIn: 'customModal',
+    dateFormat: 'dd-mm-yyyy',
+    header: true,
+    footer: true,
+    renderToolbar: function () {   
+      return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
+    }
+  }); 
+  var calendarModal = app.calendar.create({
+    inputEl: '#end_date_dryout',
+    openIn: 'customModal',
+    dateFormat: 'dd-mm-yyyy',
+    header: true,
+    footer: true,
+    renderToolbar: function () {   
+      return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
+    }
+  });
+  var today = new Date();
+  var pickerInline = app.picker.create({
+    containerEl: '#drystrt-time-container',
+    inputEl: '#dry_start_time',
+    toolbar: false,
+    rotateEffect: true,
+    value: [
+      today.getHours(),
+      today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+    ],
+    formatValue: function (values, displayValues) {
+      if(displayValues[0] <= 11){
+        var t_string="AM";
+      }else{
+        var t_string="PM";
+      }
+      return displayValues[0] + ':' + values[1]+" "+t_string;
+      //return displayValues[0] + ':' + values[1];
+      //return displayValues[0] +' '+values[3] + ':' + values[4];
+    },
+    cols: [      
+      // Hours
+      {
+        values: (function () {
+          var arr = [];
+          for (var i = 0; i <= 23; i++) { if(i<=9){ i="0"+i;}else{ i=i; } arr.push(i); }
+            return arr;
+        })(),
+      },
+      // Divider
+      {
+        divider: true,
+        content: ':'
+      },
+      // Minutes
+      {
+        values: (function () {
+          var arr = [];
+          for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+            return arr;
+        })(),
+      },
+    ],
+    on: {
+      change: function (picker, values, displayValues) {
+        var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
+        if (values[1] > daysInMonth) {
+          picker.cols[1].setValue(daysInMonth);
+        }
+      },
+    }
+  });
+
+  $("#dry_start_time").val("");
+  var pickerInline = app.picker.create({
+    containerEl: '#dryend-time-container',
+    inputEl: '#dry_end_time',
+    toolbar: false,
+    rotateEffect: true,
+    value: [
+      today.getHours(),
+      today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+    ],
+    formatValue: function (values, displayValues) {
+      if(displayValues[0] <= 11){
+        var t_string="AM";
+      }else{
+        var t_string="PM";
+      }
+      return displayValues[0] + ':' + values[1]+" "+t_string;
+      //return displayValues[0] + ':' + values[1];
+      //return displayValues[0] +' '+values[3] + ':' + values[4];
+    },
+    cols: [      
+      // Hours
+      {
+        values: (function () {
+          var arr = [];
+          for (var i = 0; i <= 23; i++) { if(i<=9){ i="0"+i;}else{ i=i; } arr.push(i); }
+            return arr;
+        })(),
+      },
+      // Divider
+      {
+        divider: true,
+        content: ':'
+      },
+      // Minutes
+      {
+        values: (function () {
+          var arr = [];
+          for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+            return arr;
+        })(),
+      },
+    ],
+    on: {
+      change: function (picker, values, displayValues) {
+        var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
+        if (values[1] > daysInMonth) {
+          picker.cols[1].setValue(daysInMonth);
+        }
+      },
+    }
+  });
+  $("#dry_end_time").val("");
+});
+function dryoutsave(){
+  checkConnection();
+  app.panel.close();
+  menuload();  
+  var dryout_edit = $("#dryout_edit").serialize();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var hiid = $("#hiid").val();
+  app.preloader.show(); 
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/dryoutinfo_save',
+    data:dryout_edit+"&session_uid="+session_uid+"&sess_designation="+sess_designation,
+    success:function(res){
+      var res=res.trim();
+      if(res=='updated'){
+        app.dialog.alert("Data updated successfully.");
+        mainView.router.navigate("/hcv_db_details/"+hiid+"/");
+      }else{
+        app.dialog.alert("Problem updating data");
+      }  
+      app.preloader.hide(); 
+    }
+  });
+}
 // -------------------------------- L O G O U T -------------------------------- //
 function logOut(){
   checkConnection();
