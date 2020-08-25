@@ -48,8 +48,8 @@ var app = new Framework7({
     app.hideIndicator();
   }
 }); 
-var base_url = 'http://oteqprojects.co.in/sabarmati/'; // TEST SERVER //
-//var base_url = 'https://sglnext.in/'; // LIVE SERVER // 
+//var base_url = 'http://oteqprojects.co.in/sabarmati/'; // TEST SERVER //
+var base_url = 'https://sglnext.in/'; // LIVE SERVER // 
 var mainView = app.views.create('.view-main');
 var dt = new Date();
   if(dt.getMinutes() <=9){
@@ -19035,7 +19035,7 @@ function cmsedit(){
       return false;
     }else{
       app.preloader.show();
-      $.ajax({ 
+      $.ajax({   
         type:'POST',  
         url:base_url+'APP/Appcontroller/editcms',
         data:form_cms_edit+"&session_uid="+session_uid,

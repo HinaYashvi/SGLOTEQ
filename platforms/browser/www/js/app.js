@@ -19035,7 +19035,7 @@ function cmsedit(){
       return false;
     }else{
       app.preloader.show();
-      $.ajax({ 
+      $.ajax({   
         type:'POST',  
         url:base_url+'APP/Appcontroller/editcms',
         data:form_cms_edit+"&session_uid="+session_uid,
