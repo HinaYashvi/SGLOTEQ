@@ -48,8 +48,8 @@ var app = new Framework7({
     app.hideIndicator();
   }
 }); 
-var base_url = 'http://oteqprojects.co.in/sabarmati/'; // TEST SERVER //
-//var base_url = 'https://sglnext.in/'; // LIVE SERVER // 
+//var base_url = 'http://oteqprojects.co.in/sabarmati/'; // TEST SERVER //
+var base_url = 'https://sglnext.in/'; // LIVE SERVER // 
 var mainView = app.views.create('.view-main');
 var dt = new Date();
   if(dt.getMinutes() <=9){
@@ -17360,7 +17360,7 @@ $(document).on('page:init', '.page[data-name="dpr_kpi_rep"]', function (page) {
   $(".dpr_dt_rep").html(dpr_date); 
 
   app.preloader.show();   
-  $.ajax({
+  $.ajax({ 
     type:'POST',   
     url:base_url+'APP/Appcontroller/getDPR',
     data:{'station_id':station_id,'dpr_date':dpr_date},  
@@ -17842,7 +17842,6 @@ function approve_dpr(dprid){
     } 
   });
 }
-// -------------------------------- DPR MODULE ENDS ------------------------------------//
 function checkPrevHourVal(prev_slot,val,param){
   checkConnection();
   app.preloader.show();
@@ -17873,6 +17872,8 @@ function checkPrevHourVal(prev_slot,val,param){
   }
   app.preloader.hide();
 }
+// -------------------------------- DPR MODULE ENDS ------------------------------------//
+
 $(document).on('page:init', '.page[data-name="dpr_complain"]', function (e) {
   menuload();
   checkConnection();
@@ -20575,10 +20576,11 @@ function upload_numplate_reg_edit(hiddhr_id,code,old_noplt){
   //console.log("ft :::::::::: "+ft);
   var actual_imgname1 = split_imgfilename[0];
   var img_filename1 = actual_imgname1.split('%20').join('_');
-  //alert("img_filename1 "+img_filename1); 
-  var uploadControllerURL_noplate_edit = base_url+"APP/Appcontroller/photoupload_noplate_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename1+"/"+code+"/"+old_noplt;
+  //alert("img_filename1 "+img_filename1);  
+  //var uploadControllerURL_noplate_edit = base_url+"APP/Appcontroller/photoupload_noplate_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename1+"/"+code+"/"+old_noplt;
   //alert("uploadControllerURL_noplate "+uploadControllerURL_noplate_edit);
-  if(img_filename1!=""){
+  if(img_filename1!="" && img_filename1!="index.html"){
+    var uploadControllerURL_noplate_edit = base_url+"APP/Appcontroller/photoupload_noplate_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename1+"/"+code+"/"+old_noplt;
     ft.upload(imageURI,uploadControllerURL_noplate_edit, win, fail, options,true);
   }
 }
@@ -20606,7 +20608,7 @@ function upload_rcbook_reg_edit(hiddhr_id,code,old_rcbook){
   var img_filename2 = actual_imgname2.split('%20').join('_');
   var uploadControllerURL_rc_edit = base_url+"APP/Appcontroller/photoupload_rcbook_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename2+"/"+code+"/"+old_rcbook;
   //alert("uploadControllerURL_rc "+uploadControllerURL_rc_edit);
-  if(img_filename2!=''){
+  if(img_filename2!='' && img_filename2!="index.html"){
     ft.upload(imageURI,uploadControllerURL_rc_edit, win, fail, options,true);
   }
 }
@@ -20632,9 +20634,10 @@ function upload_driver_reg_edit(hiddhr_id,code,old_driver){
   //console.log("ft :::::::::: "+ft);
   var actual_imgname3 = split_imgfilename[0];
   var img_filename3 = actual_imgname3.split('%20').join('_');
+  //alert("img_filename3 "+img_filename3);  
   var uploadControllerURL_dpic_edit = base_url+"APP/Appcontroller/photoupload_driverpic_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename3+"/"+code+"/"+old_driver;
   //alert(uploadControllerURL_dpic_edit);
-  if(img_filename3!=""){
+  if(img_filename3!="" && img_filename3!="index.html"){
     ft.upload(imageURI,uploadControllerURL_dpic_edit, win, fail, options,true);
   }
 }
@@ -20662,7 +20665,7 @@ function upload_license_edit(hiddhr_id,code,old_license){
   var img_filename4 = actual_imgname4.split('%20').join('_');
   var uploadControllerURL_lic_edit = base_url+"APP/Appcontroller/photoupload_license_edit/"+session_uid+"/"+hiddhr_id+"/"+img_filename4+"/"+code+"/"+old_license;
   //alert(uploadControllerURL_lic_edit);
-  if(img_filename4!=""){
+  if(img_filename4!="" && img_filename4!="index.html"){
     ft.upload(imageURI,uploadControllerURL_lic_edit, win, fail, options,true);
   }
 }
