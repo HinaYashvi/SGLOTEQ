@@ -1073,8 +1073,8 @@ function upload_metalplate(lastid,old_metalplate,v_type,barcode_code,hidd_vehno)
 
  // var uploadControllerURL = base_url+"APP/Appcontroller/photoupload_metal/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_metalplate+"/"+img_filename1+"/"+hidd_vehno;
 
- var uploadControllerURL = base_url+"APP/Appcontroller/photoupload_metal/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_metalplate+"/"+img_filename1+"/"+hidd_vehno;  
-  alert(uploadControllerURL);
+  var uploadControllerURL = base_url+"APP/Appcontroller/photoupload_metal/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_metalplate+"/"+img_filename1+"/"+hidd_vehno;  
+  //alert(uploadControllerURL);
   //console.log(uploadControllerURL);    
   ft.upload(imageURI,uploadControllerURL, win, fail, options,true);
 }
@@ -1105,6 +1105,7 @@ function upload_rcbook(lastid,old_rcbook,v_type,barcode_code,hidd_vehno){
 
   var uploadControllerURL_RC = base_url+"APP/Appcontroller/photoupload_RC/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_rcbook+"/"+img_filename1+"/"+hidd_vehno;
 
+
   //console.log(uploadControllerURL_RC);
   ft.upload(imageURI,uploadControllerURL_RC, win, fail, options,true);
 }
@@ -1133,6 +1134,7 @@ function upload_form24(lastid,old_from24,v_type,barcode_code,hidd_vehno){
   //var uploadControllerURL_form24 = base_url+"APP/Appcontroller/photoupload_form24/"+barcode_code+"/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_from24+"/"+img_filename2; 
 
   var uploadControllerURL_form24 = base_url+"APP/Appcontroller/photoupload_form24/"+v_type+"/"+session_uid+"/"+lastid+"/"+old_from24+"/"+img_filename2+"/"+hidd_vehno;
+
 
   //alert(uploadControllerURL_form24);
   //console.log(uploadControllerURL_form24);
@@ -2313,10 +2315,11 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
         }else{
           st_start_time=st_start_time;
         }
-        //console.log(DISP_A);
-        //alert("st_start_time "+st_start_time);  
+       // console.log(DISP_A);
+          
         //alert(dispanser_count);
         for(var disp_aa=0;disp_aa<dispanser_count;disp_aa++){
+          //alert("st_start_time "+st_start_time+"==="+(disp_aa+1));
               for(var l_a=st_start_time;l_a<=23;l_a++){  
                 //alert(l_a);  
                 //console.log(".disp_"+(disp_aa+1)+"_a_"+l_a);
@@ -2329,11 +2332,13 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     var disptm = split_txt[3];  
                     if(DISP_A[l_a]!=undefined){
                       if(DISP_A[l_a].length!=0){ // ADDED ON 07-09-2020 //               
-                        var disp_a_val = DISP_A[l_a][0].slot_param_val;
-
+                        /*var disp_a_val = DISP_A[l_a][0].slot_param_val;
                         var time_slot_a = DISP_A[l_a][0].time_slot; 
-                        var param = DISP_A[l_a][0].dpr_params;
-                        //console.log(param+" "+time_slot_a+" "+disp_a_val);
+                        var param = DISP_A[l_a][0].dpr_params;*/ // COMMENTED ON 08-09-2020 //
+                        var disp_a_val = DISP_A[st_start_time][disp_aa+1][0].slot_param_val;
+                        var time_slot_a = DISP_A[st_start_time][disp_aa+1][0].time_slot; 
+                        var param = DISP_A[st_start_time][disp_aa+1][0].dpr_params;
+                        //alert(param+" "+time_slot_a+" "+disp_a_val);
                         var split_tm = time_slot_a.split(":");
                         var splited_tm = split_tm[0];
                         var timeslot = splited_tm.replace(/^0+/, "");
@@ -2342,9 +2347,13 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                         }else{ 
                           timeslot=timeslot;
                         }
-                        if(timeslot==disptm){
-                          console.log(disp_a_val);
+                        //console.log("timeslot "+timeslot+"=========> disptm "+disptm);
+                        if(timeslot==disptm){                          
+                          //console.log(disp_a_val);
                           //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
+                          $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
+                        }else{
+                          //console.log("else" +disp_a_val);
                           $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
                         }
                       }
@@ -2368,9 +2377,12 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     var split_txt_b = txtbox_id_b.split("_");
                     var dispno = split_txt_b[1];
                     var disptm_b = split_txt_b[3];
-                      var disp_b_val = DISP_B[l_b][0].slot_param_val;
+                      /*var disp_b_val = DISP_B[l_b][0].slot_param_val;
                       var time_slot_b = DISP_B[l_b][0].time_slot; 
-                      var param = DISP_B[l_b][0].dpr_params;
+                      var param = DISP_B[l_b][0].dpr_params;*/  // COMMENTED ON 08-09-2020 //
+                      var disp_b_val = DISP_B[st_start_time][disp_bb+1][0].slot_param_val;
+                      var time_slot_b = DISP_B[st_start_time][disp_bb+1][0].time_slot; 
+                      var param = DISP_B[st_start_time][disp_bb+1][0].dpr_params;
                       //console.log(param+" "+time_slot_b+" "+disp_b_val);
                       var split_tm_b = time_slot_b.split(":");
                       var splited_tm_b = split_tm_b[0];
@@ -2383,6 +2395,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                       if(timeslot_b==disptm_b){
                         console.log(disp_b_val);
                         //console.log(txtbox_id+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_a_'+timeslot_b+").val="+disp_b_val);
+                        $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
+                      }else{
                         $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
                       }
                     }
@@ -3129,18 +3143,22 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           } 
 
         }else{   // station start date is not = dpr_date DPR data display //      
-          //console.log(COMP_SUCTION);
+          //console.log("!!!!!!!!!!!!!!!!!!!!!!"+COMP_SUCTION);
           // ---------------------------- COMPRESSOR ---------------------------- //
-          for(var cs=0;cs<COMP_SUCTION.length;cs++){
-            var cs_slot_param_val = COMP_SUCTION[cs].slot_param_val;
-            //alert(cs_slot_param_val+"*****");
-            console.log(cs_slot_param_val);
-            $(".comp_suc_"+cs).val(cs_slot_param_val);
+          if(COMP_SUCTION!=undefined){
+            for(var cs=0;cs<COMP_SUCTION.length;cs++){
+              var cs_slot_param_val = COMP_SUCTION[cs].slot_param_val;
+              //alert(cs_slot_param_val+"*****");
+              console.log(cs_slot_param_val);
+              $(".comp_suc_"+cs).val(cs_slot_param_val);
+            }
           }
-          for(var cd=0;cd<COMP_DISCHARGE.length;cd++){
-            var cd_slot_param_val = COMP_DISCHARGE[cd].slot_param_val;
-            console.log(cd_slot_param_val);
-            $(".comp_dis_"+cd).val(cd_slot_param_val);
+          if(COMP_DISCHARGE!=undefined){
+            for(var cd=0;cd<COMP_DISCHARGE.length;cd++){
+              var cd_slot_param_val = COMP_DISCHARGE[cd].slot_param_val;
+              console.log(cd_slot_param_val);
+              $(".comp_dis_"+cd).val(cd_slot_param_val);
+            }
           }
           /*for(var lcvmfm=0;lcvmfm<LCV_MFM.length;lcvmfm++){
             var cnt_lcv = LCV_MFM[lcvmfm].length;
@@ -3149,114 +3167,156 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               $(".lcv"+(lcvmfm+1)+"_mfm_"+lc).val(lcv_val);
             }
           } // DYNAMIC //*/
-          for(var lcv1=0;lcv1<LCV_1_MFM.length;lcv1++){
-            var lcv1_mfm = LCV_1_MFM[lcv1].slot_param_val;
-            console.log(lcv1_mfm);
-            $(".lcv1_mfm_"+lcv1).val(lcv1_mfm);
+          if(LCV_1_MFM!=undefined){
+            for(var lcv1=0;lcv1<LCV_1_MFM.length;lcv1++){
+              var lcv1_mfm = LCV_1_MFM[lcv1].slot_param_val;
+              console.log(lcv1_mfm);
+              $(".lcv1_mfm_"+lcv1).val(lcv1_mfm);
+            }
           }
-          for(var lcv2=0;lcv2<LCV_2_MFM.length;lcv2++){
-            var lcv2_mfm = LCV_2_MFM[lcv2].slot_param_val;
-            console.log(lcv2_mfm);
-            $(".lcv2_mfm_"+lcv2).val(lcv2_mfm);
+          if(LCV_2_MFM!=undefined){
+            for(var lcv2=0;lcv2<LCV_2_MFM.length;lcv2++){
+              var lcv2_mfm = LCV_2_MFM[lcv2].slot_param_val;
+              console.log(lcv2_mfm);
+              $(".lcv2_mfm_"+lcv2).val(lcv2_mfm);
+            }
           }
-          for(var lcv3=0;lcv3<LCV_3_MFM.length;lcv3++){
-            var lcv3_mfm = LCV_3_MFM[lcv3].slot_param_val;
-            console.log(lcv3_mfm);
-            $(".lcv3_mfm_"+lcv3).val(lcv3_mfm);
+          if(LCV_3_MFM!=undefined){
+            for(var lcv3=0;lcv3<LCV_3_MFM.length;lcv3++){
+              var lcv3_mfm = LCV_3_MFM[lcv3].slot_param_val;
+              console.log(lcv3_mfm);
+              $(".lcv3_mfm_"+lcv3).val(lcv3_mfm);
+            }
           }
-          for(var lcv4=0;lcv4<LCV_4_MFM.length;lcv4++){
-            var lcv4_mfm = LCV_4_MFM[lcv4].slot_param_val;
-            console.log(lcv4_mfm);
-            $(".lcv4_mfm_"+lcv4).val(lcv4_mfm);
+          if(LCV_4_MFM!=undefined){
+            for(var lcv4=0;lcv4<LCV_4_MFM.length;lcv4++){
+              var lcv4_mfm = LCV_4_MFM[lcv4].slot_param_val;
+              console.log(lcv4_mfm);
+              $(".lcv4_mfm_"+lcv4).val(lcv4_mfm);
+            }
           }
           /*for(var lcv5=0;lcv5<LCV_5_MFM.length;lcv5++){
             var lcv5_mfm = LCV_5_MFM[lcv5].slot_param_val;
             $(".lcv5_mfm_"+lcv5).val(lcv5_mfm);
           } // STATIC // */
-          for(var chc=0;chc<COMP_HMR_COUNTER.length;chc++){
-            var chc_val = COMP_HMR_COUNTER[chc].slot_param_val;
-            console.log(chc_val);
-            $(".comp_hmr_cnt_"+chc).val(chc_val);
+          if(COMP_HMR_COUNTER!=undefined){
+            for(var chc=0;chc<COMP_HMR_COUNTER.length;chc++){
+              var chc_val = COMP_HMR_COUNTER[chc].slot_param_val;
+              console.log(chc_val);
+              $(".comp_hmr_cnt_"+chc).val(chc_val);
+            }
           }
-          for(var cem=0;cem<COMP_ENR_METER.length;cem++){
-            var cem_val = COMP_ENR_METER[cem].slot_param_val;
-            console.log(cem_val);
-            $(".comp_energy_met_"+cem).val(cem_val);
+          if(COMP_ENR_METER!=undefined){
+            for(var cem=0;cem<COMP_ENR_METER.length;cem++){
+              var cem_val = COMP_ENR_METER[cem].slot_param_val;
+              console.log(cem_val);
+              $(".comp_energy_met_"+cem).val(cem_val);
+            }
           }
-          for(var isp=0;isp<I_stg_prs.length;isp++){
-            var isp_val = I_stg_prs[isp].slot_param_val;
-            //console.log(isp_val);
-            $(".I_stg_prs_"+isp).val(isp_val);
+          if(I_stg_prs!=undefined){
+            for(var isp=0;isp<I_stg_prs.length;isp++){
+              var isp_val = I_stg_prs[isp].slot_param_val;
+              //console.log(isp_val);
+              $(".I_stg_prs_"+isp).val(isp_val);
+            }
           }
-          for(var iisp=0;iisp<II_stg_prs.length;iisp++){
-            var iisp_val = II_stg_prs[iisp].slot_param_val;
-            console.log(iisp_val);
-            $(".II_stg_prs_"+iisp).val(iisp_val);
+          if(II_stg_prs!=undefined){
+            for(var iisp=0;iisp<II_stg_prs.length;iisp++){
+              var iisp_val = II_stg_prs[iisp].slot_param_val;
+              console.log(iisp_val);
+              $(".II_stg_prs_"+iisp).val(iisp_val);
+            }
           }
-          for(var iiips=0;iiips<III_stg_prs.length;iiips++){
-            var iiips_val = III_stg_prs[iiips].slot_param_val;
-            console.log(iiips_val);
-            $(".III_stg_prs_"+iiips).val(iiips_val);
+          if(III_stg_prs!=undefined){
+            for(var iiips=0;iiips<III_stg_prs.length;iiips++){
+              var iiips_val = III_stg_prs[iiips].slot_param_val;
+              console.log(iiips_val);
+              $(".III_stg_prs_"+iiips).val(iiips_val);
+            }
           }
-          for(var ist=0;ist<I_stg_TEMP.length;ist++){
-            var ist_val = I_stg_TEMP[ist].slot_param_val;
-            console.log(ist_val);
-            $(".I_stg_temp_"+ist).val(ist_val);
+          if(I_stg_TEMP!=undefined){
+            for(var ist=0;ist<I_stg_TEMP.length;ist++){
+              var ist_val = I_stg_TEMP[ist].slot_param_val;
+              console.log(ist_val);
+              $(".I_stg_temp_"+ist).val(ist_val);
+            }
           }
-          for(var iist=0;iist<II_stg_TEMP.length;iist++){
-            var iist_val = II_stg_TEMP[iist].slot_param_val;
-            console.log(iist_val);
-            $(".II_stg_temp_"+iist).val(iist_val);
+          if(II_stg_TEMP!=undefined){
+            for(var iist=0;iist<II_stg_TEMP.length;iist++){
+              var iist_val = II_stg_TEMP[iist].slot_param_val;
+              console.log(iist_val);
+              $(".II_stg_temp_"+iist).val(iist_val);
+            }
           }
-          for(var iiist=0;iiist<III_stg_TEMP.length;iiist++){
-            var iiist_val = III_stg_TEMP[iiist].slot_param_val;
-            console.log(iiist_val);
-            $(".III_stg_temp_"+iiist).val(iiist_val);
+          if(III_stg_TEMP!=undefined){
+            for(var iiist=0;iiist<III_stg_TEMP.length;iiist++){
+              var iiist_val = III_stg_TEMP[iiist].slot_param_val;
+              console.log(iiist_val);
+              $(".III_stg_temp_"+iiist).val(iiist_val);
+            }
           }
-          for(var lpo=0;lpo<LP_OIL.length;lpo++){
-            var lpo_val = LP_OIL[lpo].slot_param_val;
-            console.log(lpo_val);
-            $(".lp_oil_"+lpo).val(lpo_val);
+          if(LP_OIL!=undefined){
+            for(var lpo=0;lpo<LP_OIL.length;lpo++){
+              var lpo_val = LP_OIL[lpo].slot_param_val;
+              console.log(lpo_val);
+              $(".lp_oil_"+lpo).val(lpo_val);
+            }
           }
-          for(var hpo=0;hpo<HP_OIL.length;hpo++){
-            var hpo_val = HP_OIL[hpo].slot_param_val;
-            console.log(hpo_val);
-            $(".hp_oil_"+hpo).val(hpo_val);
+          if(HP_OIL!=undefined){
+            for(var hpo=0;hpo<HP_OIL.length;hpo++){
+              var hpo_val = HP_OIL[hpo].slot_param_val;
+              console.log(hpo_val);
+              $(".hp_oil_"+hpo).val(hpo_val);
+            }
           }
-          for(var lbp=0;lbp<LOW_BANK_PRS.length;lbp++){
-            var lbp_val = LOW_BANK_PRS[lbp].slot_param_val;
-            console.log(lbp_val);
-            $(".low_bank_prs_"+lbp).val(lbp_val);
+          if(LOW_BANK_PRS!=undefined){
+            for(var lbp=0;lbp<LOW_BANK_PRS.length;lbp++){
+              var lbp_val = LOW_BANK_PRS[lbp].slot_param_val;
+              console.log(lbp_val);
+              $(".low_bank_prs_"+lbp).val(lbp_val);
+            }
           }
-          for(var mbp=0;mbp<MED_BANK_PRS.length;mbp++){
-            var mbp_val = MED_BANK_PRS[mbp].slot_param_val;
-            console.log(mbp_val);
-            $(".med_bank_prs_"+mbp).val(mbp_val);
+          if(MED_BANK_PRS!=undefined){
+            for(var mbp=0;mbp<MED_BANK_PRS.length;mbp++){
+              var mbp_val = MED_BANK_PRS[mbp].slot_param_val;
+              console.log(mbp_val);
+              $(".med_bank_prs_"+mbp).val(mbp_val);
+            }
           }
-          for(var hbp=0;hbp<HIGH_BANK_PRS.length;hbp++){
-            var hbp_val = HIGH_BANK_PRS[hbp].slot_param_val;
-            console.log(hbp_val);
-            $(".high_bank_prs_"+hbp).val(hbp_val);
+          if(HIGH_BANK_PRS!=undefined){
+            for(var hbp=0;hbp<HIGH_BANK_PRS.length;hbp++){
+              var hbp_val = HIGH_BANK_PRS[hbp].slot_param_val;
+              console.log(hbp_val);
+              $(".high_bank_prs_"+hbp).val(hbp_val);
+            }
           }
-          for(var wl=0;wl<WATER_LVL.length;wl++){
-            var wl_val = WATER_LVL[wl].slot_param_val;
-            console.log(wl_val);
-            $(".water_lvl_"+wl).val(wl_val);
+          if(WATER_LVL!=undefined){
+            for(var wl=0;wl<WATER_LVL.length;wl++){
+              var wl_val = WATER_LVL[wl].slot_param_val;
+              console.log(wl_val);
+              $(".water_lvl_"+wl).val(wl_val);
+            }
           }
-          for(var ol=0;ol<OIL_LVL.length;ol++){
-            var ol_val = OIL_LVL[ol].slot_param_val;
-            console.log(ol_val);
-            $(".oil_lvl_"+ol).val(ol_val);
+          if(OIL_LVL!=undefined){
+            for(var ol=0;ol<OIL_LVL.length;ol++){
+              var ol_val = OIL_LVL[ol].slot_param_val;
+              console.log(ol_val);
+              $(".oil_lvl_"+ol).val(ol_val);
+            }
           }
-          for(var nocs=0;nocs<NO_OF_COMP_STARTS.length;nocs++){
-            var nocs_val = NO_OF_COMP_STARTS[nocs].slot_param_val;
-            console.log(nocs_val);
-            $(".comp_starts_"+nocs).val(nocs_val);
+          if(NO_OF_COMP_STARTS!=undefined){
+            for(var nocs=0;nocs<NO_OF_COMP_STARTS.length;nocs++){
+              var nocs_val = NO_OF_COMP_STARTS[nocs].slot_param_val;
+              console.log(nocs_val);
+              $(".comp_starts_"+nocs).val(nocs_val);
+            }
           }
-          for(var sucp=0;sucp<SUC_PRS.length;sucp++){
-            var sucp_val = SUC_PRS[sucp].slot_param_val;
-           console.log(sucp_val);
-            $(".suc_prs_"+sucp).val(sucp_val);
+          if(SUC_PRS!=undefined){
+            for(var sucp=0;sucp<SUC_PRS.length;sucp++){
+              var sucp_val = SUC_PRS[sucp].slot_param_val;
+             console.log(sucp_val);
+              $(".suc_prs_"+sucp).val(sucp_val);
+            }
           }
 
           // ----------------------------- DISPENSER --------------------------------//
@@ -3371,40 +3431,54 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
             $(".disp_2_b_"+disp2b).val(disp2b_val);
           }  */ 
           // ----------------------------- ELECTRICAL --------------------------------//
-          for(var gmk=0;gmk<GEB_MET_KWH.length;gmk++){
-            var gmk_slot_param_val = GEB_MET_KWH[gmk].slot_param_val;
-            console.log(gmk_slot_param_val);
-            $(".GEB_energy_mtr_KWH_"+gmk).val(gmk_slot_param_val);
+          if(GEB_MET_KWH!=undefined){
+            for(var gmk=0;gmk<GEB_MET_KWH.length;gmk++){
+              var gmk_slot_param_val = GEB_MET_KWH[gmk].slot_param_val;
+              console.log(gmk_slot_param_val);
+              $(".GEB_energy_mtr_KWH_"+gmk).val(gmk_slot_param_val);
+            }
           }
-          for(var gmkvh=0;gmkvh<GEB_MET_KVAH.length;gmkvh++){
-            var gmkvah_slot_param_val = GEB_MET_KVAH[gmkvh].slot_param_val;
-            console.log(gmkvah_slot_param_val);
-            $(".GEB_energy_met_KVAH_"+gmkvh).val(gmkvah_slot_param_val);
+          if(GEB_MET_KVAH!=undefined){
+            for(var gmkvh=0;gmkvh<GEB_MET_KVAH.length;gmkvh++){
+              var gmkvah_slot_param_val = GEB_MET_KVAH[gmkvh].slot_param_val;
+              console.log(gmkvah_slot_param_val);
+              $(".GEB_energy_met_KVAH_"+gmkvh).val(gmkvah_slot_param_val);
+            }
           }
-          for(var gmkrh=0;gmkrh<GEB_MET_KVRH.length;gmkrh++){
-            var gmkrh_slot_param_val = GEB_MET_KVRH[gmkrh].slot_param_val;
-            console.log(gmkrh_slot_param_val);
-            $(".GEB_energy_met_KVRH_"+gmkrh).val(gmkrh_slot_param_val);
+          if(GEB_MET_KVRH!=undefined){
+            for(var gmkrh=0;gmkrh<GEB_MET_KVRH.length;gmkrh++){
+              var gmkrh_slot_param_val = GEB_MET_KVRH[gmkrh].slot_param_val;
+              console.log(gmkrh_slot_param_val);
+              $(".GEB_energy_met_KVRH_"+gmkrh).val(gmkrh_slot_param_val);
+            }
           }
-          for(var dro=0;dro<DELAR_RO.length;dro++){
-            var dro_slot_param_val = DELAR_RO[dro].slot_param_val;
-            //console.log(dro_slot_param_val);
-            $(".delar_ro_"+dro).val(dro_slot_param_val);
+          if(DELAR_RO!=undefined){
+            for(var dro=0;dro<DELAR_RO.length;dro++){
+              var dro_slot_param_val = DELAR_RO[dro].slot_param_val;
+              //console.log(dro_slot_param_val);
+              $(".delar_ro_"+dro).val(dro_slot_param_val);
+            }
           }
-          for(var vltg=0;vltg<VLTG.length;vltg++){
-            var vltg_slot_param_val = VLTG[vltg].slot_param_val;
-            console.log(vltg_slot_param_val);
-            $(".voltage_"+vltg).val(vltg_slot_param_val);
+          if(VLTG!=undefined){
+            for(var vltg=0;vltg<VLTG.length;vltg++){
+              var vltg_slot_param_val = VLTG[vltg].slot_param_val;
+              console.log(vltg_slot_param_val);
+              $(".voltage_"+vltg).val(vltg_slot_param_val);
+            }
           }
-          for(var amp=0;amp<AMP.length;amp++){
-            var amp_slot_param_val = AMP[amp].slot_param_val;
-            console.log(amp_slot_param_val);
-            $(".amp_"+amp).val(amp_slot_param_val);
+          if(AMP!=undefined){
+            for(var amp=0;amp<AMP.length;amp++){
+              var amp_slot_param_val = AMP[amp].slot_param_val;
+              console.log(amp_slot_param_val);
+              $(".amp_"+amp).val(amp_slot_param_val);
+            }
           }
-          for(var pf=0;pf<PF.length;pf++){
-            var pf_slot_param_val = PF[pf].slot_param_val;
-            console.log(pf_slot_param_val);
-            $(".pf_"+pf).val(pf_slot_param_val);
+          if(PF!=undefined){
+            for(var pf=0;pf<PF.length;pf++){
+              var pf_slot_param_val = PF[pf].slot_param_val;
+              console.log(pf_slot_param_val);
+              $(".pf_"+pf).val(pf_slot_param_val);
+            }
           }
         } // else ends //
       } // result!='' ends here //
@@ -10250,7 +10324,7 @@ function addDPR(save){
       $(this).css("background", "#fde0e0");
     }        
   });
-  console.log("CURRENT TIME ====================="+current_time);
+  //console.log("CURRENT TIME ====================="+current_time);
 
   /*if(c_zero == 0){
     $("#hidd_comp_0").val(0);
@@ -10459,6 +10533,7 @@ function addDPR(save){
   // INSERT IN DATABASE //
   //console.log(form_dpr);
   //if(z==0){
+    /*app.dialog.preloader('Saving Readings');
     $.ajax({ 
       type:'POST', 
       url:base_url+'APP/Appcontroller/insertDPR',
@@ -10466,9 +10541,9 @@ function addDPR(save){
       //data:{'hidd_stid':hidd_stid,'hidd_dprdt':hidd_dprdt},  
       data:form_dpr+"&hidd_stid="+hidd_stid+"&hidd_dprdt="+hidd_dprdt+"&session_uid="+session_uid,
       success:function(authRes){
-        //app.preloader.hide();
+        app.preloader.hide();
       }
-    });
+    });*/
   //}
  
   //alert("save"+save);
@@ -10490,6 +10565,17 @@ function addDPR(save){
   }
 
   if(save=='save'){
+    app.dialog.preloader('Saving Readings');
+    $.ajax({ 
+      type:'POST', 
+      url:base_url+'APP/Appcontroller/insertDPR',
+      //data:form_dpr+"&session_uid="+session_uid,
+      //data:{'hidd_stid':hidd_stid,'hidd_dprdt':hidd_dprdt},  
+      data:form_dpr+"&hidd_stid="+hidd_stid+"&hidd_dprdt="+hidd_dprdt+"&session_uid="+session_uid,
+      success:function(authRes){
+        app.dialog.close();
+      }
+    });
     //alert("in save");
     var hidd_dprdt = $("#hidd_dprdt").val();
     var d = new Date();
@@ -11316,6 +11402,10 @@ function addDPR(save){
         }
       }
 
+      /*setTimeout(function () {
+        app.dialog.close();
+      }, 3000);*/
+      app.preloader.hide();
 
       // if(c_zero!=0 && disp_zero!=0 && elec_zero!=0){
       //   if(current_time >= "01:00:00"){         
