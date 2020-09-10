@@ -643,9 +643,8 @@ div.container4 p {
     -ms-animation: 1s linear 0s normal none infinite running animate-blink;
     -o-animation: 1s linear 0s normal none infinite running animate-blink;
 }
-.pdf-font{
-  font-family: Arial, Helvetica, sans-serif!important;
-}
+
+
 keyframes animate-blink {
 0%, 100% { opacity: 1.0; }
 50% { opacity: 0.0; }
@@ -675,16 +674,20 @@ keyframes animate-blink {
 }
 }
 /************************************* PDF CSS **************************************/
-@page {
-  margin: 2mm;
-  margin-header: 2mm;
-  margin-footer: 2mm;
-}
 
+@media print {
 /*#container{
   border:1px solid #000;
   padding:10px;
 }*/
+@page {
+  margin: 5mm;
+  margin-header: 5mm;
+  margin-footer: 5mm;
+}
+#container{
+  padding:10px;
+}
 .head{
   height:100px;
 }
@@ -693,4 +696,8 @@ keyframes animate-blink {
 .mt0{margin-top:0px;}
 .total,.cms-right{
   text-align:right;
+}
+.border-bottom{
+  border-bottom: 1px solid #000!important;
+}
 }

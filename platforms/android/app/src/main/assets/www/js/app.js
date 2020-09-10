@@ -2336,6 +2336,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
         }else{
           st_start_time=st_start_time;
         }
+        //alert(st_start_time);
        // console.log(DISP_A);
           
         //alert(dispanser_count);
@@ -2346,8 +2347,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 //console.log(".disp_"+(disp_aa+1)+"_a_"+l_a);
                 var txtbox_id = $(".disp_"+(disp_aa+1)+"_a_"+l_a).attr('id');
                 //alert("txtbox_id "+txtbox_id);
-                if(txtbox_id!=undefined){
-                  if(DISP_A[l_a]!=undefined){ // ADDED ON 07-09-2020 //
+                if(txtbox_id!=undefined){ 
+                  if(DISP_A[l_a]!=undefined){ // ADDED ON 07-09-2020 //                    
                     var split_txt = txtbox_id.split("_");
                     var dispno = split_txt[1];
                     var disptm = split_txt[3];  
@@ -2356,9 +2357,10 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                         /*var disp_a_val = DISP_A[l_a][0].slot_param_val;
                         var time_slot_a = DISP_A[l_a][0].time_slot; 
                         var param = DISP_A[l_a][0].dpr_params;*/ // COMMENTED ON 08-09-2020 //
-                        var disp_a_val = DISP_A[st_start_time][disp_aa+1][0].slot_param_val;
-                        var time_slot_a = DISP_A[st_start_time][disp_aa+1][0].time_slot; 
-                        var param = DISP_A[st_start_time][disp_aa+1][0].dpr_params;
+                        //alert(disp_aa+1);
+                        var disp_a_val = DISP_A[l_a][disp_aa+1][0].slot_param_val;
+                        var time_slot_a = DISP_A[l_a][disp_aa+1][0].time_slot; 
+                        var param = DISP_A[l_a][disp_aa+1][0].dpr_params;
                         //alert(param+" "+time_slot_a+" "+disp_a_val);
                         var split_tm = time_slot_a.split(":");
                         var splited_tm = split_tm[0];
@@ -2370,13 +2372,13 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                         }
                         //console.log("timeslot "+timeslot+"=========> disptm "+disptm);
                         if(timeslot==disptm){                          
-                          //console.log(disp_a_val);
+                          //console.log("1111 ======>"+disp_a_val);
                           //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
                           $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
-                        }else{
-                          //console.log("else" +disp_a_val);
+                        }/*else{
+                          console.log("2222 ======>"+disp_a_val);
                           $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
-                        }
+                        }*/
                       }
                     }
                   }
@@ -2401,9 +2403,9 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                       /*var disp_b_val = DISP_B[l_b][0].slot_param_val;
                       var time_slot_b = DISP_B[l_b][0].time_slot; 
                       var param = DISP_B[l_b][0].dpr_params;*/  // COMMENTED ON 08-09-2020 //
-                      var disp_b_val = DISP_B[st_start_time][disp_bb+1][0].slot_param_val;
-                      var time_slot_b = DISP_B[st_start_time][disp_bb+1][0].time_slot; 
-                      var param = DISP_B[st_start_time][disp_bb+1][0].dpr_params;
+                      var disp_b_val = DISP_B[l_b][disp_bb+1][0].slot_param_val;
+                      var time_slot_b = DISP_B[l_b][disp_bb+1][0].time_slot; 
+                      var param = DISP_B[l_b][disp_bb+1][0].dpr_params;
                       //console.log(param+" "+time_slot_b+" "+disp_b_val);
                       var split_tm_b = time_slot_b.split(":");
                       var splited_tm_b = split_tm_b[0];
@@ -2414,12 +2416,12 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                         timeslot_b=timeslot_b;
                       }
                       if(timeslot_b==disptm_b){
-                        console.log(disp_b_val);
+                        //console.log(disp_b_val);
                         //console.log(txtbox_id+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_a_'+timeslot_b+").val="+disp_b_val);
                         $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
-                      }else{
+                      }/*else{
                         $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
-                      }
+                      }*/
                     }
                   }
                   }else{
