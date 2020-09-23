@@ -139,8 +139,8 @@ function logincheck(){
               app.preloader.hide();  
             }else if(msg=='' || msg==undefined){
               if(sim_check==0){
-                //window.plugins.sim.getSimInfo(function(res){ 
-                cordova.plugins.sim.getSimInfo(function(res){             
+                window.plugins.sim.getSimInfo(function(res){ 
+                //cordova.plugins.sim.getSimInfo(function(res){             
                   var imei_1 = res.cards[0].deviceId;
                   var imei_2 = res.cards[1].deviceId;
                   var phoneno_1 = res.cards[0].phoneNumber;
@@ -153,7 +153,7 @@ function logincheck(){
                   alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
                   alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
-                    alert("IN");                                      
+                    alert("IN");                                       
                     $.ajax({ 
                       type:'POST',  
                       url:base_url+'APP/Appcontroller/updateIMEI',
