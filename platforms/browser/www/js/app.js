@@ -142,7 +142,7 @@ function logincheck(){
         //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
         alert("parse_authmsg "+parse_authmsg);
 
-        
+      if(desi_title=='COMP. OPERATOR'){  
         if(parse_authmsg=="success"){
           //var permissions = cordova.plugins.permissions;
           //console.log(permissions);
@@ -174,12 +174,12 @@ function logincheck(){
               /*var phoneno_2 = res.cards[1].phoneNumber;
               alert("phoneno_1 : "+res.cards[0].phoneNumber);
               alert("phoneno_2 : "+res.cards[1].phoneNumber);*/
-
+              alert("msg ::: "+msg);
               if(msg=='cannot_login'){
                 app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
                 app.preloader.hide(); 
                 //return false; 
-              }else if(msg==''){
+              }else if(msg=='' || msg==undefined){
                 alert("in");
                 if(reg_mobno==phoneno_1){
                   alert("same mobile no");
@@ -309,7 +309,42 @@ function logincheck(){
           app.dialog.alert("Mobile no or password Incorrect");
           return false;
         }
-        
+       }else{ // NOT COMP. OPERATOR USER //
+        alert("NOT COMP. OPERATOR USER "+imei_no+ " "+imei_no_two)
+        if(parse_authmsg=="success"){
+          window.plugins.sim.getSimInfo(function(res){             
+              var imei_1 = res.cards[0].deviceId;
+              var imei_2 = res.cards[1].deviceId;
+          $.ajax({ 
+            type:'POST', 
+            url:base_url+'APP/Appcontroller/updateIMEI',
+            data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
+            success:function(imei_result){
+              //alert("imei_result "+imei_result);
+            }
+          });
+          mainView.router.navigate("/dashboard/"); 
+          window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+          window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+          window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+          window.localStorage.setItem("session_uname",result.user_session[0].username);
+          window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+          window.localStorage.setItem("session_email",result.user_session[0].email);
+          window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+          window.localStorage.setItem("sess_designation",result.desi_title);
+          app.preloader.hide();
+        }, function(error){
+              //console.log(error);
+              //alert("error "+error);
+              app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
+              return false;
+            });
+        }else if(parse_authmsg=="Inc_mobpass"){
+          app.preloader.hide();
+          app.dialog.alert("Mobile no or password Incorrect");
+          return false;
+        }
+       } 
       }
     });
   }
