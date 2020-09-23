@@ -102,13 +102,10 @@ function checkConnection(){
 }
 // ------------------------------ MOBILE IMEI -------------------------------- //
 function logincheck(){
-  //alert("hi");
   checkConnection();    
-  var lform = $(".lform").serialize();  
-  //console.log(lform+"***");
+  var lform = $(".lform").serialize();
   var mobile_num = $("#mob_login").val();
   var pass = $("#pass").val();
-  //alert(mobile_num+"-----"+pass);
   if(mobile_num==''){
     $("#passerror").html("");
     $("#umoberror").html("Mobile number is required.");
@@ -117,15 +114,13 @@ function logincheck(){
     $("#umoberror").html("");
     $("#passerror").html("Password is required.");
     return false;
-  }else{ 
-  //alert("else");
-  //alert(base_url+'APP/Appcontroller/authenticateUser');
-  app.preloader.show();
+  }else{
+    app.preloader.show();
     $.ajax({
       type:'POST', 
       url:base_url+'APP/Appcontroller/authenticateUser',
       data:lform,  
-      success:function(authRes){ 
+      success:function(authRes){
         var result = $.parseJSON(authRes);        
         var parse_authmsg = result.auth_msg;        
         var user_session = result.user_session[0];          
@@ -133,149 +128,124 @@ function logincheck(){
         var imei_no = result.imei_no;
         var imei_no_two = result.imei_no_two;
         var msg = result.msg;
-        //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
-        alert("parse_authmsg "+parse_authmsg);
-
-        if(desi_title=='COMP. OPERATOR'){  
-          if(parse_authmsg=="success"){          
+        if(desi_title=='COMP. OPERATOR'){ 
+          if(parse_authmsg=="success"){ 
             var user_id = result.user_session[0].user_id;  
             var reg_mobno = result.user_session[0].mobileno;
             var sim_check = result.user_session[0].sim_check;      
             var permissions = cordova.plugins.permissions;
-            if(sim_check==0){
-              //window.plugins.sim.getSimInfo(function(res){                
-                //var imei_1 = res.cards[0].deviceId;
-                //var imei_2 = res.cards[1].deviceId;
-                //var phoneno_1 = res.cards[0].phoneNumber;
-                if(msg=='cannot_login'){
-                  app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
-                  app.prelo//ader.hide(); 
-                  //return false; 
-                }else if(msg=='' || msg==undefined){
-                  window.plugins.sim.getSimInfo(function(res){                
-                    var imei_1 = res.cards[0].deviceId;
-                    var imei_2 = res.cards[1].deviceId;
-                    var phoneno_1 = res.cards[0].phoneNumber;
-                    if(reg_mobno==phoneno_1){                    
-                      $.ajax({ 
-                        type:'POST', 
-                        url:base_url+'APP/Appcontroller/updateIMEI',
-                        data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
-                        success:function(imei_result){
-                          //alert("imei_result "+imei_result);
-                        }
-                      });
-                      mainView.router.navigate("/dashboard/"); 
-                      window.localStorage.setItem("session_uid",result.user_session[0].user_id);
-                      window.localStorage.setItem("session_utype",result.user_session[0].user_type);
-                      window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
-                      window.localStorage.setItem("session_uname",result.user_session[0].username);
-                      window.localStorage.setItem("session_stid",result.user_session[0].station_id);
-                      window.localStorage.setItem("session_email",result.user_session[0].email);
-                      window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
-                      window.localStorage.setItem("sess_designation",result.desi_title);
-                      app.preloader.hide();
-                    }else{
-                      //alert("diff mobile no");
-                      app.dialog.alert("Try to login with registered mobile no. sim_check=0");
-                      app.preloader.hide();
-                    }
-                //}       
-              }, function(error){
-                //console.log(error);
-                //alert("error "+error);
-                app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
-                return false;
-              }); 
-            }else if(sim_check==1){
-              //window.plugins.sim.getSimInfo(function(res){
-                //var phoneno_1 = res.cards[0].phoneNumber;
-                if(msg=='cannot_login'){
-                  app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
-                  app.preloader.hide(); 
-                  //return false; 
-                }else if(msg=='' || msg==undefined){
-                  //alert("in");
-                  window.plugins.sim.getSimInfo(function(res){
-                    var phoneno_1 = res.cards[0].phoneNumber;
-                    if(reg_mobno==phoneno_1){
-                      $.ajax({
-                        type:'POST', 
-                        url:base_url+'APP/Appcontroller/update_lstatus',
-                        data:{'user_id':user_id},  
-                        success:function(imei_result){
-                          //alert("imei_result "+imei_result);
-                        }
-                      });                
-                      mainView.router.navigate("/dashboard/"); 
-                      window.localStorage.setItem("session_uid",result.user_session[0].user_id);
-                      window.localStorage.setItem("session_utype",result.user_session[0].user_type);
-                      window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
-                      window.localStorage.setItem("session_uname",result.user_session[0].username);
-                      window.localStorage.setItem("session_stid",result.user_session[0].station_id);
-                      window.localStorage.setItem("session_email",result.user_session[0].email);
-                      window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
-                      window.localStorage.setItem("sess_designation",result.desi_title);
-                      app.preloader.hide();
-                    }else{
-                      app.dialog.alert("Try to login with registered mobile no.sim_check=1");
-                      app.preloader.hide();
-                    }
-                
-                },function(error){
-                  //console.log(error);
-                  //alert("error "+error);
+            if(msg=='cannot_login'){
+              app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
+              app.preloader.hide();  
+            }else if(msg=='' || msg==undefined){
+              if(sim_check==0){
+                window.plugins.sim.getSimInfo(function(res){                
+                  var imei_1 = res.cards[0].deviceId;
+                  var imei_2 = res.cards[1].deviceId;
+                  var phoneno_1 = res.cards[0].phoneNumber;
+                  if(reg_mobno==phoneno_1){                    
+                    $.ajax({ 
+                      type:'POST', 
+                      url:base_url+'APP/Appcontroller/updateIMEI',
+                      data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
+                      success:function(imei_result){
+                      }
+                    });
+                    mainView.router.navigate("/dashboard/"); 
+                    window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+                    window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+                    window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+                    window.localStorage.setItem("session_uname",result.user_session[0].username);
+                    window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+                    window.localStorage.setItem("session_email",result.user_session[0].email);
+                    window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+                    window.localStorage.setItem("sess_designation",result.desi_title);
+                    app.preloader.hide();
+                  }else{
+                    app.dialog.alert("Try to login with registered mobile no. sim_check=0");
+                    app.preloader.hide();
+                  }                    
+                }, function(error){
                   app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
                   return false;
                 });
-              }           
+              }else if(sim_check==1){
+                window.plugins.sim.getSimInfo(function(res){
+                  var phoneno_1 = res.cards[0].phoneNumber;
+                  if(reg_mobno==phoneno_1){
+                    $.ajax({
+                      type:'POST', 
+                      url:base_url+'APP/Appcontroller/update_lstatus',
+                      data:{'user_id':user_id},  
+                      success:function(imei_result){                      
+                      }
+                    });                
+                    mainView.router.navigate("/dashboard/"); 
+                    window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+                    window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+                    window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+                    window.localStorage.setItem("session_uname",result.user_session[0].username);
+                    window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+                    window.localStorage.setItem("session_email",result.user_session[0].email);
+                    window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+                    window.localStorage.setItem("sess_designation",result.desi_title);
+                    app.preloader.hide();
+                  }else{
+                    app.dialog.alert("Try to login with registered mobile no.sim_check=1");
+                    app.preloader.hide();
+                  }                
+                },function(error){
+                  app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
+                  return false;
+                });
+              } // sim_check =1 ends //
+            } // msg=='' || msg==undefined ends //
           }else if(parse_authmsg=="Inc_mobpass"){
             app.preloader.hide();
             app.dialog.alert("Mobile no or password Incorrect");
             return false;
           }
-       }else{ // NOT COMP. OPERATOR USER //
-        //alert("NOT COMP. OPERATOR USER "+imei_no+ " "+imei_no_two);
-        var user_id = result.user_session[0].user_id;  
-        if(parse_authmsg=="success"){
-          window.plugins.sim.getSimInfo(function(res){             
-          var imei_1 = res.cards[0].deviceId;
-          var imei_2 = res.cards[1].deviceId;
-          //alert(imei_no+"=="+imei_no_two+'~~'+imei_1+"##"+imei_2+"^^"+user_id);
-          $.ajax({ 
-            type:'POST', 
-            url:base_url+'APP/Appcontroller/updateIMEI',
-            data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
-            success:function(imei_result){
-              //alert("imei_result "+imei_result);
-            }
-          });
-          mainView.router.navigate("/dashboard/"); 
-          window.localStorage.setItem("session_uid",result.user_session[0].user_id);
-          window.localStorage.setItem("session_utype",result.user_session[0].user_type);
-          window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
-          window.localStorage.setItem("session_uname",result.user_session[0].username);
-          window.localStorage.setItem("session_stid",result.user_session[0].station_id);
-          window.localStorage.setItem("session_email",result.user_session[0].email);
-          window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
-          window.localStorage.setItem("sess_designation",result.desi_title);
-          app.preloader.hide();
-        }, function(error){
-              //console.log(error);
-              //alert("error "+error);
+        }else{
+          // NOT COMP. OPERATOR USER //
+          var user_id = result.user_session[0].user_id;  
+          if(parse_authmsg=="success"){
+            window.plugins.sim.getSimInfo(function(res){             
+            var imei_1 = res.cards[0].deviceId;
+            var imei_2 = res.cards[1].deviceId;
+            //alert(imei_no+"=="+imei_no_two+'~~'+imei_1+"##"+imei_2+"^^"+user_id);
+            $.ajax({ 
+              type:'POST', 
+              url:base_url+'APP/Appcontroller/updateIMEI',
+              data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
+              success:function(imei_result){
+                //alert("imei_result "+imei_result);
+              }
+            });
+            mainView.router.navigate("/dashboard/"); 
+            window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+            window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+            window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+            window.localStorage.setItem("session_uname",result.user_session[0].username);
+            window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+            window.localStorage.setItem("session_email",result.user_session[0].email);
+            window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+            window.localStorage.setItem("sess_designation",result.desi_title);
+            app.preloader.hide();
+          },function(error){
               app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
               return false;
             });
-        }else if(parse_authmsg=="Inc_mobpass"){
-          app.preloader.hide();
-          app.dialog.alert("Mobile no or password Incorrect");
-          return false;
-        }
-       } 
+          }else if(parse_authmsg=="Inc_mobpass"){
+            app.preloader.hide();
+            app.dialog.alert("Mobile no or password Incorrect");
+            return false;
+          }
+        } // if(desi_title=='COMP. OPERATOR') ends //
       }
-    });
+    }); // main ajax ends //
   }
 }
+
 // -------------------------------- VST MODULE STARTS ------------------------------------//
 // Android only: check permission
 function hasReadPermission() {
