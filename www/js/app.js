@@ -150,6 +150,7 @@ function logincheck(){
             alert("result.phoneCount=" +res.phoneCount);
             for (var i = 0; i < res.cards.length; i++) {
               alert("===== "+res.cards[i].phoneNumber);
+              alert("===== IMEI "+i+"==>"+res.cards[i].deviceId) 
             }
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
