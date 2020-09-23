@@ -140,7 +140,7 @@ function logincheck(){
         //alert(desi_title);
 
         //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
-        //alert("parse_authmsg "+parse_authmsg);
+        alert("parse_authmsg "+parse_authmsg);
 
         
         if(parse_authmsg=="success"){
@@ -149,7 +149,8 @@ function logincheck(){
           //permissions.checkPermission(permissions, successCallback, errorCallback);
           var user_id = result.user_session[0].user_id;  
           var reg_mobno = result.user_session[0].mobileno;
-          var sim_check = result.user_session[0].sim_check;        
+          var sim_check = result.user_session[0].sim_check;  
+          alert(sim_check + " "+msg);      
           var permissions = cordova.plugins.permissions;
           if(sim_check==0){
             window.plugins.sim.getSimInfo(function(res){
@@ -179,8 +180,9 @@ function logincheck(){
                 app.preloader.hide(); 
                 //return false; 
               }else if(msg==''){
-                //alert("in");
+                alert("in");
                 if(reg_mobno==phoneno_1){
+                  alert("same mobile no");
                   /*$.ajax({
                     type:'POST', 
                     url:base_url+'APP/Appcontroller/update_lstatus',
@@ -208,6 +210,7 @@ function logincheck(){
                   window.localStorage.setItem("sess_designation",result.desi_title);
                   app.preloader.hide();
                 }else{
+                  alert("diff mobile no");
                   app.dialog.alert("Try to login with registered mobile no.");
                   app.preloader.hide();
                 }
