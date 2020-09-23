@@ -147,7 +147,7 @@ function logincheck(){
           window.plugins.sim.getSimInfo(function(res){
             //alert("RES :::: "+res); 
             alert("displayName "+res.displayName);
-            document.writeln(res); 
+            document.writeln(res.cards); 
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
             var imei_1 = res.cards[0].deviceId;
