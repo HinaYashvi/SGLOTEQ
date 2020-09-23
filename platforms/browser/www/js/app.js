@@ -143,10 +143,16 @@ function logincheck(){
                   var imei_1 = res.cards[0].deviceId;
                   var imei_2 = res.cards[1].deviceId;
                   var phoneno_1 = res.cards[0].phoneNumber;
-                  alert(reg_mobno+"=="+phoneno_1);
+                  if(phoneno_1.length==10){
+                    phoneno_1 = phoneno_1;
+                  }else if(phoneno_1.length > 10){
+                    var country_code = res.cards[0].countryCode;
+                    phoneno_1 = phoneno_1.substring(2);
+                  }                  
+                  alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
                   if(reg_mobno==phoneno_1){                    
                     $.ajax({ 
-                      type:'POST', 
+                      type:'POST',  
                       url:base_url+'APP/Appcontroller/updateIMEI',
                       data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
                       success:function(imei_result){
@@ -167,12 +173,19 @@ function logincheck(){
                     app.preloader.hide();
                   }                    
                 }, function(error){
-                  app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
-                  return false;
+                  //app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
+                  //return false;
                 });
               }else if(sim_check==1){
                 window.plugins.sim.getSimInfo(function(res){
                   var phoneno_1 = res.cards[0].phoneNumber;
+                  if(phoneno_1.length==10){
+                    phoneno_1 = phoneno_1;
+                  }else if(phoneno_1.length > 10){
+                    var country_code = res.cards[0].countryCode;
+                    phoneno_1 = phoneno_1.substring(2);
+                  }                  
+                  alert(reg_mobno+"=="+phoneno_1+" sim_check = 1");
                   if(reg_mobno==phoneno_1){
                     $.ajax({
                       type:'POST', 
