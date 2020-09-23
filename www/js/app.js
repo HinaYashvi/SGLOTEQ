@@ -136,7 +136,7 @@ function logincheck(){
         var msg = result.msg;
         var reg_mobno = result.user_session[0].mobileno;
         //alert(desi_title);
-        alert(msg+'===='+reg_mobno);
+        alert(msg+'===='+reg_mobno+"  "+parse_authmsg);
         //alert("parse_authmsg "+parse_authmsg);
         if(parse_authmsg=="success"){
           //var permissions = cordova.plugins.permissions;
@@ -184,6 +184,7 @@ function logincheck(){
             app.preloader.hide(); 
             //return false; 
           }else if(msg==''){
+            alert("in");
             if(reg_mobno==phoneno_1){
               $.ajax({
                 type:'POST', 
