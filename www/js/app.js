@@ -143,6 +143,12 @@ function logincheck(){
                   var imei_1 = res.cards[0].deviceId;
                   var imei_2 = res.cards[1].deviceId;
                   var phoneno_1 = res.cards[0].phoneNumber;
+                  if(phoneno_1.length==10){
+                    phoneno_1 = phoneno_1;
+                  }else if(phoneno_1.length > 10){
+                    var country_code = res.cards[0].countryCode;
+                    phoneno_1 = phoneno_1.substring(2);
+                  }                  
                   alert(reg_mobno+"=="+phoneno_1);
                   if(reg_mobno==phoneno_1){                    
                     $.ajax({ 
@@ -173,6 +179,13 @@ function logincheck(){
               }else if(sim_check==1){
                 window.plugins.sim.getSimInfo(function(res){
                   var phoneno_1 = res.cards[0].phoneNumber;
+                  if(phoneno_1.length==10){
+                    phoneno_1 = phoneno_1;
+                  }else if(phoneno_1.length > 10){
+                    var country_code = res.cards[0].countryCode;
+                    phoneno_1 = phoneno_1.substring(2);
+                  }                  
+                  alert(reg_mobno+"=="+phoneno_1);
                   if(reg_mobno==phoneno_1){
                     $.ajax({
                       type:'POST', 
