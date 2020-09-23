@@ -150,17 +150,17 @@ function logincheck(){
                     phoneno_1 = phoneno_1.substring(2);
                   }                  
                   alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
+                  alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
-                    alert("IN");
-                    setTimeout(function() {                   
-                      $.ajax({ 
-                        type:'POST',  
-                        url:base_url+'APP/Appcontroller/updateIMEI',
-                        data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
-                        success:function(imei_result){
-                        }
-                      });
-                    },2000);
+                    alert("IN");                                      
+                    $.ajax({ 
+                      type:'POST',  
+                      url:base_url+'APP/Appcontroller/updateIMEI',
+                      data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
+                      success:function(imei_result){
+                        alert("login status updated sim_check = 0");
+                      }
+                    });                    
                     mainView.router.navigate("/dashboard/"); 
                     window.localStorage.setItem("session_uid",result.user_session[0].user_id);
                     window.localStorage.setItem("session_utype",result.user_session[0].user_type);
