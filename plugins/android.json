@@ -59,6 +59,9 @@
     "phonegap-plugin-barcodescanner": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
     }
   },
   "dependent_plugins": {

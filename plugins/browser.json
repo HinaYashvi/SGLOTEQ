@@ -57,6 +57,9 @@
     },
     "phonegap-plugin-barcodescanner": {
       "PACKAGE_NAME": "com.phonegap.SGL"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.phonegap.SGL"
     }
   },
   "dependent_plugins": {

@@ -165,21 +165,61 @@ function logincheck(){
             /*var phoneno_2 = res.cards[1].phoneNumber;
             alert("phoneno_1 : "+res.cards[0].phoneNumber);
             alert("phoneno_2 : "+res.cards[1].phoneNumber);*/
-            $.ajax({ 
+
+            if(msg=='cannot_login'){
+              app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
+              app.preloader.hide(); 
+              //return false; 
+            }else if(msg==''){
+              alert("in");
+              if(reg_mobno==phoneno_1){
+                /*$.ajax({
+                  type:'POST', 
+                  url:base_url+'APP/Appcontroller/update_lstatus',
+                  data:{'user_id':user_id},  
+                  success:function(imei_result){
+                    //alert("imei_result "+imei_result);
+                  }
+                });*/
+                $.ajax({ 
+                  type:'POST', 
+                  url:base_url+'APP/Appcontroller/updateIMEI',
+                  data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
+                  success:function(imei_result){
+                    //alert("imei_result "+imei_result);
+                  }
+                });
+                mainView.router.navigate("/dashboard/"); 
+                window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+                window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+                window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+                window.localStorage.setItem("session_uname",result.user_session[0].username);
+                window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+                window.localStorage.setItem("session_email",result.user_session[0].email);
+                window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+                window.localStorage.setItem("sess_designation",result.desi_title);
+                app.preloader.hide();
+              }else{
+                app.dialog.alert("Try to login with registered mobile no.");
+                app.preloader.hide();
+              }
+            }
+
+            /*$.ajax({ 
               type:'POST', 
               url:base_url+'APP/Appcontroller/updateIMEI',
               data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
               success:function(imei_result){
                 //alert("imei_result "+imei_result);
               }
-            });           
+            });*/           
           }, function(error){
             //console.log(error);
             //alert("error "+error);
             app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
             return false;
           });  
-          if(msg=='cannot_login'){
+          /*if(msg=='cannot_login'){
             app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
             app.preloader.hide(); 
             //return false; 
@@ -208,7 +248,9 @@ function logincheck(){
               app.dialog.alert("Try to login with registered mobile no.");
               app.preloader.hide();
             }
-          }
+          }*/ // COMMENTED ON 23-09-2020
+
+
           /*mainView.router.navigate("/dashboard/"); 
           window.localStorage.setItem("session_uid",result.user_session[0].user_id);
           window.localStorage.setItem("session_utype",result.user_session[0].user_type);
