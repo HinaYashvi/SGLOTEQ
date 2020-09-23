@@ -146,8 +146,11 @@ function logincheck(){
           var permissions = cordova.plugins.permissions;
           window.plugins.sim.getSimInfo(function(res){
             //alert("RES :::: "+res); 
-            alert("result.cards.length=" +result.cards.length);
-            alert("result.phoneCount=" +result.phoneCount);
+            alert("result.cards.length=" +res.cards.length);
+            alert("result.phoneCount=" +res.phoneCount);
+            for (var i = 0; i < res.cards.length; i++) {
+              alert("===== "+res.cards[i].phoneNumber);
+            }
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
             var imei_1 = res.cards[0].deviceId;
