@@ -140,7 +140,7 @@ function logincheck(){
         //alert(desi_title);
 
         //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
-        alert("parse_authmsg "+parse_authmsg);
+        //alert("parse_authmsg "+parse_authmsg);
 
       if(desi_title=='COMP. OPERATOR'){  
         if(parse_authmsg=="success"){
@@ -150,7 +150,7 @@ function logincheck(){
           var user_id = result.user_session[0].user_id;  
           var reg_mobno = result.user_session[0].mobileno;
           var sim_check = result.user_session[0].sim_check;  
-          alert(sim_check + " "+msg);      
+          //alert(sim_check + " "+msg);      
           var permissions = cordova.plugins.permissions;
           if(sim_check==0){
             window.plugins.sim.getSimInfo(function(res){
@@ -174,15 +174,15 @@ function logincheck(){
               /*var phoneno_2 = res.cards[1].phoneNumber;
               alert("phoneno_1 : "+res.cards[0].phoneNumber);
               alert("phoneno_2 : "+res.cards[1].phoneNumber);*/
-              alert("msg ::: "+msg);
+              //alert("msg ::: "+msg);
               if(msg=='cannot_login'){
                 app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
                 app.preloader.hide(); 
                 //return false; 
               }else if(msg=='' || msg==undefined){
-                alert("in");
+                //alert("in");
                 if(reg_mobno==phoneno_1){
-                  alert("same mobile no");
+                  //alert("same mobile no");
                   /*$.ajax({
                     type:'POST', 
                     url:base_url+'APP/Appcontroller/update_lstatus',
@@ -210,7 +210,7 @@ function logincheck(){
                   window.localStorage.setItem("sess_designation",result.desi_title);
                   app.preloader.hide();
                 }else{
-                  alert("diff mobile no");
+                  //alert("diff mobile no");
                   app.dialog.alert("Try to login with registered mobile no.");
                   app.preloader.hide();
                 }
@@ -231,21 +231,14 @@ function logincheck(){
               return false;
             }); 
           }else if(sim_check==1){
+            var phoneno_1 = res.cards[0].phoneNumber;
             if(msg=='cannot_login'){
               app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
               app.preloader.hide(); 
               //return false; 
             }else if(msg==''){
-              alert("in");
-              if(reg_mobno==phoneno_1){
-                $.ajax({
-                  type:'POST', 
-                  url:base_url+'APP/Appcontroller/update_lstatus',
-                  data:{'user_id':user_id},  
-                  success:function(imei_result){
-                    //alert("imei_result "+imei_result);
-                  }
-                })
+              //alert("in");
+              if(reg_mobno==phoneno_1){                
                 mainView.router.navigate("/dashboard/"); 
                 window.localStorage.setItem("session_uid",result.user_session[0].user_id);
                 window.localStorage.setItem("session_utype",result.user_session[0].user_type);
@@ -310,13 +303,13 @@ function logincheck(){
           return false;
         }
        }else{ // NOT COMP. OPERATOR USER //
-        alert("NOT COMP. OPERATOR USER "+imei_no+ " "+imei_no_two);
+        //alert("NOT COMP. OPERATOR USER "+imei_no+ " "+imei_no_two);
         var user_id = result.user_session[0].user_id;  
         if(parse_authmsg=="success"){
           window.plugins.sim.getSimInfo(function(res){             
           var imei_1 = res.cards[0].deviceId;
           var imei_2 = res.cards[1].deviceId;
-          alert(imei_no+"=="+imei_no_two+'~~'+imei_1+"##"+imei_2+"^^"+user_id);
+          //alert(imei_no+"=="+imei_no_two+'~~'+imei_1+"##"+imei_2+"^^"+user_id);
           $.ajax({ 
             type:'POST', 
             url:base_url+'APP/Appcontroller/updateIMEI',
@@ -397,9 +390,11 @@ function showeye(){
         if(pass_chk=='correct'){
           $(".submit-box").removeClass("login-button");
           $(".submit-box").addClass("login_change");
+          $(".btnlog").show();
         }else if(pass_chk=='incorrect'){
           $(".submit-box").removeClass("login_change");
           $(".submit-box").addClass("login-button");
+          $(".btnlog").hide();
         }
       }
     });
