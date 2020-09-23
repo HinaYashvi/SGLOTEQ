@@ -146,9 +146,9 @@ function logincheck(){
           var permissions = cordova.plugins.permissions;
           window.plugins.sim.getSimInfo(function(res){
             //alert("RES :::: "+res); 
-            alert("result.cards.length=" +res.cards.length);
-            alert("result.phoneCount=" +res.phoneCount);
-            for (var i = 0; i < res.cards.length; i++) {
+            //alert("result.cards.length=" +res.cards.length);
+            //alert("result.phoneCount=" +res.phoneCount);
+            /*for (var i = 0; i < res.cards.length; i++) {
               alert("i is "+i+" "+res.cards[i].phoneNumber+"==="+res.cards[i].deviceId);
               //alert("===== "+res.cards[i].phoneNumber);
               //alert("===== IMEI "+i+"==>"+res.cards[i].deviceId) 
@@ -156,15 +156,15 @@ function logincheck(){
 
             for (var i1 = 0; i1 <= res.cards.length; i1++) {
               alert("i1 is "+i1+" "+res.cards[i1].phoneNumber+"==="+res.cards[i1].deviceId);
-            }
+            }*/
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
             var imei_1 = res.cards[0].deviceId;
             var imei_2 = res.cards[1].deviceId;
             var phoneno_1 = res.cards[0].phoneNumber;
-            var phoneno_2 = res.cards[1].phoneNumber;
+            /*var phoneno_2 = res.cards[1].phoneNumber;
             alert("phoneno_1 : "+res.cards[0].phoneNumber);
-            alert("phoneno_2 : "+res.cards[1].phoneNumber);
+            alert("phoneno_2 : "+res.cards[1].phoneNumber);*/
             $.ajax({ 
               type:'POST', 
               url:base_url+'APP/Appcontroller/updateIMEI',
@@ -184,7 +184,15 @@ function logincheck(){
             app.preloader.hide(); 
             //return false; 
           }else{
-            if(reg_mobno==phoneno_1 || reg_mobno==phoneno_2){
+            if(reg_mobno==phoneno_1){
+              $.ajax({
+                type:'POST', 
+                url:base_url+'APP/Appcontroller/update_lstatus',
+                data:{'user_id':user_id},  
+                success:function(imei_result){
+                  //alert("imei_result "+imei_result);
+                }
+              })
               mainView.router.navigate("/dashboard/"); 
               window.localStorage.setItem("session_uid",result.user_session[0].user_id);
               window.localStorage.setItem("session_utype",result.user_session[0].user_type);
