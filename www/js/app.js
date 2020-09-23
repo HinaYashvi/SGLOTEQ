@@ -310,11 +310,13 @@ function logincheck(){
           return false;
         }
        }else{ // NOT COMP. OPERATOR USER //
-        alert("NOT COMP. OPERATOR USER "+imei_no+ " "+imei_no_two)
+        alert("NOT COMP. OPERATOR USER "+imei_no+ " "+imei_no_two);
+        var user_id = result.user_session[0].user_id;  
         if(parse_authmsg=="success"){
           window.plugins.sim.getSimInfo(function(res){             
-              var imei_1 = res.cards[0].deviceId;
-              var imei_2 = res.cards[1].deviceId;
+          var imei_1 = res.cards[0].deviceId;
+          var imei_2 = res.cards[1].deviceId;
+          alert(imei_no+"=="+imei_no_two+'~~'+imei_1+"##"+imei_2+"^^"+user_id);
           $.ajax({ 
             type:'POST', 
             url:base_url+'APP/Appcontroller/updateIMEI',
