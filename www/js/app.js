@@ -142,7 +142,7 @@ function logincheck(){
         //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
         alert("parse_authmsg "+parse_authmsg);
 
-        
+      if(desi_title=='COMP. OPERATOR'){  
         if(parse_authmsg=="success"){
           //var permissions = cordova.plugins.permissions;
           //console.log(permissions);
@@ -309,7 +309,24 @@ function logincheck(){
           app.dialog.alert("Mobile no or password Incorrect");
           return false;
         }
-        
+       }else{ // NOT COMP. OPERATOR USER //
+        if(parse_authmsg=="success"){
+          mainView.router.navigate("/dashboard/"); 
+          window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+          window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+          window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+          window.localStorage.setItem("session_uname",result.user_session[0].username);
+          window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+          window.localStorage.setItem("session_email",result.user_session[0].email);
+          window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+          window.localStorage.setItem("sess_designation",result.desi_title);
+          app.preloader.hide();
+        }else if(parse_authmsg=="Inc_mobpass"){
+          app.preloader.hide();
+          app.dialog.alert("Mobile no or password Incorrect");
+          return false;
+        }
+       } 
       }
     });
   }
