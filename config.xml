@@ -33,9 +33,9 @@
         <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" /-->
-        <preference name="SplashScreen" value="screen" />
+        <!--preference name="SplashScreen" value="screen" />
         <preference name="SplashScreenDelay" value="7000" />
-        <preference name="ShowSplashScreenSpinner" value="false" />
+        <preference name="ShowSplashScreenSpinner" value="false" /-->
     </platform>
     <access origin="*" />
     <allow-intent href="http://*/*" />
