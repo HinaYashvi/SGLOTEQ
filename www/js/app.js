@@ -128,22 +128,27 @@ function logincheck(){
       data:lform,  
       success:function(authRes){ 
         var result = $.parseJSON(authRes);
+        //console.log(result+"=~~~~~~~~~~~~~~");
         var parse_authmsg = result.auth_msg;        
         var user_session = result.user_session[0];  
+        //console.log(user_session+"=~~~~~~~~~~~~~~");        
         var desi_title = result.desi_title;
         var imei_no = result.imei_no;
         var imei_no_two = result.imei_no_two;
         var msg = result.msg;
-        var reg_mobno = result.user_session[0].mobileno;
-        var sim_check = result.user_session[0].sim_check;
+        
         //alert(desi_title);
-        alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
+        //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
         //alert("parse_authmsg "+parse_authmsg);
+
+        
         if(parse_authmsg=="success"){
           //var permissions = cordova.plugins.permissions;
           //console.log(permissions);
           //permissions.checkPermission(permissions, successCallback, errorCallback);
-          var user_id = result.user_session[0].user_id;          
+          var user_id = result.user_session[0].user_id;  
+          var reg_mobno = result.user_session[0].mobileno;
+          var sim_check = result.user_session[0].sim_check;        
           var permissions = cordova.plugins.permissions;
           if(sim_check==0){
             window.plugins.sim.getSimInfo(function(res){
