@@ -143,6 +143,7 @@ function logincheck(){
                   var imei_1 = res.cards[0].deviceId;
                   var imei_2 = res.cards[1].deviceId;
                   var phoneno_1 = res.cards[0].phoneNumber;
+                  alert(reg_mobno+"=="+phoneno_1);
                   if(reg_mobno==phoneno_1){                    
                     $.ajax({ 
                       type:'POST', 
