@@ -135,9 +135,9 @@ function logincheck(){
         var imei_no_two = result.imei_no_two;
         var msg = result.msg;
         var reg_mobno = result.user_session[0].mobileno;
-        alert(desi_title);
+        //alert(desi_title);
         //alert(msg);
-      alert("parse_authmsg "+parse_authmsg);
+        //alert("parse_authmsg "+parse_authmsg);
         if(parse_authmsg=="success"){
           //var permissions = cordova.plugins.permissions;
           //console.log(permissions);
@@ -145,6 +145,7 @@ function logincheck(){
           var user_id = result.user_session[0].user_id;          
           var permissions = cordova.plugins.permissions;
           window.plugins.sim.getSimInfo(function(res){
+            alert("RES :::: "+res);
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
             var imei_1 = res.cards[0].deviceId;
@@ -222,7 +223,7 @@ function requestReadPermission() {
 
 }
 function successCallback(result) {
-  //alert("in success "+result);
+  alert("in success "+result);
 }
 function errorCallback(error) {
   //alert("in error " +error);
