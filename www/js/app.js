@@ -134,7 +134,7 @@ function logincheck(){
         var imei_no_two = result.imei_no_two;
         var msg = result.msg;
         //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
-        //alert("parse_authmsg "+parse_authmsg);
+        alert("parse_authmsg "+parse_authmsg);
 
         if(desi_title=='COMP. OPERATOR'){  
           if(parse_authmsg=="success"){          
@@ -173,7 +173,7 @@ function logincheck(){
                     app.preloader.hide();
                   }else{
                     //alert("diff mobile no");
-                    app.dialog.alert("Try to login with registered mobile no.");
+                    app.dialog.alert("Try to login with registered mobile no. sim_check=0");
                     app.preloader.hide();
                   }
                 }       
@@ -212,7 +212,7 @@ function logincheck(){
                     window.localStorage.setItem("sess_designation",result.desi_title);
                     app.preloader.hide();
                   }else{
-                    app.dialog.alert("Try to login with registered mobile no.");
+                    app.dialog.alert("Try to login with registered mobile no.sim_check=1");
                     app.preloader.hide();
                   }
                 }

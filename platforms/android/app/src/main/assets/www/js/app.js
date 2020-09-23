@@ -67,8 +67,8 @@ function onDeviceReady() {
   //alert("HELLO");  
   pictureSource = navigator.camera.PictureSourceType;
   destinationType = navigator.camera.DestinationType;
-  //hasReadPermission(); // uncomment //
- //requestReadPermission();   // uncomment //
+  hasReadPermission(); // uncomment //
+  requestReadPermission();   // uncomment //
 }
 function onBackKeyDown() {
   checkConnection(); 
@@ -108,7 +108,6 @@ function logincheck(){
   //console.log(lform+"***");
   var mobile_num = $("#mob_login").val();
   var pass = $("#pass").val();
-
   //alert(mobile_num+"-----"+pass);
   if(mobile_num==''){
     $("#passerror").html("");
@@ -135,7 +134,7 @@ function logincheck(){
         var imei_no_two = result.imei_no_two;
         var msg = result.msg;
         //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
-        //alert("parse_authmsg "+parse_authmsg);
+        alert("parse_authmsg "+parse_authmsg);
 
         if(desi_title=='COMP. OPERATOR'){  
           if(parse_authmsg=="success"){          
@@ -174,7 +173,7 @@ function logincheck(){
                     app.preloader.hide();
                   }else{
                     //alert("diff mobile no");
-                    app.dialog.alert("Try to login with registered mobile no.");
+                    app.dialog.alert("Try to login with registered mobile no. sim_check=0");
                     app.preloader.hide();
                   }
                 }       
@@ -193,7 +192,15 @@ function logincheck(){
                   //return false; 
                 }else if(msg==''){
                   //alert("in");
-                  if(reg_mobno==phoneno_1){                
+                  if(reg_mobno==phoneno_1){
+                    $.ajax({
+                      type:'POST', 
+                      url:base_url+'APP/Appcontroller/update_lstatus',
+                      data:{'user_id':user_id},  
+                      success:function(imei_result){
+                        //alert("imei_result "+imei_result);
+                      }
+                    });                
                     mainView.router.navigate("/dashboard/"); 
                     window.localStorage.setItem("session_uid",result.user_session[0].user_id);
                     window.localStorage.setItem("session_utype",result.user_session[0].user_type);
@@ -205,7 +212,7 @@ function logincheck(){
                     window.localStorage.setItem("sess_designation",result.desi_title);
                     app.preloader.hide();
                   }else{
-                    app.dialog.alert("Try to login with registered mobile no.");
+                    app.dialog.alert("Try to login with registered mobile no.sim_check=1");
                     app.preloader.hide();
                   }
                 }
