@@ -179,7 +179,7 @@ function logincheck(){
                 app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
                 app.preloader.hide(); 
                 //return false; 
-              }else if(msg==''){
+              }else if(msg=='' || msg==undefined){
                 alert("in");
                 if(reg_mobno==phoneno_1){
                   alert("same mobile no");
