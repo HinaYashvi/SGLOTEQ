@@ -150,16 +150,16 @@ function logincheck(){
                     var country_code = res.cards[0].countryCode;
                     phoneno_1 = phoneno_1.substring(2);
                   }                  
-                  alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
-                  alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
+                  //alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
+                  //alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
-                    alert("IN");                                       
+                    //alert("IN");                                       
                     $.ajax({ 
                       type:'POST',  
                       url:base_url+'APP/Appcontroller/updateIMEI',
                       data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
                       success:function(imei_result){
-                        alert("login status updated sim_check = 0");
+                        //alert("login status updated sim_check = 0");
                       }
                     });                    
                     mainView.router.navigate("/dashboard/"); 
@@ -189,7 +189,7 @@ function logincheck(){
                     var country_code = res.cards[0].countryCode;
                     phoneno_1 = phoneno_1.substring(2);
                   }                  
-                  alert(reg_mobno+"=="+phoneno_1+" sim_check = 1");
+                  //alert(reg_mobno+"=="+phoneno_1+" sim_check = 1");
                   if(reg_mobno==phoneno_1){
                     $.ajax({
                       type:'POST', 
