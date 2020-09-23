@@ -138,7 +138,8 @@ function logincheck(){
         var msg = result.msg;
         
         //alert(desi_title);
-        alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
+
+        //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
         //alert("parse_authmsg "+parse_authmsg);
 
         

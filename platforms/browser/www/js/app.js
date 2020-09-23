@@ -67,8 +67,8 @@ function onDeviceReady() {
   //alert("HELLO");  
   pictureSource = navigator.camera.PictureSourceType;
   destinationType = navigator.camera.DestinationType;
-  hasReadPermission(); // uncomment //
-  requestReadPermission();   // uncomment //
+  //hasReadPermission(); // uncomment //
+  //requestReadPermission();   // uncomment //
 }
 function onBackKeyDown() {
   checkConnection(); 
@@ -138,6 +138,7 @@ function logincheck(){
         var msg = result.msg;
         
         //alert(desi_title);
+
         //alert(msg+'===='+reg_mobno+"  "+parse_authmsg+" sim_check"+sim_check);
         //alert("parse_authmsg "+parse_authmsg);
 
@@ -178,7 +179,7 @@ function logincheck(){
                 app.preloader.hide(); 
                 //return false; 
               }else if(msg==''){
-                alert("in");
+                //alert("in");
                 if(reg_mobno==phoneno_1){
                   /*$.ajax({
                     type:'POST', 
