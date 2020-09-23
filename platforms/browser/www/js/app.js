@@ -52,7 +52,7 @@ var app = new Framework7({
 var base_url = 'https://sglnext.in/'; // LIVE SERVER //  
 var mainView = app.views.create('.view-main');
 var dt = new Date();
-  if(dt.getMinutes() <=9){
+  if(dt.getMinutes() <=9){ 
     var min = "0"+dt.getMinutes();
   }else{
     var min = dt.getMinutes();
@@ -98,7 +98,7 @@ function checkConnection(){
   var networkState = navigator.connection.type;
   if(networkState=='none'){  
       mainView.router.navigate('/internet/');   
-  }
+  }  
 }
 // ------------------------------ MOBILE IMEI -------------------------------- //
 function logincheck(){
@@ -126,13 +126,16 @@ function logincheck(){
       type:'POST', 
       url:base_url+'APP/Appcontroller/authenticateUser',
       data:lform,  
-      success:function(authRes){
+      success:function(authRes){ 
         var result = $.parseJSON(authRes);
         var parse_authmsg = result.auth_msg;        
         var user_session = result.user_session[0];  
         var desi_title = result.desi_title;
         var imei_no = result.imei_no;
         var imei_no_two = result.imei_no_two;
+        var msg = result.msg;
+        var reg_mobno = result.user_session[0].mobileno;
+        //alert(msg);
         //alert("parse_authmsg "+parse_authmsg);
         if(parse_authmsg=="success"){
           //var permissions = cordova.plugins.permissions;
@@ -140,11 +143,15 @@ function logincheck(){
           //permissions.checkPermission(permissions, successCallback, errorCallback);
           var user_id = result.user_session[0].user_id;          
           var permissions = cordova.plugins.permissions;
-          /*window.plugins.sim.getSimInfo(function(res){
+          window.plugins.sim.getSimInfo(function(res){
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
             var imei_1 = res.cards[0].deviceId;
             var imei_2 = res.cards[1].deviceId;
+            var phoneno_1 = res.cards[0].phoneNumber;
+            var phoneno_2 = res.cards[1].phoneNumber;
+            alert("phoneno_1 : "+res.cards[0].phoneNumber);
+            alert("phoneno_2 : "+res.cards[1].phoneNumber);
             $.ajax({ 
               type:'POST', 
               url:base_url+'APP/Appcontroller/updateIMEI',
@@ -158,8 +165,29 @@ function logincheck(){
             //alert("error "+error);
             app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
             return false;
-          });*/  
-          mainView.router.navigate("/dashboard/"); 
+          });  
+          if(msg=='cannot_login'){
+            app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
+            app.preloader.hide(); 
+            //return false; 
+          }else{
+            if(reg_mobno==phoneno_1 || reg_mobno==phoneno_2){
+              mainView.router.navigate("/dashboard/"); 
+              window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+              window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+              window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+              window.localStorage.setItem("session_uname",result.user_session[0].username);
+              window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+              window.localStorage.setItem("session_email",result.user_session[0].email);
+              window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+              window.localStorage.setItem("sess_designation",result.desi_title);
+              app.preloader.hide();
+            }else{
+              app.dialog.alert("Try to login with registered mobile no.");
+              app.preloader.hide();
+            }
+          }
+          /*mainView.router.navigate("/dashboard/"); 
           window.localStorage.setItem("session_uid",result.user_session[0].user_id);
           window.localStorage.setItem("session_utype",result.user_session[0].user_type);
           window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
@@ -168,12 +196,13 @@ function logincheck(){
           window.localStorage.setItem("session_email",result.user_session[0].email);
           window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
           window.localStorage.setItem("sess_designation",result.desi_title);
-
+          app.preloader.hide();*/
         }else if(parse_authmsg=="Inc_mobpass"){
+          app.preloader.hide();
           app.dialog.alert("Mobile no or password Incorrect");
           return false;
         }
-        app.preloader.hide();
+        
       }
     });
   }
@@ -280,15 +309,15 @@ function gotonext_four(txtval){
   }else if(txtlen==4 || txtlen==5){    
     searchByveh();
   }
-}
+} 
 $(document).on('page:init', '.page[data-name="dashboard"]', function (e) {
   menuload();
-  app.panel.close();
-
+  app.panel.close();   
   checkConnection(); 
   //logOut();  
-  var session_uid = window.localStorage.getItem("session_uid"); 
-  $.ajax({ 
+  var session_uid = window.localStorage.getItem("session_uid");  
+  //check_login_or_not(); 
+  $.ajax({   
     type:'POST', 
     url:base_url+'APP/Appcontroller/getModules',   
     data:{'session_uid':session_uid},
@@ -1771,6 +1800,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   menuload();
   app.panel.close();
   checkConnection();
+  app.dialog.preloader('Fetching Readings...');
   var station_id = page.detail.route.params.station_id;
   var dpr_date = page.detail.route.params.demo_calendar_modal_dpr;
   var station_name = page.detail.route.params.st_name;
@@ -1802,7 +1832,168 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   var g1 = new Date(split_yr, split_mn, split_dt);  
   var g2 = new Date(today_yr, today_mn, today_dt);
   var arr_ser = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty","twentyone","twentytwo","twentythree"];
-  app.preloader.show();
+//  app.preloader.show();
+  $(".comp_th_one input").attr("readonly",true);
+  $(".disp_th_one input").attr("readonly",true);
+  $(".elec_th_one input").attr("readonly",true);
+  $(".comp_th_one input").addClass("readonlytxtbox");
+  $(".disp_th_one input").addClass("readonlytxtbox");
+  $(".elec_th_one input").addClass("readonlytxtbox");
+
+  $(".comp_th_two input").attr("readonly",true);
+  $(".disp_th_two input").attr("readonly",true);
+  $(".elec_th_two input").attr("readonly",true);
+  $(".comp_th_two input").addClass("readonlytxtbox");
+  $(".disp_th_two input").addClass("readonlytxtbox");
+  $(".elec_th_two input").addClass("readonlytxtbox");
+
+  $(".comp_th_three input").attr("readonly",true);
+  $(".disp_th_three input").attr("readonly",true);
+  $(".elec_th_three input").attr("readonly",true);
+  $(".comp_th_three input").addClass("readonlytxtbox");
+  $(".disp_th_three input").addClass("readonlytxtbox");
+  $(".elec_th_three input").addClass("readonlytxtbox");
+
+  $(".comp_th_four input").attr("readonly",true);
+  $(".disp_th_four input").attr("readonly",true);
+  $(".elec_th_four input").attr("readonly",true);
+  $(".comp_th_four input").addClass("readonlytxtbox");
+  $(".disp_th_four input").addClass("readonlytxtbox");
+  $(".elec_th_four input").addClass("readonlytxtbox");
+
+  $(".comp_th_five input").attr("readonly",true);
+  $(".disp_th_five input").attr("readonly",true);
+  $(".elec_th_five input").attr("readonly",true);
+  $(".comp_th_five input").addClass("readonlytxtbox");
+  $(".disp_th_five input").addClass("readonlytxtbox");
+  $(".elec_th_five input").addClass("readonlytxtbox");
+
+  $(".comp_th_six input").attr("readonly",true);
+  $(".disp_th_six input").attr("readonly",true);
+  $(".elec_th_six input").attr("readonly",true);
+  $(".comp_th_six input").addClass("readonlytxtbox");
+  $(".disp_th_six input").addClass("readonlytxtbox");
+  $(".elec_th_six input").addClass("readonlytxtbox");
+
+  $(".comp_th_seven input").attr("readonly",true);
+  $(".disp_th_seven input").attr("readonly",true);
+  $(".elec_th_seven input").attr("readonly",true);
+  $(".comp_th_seven input").addClass("readonlytxtbox");
+  $(".disp_th_seven input").addClass("readonlytxtbox");
+  $(".elec_th_seven input").addClass("readonlytxtbox");
+
+  $(".comp_th_eight input").attr("readonly",true);
+  $(".disp_th_eight input").attr("readonly",true);
+  $(".elec_th_eight input").attr("readonly",true);
+  $(".comp_th_eight input").addClass("readonlytxtbox");
+  $(".disp_th_eight input").addClass("readonlytxtbox");
+  $(".elec_th_eight input").addClass("readonlytxtbox");
+
+  $(".comp_th_nine input").attr("readonly",true);
+  $(".disp_th_nine input").attr("readonly",true);
+  $(".elec_th_nine input").attr("readonly",true);
+  $(".comp_th_nine input").addClass("readonlytxtbox");
+  $(".disp_th_nine input").addClass("readonlytxtbox");
+  $(".elec_th_nine input").addClass("readonlytxtbox");
+
+  $(".comp_th_ten input").attr("readonly",true);
+  $(".disp_th_ten input").attr("readonly",true);
+  $(".elec_th_ten input").attr("readonly",true);
+  $(".comp_th_ten input").addClass("readonlytxtbox");
+  $(".disp_th_ten input").addClass("readonlytxtbox");
+  $(".elec_th_ten input").addClass("readonlytxtbox");
+
+  $(".comp_th_eleven input").attr("readonly",true);
+  $(".disp_th_eleven input").attr("readonly",true);
+  $(".elec_th_eleven input").attr("readonly",true);
+  $(".comp_th_eleven input").addClass("readonlytxtbox");
+  $(".disp_th_eleven input").addClass("readonlytxtbox");
+  $(".elec_th_eleven input").addClass("readonlytxtbox");
+
+  $(".comp_th_twelve input").attr("readonly",true);
+  $(".disp_th_twelve input").attr("readonly",true);
+  $(".elec_th_twelve input").attr("readonly",true);
+  $(".comp_th_twelve input").addClass("readonlytxtbox");
+  $(".disp_th_twelve input").addClass("readonlytxtbox");
+  $(".elec_th_twelve input").addClass("readonlytxtbox");
+
+  $(".comp_th_thirteen input").attr("readonly",true);
+  $(".disp_th_thirteen input").attr("readonly",true);
+  $(".elec_th_thirteen input").attr("readonly",true);
+  $(".comp_th_thirteen input").addClass("readonlytxtbox");
+  $(".disp_th_thirteen input").addClass("readonlytxtbox");
+  $(".elec_th_thirteen input").addClass("readonlytxtbox");
+
+  $(".comp_th_fourteen input").attr("readonly",true);
+  $(".disp_th_fourteen input").attr("readonly",true);
+  $(".elec_th_fourteen input").attr("readonly",true);
+  $(".comp_th_fourteen input").addClass("readonlytxtbox");
+  $(".disp_th_fourteen input").addClass("readonlytxtbox");
+  $(".elec_th_fourteen input").addClass("readonlytxtbox");
+
+  $(".comp_th_fifteen input").attr("readonly",true);
+  $(".disp_th_fifteen input").attr("readonly",true);
+  $(".elec_th_fifteen input").attr("readonly",true);
+  $(".comp_th_fifteen input").addClass("readonlytxtbox");
+  $(".disp_th_fifteen input").addClass("readonlytxtbox");
+  $(".elec_th_fifteen input").addClass("readonlytxtbox");
+
+  $(".comp_th_sixteen input").attr("readonly",true);
+  $(".disp_th_sixteen input").attr("readonly",true);
+  $(".elec_th_sixteen input").attr("readonly",true);
+  $(".comp_th_sixteen input").addClass("readonlytxtbox");
+  $(".disp_th_sixteen input").addClass("readonlytxtbox");
+  $(".elec_th_sixteen input").addClass("readonlytxtbox");
+
+  $(".comp_th_seventeen input").attr("readonly",true);
+  $(".disp_th_seventeen input").attr("readonly",true);
+  $(".elec_th_seventeen input").attr("readonly",true);
+  $(".comp_th_seventeen input").addClass("readonlytxtbox");
+  $(".disp_th_seventeen input").addClass("readonlytxtbox");
+  $(".elec_th_seventeen input").addClass("readonlytxtbox");
+
+  $(".comp_th_eighteen input").attr("readonly",true);
+  $(".disp_th_eighteen input").attr("readonly",true);
+  $(".elec_th_eighteen input").attr("readonly",true);
+  $(".comp_th_eighteen input").addClass("readonlytxtbox");
+  $(".disp_th_eighteen input").addClass("readonlytxtbox");
+  $(".elec_th_eighteen input").addClass("readonlytxtbox");
+
+  $(".comp_th_nineteen input").attr("readonly",true);
+  $(".disp_th_nineteen input").attr("readonly",true);
+  $(".elec_th_nineteen input").attr("readonly",true);
+  $(".comp_th_nineteen input").addClass("readonlytxtbox");
+  $(".disp_th_nineteen input").addClass("readonlytxtbox");
+  $(".elec_th_nineteen input").addClass("readonlytxtbox");
+
+  $(".comp_th_twenty input").attr("readonly",true);
+  $(".disp_th_twenty input").attr("readonly",true);
+  $(".elec_th_twenty input").attr("readonly",true);
+  $(".comp_th_twenty input").addClass("readonlytxtbox");
+  $(".disp_th_twenty input").addClass("readonlytxtbox");
+  $(".elec_th_twenty input").addClass("readonlytxtbox");
+
+  $(".comp_th_twentyone input").attr("readonly",true);
+  $(".disp_th_twentyone input").attr("readonly",true);
+  $(".elec_th_twentyone input").attr("readonly",true);
+  $(".comp_th_twentyone input").addClass("readonlytxtbox");
+  $(".disp_th_twentyone input").addClass("readonlytxtbox");
+  $(".elec_th_twentyone input").addClass("readonlytxtbox");
+
+  $(".comp_th_twentytwo input").attr("readonly",true);
+  $(".disp_th_twentytwo input").attr("readonly",true);
+  $(".elec_th_twentytwo input").attr("readonly",true);
+  $(".comp_th_twentytwo input").addClass("readonlytxtbox");
+  $(".disp_th_twentytwo input").addClass("readonlytxtbox");
+  $(".elec_th_twentytwo input").addClass("readonlytxtbox");
+
+  $(".comp_th_twentythree input").attr("readonly",true);
+  $(".disp_th_twentythree input").attr("readonly",true);
+  $(".elec_th_twentythree input").attr("readonly",true);
+  $(".comp_th_twentythree input").addClass("readonlytxtbox");
+  $(".disp_th_twentythree input").addClass("readonlytxtbox");
+  $(".elec_th_twentythree input").addClass("readonlytxtbox"); // PASTED ON 15-09-2020 //
+
 
   // FETCH DISPENSERS (ENABLE - DISABLE) //
   $.ajax({
@@ -1810,6 +2001,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
     url:base_url+'APP/Appcontroller/getDispensors',
     data:{'station_id':station_id,'dpr_date':dpr_date},
     success:function(result){
+      console.log("in getDispensors success");
       var parse_res = $.parseJSON(result);
       var dispanser_count = parse_res.dispanser_count;
       var fromdttm = parse_res.fromdttm;
@@ -1829,17 +2021,24 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       var DISP_B = parse_res.DISP_B;   // DYNAMIC //
 
       var getstart = parse_res.getstart;
-
       //console.log(getstart);
-      //console.log("ENABLE:: "+enable_disps);
+      console.log("ENABLE:: "+enable_disps);
       console.log("TODAY ENABLE:: "+today_enable_arr);      
-      
+      //console.log("DISP_A:: "+DISP_A);
+      //console.log("DISP_B:: "+DISP_B);
+
+      //alert("DISP_A:: "+DISP_A.length);
+      //alert("DISP_B:: "+DISP_B.length);
+
       var disp_html = '';
+
       for(var i=1;i<=dispanser_count;i++){
         // DISPENSER A-SIDE SCRIPT //
+        console.log("HI - 1");
         var dispsrno = getstart[0]['dispen'+i+'_sr_no'];
         disp_html+='<tr><td class="text-uppercase fs-10 fw-600" style="width:55%;padding-right: 0px!important">DISP '+i+' A <sup class="text-red fw-600 fs-12">*</sup><br/><span class="dark-blue">('+dispsrno+')</span></td>'; 
         for(var d_a=0;d_a<=23;d_a++){
+          console.log("HI - 2");
           if(d_a <= 9){
             var addzero_a = "0"+d_a;
           }else{
@@ -1851,60 +2050,83 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
             var dis_a = 'display-none';
           }
           if(g1 < g2){
+            console.log("HI - 3");
             if(arr_ser[d_a]=="zero" || arr_ser[d_a]=="one"){
+              console.log("HI - 4");
               var read_only="readonly='readonly'";
               var readonly_cls = "readonlytxtbox";
             }else{
+              console.log("HI - 5");
               var read_only="";
               var readonly_cls="";
             }              
             if(sess_designation=='SGL EIC'){
               if(arr_ser[d_a]=="one"){
+                console.log("HI - 6");
                 var read_only="readonly='readonly'";
                 var readonly_cls = "readonlytxtbox";
               }else{
+                console.log("HI - 7");
                 var read_only="";
                 var readonly_cls="";
               }
             }
           }else if(g1 >= g2){  
+            console.log("HI - 8");
             if(arr_ser[d_a]!="zero"){
+              console.log("HI - 9");
               var read_only="readonly='readonly'";
               var readonly_cls = "readonlytxtbox";
             }else{
+              console.log("HI - 10");
               var read_only="";
               var readonly_cls="";
             }
           } 
          var cur_date = parse_res.cur_date;
           if(today_enable_arr!='') {
+            console.log("HI - 11");
             if(typeof today_enable_arr==='string'){ 
+              //alert("IF "+typeof today_enable_arr);
+              console.log("HI - 12");
             //alert("hello "+addzero_a+"======="+today_slot);
               if(addzero_a < today_slot){
+                console.log("HI - 13");
                 if(enable_disps.indexOf(i) != -1){
+                  console.log("HI - 14");
+                  console.log("111");
                   //console.log("if "+enable_disps+"---"+i);
                   disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                 }else{
+                  console.log("HI - 15");
                   disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                 }
               }else if(addzero_a >= today_slot){ 
+                console.log("HI - 16");
                 if(today_enable_arr.indexOf(i) != -1){
+                  console.log("HI - 17");
+                  console.log("222");
                   disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                 }else{
+                  console.log("HI - 18");
                   //console.log("else "+disable_disps+"---"+i);
                   disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                 }  
               }
-            }else{ 
+            }else{
+            //alert("ELSE "+typeof today_enable_arr);
+              console.log("HI - 19");
              // alert("hi");
               //console.log(enable_disps.length);
               //alert(dpr_date+"======="+cur_date);
               if(dpr_date==cur_date){
+                console.log("HI - 20");
               //console.log("current day multiple entry");              
               var aa='';
               var enble_prev='';
               var enable_html='';
               for(var z=0;z<test_arr.length;z++){
+                console.log("HI - 21");
                 var dbdate=test_arr[z].date;
                 var from_dt_slot=test_arr[z].from_dt_slot;
                 var to_dt_slot=test_arr[z].to_dt_slot;
@@ -1921,7 +2143,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 var todd=split_dtto[2];
                 var final_todt = todd+"-"+tomm+"-"+toyr;
               //console.log("hi "+to_dt_slot);
-              if(cur_date != dbdate){      
+              if(cur_date != dbdate){   
+              console.log("HI - 22");   
               //console.log("not same" +"cur_date====="+cur_date+"------dbdate "+dbdate);
                 //console.log("in cond "+dbdate+"====="+to_dt_slot);
                 aa=to_dt_slot; 
@@ -1930,16 +2153,22 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                //0000-00-00 00:00:00
               //console.log('outside '+aa);
               if(cur_date === dbdate){ 
+                console.log("HI - 23");
                //console.log("~~~~ same dates"+final_todt);
                 if(final_todt=="00-00-0000"){
+                  console.log("HI - 24");
                   //console.log("FROM "+from_dt_slot+" TO "+to_dt_slot+" AA "+aa+" ==> "+d_a+" enable "+enable);
                    //if(from_dt_slot >= d_a || to_dt_slot > d_a){
                     if(from_dt_slot <= d_a ){
+                      console.log("HI - 25");
                     //console.log("***************FROM "+from_dt_slot+" TO "+to_dt_slot+" "+enable+" aa :: "+aa+ "   "+d_a);
                     if(enable.indexOf(i) != -1){
+                      console.log("HI - 26");
                      //console.log(d_a+"========"+i+"====enable prev"+enble_prev);
+                     console.log("333");
                      enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                     }else{
+                      console.log("HI - 27");
                       //console.log(d_a+"*******"+i+"====  prev disabled");
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                     }
@@ -1947,35 +2176,50 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                  }
             //    console.log("FRM "+from_dt_slot +" TOO "+to_dt_slot); 
                 if(from_dt_slot < d_a || to_dt_slot > d_a){
+                  console.log("HI - 28");
                   //console.log("main if :: FROM "+from_dt_slot+ " TO "+to_dt_slot);
                   if(aa > d_a){
+                    console.log("HI - 29");
                     //console.log("IF "+" FROM "+from_dt_slot+" TO "+to_dt_slot + "---  ENABLE "+enble_prev);
                     if(enble_prev.indexOf(i) != -1){
+                      console.log("HI - 30");
                      //console.log(d_a+"========"+i+"====enable prev"+enble_prev);
+                     console.log("444");
                      enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                     }else{
+                      console.log("HI - 31");
                       //console.log(d_a+"*******"+i+"====  prev disabled");
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                     }                    
                   }else{
+                    console.log("HI - 32");
                     if(to_dt_slot >= d_a && from_dt_slot <= d_a){
+                      console.log("HI - 33");
                       //console.log(to_dt_slot+" >= "+d_a +" && "+from_dt_slot+" <= "+d_a + " enable "+enable);
                       //console.log("ELSE "+" FROM "+from_dt_slot+" TO "+to_dt_slot + "---  ENABLE "+enable);
                       if(enable.indexOf(i) != -1){
+                        console.log("HI - 34");
                       //console.log(d_a+"========"+i+"====enable "+enable);
+                      console.log("555");
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                       }else{
+                        console.log("HI - 35");
                         //console.log(d_a+"*******"+i+"==== disabled");
                         enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                       }
                     }else{
+                      console.log("HI - 36");
                       //console.log(to_dt_slot+" <= "+d_a +" && "+from_dt_slot+" >= "+d_a + " enable "+enable);                     
                       if(to_dt_slot <= d_a && from_dt_slot <= d_a){
+                        console.log("HI - 37");
                         //console.log("ELSE ======"+d_a+" from date "+from_dt_slot +"to date "+to_dt_slot+ "enable "+enable);
                         if(enable.indexOf(i) != -1){
+                          console.log("HI - 38");
                         //console.log(d_a+"========"+i+"====enable "+enable);
+                        console.log("666");
                         enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                         }else{
+                          console.log("HI - 39");
                           //console.log(d_a+"*******"+i+"==== disabled");
                           enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                         }
@@ -1983,11 +2227,13 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     }                    
                   }                    
                 }else{
+                  console.log("HI - 40");
                   //console.log("ELSE "+dbdate+"==== loop tm :"+d_a+" if ======="+enable+"==== frm "+from_dt_slot+"===== to "+to_dt_slot);
                 }
-              }
-            } // for loop ends //
-          }else if(dpr_date!=cur_date){
+              } // cur_date === dbdate  //
+            } // for loop ends  //
+          } /*dpr_date==cur_date ends */ else if(dpr_date!=cur_date){
+            console.log("HI - 41");
             console.log("past day multiple entry");
             console.log(test_arr);
             var past_aa='';
@@ -2010,71 +2256,105 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               var past_todd=past_split_dtto[2];  
               var past_final_todt = past_todd+"-"+past_tomm+"-"+past_toyr;
               //console.log(past_dbdate);
-              if(cur_date != past_dbdate){                 
+              if(cur_date != past_dbdate){  
+                console.log("HI - 42");               
                 past_aa=past_to_dt_slot; 
                 past_enble_prev=past_enable;        
                 //console.log("not same" +"cur_date====="+cur_date+"------dbdate "+past_dbdate+"---- "+past_enble_prev);
               }
               if(past_from_datetm!=past_final_todt){
+                console.log("HI - 43");
                 if(past_from_datetm > past_final_todt){
+                  console.log("HI - 44");
                   //alert(past_from_datetm +" is bigger than "+past_final_todt);
                   if(past_final_todt=="00-00-0000"){
+                    console.log("HI - 45");
                     //console.log("IN "+past_from_dt_slot+" TO "+past_to_dt_slot+" AA "+past_aa+" ==> "+d_a+" enable "+past_enable);
                      //if(from_dt_slot >= d_a || to_dt_slot > d_a){
                     if(past_from_dt_slot <= d_a ){
+                      console.log("HI - 46");
                       //console.log("***************FROM "+from_dt_slot+" TO "+to_dt_slot+" "+enable+" aa :: "+aa+ "   "+d_a);
                       if(past_enable.indexOf(i) != -1){
+                        console.log("HI - 47");
+                        console.log("777");
                        enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                       }else{
+                        console.log("HI - 48");
                         enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                       }
                     }
                   }
                 }
                 if(dpr_date > past_from_datetm){
+                  console.log("HI - 49");
                   //console.log("--- FROM "+past_from_dt_slot+ " TO "+past_to_dt_slot+" enable "+past_enble_prev +" d_a "+d_a+" aa "+past_to_dt_slot);
                   if(d_a < past_to_dt_slot){
+                    console.log("HI - 50");
                     if(past_enble_prev.indexOf(i) != -1){
+                      console.log("HI - 51");
+                      console.log("888");
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                     }else{
+                      console.log("HI - 52");
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                     }
                   }
                 }
                 if(dpr_date < past_final_todt){
+                  console.log("HI - 53");
                   //console.log("*** FROM "+past_from_dt_slot+ " TO "+past_to_dt_slot+" enable "+past_enable+" d_a "+d_a+" aa "+past_to_dt_slot);
                   //if(past_from_dt_slot >= d_a && past_from_dt_slot < d_a){
                   if(past_from_dt_slot <= d_a && past_to_dt_slot <= d_a){
+                    console.log("HI - 54");
                     //if(d_a >= past_to_dt_slot){
                       if(past_enable.indexOf(i) != -1){
+                        console.log("HI - 55");
+                        console.log("999");
                         enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                       }else{ 
+                        console.log("HI - 56");
                         enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                       }
                     //}
                   }                  
                 }
-              }else {                                
+              }else {  
+                console.log("HI - 57");                              
                 //console.log("*** FROM "+past_from_dt_slot+ " TO "+past_to_dt_slot+" enable "+past_enable+" d_a "+d_a+" aa "+past_to_dt_slot);
                 if(past_to_dt_slot >= d_a && past_from_dt_slot <= d_a){
+                  console.log("HI - 58");
                   if(past_enable.indexOf(i) != -1){
+                    console.log("HI - 59");
+                    console.log("101010");
                     enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
                     }else{ 
+                      console.log("HI - 60");
                       enable_html='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
                     }
                 }
               }
-            }
-          }
+            } // FOR LOOP ENDS FOR test_arr.length //
+          } // dpr_date!=cur_date ENDS //
+            console.log("HI - 61");
             disp_html+=enable_html;
           }          
-         }else{
-          //alert("hi");
+        } /* typeof today_enable_arr==='string' ends */ else{
+          //alert(typeof today_enable_arr);
+          console.log("HI - 62");
+          //alert("hi "+sel_dpr +"==="+fromdttm); 
+          //hi 2020-09-19 00:00:00===2020-09-07 09:27:32 //
+          //hi 2020-09-19 00:00:00===2020-09-07 09:27:32
            if(sel_dpr > fromdttm) {
+            console.log("HI - 63");
               if(enable_disps.indexOf(i) != -1){
+                console.log("HI - 64");
+                //alert(readonly_cls+"====="+read_only);
                 //console.log("if "+enable_disps+"---"+i);
-                disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
+                //console.log("~~~~~~==~~~~~~"+"DISP_"+i+"_A_"+d_a);
+                console.log("11-11-11");
+                disp_html+='<td class="text-uppercase testtxtbox disp_tr_'+i+' '+dis_a+' pl-0 disp_th_'+arr_ser[d_a]+' disp_th_'+[d_a]+'"><input type="number" name="para[DISP_'+i+'_A]['+addzero_a+'_00]" class="td_txt '+readonly_cls+' disp_'+i+'_a_'+d_a+' val_disp_1'+'_'+d_a+'" '+read_only+' id="DISP_'+i+'_A_'+d_a+'"></td>';
               }else{
+                console.log("HI - 65");
                 //console.log("else "+disable_disps+"---"+i);
                 disp_html+='<td class="text-uppercase disp_tr_'+i+' '+dis_a+' pl-10 disp_th_'+arr_ser[d_a]+'">--</td>';
               }
@@ -2331,6 +2611,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       $(".disp_data").html(disp_html);
 
       if(st_start_date==dpr_date){ 
+        console.log("IF");
         if(st_start_time=="00"){
           st_start_time=0;
         }else{
@@ -2360,25 +2641,28 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                         //alert(disp_aa+1);
                         var disp_a_val = DISP_A[l_a][disp_aa+1][0].slot_param_val;
                         var time_slot_a = DISP_A[l_a][disp_aa+1][0].time_slot; 
+                        //alert(time_slot_a);
                         var param = DISP_A[l_a][disp_aa+1][0].dpr_params;
                         //alert(param+" "+time_slot_a+" "+disp_a_val);
-                        var split_tm = time_slot_a.split(":");
-                        var splited_tm = split_tm[0];
-                        var timeslot = splited_tm.replace(/^0+/, "");
-                        if(time_slot_a=="00:00"){
-                          timeslot=0;
-                        }else{ 
-                          timeslot=timeslot;
+                        if(time_slot_a!=undefined){
+                          var split_tm = time_slot_a.split(":");
+                          var splited_tm = split_tm[0];
+                          var timeslot = splited_tm.replace(/^0+/, "");
+                          if(time_slot_a=="00:00"){
+                            timeslot=0;
+                          }else{ 
+                            timeslot=timeslot;
+                          }
+                          //console.log("timeslot "+timeslot+"=========> disptm "+disptm);
+                          if(timeslot==disptm){                          
+                            //console.log("1111 ======>"+disp_a_val);
+                            //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
+                            $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
+                          }/*else{
+                            console.log("2222 ======>"+disp_a_val);
+                            $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
+                          }*/
                         }
-                        //console.log("timeslot "+timeslot+"=========> disptm "+disptm);
-                        if(timeslot==disptm){                          
-                          //console.log("1111 ======>"+disp_a_val);
-                          //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
-                          $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
-                        }/*else{
-                          console.log("2222 ======>"+disp_a_val);
-                          $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
-                        }*/
                       }
                     }
                   }
@@ -2407,21 +2691,23 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                       var time_slot_b = DISP_B[l_b][disp_bb+1][0].time_slot; 
                       var param = DISP_B[l_b][disp_bb+1][0].dpr_params;
                       //console.log(param+" "+time_slot_b+" "+disp_b_val);
-                      var split_tm_b = time_slot_b.split(":");
-                      var splited_tm_b = split_tm_b[0];
-                      var timeslot_b = splited_tm_b.replace(/^0+/, "");
-                      if(time_slot_b=="00:00"){
-                        timeslot_b=0;
-                      }else{
-                        timeslot_b=timeslot_b;
+                      if(time_slot_b!=undefined){
+                        var split_tm_b = time_slot_b.split(":");
+                        var splited_tm_b = split_tm_b[0];
+                        var timeslot_b = splited_tm_b.replace(/^0+/, "");
+                        if(time_slot_b=="00:00"){
+                          timeslot_b=0;
+                        }else{
+                          timeslot_b=timeslot_b;
+                        }
+                        if(timeslot_b==disptm_b){
+                          //console.log(disp_b_val);
+                          //console.log(txtbox_id+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_a_'+timeslot_b+").val="+disp_b_val);
+                          $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
+                        }/*else{
+                          $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
+                        }*/
                       }
-                      if(timeslot_b==disptm_b){
-                        //console.log(disp_b_val);
-                        //console.log(txtbox_id+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_a_'+timeslot_b+").val="+disp_b_val);
-                        $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
-                      }/*else{
-                        $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
-                      }*/
                     }
                   }
                   }else{
@@ -2430,12 +2716,20 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                   }
               }
           }
-        }else{
+        }else{ 
+          console.log("ELSE");
+
+          console.log("DISP_A :: ==== "+DISP_A);
+          console.log("DISP_B :: ==== "+DISP_B);
+          //alert("DISP_A.length "+DISP_A.length);
+          //alert("DISP_B.length "+DISP_B.length);
           for(var disp_aa=0;disp_aa<DISP_A.length;disp_aa++){
             var cnt_d = DISP_A[disp_aa].length;
             //alert(cnt_d);
             for(var l_a=0;l_a<=23;l_a++){
+              //alert(".disp_"+(disp_aa+1)+"_a_"+l_a);
               var txtbox_id = $(".disp_"+(disp_aa+1)+"_a_"+l_a).attr('id');
+              //alert(txtbox_id);
               if(txtbox_id!=undefined){
                 //alert(txtbox_id);
                 var split_txt = txtbox_id.split("_");
@@ -2455,9 +2749,9 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     timeslot=timeslot;
                   }                
                   if(timeslot==disptm){
-                    console.log("DISP A"+disp_a_val);
+                    console.log("DISP A ===>"+disp_a_val);
                     //console.log(disptm+" "+timeslot);
-                    //console.log(txtbox_id+" "+time_slot_a+" ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
+                    //console.log("~~~~~~~~~~~~~~~~ ("+'.disp'+(disp_aa+1)+'_a_'+timeslot+").val="+disp_a_val);
                     $(".disp_"+(disp_aa+1)+"_a_"+timeslot).val(disp_a_val);
                   }
                 }
@@ -2490,7 +2784,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                     timeslot_b=timeslot_b;
                   }                
                   if(timeslot_b==disptm_b){
-                    console.log("DISP B"+disp_b_val);
+                    console.log("DISP B ===>"+disp_b_val);
                     //console.log(disptm_b+" "+timeslot_b);
                     //console.log(txtbox_id_b+" "+time_slot_b+" ("+'.disp'+(disp_bb+1)+'_b_'+timeslot_b+").val="+disp_b_val);
                     $(".disp_"+(disp_bb+1)+"_b_"+timeslot_b).val(disp_b_val);
@@ -2514,7 +2808,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
     }
   });
   
-  $(".comp_th_one input").attr("readonly",true);
+  /*$(".comp_th_one input").attr("readonly",true);
   $(".disp_th_one input").attr("readonly",true);
   $(".elec_th_one input").attr("readonly",true);
   $(".comp_th_one input").addClass("readonlytxtbox");
@@ -2673,9 +2967,9 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   $(".elec_th_twentythree input").attr("readonly",true);
   $(".comp_th_twentythree input").addClass("readonlytxtbox");
   $(".disp_th_twentythree input").addClass("readonlytxtbox");
-  $(".elec_th_twentythree input").addClass("readonlytxtbox");
+  $(".elec_th_twentythree input").addClass("readonlytxtbox");*/ // COMMENTED ON 15-09-2020 //
 
-  app.preloader.hide();
+//  app.preloader.hide();
   /*$.ajax({
     type:'POST',  
     dataType:'json',
@@ -2704,7 +2998,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       //$("#sheet_data").html(result);
     }    
   });*/
-  app.preloader.show();
+//  app.preloader.show();
   $.ajax({
     type:'POST', 
     //dataType:'json',
@@ -2795,7 +3089,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               //console.log(COMP_SUCTION[cs]+"^^^^^^^^^^^^"+st_strt_tm);
               if(COMP_SUCTION[cs]!=undefined){                 
                 var cs_slot_param_val = COMP_SUCTION[cs][0].slot_param_val;
-                //console.log(cs_slot_param_val);
+                console.log(cs_slot_param_val);
                 $(".comp_suc_"+cs).val(cs_slot_param_val);
               }            
             }
@@ -3241,7 +3535,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           if(I_stg_prs!=undefined){
             for(var isp=0;isp<I_stg_prs.length;isp++){
               var isp_val = I_stg_prs[isp].slot_param_val;
-              //console.log(isp_val);
+              console.log(isp_val);
               $(".I_stg_prs_"+isp).val(isp_val);
             }
           }
@@ -3480,7 +3774,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           if(DELAR_RO!=undefined){
             for(var dro=0;dro<DELAR_RO.length;dro++){
               var dro_slot_param_val = DELAR_RO[dro].slot_param_val;
-              //console.log(dro_slot_param_val);
+              console.log(dro_slot_param_val);
               $(".delar_ro_"+dro).val(dro_slot_param_val);
             }
           }
@@ -4107,7 +4401,7 @@ if(g1 >= g2){
       $(this).css("background", "#fde0e0");
     }        
   });
-
+//alert("call "+current_time);
   if(comp_0==0 && disp_0==0 && elec_0==0 && comp_1==0 && disp_1==0 && elec_1==0){
         //if(current_time >= "01:00:00"){ // cmnt on 30-4-2020 //
         if(current_time >= "02:00:00"){
@@ -4905,7 +5199,8 @@ if(g1 >= g2){
         }
       }
     }
-    app.preloader.hide();
+//    app.preloader.hide();
+//      app.dialog.close(); // COMMENTED ON 22-09-2020 //
       // if(g1 <= g2){
       //   alert("HINA ############"+comp_0+" "+disp_0+" "+elec_0+" "+comp_1+" "+disp_1+" "+elec_1);
       //   if(comp_0==0 && disp_0==0 && elec_0 && comp_1!=0 && disp_1!=0 && elec_1!=0){
@@ -4938,7 +5233,7 @@ window.setInterval(function(){
     //for(var i=0;i<=23;i++){
     for(var i=0;i<=hour;i++){
       //for(var i=0;i<(hour-1);i++){
-      console.log("i is "+i+"****** "+hour);
+//      console.log("i is "+i+"****** "+hour);
       var comp_var = 0;
       //console.log("############# "+(".val_comp_"+i));
       $(".val_comp_"+i).each(function(){ 
@@ -4964,7 +5259,7 @@ window.setInterval(function(){
     
     var quarter_minutes = ["00:45:00","01:45:00","02:45:00","03:45:00","04:45:00","05:45:00","06:45:00","07:45:00","08:45:00","09:45:00","10:45:00","11:45:00","12:45:00","13:45:00","14:45:00","15:45:00","16:45:00","17:45:00","18:45:00","19:45:00","20:45:00","21:45:00","22:45:00","23:45:00"];
     var slot_hour = hour+":00";
-    console.log(comp_var + "==========" + slot_hour+ "==========="+hour);
+//    console.log(comp_var + "==========" + slot_hour+ "==========="+hour);
     
     if(quarter_minutes.indexOf(time) != -1){  
       //console.log("found");
@@ -5289,7 +5584,13 @@ function getst_Start(st_id){
   app.preloader.hide();
 }
 function show_secondpg(){
-  //alert("show_secondpg");
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_secondpg_fun();
+  }, 2000);  
+}
+function show_secondpg_fun(){
+  console.log("show_secondpg");
   var dt = new Date();
   var current_time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
   $(".comp_th_zero").removeClass("tbl-cell");
@@ -5445,12 +5746,17 @@ function show_secondpg(){
   //         }
   //       }
   //     }
+  app.dialog.close();
 }
 function show_thirdpg(){
-  //alert("show_thirdpg");
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_thirdpg_fun();
+  }, 2000);  
+}
+function show_thirdpg_fun(){  //alert("show_thirdpg");
   var dt = new Date();
   var current_time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-
   $(".comp_th_one").removeClass("tbl-cell");
   $(".comp_th_one").addClass("display-none");
   $(".comp_th_three").removeClass("display-none");
@@ -5630,10 +5936,16 @@ function show_thirdpg(){
   //       } 
   //     }
   // }
-
+app.dialog.close();
 }
 function show_forthpg(){
-  //alert("show_forthpg");
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_forthpg_fun();
+  }, 2000);  
+}
+function show_forthpg_fun(){
+ // alert("show_forthpg");
   $(".comp_th_two").removeClass("tbl-cell");
   $(".comp_th_two").addClass("display-none");
   $(".comp_th_four").removeClass("display-none");
@@ -5783,8 +6095,15 @@ function show_forthpg(){
           $(".prev4_btn").addClass("display-none");
         }
     }
+    app.dialog.close();
 }
 function show_fifthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_fifthpg_fun();
+  }, 2000);  
+}
+function show_fifthpg_fun(){
   //alert("show_fifthpg");
   $(".comp_th_three").removeClass("tbl-cell");
   $(".comp_th_three").addClass("display-none");
@@ -5932,9 +6251,15 @@ function show_fifthpg(){
           $(".prev5_btn").addClass("display-none");
         }
     }
-
+    app.dialog.close();
 }
 function show_sixthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_sixthpg_fun();
+  }, 2000);  
+}
+function show_sixthpg_fun(){
   //alert("show_sixthpg");
   $(".comp_th_four").removeClass("tbl-cell");
   $(".comp_th_four").addClass("display-none");
@@ -6067,8 +6392,15 @@ function show_sixthpg(){
           $(".prev6_btn").addClass("display-none");
         }
     }
+    app.dialog.close();
 }
 function show_seventhpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_seventhpg_fun();
+  }, 2000);  
+}
+function show_seventhpg_fun(){
   //alert("show_seventhpg");
   $(".comp_th_five").removeClass("tbl-cell");
   $(".comp_th_five").addClass("display-none");
@@ -6201,8 +6533,15 @@ function show_seventhpg(){
           $(".prev7_btn").addClass("display-none");
         }
     }
+    app.dialog.close();
 }
 function show_eighthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_eighthpg_fun();
+  }, 2000);  
+}
+function show_eighthpg_fun(){
   $(".comp_th_six").removeClass("tbl-cell");
   $(".comp_th_six").addClass("display-none");
   $(".comp_th_eight").removeClass("display-none");
@@ -6331,8 +6670,15 @@ function show_eighthpg(){
           $(".prev8_btn").addClass("display-none");
         }
     }
+    app.dialog.close();
 }
 function show_ninthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_ninthpg_fun();
+  }, 2000);  
+}
+function show_ninthpg_fun(){
   $(".comp_th_seven").removeClass("tbl-cell");
   $(".comp_th_seven").addClass("display-none");
   $(".comp_th_nine").removeClass("display-none");
@@ -6460,8 +6806,15 @@ function show_ninthpg(){
           $(".prev9_btn").addClass("display-none");
         }
     }
+    app.dialog.close();
 }
 function show_tenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_tenthpg_fun();
+  }, 2000);  
+}
+function show_tenthpg_fun(){
   $(".comp_th_eight").removeClass("tbl-cell");
   $(".comp_th_eight").addClass("display-none");
   $(".comp_th_ten").removeClass("display-none");
@@ -6590,8 +6943,15 @@ function show_tenthpg(){
           $(".prev10_btn").addClass("display-none");
         }
     }
+    app.dialog.close();
 }
 function show_eleventhpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_eleventhpg_fun();
+  }, 2000);  
+}
+function show_eleventhpg_fun(){
   $(".comp_th_nine").removeClass("tbl-cell");
   $(".comp_th_nine").addClass("display-none");
   $(".comp_th_eleven").removeClass("display-none");
@@ -6720,8 +7080,15 @@ function show_eleventhpg(){
           $(".prev11_btn").addClass("display-none");
         }
     }
+    app.dialog.close();
 }
 function show_twelthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_twelthpg_fun();
+  }, 2000);  
+}
+function show_twelthpg_fun(){
   $(".comp_th_ten").removeClass("tbl-cell");
   $(".comp_th_ten").addClass("display-none");
   $(".comp_th_twelve").removeClass("display-none");
@@ -6850,8 +7217,15 @@ function show_twelthpg(){
           $(".prev12_btn").addClass("display-none");
         }
     }
+    app.dialog.close();
 }
 function show_thirteenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_thirteenthpg_fun();
+  }, 2000);  
+}
+function show_thirteenthpg_fun(){
   $(".comp_th_eleven").removeClass("tbl-cell");
   $(".comp_th_eleven").addClass("display-none");
   $(".comp_th_thirteen").removeClass("display-none");
@@ -6980,8 +7354,15 @@ function show_thirteenthpg(){
           $(".prev13_btn").addClass("display-none");
         }
     }
+  app.dialog.close();
 }
 function show_forteenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_forteenthpg_fun();
+  }, 2000);  
+}
+function show_forteenthpg_fun(){
   $(".comp_th_twelve").removeClass("tbl-cell");
   $(".comp_th_twelve").addClass("display-none");
   $(".comp_th_fourteen").removeClass("display-none");
@@ -7119,8 +7500,15 @@ function show_forteenthpg(){
       }
      }
   }*/
+  app.dialog.close();
 }
 function show_fifteenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_fifteenthpg_fun();
+  }, 2000);  
+}
+function show_fifteenthpg_fun(){
   $(".comp_th_thirteen").removeClass("tbl-cell");
   $(".comp_th_thirteen").addClass("display-none");
   $(".comp_th_fifteen").removeClass("display-none");
@@ -7249,7 +7637,7 @@ function show_fifteenthpg(){
           $(".prev15_btn").addClass("display-none");
         }
     }
-
+    app.dialog.close();
   /*var hidd_dprdt = $("#hidd_dprdt").val();
   var d = new Date();
   var month = d.getMonth()+1;
@@ -7268,6 +7656,12 @@ function show_fifteenthpg(){
   }*/
 }
 function show_sixteenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_sixteenthpg_fun();
+  }, 2000);  
+}
+function show_sixteenthpg_fun(){
   $(".comp_th_fourteen").removeClass("tbl-cell");
   $(".comp_th_fourteen").addClass("display-none");
   $(".comp_th_sixteen").removeClass("display-none");
@@ -7396,8 +7790,15 @@ function show_sixteenthpg(){
       $(".prev16_btn").addClass("display-none");
     }
   }
+  app.dialog.close();
 }
 function show_seventeenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_seventeenthpg_fun();
+  }, 2000);  
+}
+function show_seventeenthpg_fun(){
   $(".comp_th_fifteen").removeClass("tbl-cell");
   $(".comp_th_fifteen").addClass("display-none");
   $(".comp_th_seventeen").removeClass("display-none");
@@ -7526,8 +7927,15 @@ function show_seventeenthpg(){
       $(".prev17_btn").addClass("display-none");
     }
   }
+  app.dialog.close();
 }
 function show_eighteenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_eighteenthpg_fun();
+  }, 2000);  
+}
+function show_eighteenthpg_fun(){
   $(".comp_th_sixteen").removeClass("tbl-cell");
   $(".comp_th_sixteen").addClass("display-none");
   $(".comp_th_eighteen").removeClass("display-none");
@@ -7656,8 +8064,15 @@ function show_eighteenthpg(){
       $(".prev18_btn").addClass("display-none");
     }
   }
+  app.dialog.close();
 }
 function show_nineteenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_nineteenthpg_fun();
+  }, 2000);  
+}
+function show_nineteenthpg_fun(){
   $(".comp_th_seventeen").removeClass("tbl-cell");
   $(".comp_th_seventeen").addClass("display-none");
   $(".comp_th_nineteen").removeClass("display-none");
@@ -7786,8 +8201,15 @@ function show_nineteenthpg(){
       $(".prev19_btn").addClass("display-none");
     }
   }
+  app.dialog.close();
 }
 function show_twenteenthpg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_twenteenthpg_fun();
+  }, 2000);  
+}
+function show_twenteenthpg_fun(){
   $(".comp_th_eighteen").removeClass("tbl-cell");
   $(".comp_th_eighteen").addClass("display-none");
   $(".comp_th_twenty").removeClass("display-none");
@@ -7916,8 +8338,15 @@ function show_twenteenthpg(){
       $(".prev20_btn").addClass("display-none");
     }
   }
+  app.dialog.close();
 }
 function show_twentyonepg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_twentyonepg_fun();
+  }, 2000);  
+}
+function show_twentyonepg_fun(){
   $(".comp_th_nineteen").removeClass("tbl-cell");
   $(".comp_th_nineteen").addClass("display-none");
   $(".comp_th_twentyone").removeClass("display-none");
@@ -8046,8 +8475,15 @@ function show_twentyonepg(){
       $(".prev21_btn").addClass("display-none");
     }
   }
+  app.dialog.close();
 }
 function show_twentytwopg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_twentytwopg_fun();
+  }, 2000);  
+}
+function show_twentytwopg_fun(){
   //alert("in show_twentytwopg");
   $(".comp_th_twenty").removeClass("tbl-cell");
   $(".comp_th_twenty").addClass("display-none");
@@ -8180,8 +8616,15 @@ function show_twentytwopg(){
       $(".prev22_btn").addClass("display-none");
     }
   }
+  app.dialog.close();
 }
-function show_twentythreepg(){   
+function show_twentythreepg(){
+  //app.dialog.preloader('please wait...');
+  setTimeout(function() {
+    show_twentythreepg_fun();
+  }, 2000);  
+}
+function show_twentythreepg_fun(){   
   $(".comp_th_twentyone").removeClass("tbl-cell");
   $(".comp_th_twentyone").addClass("display-none");
   $(".comp_th_twentythree").removeClass("display-none");
@@ -8308,6 +8751,7 @@ function show_twentythreepg(){
       // $(".prev22_btn").addClass("display-none");
     }
   }
+  app.dialog.close();
 }
 function prev_show_firstpg(){
   var hidd_dprdt = $("#hidd_dprdt").val();
@@ -10579,14 +11023,23 @@ function addDPR(save){
   //   col_zero(c_zero,disp_zero,elec_zero,c_one,disp_one,elec_one,current_time);
   // }
   if(save=='submit'){
-    app.preloader.show();
+    //app.preloader.show(); // COMMENTED ON 15-09-2020 //
+    app.dialog.preloader('Saving Readings'); // NEW ON 15-09-2020 //
     //alert("submit clicked");
     $(".page1_btn").removeClass("display-block");
     $(".page1_btn").addClass("display-none");
     $("#hidd_stid").val('');
     $("#hidd_dprdt").val('');
     mainView.router.navigate("/dpr_list/");
-    app.preloader.hide();
+    //app.preloader.hide(); // COMMENTED ON 15-09-2020 //
+    app.dialog.close(); // NEW ON 15-09-2020 //
+    var toastIcon = app.toast.create({
+      icon: '<i class="f7-icons">checkmark_circle</i>',
+      text: 'Readings saved',
+      position: 'center',
+      closeTimeout: 2000,
+    });
+    toastIcon.open();
   }
 
   if(save=='save'){
@@ -10599,6 +11052,13 @@ function addDPR(save){
       data:form_dpr+"&hidd_stid="+hidd_stid+"&hidd_dprdt="+hidd_dprdt+"&session_uid="+session_uid,
       success:function(authRes){
         app.dialog.close();
+        var toastIcon = app.toast.create({
+          icon: '<i class="f7-icons">checkmark_circle</i>',
+          text: 'Readings saved',
+          position: 'center',
+          closeTimeout: 2000,
+        });
+        toastIcon.open();
       }
     });
     //alert("in save");
@@ -10618,6 +11078,7 @@ function addDPR(save){
     var hiddt = split_yr+"-"+split_mn+"-"+split_dt;
     var g1 = new Date(split_yr, split_mn, split_dt);  
     var g2 = new Date(today_yr, today_mn, today_dt);
+
     if(g1 >= g2){   
       //alert("CUTE****************"); 
       if(c_zero==0 && disp_zero==0 && elec_zero==0 && c_one==0 && disp_one==0 && elec_one==0){
@@ -10643,7 +11104,7 @@ function addDPR(save){
       if(c_zero==0 && disp_zero==0 && elec_zero==0 && c_one!=0 && disp_one!=0 && elec_one!=0){
         //if(current_time >= "01:00:00"){ // cmnt on 30-4-2020 //
         if(current_time >= "02:00:00"){
-          //alert("OHH are");
+         // alert("OHH are");
           //$(".page1_btn").removeClass("display-none");
           //$(".page1_btn").addClass("display-block");
 
@@ -11805,7 +12266,7 @@ function col_zero(c_zero,disp_zero,elec_zero,c_one,disp_one,elec_one,current_tim
   }*/
 }
 function col_one(c_one,disp_one,elec_one,c_two,disp_two,elec_two,current_time){
-  console.log("ONE COL"+c_one+"---disp_one"+disp_one+"___elec_one"+elec_one+" c_two"+c_two+"----disp_two disp_two"+disp_two+"***** elec_two"+elec_two);
+  console.log("ONE COL"+c_one+"---disp_one"+disp_one+"___elec_one"+elec_one+" c_two"+c_two+"----disp_two"+disp_two+"***** elec_two"+elec_two);
   var sess_designation = window.localStorage.getItem("sess_designation");
   var hidd_dprdt = $("#hidd_dprdt").val();
   var d = new Date();
@@ -11829,7 +12290,8 @@ function col_one(c_one,disp_one,elec_one,c_two,disp_two,elec_two,current_time){
     // $("#hidd_disp_1").val(0);
     // $("#hidd_elec_1").val(0);
 //    if(current_time >= "02:00:00"){
-    if(current_time >= "03:00:00"){
+//    if(current_time >= "03:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "02:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_2").attr("readonly",false);
       $(".val_comp_2").removeClass("readonlytxtbox");
       $(".lcv3_mfm_2").attr("readonly",false);
@@ -12069,7 +12531,8 @@ function col_two(c_two,disp_two,elec_two,c_three,disp_three,elec_three,current_t
 
   if(c_two==0 && disp_two==0 && elec_two==0){
 //    if(current_time >= "03:00:00"){
-      if(current_time >= "04:00:00"){
+//      if(current_time >= "04:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "03:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_3").attr("readonly",false);
       $(".val_comp_3").removeClass("readonlytxtbox");
       $(".lcv3_mfm_3").attr("readonly",false);
@@ -12309,7 +12772,7 @@ function col_two(c_two,disp_two,elec_two,c_three,disp_three,elec_three,current_t
   }
 }
 function col_three(c_three,disp_three,elec_three,c_four,disp_four,elec_four,current_time){
-  console.log("THREE COL"+c_three+"---disp_three"+disp_three+"-------elec_three"+elec_three+" c_four"+c_four+"----disp_four "+disp_four+"***** elec_four"+elec_four);
+  console.log("THREE COL"+c_three+"---disp_three"+disp_three+"-------elec_three"+elec_three+" c_four"+c_four+"----disp_four "+disp_four+"***** elec_four"+elec_four+"===current_time "+current_time);
   var sess_designation = window.localStorage.getItem("sess_designation");
   var hidd_dprdt = $("#hidd_dprdt").val();
   var d = new Date();
@@ -12329,7 +12792,8 @@ function col_three(c_three,disp_three,elec_three,c_four,disp_four,elec_four,curr
   var g2 = new Date(today_yr, today_mn, today_dt);
   if(c_three==0 && disp_three==0 && elec_three==0){
  //   if(current_time >= "04:00:00"){
-if(current_time >= "05:00:00"){
+//if(current_time >= "05:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "04:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_4").attr("readonly",false);
       $(".val_comp_4").removeClass("readonlytxtbox");
       $(".lcv3_mfm_4").attr("readonly",false);
@@ -12348,7 +12812,9 @@ if(current_time >= "05:00:00"){
       var st_id = $("#hidd_stid").val();
       var dispanser_count = $("#hidd_dispcnt").val();
       //var lcv_count = $("#hidd_lcvcnt").val();
+      console.log(g1+'========'+g2);
       if(g1 >= g2){ 
+       // alert("HELLO 111");
       /*for(var l=1;l<=lcv_count;l++){
           $(".val_comp_4").attr("readonly",false);
           $(".val_comp_4").removeClass("readonlytxtbox");
@@ -12369,7 +12835,9 @@ if(current_time >= "05:00:00"){
           $(".disp_"+i+"_b_4").attr("readonly",false);
           $(".disp_"+i+"_b_4").removeClass("readonlytxtbox");          
         }
-      }
+      }/*else if(g1 < g2){
+        alert("WORLD");
+      }*/
       /*if(g1 >= g2){  
       $.ajax({
         type:'POST', 
@@ -12512,6 +12980,7 @@ if(current_time >= "05:00:00"){
     alert("ELSE");
   }*/
   if(g1 < g2){
+    
     //$(".page4_btn").removeClass("display-none");
     //$(".page4_btn").addClass("display-block");
     /*$(".page1_btn_nxt").removeClass("display-block");
@@ -12586,7 +13055,8 @@ function col_four(c_four,disp_four,elec_four,c_five,disp_five,elec_five,current_
 
   if(c_four==0 && disp_four==0 && elec_four==0){
 //    if(current_time >= "05:00:00"){
-if(current_time >= "06:00:00"){
+//if(current_time >= "06:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "05:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_5").attr("readonly",false);
       $(".val_comp_5").removeClass("readonlytxtbox");
       $(".lcv3_mfm_5").attr("readonly",false);
@@ -12844,7 +13314,8 @@ function col_five(c_five,disp_five,elec_five,c_six,disp_six,elec_six,current_tim
   var g2 = new Date(today_yr, today_mn, today_dt);
   if(c_five==0 && disp_five==0 && elec_five==0){
 //    if(current_time >= "06:00:00"){
-if(current_time >= "07:00:00"){
+//if(current_time >= "07:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "06:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_6").attr("readonly",false);
       $(".val_comp_6").removeClass("readonlytxtbox");
       $(".lcv3_mfm_6").attr("readonly",false);
@@ -13102,7 +13573,8 @@ function col_six(c_six,disp_six,elec_six,c_seven,disp_seven,elec_seven,current_t
   var g2 = new Date(today_yr, today_mn, today_dt);
   if(c_six==0 && disp_six==0 && elec_six==0){
 //    if(current_time >= "07:00:00"){
-if(current_time >= "08:00:00"){
+//if(current_time >= "08:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "07:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_7").attr("readonly",false);
       $(".val_comp_7").removeClass("readonlytxtbox");
       $(".lcv3_mfm_7").attr("readonly",false);
@@ -13361,7 +13833,8 @@ function col_seven(c_seven,disp_seven,elec_seven,c_eight,disp_eight,elec_eight,c
   var g2 = new Date(today_yr, today_mn, today_dt);
   if(c_seven==0 && disp_seven==0 && elec_seven==0){
 //    if(current_time >= "08:00:00"){
-if(current_time >= "09:00:00"){
+//if(current_time >= "09:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "08:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_8").attr("readonly",false);
       $(".val_comp_8").removeClass("readonlytxtbox");
       $(".lcv3_mfm_8").attr("readonly",false);
@@ -13619,7 +14092,8 @@ function col_eight(c_eight,disp_eight,elec_eight,c_nine,disp_nine,elec_nine,curr
 
   if(c_eight==0 && disp_eight==0 && elec_eight==0){
   //  if(current_time >= "09:00:00"){
-  if(current_time >= "10:00:00"){
+//  if(current_time >= "10:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "09:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_9").attr("readonly",false);
       $(".val_comp_9").removeClass("readonlytxtbox");
       $(".lcv3_mfm_9").attr("readonly",false);
@@ -13878,7 +14352,8 @@ function col_nine(c_nine,disp_nine,elec_nine,c_ten,disp_ten,elec_ten,current_tim
   var g2 = new Date(today_yr, today_mn, today_dt);
   if(c_nine==0 && disp_nine==0 && elec_nine==0){
     //if(current_time >= "10:00:00"){
-    if(current_time >= "11:00:00"){
+//if(current_time >= "11:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "10:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_10").attr("readonly",false);
       $(".val_comp_10").removeClass("readonlytxtbox");
       $(".lcv3_mfm_10").attr("readonly",false);
@@ -14137,7 +14612,8 @@ function col_ten(c_ten,disp_ten,elec_ten,c_eleven,disp_eleven,elec_eleven,curren
 
   if(c_ten==0 && disp_ten==0 && elec_ten==0){
     //if(current_time >= "11:00:00"){
-    if(current_time >= "12:00:00"){
+//    if(current_time >= "12:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "11:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_11").attr("readonly",false);
       $(".val_comp_11").removeClass("readonlytxtbox");
       $(".lcv3_mfm_11").attr("readonly",false);
@@ -14399,7 +14875,8 @@ function col_eleven(c_eleven,disp_eleven,elec_eleven,c_twelve,disp_twelve,elec_t
 
   if(c_eleven==0 && disp_eleven==0 && elec_eleven==0){
  //   if(current_time >= "12:00:00"){
-  if(current_time >= "13:00:00"){
+//  if(current_time >= "13:00:00"){ // COMMENTED ON 19-09-2020 //
+  if(current_time >= "12:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_12").attr("readonly",false);
       $(".val_comp_12").removeClass("readonlytxtbox");
       $(".lcv3_mfm_12").attr("readonly",false);
@@ -14661,7 +15138,8 @@ function col_twelve(c_twelve,disp_twelve,elec_twelve,c_thirteen,disp_thirteen,el
 
   if(c_twelve==0 && disp_twelve==0 && elec_twelve==0){
 //    if(current_time >= "13:00:00"){
-if(current_time >= "14:00:00"){
+//if(current_time >= "14:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "13:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_13").attr("readonly",false);
       $(".val_comp_13").removeClass("readonlytxtbox");
       $(".lcv3_mfm_13").attr("readonly",false);
@@ -14924,7 +15402,8 @@ function col_thirteen(c_thirteen,disp_thirteen,elec_thirteen,c_fourteen,disp_fou
 
   if(c_thirteen==0 && disp_thirteen==0 && elec_thirteen==0){
  //   if(current_time >= "14:00:00"){
-if(current_time >= "15:00:00"){
+//if(current_time >= "15:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "14:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_14").attr("readonly",false);
       $(".val_comp_14").removeClass("readonlytxtbox");
       $(".lcv3_mfm_14").attr("readonly",false);
@@ -15186,7 +15665,8 @@ function col_fourteen(c_fourteen,disp_fourteen,elec_fourteen,c_fifteen,disp_fift
 
   if(c_fourteen==0 && disp_fourteen==0 && elec_fourteen==0){
 //    if(current_time >= "15:00:00"){
-if(current_time >= "16:00:00"){
+//if(current_time >= "16:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "15:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_15").attr("readonly",false);
       $(".val_comp_15").removeClass("readonlytxtbox");
       $(".lcv3_mfm_15").attr("readonly",false);
@@ -15448,7 +15928,8 @@ function col_fifteen(c_fifteen,disp_fifteen,elec_fifteen,c_sixteen,disp_sixteen,
 
   if(c_fifteen==0 && disp_fifteen==0 && elec_fifteen==0){
 //    if(current_time >= "16:00:00"){
-  if(current_time >= "17:00:00"){
+//  if(current_time >= "17:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "16:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_16").attr("readonly",false);
       $(".val_comp_16").removeClass("readonlytxtbox");
       $(".lcv3_mfm_16").attr("readonly",false);
@@ -15729,7 +16210,8 @@ function col_sixteen(c_sixteen,disp_sixteen,elec_sixteen,c_seventeen,disp_sevent
 
   if(c_sixteen==0 && disp_sixteen==0 && elec_sixteen==0){
     //if(current_time >= "17:00:00"){
-    if(current_time >= "18:00:00"){
+ //if(current_time >= "18:00:00"){// COMMENTED ON 19-09-2020 //
+if(current_time >= "17:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_17").attr("readonly",false);
       $(".val_comp_17").removeClass("readonlytxtbox");
       $(".lcv3_mfm_17").attr("readonly",false);
@@ -15989,7 +16471,8 @@ function col_seventeen(c_seventeen,disp_seventeen,elec_seventeen,c_eighteen,disp
 
   if(c_seventeen==0 && disp_seventeen==0 && elec_seventeen==0){
  //   if(current_time >= "18:00:00"){
-  if(current_time >= "19:00:00"){
+//if(current_time >= "19:00:00"){// COMMENTED ON 19-09-2020 //
+if(current_time >= "18:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_18").attr("readonly",false);
       $(".val_comp_18").removeClass("readonlytxtbox");
       $(".lcv3_mfm_18").attr("readonly",false);
@@ -16252,7 +16735,8 @@ function col_eightteen(c_eighteen,disp_eightteen,elec_eighteen,c_nineteen,disp_n
 
   if(c_eighteen==0 && disp_eightteen==0 && elec_eighteen==0){
     //if(current_time >= "19:00:00"){
-    if(current_time >= "20:00:00"){
+//    if(current_time >= "20:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "19:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_19").attr("readonly",false);
       $(".val_comp_19").removeClass("readonlytxtbox");
       $(".lcv3_mfm_19").attr("readonly",false);
@@ -16523,7 +17007,8 @@ function col_nineteen(c_nineteen,disp_nineteen,elec_nineteen,c_twenty,disp_twent
 
   if(c_nineteen==0 && disp_nineteen==0 && elec_nineteen==0){
   //  if(current_time >= "20:00:00"){
-  if(current_time >= "21:00:00"){
+//  if(current_time >= "21:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "20:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_20").attr("readonly",false);
       $(".val_comp_20").removeClass("readonlytxtbox");
       $(".lcv3_mfm_20").attr("readonly",false);
@@ -16783,7 +17268,8 @@ function col_twenty(c_twenty,disp_twenty,elec_twenty,c_twentyone,disp_twentyone,
 
   if(c_twenty==0 && disp_twenty==0 && elec_twenty==0){
     //if(current_time >= "21:00:00"){
-    if(current_time >= "22:00:00"){
+//    if(current_time >= "22:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "21:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_21").attr("readonly",false);
       $(".val_comp_21").removeClass("readonlytxtbox");
       $(".lcv3_mfm_21").attr("readonly",false);
@@ -17041,7 +17527,8 @@ function col_twentyone(c_twentyone,disp_twentyone,elec_twentyone,c_twentytwo,dis
 
   if(c_twentyone==0 && disp_twentyone==0 && elec_twentyone==0){
     //if(current_time >= "22:00:00"){
-    if(current_time >= "23:00:00"){
+ //   if(current_time >= "23:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "22:00:00"){ // NEW ON 19-09-2020 //
       /*$(".val_comp_22").attr("readonly",false);
       $(".val_comp_22").removeClass("readonlytxtbox");
       $(".lcv3_mfm_22").attr("readonly",false);
@@ -17306,7 +17793,8 @@ function col_twentytwo(c_twentytwo,disp_twentytwo,elec_twentytwo,c_twentthree,di
   if(c_twentytwo==0 && disp_twentytwo==0 && elec_twentytwo==0){
     //alert("QQQQQQQQ");
     //if(current_time >= "23:00:00"){
-    if(current_time >= "24:00:00"){
+ //   if(current_time >= "24:00:00"){ // COMMENTED ON 19-09-2020 //
+if(current_time >= "23:00:00"){ // NEW ON 19-09-2020 //
       //alert("+=+");
       /*$(".val_comp_23").attr("readonly",false);
       $(".val_comp_23").removeClass("readonlytxtbox");
@@ -18179,7 +18667,7 @@ function getcorrData(){
       $(".total_comps").html("Total Records: ("+total_comps+")")
       $("#comp_list").html(comp_html);
       $("li").removeAttr("style");
-      $("#station_id_comps").html(stns);
+      //$("#station_id_comps").html(stns);
     }    
   });
   app.preloader.hide();
@@ -18785,13 +19273,15 @@ function jmradd(station_id){
     data:jmr_readingdata,
     success:function(result){
       if(result=='inserted'){
+        app.preloader.hide();
         app.dialog.alert("JMR has been created");
         mainView.router.navigate("/jmr_list/"+station_id+"/");
         //getJMRList(station_id);
+
       }
     }    
   });
-  app.preloader.hide();
+  
 }
 function getJMR(jmr_ID){  
   menuload();
@@ -18840,7 +19330,8 @@ $(document).on('page:init', '.page[data-name="jmr_view"]', function (page) {
 function jmr_approve(jmr_ID){
   menuload();
   checkConnection();
-  app.preloader.show();
+  //app.preloader.show();
+  app.dialog.preloader('Please wait...');
   var session_uid = window.localStorage.getItem("session_uid");
   var sess_designation = window.localStorage.getItem("sess_designation");
   var eic_email = $("#eic_email").val();
@@ -18855,8 +19346,9 @@ function jmr_approve(jmr_ID){
       var parse_res = $.parseJSON(result);
       var station_id = parse_res.station_id;     
       app.dialog.alert("JMR has been updated");
-      app.preloader.hide();
-      //mainView.router.navigate("/jmr_list/"+station_id+"/");
+      app.dialog.close();
+      //app.preloader.hide();
+      mainView.router.navigate("/jmr_list/"+station_id+"/");
       //getJMRList(station_id);      
     }    
   });
@@ -21565,10 +22057,74 @@ function dryoutsave(){
     }
   });
 }
+function check_login_or_not(){
+  checkConnection();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var session_stid = window.localStorage.getItem("session_stid");
+  if(sess_designation=='COMP. OPERATOR'){
+    setInterval(function(){
+      console.log("in hello");
+      $.ajax({
+        type:'POST',  
+        url:base_url+'APP/Appcontroller/check_logout',
+       // dataType:'json',      
+        data:{'session_uid':session_uid,'session_stid':session_stid,'sess_designation':sess_designation},
+        success:function(res){  
+          //console.log("@@@@@@@@@@@@@@@@@@@ "+res);
+          var parseRes_res = $.parseJSON(res);  
+          if(parseRes_res.res_msg=='force_logout'){ 
+            app.dialog.alert("Some other COMPRESSOR OPERATOR get logged in to the same station.");
+            //alert(parseRes_res.l_status);
+            if(parseRes_res.l_status!='' || parseRes_res.l_status!=undefined){
+              if(parseRes_res.l_status==0){
+                window.localStorage.clear();  
+                mainView.router.navigate('/'); 
+              }
+            }
+            //mainView.router.navigate('/');  
+            //logOut();
+          }else if(parseRes_res.res_msg=='no_logout'){
+          // nothing to do //   
+          console.log("nothing to do");
+          }
+        }  
+      });
+    //},6000);
+    },60000);
+  }
+}
 // -------------------------------- L O G O U T -------------------------------- //
 function logOut(){
   checkConnection();
-  window.localStorage.removeItem("session_uid"); 
+  var session_uid = window.localStorage.getItem("session_uid");
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/update_logout',
+    data:{'session_uid':session_uid},
+    success:function(res){
+      //var parseRes = $.parseJSON.res;
+      //var msg = parseRes.msg;
+      if(res=='success'){  
+        window.localStorage.removeItem("session_uid"); 
+        window.localStorage.removeItem("session_utype"); 
+        window.localStorage.removeItem("session_uclass");   
+        window.localStorage.removeItem("session_uname"); 
+        window.localStorage.removeItem("session_stid"); 
+        window.localStorage.removeItem("session_email"); 
+        window.localStorage.removeItem("session_umob");
+        window.localStorage.removeItem("sess_designation");
+        window.localStorage.removeItem("module_name");
+        mainView.router.navigate('/');   
+        app.panel.close();
+      }else if(res=='fail'){
+        app.dialog.alert("Error exiting from app");
+        return false;
+      }
+    }
+  });
+
+  /*window.localStorage.removeItem("session_uid"); 
   window.localStorage.removeItem("session_utype"); 
   window.localStorage.removeItem("session_uclass");   
   window.localStorage.removeItem("session_uname"); 
@@ -21578,5 +22134,5 @@ function logOut(){
   window.localStorage.removeItem("sess_designation");
   window.localStorage.removeItem("module_name");
   mainView.router.navigate('/');   
-  app.panel.close();
+  app.panel.close();*/
 } 
