@@ -139,7 +139,8 @@ function logincheck(){
               app.preloader.hide();  
             }else if(msg=='' || msg==undefined){
               if(sim_check==0){
-                window.plugins.sim.getSimInfo(function(res){                
+                //window.plugins.sim.getSimInfo(function(res){ 
+                cordova.plugins.sim.getSimInfo(function(res){             
                   var imei_1 = res.cards[0].deviceId;
                   var imei_2 = res.cards[1].deviceId;
                   var phoneno_1 = res.cards[0].phoneNumber;
