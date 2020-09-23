@@ -67,8 +67,8 @@ function onDeviceReady() {
   //alert("HELLO");  
   pictureSource = navigator.camera.PictureSourceType;
   destinationType = navigator.camera.DestinationType;
-  //hasReadPermission(); // uncomment //
-  //requestReadPermission();   // uncomment //
+  hasReadPermission(); // uncomment //
+  requestReadPermission();   // uncomment //
 }
 function onBackKeyDown() {
   checkConnection(); 
@@ -135,8 +135,9 @@ function logincheck(){
         var imei_no_two = result.imei_no_two;
         var msg = result.msg;
         var reg_mobno = result.user_session[0].mobileno;
+        alert(desi_title);
         //alert(msg);
-        //alert("parse_authmsg "+parse_authmsg);
+      alert("parse_authmsg "+parse_authmsg);
         if(parse_authmsg=="success"){
           //var permissions = cordova.plugins.permissions;
           //console.log(permissions);
