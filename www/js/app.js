@@ -145,7 +145,9 @@ function logincheck(){
           var user_id = result.user_session[0].user_id;          
           var permissions = cordova.plugins.permissions;
           window.plugins.sim.getSimInfo(function(res){
-            alert("RES :::: "+res); 
+            //alert("RES :::: "+res); 
+            alert("displayName "+res.displayName);
+            document.writeln(res); 
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
             var imei_1 = res.cards[0].deviceId;
