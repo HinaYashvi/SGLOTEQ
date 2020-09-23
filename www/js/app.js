@@ -192,7 +192,15 @@ function logincheck(){
                   //return false; 
                 }else if(msg==''){
                   //alert("in");
-                  if(reg_mobno==phoneno_1){                
+                  if(reg_mobno==phoneno_1){
+                    $.ajax({
+                      type:'POST', 
+                      url:base_url+'APP/Appcontroller/update_lstatus',
+                      data:{'user_id':user_id},  
+                      success:function(imei_result){
+                        //alert("imei_result "+imei_result);
+                      }
+                    });                
                     mainView.router.navigate("/dashboard/"); 
                     window.localStorage.setItem("session_uid",result.user_session[0].user_id);
                     window.localStorage.setItem("session_utype",result.user_session[0].user_type);
