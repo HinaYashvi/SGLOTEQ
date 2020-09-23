@@ -149,8 +149,13 @@ function logincheck(){
             alert("result.cards.length=" +res.cards.length);
             alert("result.phoneCount=" +res.phoneCount);
             for (var i = 0; i < res.cards.length; i++) {
-              alert("===== "+res.cards[i].phoneNumber);
-              alert("===== IMEI "+i+"==>"+res.cards[i].deviceId) 
+              alert("i is "+i+" "+res.cards[i].phoneNumber+"==="+res.cards[i].deviceId);
+              //alert("===== "+res.cards[i].phoneNumber);
+              //alert("===== IMEI "+i+"==>"+res.cards[i].deviceId) 
+            }
+
+            for (var i1 = 0; i1 <= res.cards.length; i1++) {
+              alert("i1 is "+i1+" "+res.cards[i1].phoneNumber+"==="+res.cards[i1].deviceId);
             }
             //alert("IMEI 1 : "+res.cards[0].deviceId);
             //alert("IMEI 2 : "+res.cards[1].deviceId);
