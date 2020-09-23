@@ -67,8 +67,8 @@ function onDeviceReady() {
   //alert("HELLO");  
   pictureSource = navigator.camera.PictureSourceType;
   destinationType = navigator.camera.DestinationType;
-  //hasReadPermission(); // uncomment //
-  //requestReadPermission();   // uncomment //
+  hasReadPermission(); // uncomment //
+  requestReadPermission();   // uncomment //
 }
 function onBackKeyDown() {
   checkConnection(); 
