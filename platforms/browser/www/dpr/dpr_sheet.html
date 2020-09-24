@@ -29,11 +29,16 @@
         <div class="text-red fw-600">All (*) fields are mandatory to fill.</div>  
       </div> 
 
+      <div class="loader1"><img src="img/loader.gif" /><span class="text-white text-uppercase loadtxt">Please Wait....</span></div>
+
+      <div class="page_boxes1">
       <form id="form_dpr" class="form_dpr">  
         <input type="hidden" name="hidd_stid" id="hidd_stid" />
         <input type="hidden" name="hidd_dprdt" id="hidd_dprdt" />
         <input type="hidden" name="hidd_dispcnt" id="hidd_dispcnt" />
         <input type="hidden" name="hidd_lcvcnt" id="hidd_lcvcnt" />
+
+        <input type="hidden" name="hidd_filldata" id="hidd_filldata" />
 
         <!--input type="hidden" name="hidd_comp_0" id="hidd_comp_0" >
         <input type="hidden" name="hidd_disp_0" id="hidd_disp_0" >
@@ -1462,28 +1467,28 @@
             <div class="col-40 page22_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentythreepg()">Save &amp; Next</button></div>
             <div class="col-33 save_btn display-none" onclick="addDPR('submit')"><button class="col button button-fill sgl-green" type="button">Submit</button></div--><!-- COMMENTED ON 19-09-2020 JUST TO SHOW SAVE &amp; Next as Next only(HTML chnage only) -->
 
-            <div class="col-40 page1_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_secondpg()">Next</button></div>
-            <div class="col-40 page2_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_thirdpg()">Next</button></div>
-            <div class="col-40 page3_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_forthpg()">Next</button></div>
-            <div class="col-40 page4_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_fifthpg()">Next</button></div>
-            <div class="col-40 page5_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_sixthpg()">Next</button></div>
-            <div class="col-40 page6_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_seventhpg()">Next</button></div>
-            <div class="col-40 page7_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eighthpg()">Next</button></div>
-            <div class="col-40 page8_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_ninthpg()">Next</button></div>
-            <div class="col-40 page9_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_tenthpg()">Next</button></div>
-            <div class="col-40 page10_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eleventhpg()">Next</button></div>
-            <div class="col-40 page11_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twelthpg()">Next</button></div>
-            <div class="col-40 page12_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_thirteenthpg()">Next</button></div>
-            <div class="col-40 page13_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_forteenthpg()">Next</button></div>
-            <div class="col-40 page14_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_fifteenthpg()">Next</button></div>
-            <div class="col-40 page15_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_sixteenthpg()">Next</button></div>
-            <div class="col-40 page16_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_seventeenthpg()">Next</button></div>
-            <div class="col-40 page17_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eighteenthpg()">Next</button></div>
-            <div class="col-40 page18_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_nineteenthpg()">Next</button></div>
-            <div class="col-40 page19_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twenteenthpg()">Next</button></div>
-            <div class="col-40 page20_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentyonepg()">Next</button></div>
-            <div class="col-40 page21_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentytwopg()">Next</button></div>
-            <div class="col-40 page22_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentythreepg()">Next</button></div>
+            <div class="col-40 page1_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_secondpg_fun('load')">Next</button></div>
+            <div class="col-40 page2_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_thirdpg_fun('load')">Next</button></div>
+            <div class="col-40 page3_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_forthpg_fun('load')">Next</button></div>
+            <div class="col-40 page4_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_fifthpg_fun('load')">Next</button></div>
+            <div class="col-40 page5_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_sixthpg_fun('load')">Next</button></div>
+            <div class="col-40 page6_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_seventhpg_fun('load')">Next</button></div>
+            <div class="col-40 page7_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eighthpg_fun('load')">Next</button></div>
+            <div class="col-40 page8_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_ninthpg_fun('load')">Next</button></div>
+            <div class="col-40 page9_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_tenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page10_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eleventhpg_fun('load')">Next</button></div>
+            <div class="col-40 page11_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twelthpg_fun('load')">Next</button></div>
+            <div class="col-40 page12_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_thirteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page13_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_forteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page14_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_fifteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page15_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_sixteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page16_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_seventeenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page17_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eighteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page18_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_nineteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page19_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twenteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page20_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentyonepg_fun('load')">Next</button></div>
+            <div class="col-40 page21_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentytwopg_fun('load')">Next</button></div>
+            <div class="col-40 page22_btn display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentythreepg_fun('load')">Next</button></div>
             <div class="col-33 save_btn display-none" onclick="addDPR('submit')"><button class="col button button-fill sgl-green" type="button">Submit</button></div><!-- NEW ON 19-09-2020 -->
 
 
@@ -1491,28 +1496,28 @@
 
 
             <!---- NEXT BUTTONS ---->
-            <div class="col-40 page1_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_secondpg()">Next</button></div>
-            <div class="col-40 page2_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_thirdpg()">Next</button></div>
-            <div class="col-40 page3_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_forthpg()">Next</button></div>
-            <div class="col-40 page4_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_fifthpg()">Next</button></div>
-            <div class="col-40 page5_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_sixthpg()">Next</button></div>
-            <div class="col-40 page6_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_seventhpg()">Next</button></div>
-            <div class="col-40 page7_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eighthpg()">Next</button></div>
-            <div class="col-40 page8_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_ninthpg()">Next</button></div>
-            <div class="col-40 page9_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_tenthpg()">Next</button></div>
-            <div class="col-40 page10_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eleventhpg()">Next</button></div>
-            <div class="col-40 page11_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twelthpg()">Next</button></div>
-            <div class="col-40 page12_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_thirteenthpg()">Next</button></div>
-            <div class="col-40 page13_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_forteenthpg()">Next</button></div>
-            <div class="col-40 page14_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_fifteenthpg()">Next</button></div>
-            <div class="col-40 page15_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_sixteenthpg()">Next</button></div>
-            <div class="col-40 page16_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_seventeenthpg()">Next</button></div>
-            <div class="col-40 page17_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eighteenthpg()">Next</button></div>
-            <div class="col-40 page18_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_nineteenthpg()">Next</button></div>
-            <div class="col-40 page19_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twenteenthpg()">Next</button></div>
-            <div class="col-40 page20_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentyonepg()">Next</button></div>
-            <div class="col-40 page21_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentytwopg()">Next</button></div>
-            <div class="col-40 page22_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentythreepg()">Next</button></div>
+            <div class="col-40 page1_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_secondpg_fun('load')">Next</button></div>
+            <div class="col-40 page2_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_thirdpg_fun('load')">Next</button></div>
+            <div class="col-40 page3_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_forthpg_fun('load')">Next</button></div>
+            <div class="col-40 page4_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_fifthpg_fun('load')">Next</button></div>
+            <div class="col-40 page5_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_sixthpg_fun('load')">Next</button></div>
+            <div class="col-40 page6_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_seventhpg_fun('load')">Next</button></div>
+            <div class="col-40 page7_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eighthpg_fun('load')">Next</button></div>
+            <div class="col-40 page8_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_ninthpg_fun('load')">Next</button></div>
+            <div class="col-40 page9_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_tenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page10_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eleventhpg_fun('load')">Next</button></div>
+            <div class="col-40 page11_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twelthpg_fun('load')">Next</button></div>
+            <div class="col-40 page12_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_thirteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page13_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_forteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page14_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_fifteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page15_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_sixteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page16_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_seventeenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page17_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_eighteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page18_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_nineteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page19_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twenteenthpg_fun('load')">Next</button></div>
+            <div class="col-40 page20_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentyonepg_fun('load')">Next</button></div>
+            <div class="col-40 page21_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentytwopg_fun('load')">Next</button></div>
+            <div class="col-40 page22_btn_nxt display-none"><button class="col button button-fill sgl-green" type="button" onclick="show_twentythreepg_fun('load')">Next</button></div>
             <!--div class="col-33 save_btn_nxt display-none" onclick="addDPR('submit')"><button class="col button button-fill color-red" type="button">Submit</button></div-->
 
 
@@ -1580,6 +1585,7 @@
           </table>
         </div-->
 
-      </form>       
+      </form>      
+      </div> 
     </div>
 </div>

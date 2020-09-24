@@ -68,7 +68,7 @@ function onDeviceReady() {
   pictureSource = navigator.camera.PictureSourceType;
   destinationType = navigator.camera.DestinationType;
   hasReadPermission(); // uncomment //
-  requestReadPermission();   // uncomment //
+  requestReadPermission(); // uncomment //
 }
 function onBackKeyDown() {
   checkConnection(); 
@@ -138,8 +138,20 @@ function logincheck(){
               app.dialog.alert("Some other COMPRESSOR OPERATOR already logged in to the same station.");
               app.preloader.hide();  
             }else if(msg=='' || msg==undefined){
+
+            /*mainView.router.navigate("/dashboard/"); 
+            window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+            window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+            window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+            window.localStorage.setItem("session_uname",result.user_session[0].username);
+            window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+            window.localStorage.setItem("session_email",result.user_session[0].email);
+            window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+            window.localStorage.setItem("sess_designation",result.desi_title);
+            app.preloader.hide();*/ // FOR BROWSER PC //
               if(sim_check==0){
-                window.plugins.sim.getSimInfo(function(res){                
+                window.plugins.sim.getSimInfo(function(res){ 
+                //cordova.plugins.sim.getSimInfo(function(res){             
                   var imei_1 = res.cards[0].deviceId;
                   var imei_2 = res.cards[1].deviceId;
                   var phoneno_1 = res.cards[0].phoneNumber;
@@ -149,18 +161,18 @@ function logincheck(){
                     var country_code = res.cards[0].countryCode;
                     phoneno_1 = phoneno_1.substring(2);
                   }                  
-                  alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
+                  //alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
+                  //alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
-                    alert("IN");
-                    setTimeout(function() {                   
-                      $.ajax({ 
-                        type:'POST',  
-                        url:base_url+'APP/Appcontroller/updateIMEI',
-                        data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
-                        success:function(imei_result){
-                        }
-                      });
-                    },2000);
+                    //alert("IN");                                       
+                    $.ajax({ 
+                      type:'POST',  
+                      url:base_url+'APP/Appcontroller/updateIMEI',
+                      data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
+                      success:function(imei_result){
+                        //alert("login status updated sim_check = 0");
+                      }
+                    });                    
                     mainView.router.navigate("/dashboard/"); 
                     window.localStorage.setItem("session_uid",result.user_session[0].user_id);
                     window.localStorage.setItem("session_utype",result.user_session[0].user_type);
@@ -172,12 +184,12 @@ function logincheck(){
                     window.localStorage.setItem("sess_designation",result.desi_title);
                     app.preloader.hide();
                   }else{
-                    app.dialog.alert("Try to login with registered mobile no. sim_check=0");
+                    app.dialog.alert("Try to login with registered mobile no.");
                     app.preloader.hide();
                   }                    
                 }, function(error){
-                  //app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
-                  //return false;
+                  app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
+                  return false;
                 });
               }else if(sim_check==1){
                 window.plugins.sim.getSimInfo(function(res){
@@ -188,7 +200,7 @@ function logincheck(){
                     var country_code = res.cards[0].countryCode;
                     phoneno_1 = phoneno_1.substring(2);
                   }                  
-                  alert(reg_mobno+"=="+phoneno_1+" sim_check = 1");
+                  //alert(reg_mobno+"=="+phoneno_1+" sim_check = 1");
                   if(reg_mobno==phoneno_1){
                     $.ajax({
                       type:'POST', 
@@ -208,7 +220,7 @@ function logincheck(){
                     window.localStorage.setItem("sess_designation",result.desi_title);
                     app.preloader.hide();
                   }else{
-                    app.dialog.alert("Try to login with registered mobile no.sim_check=1");
+                    app.dialog.alert("Try to login with registered mobile no");
                     app.preloader.hide();
                   }                
                 },function(error){
@@ -1852,13 +1864,17 @@ $(document).on('page:init', '.page[data-name="dpr_sheetyyy"]', function (page) {
   var dpr_date = page.detail.route.params.demo_calendar_modal_dpr;
   var station_name = page.detail.route.params.st_name;
   var sess_designation = window.localStorage.getItem("sess_designation");
-  alert("HELLO");
+  //alert("HELLO");
 });
 $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
   menuload();
   app.panel.close();
   checkConnection();
-  app.dialog.preloader('Fetching Readings...');
+  //app.dialog.preloader('Fetching Readings...');
+  //$(".page_boxes").hide();
+  //$(".loader").show();
+  $(".loader1").show();
+  $(".page_boxes1").hide(); 
   var station_id = page.detail.route.params.station_id;
   var dpr_date = page.detail.route.params.demo_calendar_modal_dpr;
   var station_name = page.detail.route.params.st_name;
@@ -3066,8 +3082,13 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
       //console.log(result+"***");
       //$("#sheet_data").html(result);
       if(result!=''){
+
         var prsejson = $.parseJSON(result);
         var no_data = prsejson.no_data;
+        //alert(no_data+" = no_data");
+        if(no_data=='no_data'){
+          $("#hidd_filldata").val("no_data");
+        }
         var st_start_date = prsejson.st_start_date;
         var st_start_time = prsejson.st_start_time;
         var start_dt = prsejson.start_dt;
@@ -3117,10 +3138,21 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
         var AMP = prsejson.AMP;
         var PF = prsejson.PF;
         //alert("ajax"+no_data);
-        
+        //alert(dpr_date);
+        var today_dts = new Date();
+        var dd = String(today_dts.getDate()).padStart(2, '0');
+        var mm = String(today_dts.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today_dts.getFullYear();
+
+        today_dts = dd + '-' + mm + '-' + yyyy;
+        //alert(today_dts+"==="+dpr_date);
+
         if(start_dt==dpr_date){ 
+          //alert("IFFFF");
+          var hidd_filldata = $("#hidd_filldata").val();
           if(no_data=="no_data"){
             app.preloader.hide();
+            app.dialog.close();
             //return false;
           }
           /*if(start_dt == dpr_date){
@@ -3503,6 +3535,10 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               }
             }
           }
+          loadbox();
+          if(hidd_filldata==''){
+            app.dialog.close();
+          }
           if(start_dt == dpr_date){
             for(var col=0;col<st_start_time;col++){
               $(".comp_th_"+col).html("---");
@@ -3521,6 +3557,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
 
         }else{   // station start date is not = dpr_date DPR data display //      
           console.log("!!!!!!!!!!!!!!!!!!!!!!"+COMP_SUCTION);
+          //alert("ELSEEEEEEE");
+          var hidd_filldata = $("#hidd_filldata").val();
           // ---------------------------- COMPRESSOR ---------------------------- //
           if(COMP_SUCTION!=undefined){
             for(var cs=0;cs<COMP_SUCTION.length;cs++){
@@ -3857,6 +3895,12 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               $(".pf_"+pf).val(pf_slot_param_val);
             }
           }
+          loadbox();
+          /*if(hidd_filldata==''){
+            //app.dialog.close();
+            $(".loader1").hide();
+            $(".page_boxes1").show(); 
+          }*/
         } // else ends //
       } // result!='' ends here //
       /*
@@ -5256,9 +5300,13 @@ if(g1 >= g2){
           show_twentytwopg();
         }
       }
+      loadbox();
     }
 //    app.preloader.hide();
-//      app.dialog.close(); // COMMENTED ON 22-09-2020 //
+      var hidd_filldata=$("#hidd_filldata").val();
+      if(hidd_filldata=='no_data'){
+        app.dialog.close(); // COMMENTED ON 22-09-2020 //
+      }
       // if(g1 <= g2){
       //   alert("HINA ############"+comp_0+" "+disp_0+" "+elec_0+" "+comp_1+" "+disp_1+" "+elec_1);
       //   if(comp_0==0 && disp_0==0 && elec_0 && comp_1!=0 && disp_1!=0 && elec_1!=0){
@@ -5575,6 +5623,7 @@ window.setInterval(function(){
   });*/
 
 });
+
 function getst_Start(st_id){
   app.preloader.show();
   $.ajax({
@@ -5641,13 +5690,23 @@ function getst_Start(st_id){
   }); // ajax //
   app.preloader.hide();
 }
-function show_secondpg(){
+function loadbox(){
+  //alert("in loadbox");
+  setTimeout(function() {
+    //alert("loadbox--5");
+    $(".loader1").hide();
+    $(".page_boxes1").show(); 
+  }, 3000);   
+}
+function show_secondpg(){  
   //app.dialog.preloader('please wait...');
   setTimeout(function() {
     show_secondpg_fun();
-  }, 2000);  
+  }, 2000);    
 }
-function show_secondpg_fun(){
+function show_secondpg_fun(pg=''){
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   console.log("show_secondpg");
   var dt = new Date();
   var current_time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
@@ -5804,7 +5863,15 @@ function show_secondpg_fun(){
   //         }
   //       }
   //     }
-  app.dialog.close();
+//  app.dialog.close();
+  
+  
+
+  if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  } 
+
 }
 function show_thirdpg(){
   //app.dialog.preloader('please wait...');
@@ -5812,7 +5879,9 @@ function show_thirdpg(){
     show_thirdpg_fun();
   }, 2000);  
 }
-function show_thirdpg_fun(){  //alert("show_thirdpg");
+function show_thirdpg_fun(pg=''){  //alert("show_thirdpg");
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   var dt = new Date();
   var current_time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
   $(".comp_th_one").removeClass("tbl-cell");
@@ -5994,7 +6063,14 @@ function show_thirdpg_fun(){  //alert("show_thirdpg");
   //       } 
   //     }
   // }
-app.dialog.close();
+//app.dialog.close();
+
+  //$(".page_boxes").show();
+  //$(".loader").hide();
+  if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_forthpg(){
   //app.dialog.preloader('please wait...');
@@ -6002,8 +6078,10 @@ function show_forthpg(){
     show_forthpg_fun();
   }, 2000);  
 }
-function show_forthpg_fun(){
+function show_forthpg_fun(pg=''){
  // alert("show_forthpg");
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_two").removeClass("tbl-cell");
   $(".comp_th_two").addClass("display-none");
   $(".comp_th_four").removeClass("display-none");
@@ -6153,16 +6231,25 @@ function show_forthpg_fun(){
           $(".prev4_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
-}
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+  if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
+} 
 function show_fifthpg(){
   //app.dialog.preloader('please wait...');
   setTimeout(function() {
     show_fifthpg_fun();
   }, 2000);  
 }
-function show_fifthpg_fun(){
+function show_fifthpg_fun(pg=''){
   //alert("show_fifthpg");
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_three").removeClass("tbl-cell");
   $(".comp_th_three").addClass("display-none");
   $(".comp_th_five").removeClass("display-none");
@@ -6309,7 +6396,14 @@ function show_fifthpg_fun(){
           $(".prev5_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+  if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_sixthpg(){
   //app.dialog.preloader('please wait...');
@@ -6317,8 +6411,10 @@ function show_sixthpg(){
     show_sixthpg_fun();
   }, 2000);  
 }
-function show_sixthpg_fun(){
+function show_sixthpg_fun(pg=''){
   //alert("show_sixthpg");
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_four").removeClass("tbl-cell");
   $(".comp_th_four").addClass("display-none");
   $(".comp_th_six").removeClass("display-none");
@@ -6450,7 +6546,14 @@ function show_sixthpg_fun(){
           $(".prev6_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_seventhpg(){
   //app.dialog.preloader('please wait...');
@@ -6458,8 +6561,10 @@ function show_seventhpg(){
     show_seventhpg_fun();
   }, 2000);  
 }
-function show_seventhpg_fun(){
+function show_seventhpg_fun(pg=''){
   //alert("show_seventhpg");
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_five").removeClass("tbl-cell");
   $(".comp_th_five").addClass("display-none");
   $(".comp_th_seven").removeClass("display-none");
@@ -6591,7 +6696,14 @@ function show_seventhpg_fun(){
           $(".prev7_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_eighthpg(){
   //app.dialog.preloader('please wait...');
@@ -6599,7 +6711,9 @@ function show_eighthpg(){
     show_eighthpg_fun();
   }, 2000);  
 }
-function show_eighthpg_fun(){
+function show_eighthpg_fun(pg=''){
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_six").removeClass("tbl-cell");
   $(".comp_th_six").addClass("display-none");
   $(".comp_th_eight").removeClass("display-none");
@@ -6728,7 +6842,14 @@ function show_eighthpg_fun(){
           $(".prev8_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_ninthpg(){
   //app.dialog.preloader('please wait...');
@@ -6736,7 +6857,9 @@ function show_ninthpg(){
     show_ninthpg_fun();
   }, 2000);  
 }
-function show_ninthpg_fun(){
+function show_ninthpg_fun(pg=''){
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_seven").removeClass("tbl-cell");
   $(".comp_th_seven").addClass("display-none");
   $(".comp_th_nine").removeClass("display-none");
@@ -6864,7 +6987,14 @@ function show_ninthpg_fun(){
           $(".prev9_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_tenthpg(){
   //app.dialog.preloader('please wait...');
@@ -6872,7 +7002,9 @@ function show_tenthpg(){
     show_tenthpg_fun();
   }, 2000);  
 }
-function show_tenthpg_fun(){
+function show_tenthpg_fun(pg=''){
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_eight").removeClass("tbl-cell");
   $(".comp_th_eight").addClass("display-none");
   $(".comp_th_ten").removeClass("display-none");
@@ -7001,7 +7133,14 @@ function show_tenthpg_fun(){
           $(".prev10_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_eleventhpg(){
   //app.dialog.preloader('please wait...');
@@ -7009,7 +7148,9 @@ function show_eleventhpg(){
     show_eleventhpg_fun();
   }, 2000);  
 }
-function show_eleventhpg_fun(){
+function show_eleventhpg_fun(pg=''){
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_nine").removeClass("tbl-cell");
   $(".comp_th_nine").addClass("display-none");
   $(".comp_th_eleven").removeClass("display-none");
@@ -7138,7 +7279,14 @@ function show_eleventhpg_fun(){
           $(".prev11_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_twelthpg(){
   //app.dialog.preloader('please wait...');
@@ -7146,7 +7294,9 @@ function show_twelthpg(){
     show_twelthpg_fun();
   }, 2000);  
 }
-function show_twelthpg_fun(){
+function show_twelthpg_fun(pg=''){
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_ten").removeClass("tbl-cell");
   $(".comp_th_ten").addClass("display-none");
   $(".comp_th_twelve").removeClass("display-none");
@@ -7275,7 +7425,14 @@ function show_twelthpg_fun(){
           $(".prev12_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_thirteenthpg(){
   //app.dialog.preloader('please wait...');
@@ -7283,7 +7440,9 @@ function show_thirteenthpg(){
     show_thirteenthpg_fun();
   }, 2000);  
 }
-function show_thirteenthpg_fun(){
+function show_thirteenthpg_fun(pg=''){
+  //$(".page_boxes").hide();
+  //$(".loader").show();
   $(".comp_th_eleven").removeClass("tbl-cell");
   $(".comp_th_eleven").addClass("display-none");
   $(".comp_th_thirteen").removeClass("display-none");
@@ -7412,7 +7571,14 @@ function show_thirteenthpg_fun(){
           $(".prev13_btn").addClass("display-none");
         }
     }
-  app.dialog.close();
+//app.dialog.close();
+
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_forteenthpg(){
   //app.dialog.preloader('please wait...');
@@ -7420,7 +7586,7 @@ function show_forteenthpg(){
     show_forteenthpg_fun();
   }, 2000);  
 }
-function show_forteenthpg_fun(){
+function show_forteenthpg_fun(pg=''){
   $(".comp_th_twelve").removeClass("tbl-cell");
   $(".comp_th_twelve").addClass("display-none");
   $(".comp_th_fourteen").removeClass("display-none");
@@ -7558,7 +7724,13 @@ function show_forteenthpg_fun(){
       }
      }
   }*/
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_fifteenthpg(){
   //app.dialog.preloader('please wait...');
@@ -7566,7 +7738,7 @@ function show_fifteenthpg(){
     show_fifteenthpg_fun();
   }, 2000);  
 }
-function show_fifteenthpg_fun(){
+function show_fifteenthpg_fun(pg=''){
   $(".comp_th_thirteen").removeClass("tbl-cell");
   $(".comp_th_thirteen").addClass("display-none");
   $(".comp_th_fifteen").removeClass("display-none");
@@ -7695,7 +7867,13 @@ function show_fifteenthpg_fun(){
           $(".prev15_btn").addClass("display-none");
         }
     }
-    app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
   /*var hidd_dprdt = $("#hidd_dprdt").val();
   var d = new Date();
   var month = d.getMonth()+1;
@@ -7719,7 +7897,7 @@ function show_sixteenthpg(){
     show_sixteenthpg_fun();
   }, 2000);  
 }
-function show_sixteenthpg_fun(){
+function show_sixteenthpg_fun(pg=''){
   $(".comp_th_fourteen").removeClass("tbl-cell");
   $(".comp_th_fourteen").addClass("display-none");
   $(".comp_th_sixteen").removeClass("display-none");
@@ -7848,7 +8026,13 @@ function show_sixteenthpg_fun(){
       $(".prev16_btn").addClass("display-none");
     }
   }
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_seventeenthpg(){
   //app.dialog.preloader('please wait...');
@@ -7856,7 +8040,7 @@ function show_seventeenthpg(){
     show_seventeenthpg_fun();
   }, 2000);  
 }
-function show_seventeenthpg_fun(){
+function show_seventeenthpg_fun(pg=''){
   $(".comp_th_fifteen").removeClass("tbl-cell");
   $(".comp_th_fifteen").addClass("display-none");
   $(".comp_th_seventeen").removeClass("display-none");
@@ -7985,7 +8169,13 @@ function show_seventeenthpg_fun(){
       $(".prev17_btn").addClass("display-none");
     }
   }
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_eighteenthpg(){
   //app.dialog.preloader('please wait...');
@@ -7993,7 +8183,7 @@ function show_eighteenthpg(){
     show_eighteenthpg_fun();
   }, 2000);  
 }
-function show_eighteenthpg_fun(){
+function show_eighteenthpg_fun(pg=''){
   $(".comp_th_sixteen").removeClass("tbl-cell");
   $(".comp_th_sixteen").addClass("display-none");
   $(".comp_th_eighteen").removeClass("display-none");
@@ -8122,7 +8312,13 @@ function show_eighteenthpg_fun(){
       $(".prev18_btn").addClass("display-none");
     }
   }
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_nineteenthpg(){
   //app.dialog.preloader('please wait...');
@@ -8130,7 +8326,7 @@ function show_nineteenthpg(){
     show_nineteenthpg_fun();
   }, 2000);  
 }
-function show_nineteenthpg_fun(){
+function show_nineteenthpg_fun(pg=''){
   $(".comp_th_seventeen").removeClass("tbl-cell");
   $(".comp_th_seventeen").addClass("display-none");
   $(".comp_th_nineteen").removeClass("display-none");
@@ -8259,7 +8455,13 @@ function show_nineteenthpg_fun(){
       $(".prev19_btn").addClass("display-none");
     }
   }
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_twenteenthpg(){
   //app.dialog.preloader('please wait...');
@@ -8267,7 +8469,7 @@ function show_twenteenthpg(){
     show_twenteenthpg_fun();
   }, 2000);  
 }
-function show_twenteenthpg_fun(){
+function show_twenteenthpg_fun(pg=''){
   $(".comp_th_eighteen").removeClass("tbl-cell");
   $(".comp_th_eighteen").addClass("display-none");
   $(".comp_th_twenty").removeClass("display-none");
@@ -8396,7 +8598,13 @@ function show_twenteenthpg_fun(){
       $(".prev20_btn").addClass("display-none");
     }
   }
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_twentyonepg(){
   //app.dialog.preloader('please wait...');
@@ -8404,7 +8612,7 @@ function show_twentyonepg(){
     show_twentyonepg_fun();
   }, 2000);  
 }
-function show_twentyonepg_fun(){
+function show_twentyonepg_fun(pg=''){
   $(".comp_th_nineteen").removeClass("tbl-cell");
   $(".comp_th_nineteen").addClass("display-none");
   $(".comp_th_twentyone").removeClass("display-none");
@@ -8533,7 +8741,13 @@ function show_twentyonepg_fun(){
       $(".prev21_btn").addClass("display-none");
     }
   }
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_twentytwopg(){
   //app.dialog.preloader('please wait...');
@@ -8541,7 +8755,7 @@ function show_twentytwopg(){
     show_twentytwopg_fun();
   }, 2000);  
 }
-function show_twentytwopg_fun(){
+function show_twentytwopg_fun(pg=''){
   //alert("in show_twentytwopg");
   $(".comp_th_twenty").removeClass("tbl-cell");
   $(".comp_th_twenty").addClass("display-none");
@@ -8674,7 +8888,13 @@ function show_twentytwopg_fun(){
       $(".prev22_btn").addClass("display-none");
     }
   }
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function show_twentythreepg(){
   //app.dialog.preloader('please wait...');
@@ -8682,7 +8902,7 @@ function show_twentythreepg(){
     show_twentythreepg_fun();
   }, 2000);  
 }
-function show_twentythreepg_fun(){   
+function show_twentythreepg_fun(pg=''){   
   $(".comp_th_twentyone").removeClass("tbl-cell");
   $(".comp_th_twentyone").addClass("display-none");
   $(".comp_th_twentythree").removeClass("display-none");
@@ -8809,7 +9029,13 @@ function show_twentythreepg_fun(){
       // $(".prev22_btn").addClass("display-none");
     }
   }
-  app.dialog.close();
+//app.dialog.close();
+//$(".page_boxes").show();
+//$(".loader").hide();
+if(pg=='load'){
+    $(".page_boxes1").show();
+    $(".loader1").hide();
+  }
 }
 function prev_show_firstpg(){
   var hidd_dprdt = $("#hidd_dprdt").val();
@@ -10263,6 +10489,8 @@ function prev_show_twentytwopg(){
 }
 function addDPR(save){
   checkConnection();
+  $(".loader1").show();
+  $(".page_boxes1").hide(); 
   var session_uid = window.localStorage.getItem("session_uid");
   var form_dpr = $(".form_dpr").serialize();
   var dt = new Date();
@@ -11945,7 +12173,7 @@ function addDPR(save){
           show_twentytwopg();
         }
       }
-
+      loadbox();
       /*setTimeout(function () {
         app.dialog.close();
       }, 3000);*/
@@ -15439,6 +15667,7 @@ if(current_time >= "13:00:00"){ // NEW ON 19-09-2020 //
   }
 }
 function col_thirteen(c_thirteen,disp_thirteen,elec_thirteen,c_fourteen,disp_fourteen,elec_fourteen,current_time){
+  //alert("called");
   console.log("THIRTEEN COL"+c_thirteen+"---disp_thirteen"+disp_thirteen+"-------elec_thirteen"+elec_thirteen+" c_fourteen"+c_fourteen+"----disp_fourteen "+disp_fourteen+"***** elec_fourteen"+elec_fourteen);
   var sess_designation = window.localStorage.getItem("sess_designation");
   var hidd_dprdt = $("#hidd_dprdt").val();

@@ -582,7 +582,7 @@ div.container4 p {
   background-color: #f69000!important;
 }*/
 .sgl-green{
-  background-color: #018137;
+  background-color: #018137!important;
 }
 .sgl-blue{
   background-color: #0174C5;
@@ -643,8 +643,23 @@ div.container4 p {
     -ms-animation: 1s linear 0s normal none infinite running animate-blink;
     -o-animation: 1s linear 0s normal none infinite running animate-blink;
 }
-
-
+.loader1{
+  background: rgba(0, 0, 0, 0.6);
+  height: 350%;
+  width: 100%;
+  position: absolute;
+  z-index: 11111;
+  text-align: center;
+}
+.loader1 img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50%;
+}
+.loadtxt{
+  letter-spacing: 2px;
+}
 keyframes animate-blink {
 0%, 100% { opacity: 1.0; }
 50% { opacity: 0.0; }
