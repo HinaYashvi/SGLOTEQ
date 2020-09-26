@@ -250,10 +250,11 @@ function logincheck(){
             $.ajax({ 
               type:'POST', 
               url:base_url+'APP/Appcontroller/updateIMEI',
-              data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},        
+              data:{'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},        
               success:function(imei_result){
                 var lres = $.parseJSON(imei_result);
                 var l_msg = lres.l_msg;
+                alert("l_msg "+l_msg);
                 if(l_msg=='login_succ'){
                   mainView.router.navigate("/dashboard/"); 
                   window.localStorage.setItem("session_uid",result.user_session[0].user_id);
