@@ -115,6 +115,7 @@ function logincheck(){
     $("#passerror").html("Password is required.");
     return false;
   }else{
+    app.preloader.show();
     $.ajax({
       type:'POST', 
       url:base_url+'APP/Appcontroller/authenticateUser',
@@ -127,8 +128,11 @@ function logincheck(){
         var imei_no = result.imei_no;
         var imei_no_two = result.imei_no_two;
         var msg = result.msg;
+        alert(parse_authmsg+" "+desi_title+"===== "+msg);
         if(parse_authmsg=="success"){ 
+          alert("in "+parse_authmsg);
           if(desi_title=='COMP. OPERATOR'){
+            alert("user is "+desi_title);
             var user_id = result.user_session[0].user_id;  
             var reg_mobno = result.user_session[0].mobileno;
             var sim_check = result.user_session[0].sim_check;      
@@ -235,7 +239,8 @@ function logincheck(){
             } // msg=='' || msg==undefined ends //
 
           }else if(desi_title=='' || desi_title==undefined){
-            alert("NOT COMP. OPERATOR USER "+parse_authmsg); // NOT COMP. OPERATOR USER //          
+            alert("NOT COMP. OPERATOR USER "+parse_authmsg); // NOT COMP. OPERATOR USER //    
+            alert("user is not COMP. OPERATOR");      
             var user_id = result.user_session[0].user_id;  
             window.plugins.sim.getSimInfo(function(res){  
             alert("in plugin condition not comp operator");
@@ -266,6 +271,7 @@ function logincheck(){
             });
           }
         }else if(parse_authmsg=="Inc_mobpass"){
+          alert("in ======"+parse_authmsg);
           app.preloader.hide();
           app.dialog.alert("Mobile no or password Incorrect");
           return false;
