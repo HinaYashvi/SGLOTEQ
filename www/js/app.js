@@ -156,8 +156,8 @@ function logincheck(){
                 window.plugins.sim.getSimInfo(function(res){ 
                   alert("in sim_check = 0 plugin");
                 //cordova.plugins.sim.getSimInfo(function(res){             
-                  var imei_1 = res.cards[0].deviceId;
-                  var imei_2 = res.cards[1].deviceId;
+                  //var imei_1 = res.cards[0].deviceId;
+                  //var imei_2 = res.cards[1].deviceId;
                   var phoneno_1 = res.cards[0].phoneNumber;
                   if(phoneno_1.length==10){
                     phoneno_1 = phoneno_1;
