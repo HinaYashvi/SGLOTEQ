@@ -254,7 +254,7 @@ function logincheck(){
             $.ajax({ 
               type:'POST', 
               url:base_url+'APP/Appcontroller/updateIMEI',
-              data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
+              data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},        
               success:function(imei_result){
                 alert("imei_result "+imei_result);
               }
