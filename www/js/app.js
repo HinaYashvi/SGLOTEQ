@@ -196,7 +196,7 @@ function logincheck(){
                     window.localStorage.setItem("sess_designation",result.desi_title);
                     app.preloader.hide();
                   }else{
-                    app.dialog.alert("Try to login with registered mobile no. sim_check=0");
+                    app.dialog.alert("Try to login with registered mobile no.");
                     app.preloader.hide();
                   }                    
                 }, function(error){
@@ -235,7 +235,7 @@ function logincheck(){
                     window.localStorage.setItem("sess_designation",result.desi_title);
                     app.preloader.hide();
                   }else{
-                    app.dialog.alert("Try to login with registered mobile no.sim_check =1");
+                    app.dialog.alert("Try to login with registered mobile no.");
                     app.preloader.hide();
                   }                
                 },function(error){
@@ -284,7 +284,7 @@ function logincheck(){
                       }
                     }); 
                   }else{
-                    app.dialog.alert("Try to login with registered mobile no.sim_check =1");
+                    app.dialog.alert("Try to login with registered mobile no.");
                     app.preloader.hide();
                   } 
 
