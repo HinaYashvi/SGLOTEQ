@@ -250,8 +250,9 @@ function logincheck(){
             //alert("NOT COMP. OPERATOR USER "+parse_authmsg); // NOT COMP. OPERATOR USER //    
             //alert("user is not COMP. OPERATOR");      
             var user_id = result.user_session[0].user_id; 
+            var reg_mobno = result.user_session[0].mobileno;
              window.plugins.sim.getSimInfo(function(res){ 
-                  //alert("in sim_check = 0 plugin");
+                  //alert("in plugin cond");
                 //cordova.plugins.sim.getSimInfo(function(res){             
                   //var imei_1 = res.cards[0].deviceId;
                   //var imei_2 = res.cards[1].deviceId;
@@ -839,7 +840,7 @@ function scanQR(){
           var att_rcbook = checkQR[0].att_rcbook;
           var att_form24 = checkQR[0].att_form24;
           var att_number_plate = checkQR[0].att_number_plate;
-
+          var scan_count = checkQR[0].scan_count;
           if(mobile_two!='' || mobile_two!=undefined || mobile_two!=null){
             var mob2 = mobile_two;
           }else{
@@ -853,7 +854,7 @@ function scanQR(){
           var due_dd = split_duedt[2];
           var hydro_due_dt = due_dd+" - "+due_mm+" - "+due_yr;
           //alert(owner_name);
-          vst_html+='<div class="block-title">Name of Owner / Driver</div><div class="block"><p class="text-uppercase">'+owner_name+'</p></div><div class="block-title">Mobile No</div><div class="block"><p class="text-uppercase">'+mobile_one+'</p></div><div class="block-title">Vehicle No</div><div class="block"><p class="text-uppercase">'+vehicle_no+'</p></div><div class="block-title">Hydrotest Due Date</div><div class="block"><p class="text-uppercase">'+hydro_due_dt+'</p></div>';
+          vst_html+='<div class="block-title">Name of Owner / Driver</div><div class="block"><p class="text-uppercase">'+owner_name+'</p></div><div class="block-title">Mobile No</div><div class="block"><p class="text-uppercase">'+mobile_one+'</p></div><div class="block-title">Vehicle No</div><div class="block"><p class="text-uppercase">'+vehicle_no+'</p></div><div class="block-title">Vehicle scan count(s)</div><div class="block"><p class="text-uppercase">'+scan_count+'</p></div><div class="block-title">Hydrotest Due Date</div><div class="block"><p class="text-uppercase">'+hydro_due_dt+'</p></div>';
           /*$(".own_name").html(owner_name);
           $(".mob_one").html(mobile_one);
           $(".veh_no").html(vehicle_no);
