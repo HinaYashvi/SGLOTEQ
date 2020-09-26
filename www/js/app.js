@@ -247,7 +247,17 @@ function logincheck(){
               url:base_url+'APP/Appcontroller/update_lstatus',
               data:{'user_id':user_id},  
               success:function(imei_result){  
-              alert("only login status updated NOT COMP. OPERATOR USER");                    
+                alert("only login status updated NOT COMP. OPERATOR USER");
+                mainView.router.navigate("/dashboard/"); 
+                window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+                window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+                window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+                window.localStorage.setItem("session_uname",result.user_session[0].username);
+                window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+                window.localStorage.setItem("session_email",result.user_session[0].email);
+                window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+                window.localStorage.setItem("sess_designation",result.desi_title);
+                app.preloader.hide();                    
               }
             });
 /*            window.plugins.sim.getSimInfo(function(res){  
