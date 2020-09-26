@@ -249,25 +249,50 @@ function logincheck(){
           }else if(desi_title=='' || desi_title==undefined || desi_title!='COMP. OPERATOR'){
             //alert("NOT COMP. OPERATOR USER "+parse_authmsg); // NOT COMP. OPERATOR USER //    
             //alert("user is not COMP. OPERATOR");      
-            var user_id = result.user_session[0].user_id;  
-            $.ajax({
-              type:'POST', 
-              url:base_url+'APP/Appcontroller/update_lstatus',
-              data:{'user_id':user_id},  
-              success:function(imei_result){  
-                //alert("only login status updated NOT COMP. OPERATOR USER");
-                mainView.router.navigate("/dashboard/"); 
-                window.localStorage.setItem("session_uid",result.user_session[0].user_id);
-                window.localStorage.setItem("session_utype",result.user_session[0].user_type);
-                window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
-                window.localStorage.setItem("session_uname",result.user_session[0].username);
-                window.localStorage.setItem("session_stid",result.user_session[0].station_id);
-                window.localStorage.setItem("session_email",result.user_session[0].email);
-                window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
-                window.localStorage.setItem("sess_designation",result.desi_title);
-                app.preloader.hide();                    
-              }
-            });
+            var user_id = result.user_session[0].user_id; 
+             window.plugins.sim.getSimInfo(function(res){ 
+                  //alert("in sim_check = 0 plugin");
+                //cordova.plugins.sim.getSimInfo(function(res){             
+                  //var imei_1 = res.cards[0].deviceId;
+                  //var imei_2 = res.cards[1].deviceId;
+                  var phoneno_1 = res.cards[0].phoneNumber;
+                  if(phoneno_1.length==10){
+                    phoneno_1 = phoneno_1;
+                  }else if(phoneno_1.length > 10){
+                    var country_code = res.cards[0].countryCode;
+                    phoneno_1 = phoneno_1.substring(2);
+                  }                  
+                  //alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
+                  //alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
+                  if(reg_mobno==phoneno_1){ 
+                     $.ajax({
+                      type:'POST', 
+                      url:base_url+'APP/Appcontroller/update_lstatus',
+                      data:{'user_id':user_id},  
+                      success:function(imei_result){  
+                        //alert("only login status updated NOT COMP. OPERATOR USER");
+                        mainView.router.navigate("/dashboard/"); 
+                        window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+                        window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+                        window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+                        window.localStorage.setItem("session_uname",result.user_session[0].username);
+                        window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+                        window.localStorage.setItem("session_email",result.user_session[0].email);
+                        window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+                        window.localStorage.setItem("sess_designation",result.desi_title);
+                        app.preloader.hide();                    
+                      }
+                    }); 
+                  }else{
+                    app.dialog.alert("Try to login with registered mobile no.sim_check =1");
+                    app.preloader.hide();
+                  } 
+
+                },function(error){
+                  app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
+                  return false;
+                });
+            
 /*            window.plugins.sim.getSimInfo(function(res){  
             alert("in plugin condition not comp operator");
             var imei_1 = res.cards[0].deviceId;
