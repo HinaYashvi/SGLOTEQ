@@ -263,7 +263,7 @@ function logincheck(){
                     var country_code = res.cards[0].countryCode;
                     phoneno_1 = phoneno_1.substring(2);
                   }                  
-                  //alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
+                  alert(reg_mobno+"=="+phoneno_1+"===="+user_id);
                   //alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
                      $.ajax({
@@ -846,6 +846,11 @@ function scanQR(){
           }else{
             var mob2='';
           }
+          if(scan_count!='' || scan_count!=undefined){
+            scan_count= scan_count;
+          }else{
+            scan_count = '';
+          }
           var vehicle_no = checkQR[0].vehicle_no;
           var hydrotest_due_date = checkQR[0].hydrotest_due_date;
           var split_duedt = hydrotest_due_date.split("-");
@@ -1001,12 +1006,17 @@ $(document).on('page:init', '.page[data-name="recheckQR"]', function (page) {
           var att_rcbook = checkQR[0].att_rcbook;
           var att_form24 = checkQR[0].att_form24;
           var att_number_plate = checkQR[0].att_number_plate;
-
+          var scan_count = checkQR[0].scan_count;
           if(mobile_two!='' || mobile_two!=undefined || mobile_two!=null){
             var mob2 = mobile_two;
           }else{
             var mob2='';
           } 
+          if(scan_count!='' || scan_count!=undefined){
+            scan_count = scan_count
+          }else{
+            scan_count='';
+          }
           var vehicle_no = checkQR[0].vehicle_no;
           var hydrotest_due_date = checkQR[0].hydrotest_due_date;
           var split_duedt = hydrotest_due_date.split("-");
@@ -1014,7 +1024,7 @@ $(document).on('page:init', '.page[data-name="recheckQR"]', function (page) {
           var due_mm = split_duedt[1];
           var due_dd = split_duedt[2]; 
           var hydro_due_dt = due_dd+" - "+due_mm+" - "+due_yr;
-          vst_html+='<div class="block-title">Name of Owner / Driver</div><div class="block"><p class="text-uppercase">'+owner_name+'</p></div><div class="block-title">Mobile No</div><div class="block"><p class="text-uppercase">'+mobile_one+'</p></div><div class="block-title">Vehicle No</div><div class="block"><p class="text-uppercase">'+vehicle_no+'</p></div><div class="block-title">Hydrotest Due Date</div><div class="block"><p class="text-uppercase">'+hydro_due_dt+'</p></div>';
+          vst_html+='<div class="block-title">Name of Owner / Driver</div><div class="block"><p class="text-uppercase">'+owner_name+'</p></div><div class="block-title">Mobile No</div><div class="block"><p class="text-uppercase">'+mobile_one+'</p></div><div class="block-title">Vehicle No</div><div class="block"><p class="text-uppercase">'+vehicle_no+'</p></div><div class="block-title">Vehicle scan count(s)</div><div class="block"><p class="text-uppercase">'+scan_count+'</p></div><div class="block-title">Hydrotest Due Date</div><div class="block"><p class="text-uppercase">'+hydro_due_dt+'</p></div>';
           if(veh_msg=='allow'){
             vst_html+='<div class="text-center"><div class="text-uppercase"><h2>cng filling permission</h2></div><img src="img/right-2.png" width="150" /></div>';
 
