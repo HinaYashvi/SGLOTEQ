@@ -242,6 +242,7 @@ function logincheck(){
             return false;
           }
         }else if(desi_title=='' || desi_title==undefined){
+          alert("NOT COMP. OPERATOR USER");
           // NOT COMP. OPERATOR USER //
           var user_id = result.user_session[0].user_id;  
           if(parse_authmsg=="success"){
