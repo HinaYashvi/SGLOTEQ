@@ -168,15 +168,23 @@ function logincheck(){
                   //alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
                   //alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
-                    //alert("IN");                                       
-                    $.ajax({ 
+                    alert("IN");                                       
+                    /*$.ajax({ 
                       type:'POST',  
                       url:base_url+'APP/Appcontroller/updateIMEI',
                       data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
                       success:function(imei_result){
                         alert("login status updated sim_check = 0 with IMEI");
                       }
-                    });                    
+                    });   */  
+                    $.ajax({
+                      type:'POST', 
+                      url:base_url+'APP/Appcontroller/update_lstatus',
+                      data:{'user_id':user_id},  
+                      success:function(imei_result){  
+                      alert("only login status updated sim_check = 1");                    
+                      }
+                    });                
                     mainView.router.navigate("/dashboard/"); 
                     window.localStorage.setItem("session_uid",result.user_session[0].user_id);
                     window.localStorage.setItem("session_utype",result.user_session[0].user_type);
@@ -239,15 +247,15 @@ function logincheck(){
             } // msg=='' || msg==undefined ends //
 
           }else if(desi_title=='' || desi_title==undefined || desi_title!='COMP. OPERATOR'){
-            alert("NOT COMP. OPERATOR USER "+parse_authmsg); // NOT COMP. OPERATOR USER //    
-            alert("user is not COMP. OPERATOR");      
+            //alert("NOT COMP. OPERATOR USER "+parse_authmsg); // NOT COMP. OPERATOR USER //    
+            //alert("user is not COMP. OPERATOR");      
             var user_id = result.user_session[0].user_id;  
             $.ajax({
               type:'POST', 
               url:base_url+'APP/Appcontroller/update_lstatus',
               data:{'user_id':user_id},  
               success:function(imei_result){  
-                alert("only login status updated NOT COMP. OPERATOR USER");
+                //alert("only login status updated NOT COMP. OPERATOR USER");
                 mainView.router.navigate("/dashboard/"); 
                 window.localStorage.setItem("session_uid",result.user_session[0].user_id);
                 window.localStorage.setItem("session_utype",result.user_session[0].user_type);
@@ -306,7 +314,7 @@ function logincheck(){
 */
           }
         }else if(parse_authmsg=="Inc_mobpass"){
-          alert("in ======"+parse_authmsg);
+          //alert("in ======"+parse_authmsg);
           app.preloader.hide();
           app.dialog.alert("Mobile no or password Incorrect");
           return false;
