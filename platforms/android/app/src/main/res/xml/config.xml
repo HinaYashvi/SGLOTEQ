@@ -75,6 +75,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <splash src="splash.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
@@ -84,4 +85,7 @@
     <preference name="EnableViewportScale" value="true" />
     <preference name="pgb-builder-version" value="2" />
     <preference name="phonegap-version" value="cli-7.1.0" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="7000" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
 </widget>
