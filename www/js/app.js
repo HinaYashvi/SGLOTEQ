@@ -242,7 +242,15 @@ function logincheck(){
             alert("NOT COMP. OPERATOR USER "+parse_authmsg); // NOT COMP. OPERATOR USER //    
             alert("user is not COMP. OPERATOR");      
             var user_id = result.user_session[0].user_id;  
-            window.plugins.sim.getSimInfo(function(res){  
+            $.ajax({
+              type:'POST', 
+              url:base_url+'APP/Appcontroller/update_lstatus',
+              data:{'user_id':user_id},  
+              success:function(imei_result){  
+              alert("only login status updated NOT COMP. OPERATOR USER");                    
+              }
+            });
+/*            window.plugins.sim.getSimInfo(function(res){  
             alert("in plugin condition not comp operator");
             var imei_1 = res.cards[0].deviceId;
             var imei_2 = res.cards[1].deviceId;
@@ -281,10 +289,11 @@ function logincheck(){
             window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
             window.localStorage.setItem("sess_designation",result.desi_title);
             app.preloader.hide();*/
-            },function(error){
+/*            },function(error){
               app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
               return false;
             });
+*/
           }
         }else if(parse_authmsg=="Inc_mobpass"){
           alert("in ======"+parse_authmsg);
