@@ -266,7 +266,7 @@ function logincheck(){
                   //alert(reg_mobno+"=="+phoneno_1+"===="+user_id);
                   //alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
-                     $.ajax({
+                     $.ajax({ 
                       type:'POST', 
                       url:base_url+'APP/Appcontroller/update_lstatus',
                       data:{'user_id':user_id},  
