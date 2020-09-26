@@ -263,7 +263,7 @@ function logincheck(){
                     var country_code = res.cards[0].countryCode;
                     phoneno_1 = phoneno_1.substring(2);
                   }                  
-                  alert(reg_mobno+"=="+phoneno_1+"===="+user_id);
+                  //alert(reg_mobno+"=="+phoneno_1+"===="+user_id);
                   //alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
                      $.ajax({
