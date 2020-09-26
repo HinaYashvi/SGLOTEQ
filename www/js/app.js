@@ -128,11 +128,11 @@ function logincheck(){
         var imei_no = result.imei_no;
         var imei_no_two = result.imei_no_two;
         var msg = result.msg;
-        alert(parse_authmsg+" "+desi_title+"===== "+msg);
+        //alert(parse_authmsg+" "+desi_title+"===== "+msg);
         if(parse_authmsg=="success"){ 
-          alert("in "+parse_authmsg);
+          //alert("in "+parse_authmsg);
           if(desi_title=='COMP. OPERATOR'){
-            alert("user is "+desi_title);
+            //alert("user is "+desi_title);
             var user_id = result.user_session[0].user_id;  
             var reg_mobno = result.user_session[0].mobileno;
             var sim_check = result.user_session[0].sim_check;      
@@ -152,9 +152,9 @@ function logincheck(){
               window.localStorage.setItem("sess_designation",result.desi_title);
               app.preloader.hide();*/ // FOR BROWSER PC //
               if(sim_check==0){
-                alert("sim_check ="+sim_check);
+                //alert("sim_check ="+sim_check);
                 window.plugins.sim.getSimInfo(function(res){ 
-                  alert("in sim_check = 0 plugin");
+                  //alert("in sim_check = 0 plugin");
                 //cordova.plugins.sim.getSimInfo(function(res){             
                   //var imei_1 = res.cards[0].deviceId;
                   //var imei_2 = res.cards[1].deviceId;
@@ -168,7 +168,7 @@ function logincheck(){
                   //alert(reg_mobno+"=="+phoneno_1+" sim_check = 0");
                   //alert(user_id+"=="+imei_no+"--"+imei_no_two+"##"+imei_1+"~~"+imei_2);
                   if(reg_mobno==phoneno_1){ 
-                    alert("IN");                                       
+                    //alert("IN");                                       
                     /*$.ajax({ 
                       type:'POST',  
                       url:base_url+'APP/Appcontroller/updateIMEI',
@@ -182,7 +182,7 @@ function logincheck(){
                       url:base_url+'APP/Appcontroller/update_lstatus',
                       data:{'user_id':user_id},  
                       success:function(imei_result){  
-                      alert("only login status updated sim_check = 1");                    
+                      //alert("only login status updated sim_check = 1");                    
                       }
                     });                
                     mainView.router.navigate("/dashboard/"); 
@@ -204,9 +204,9 @@ function logincheck(){
                   return false;
                 });
               }else if(sim_check==1){
-                alert("sim_check#### ="+sim_check);
+                //alert("sim_check#### ="+sim_check);
                 window.plugins.sim.getSimInfo(function(res){
-                  alert("in sim_check = 1 plugin");
+                  //alert("in sim_check = 1 plugin");
                   var phoneno_1 = res.cards[0].phoneNumber;
                   if(phoneno_1.length==10){
                     phoneno_1 = phoneno_1;
@@ -221,7 +221,7 @@ function logincheck(){
                       url:base_url+'APP/Appcontroller/update_lstatus',
                       data:{'user_id':user_id},  
                       success:function(imei_result){  
-                      alert("only login status updated sim_check = 1");                    
+                      //alert("only login status updated sim_check = 1");                    
                       }
                     });                
                     mainView.router.navigate("/dashboard/"); 
