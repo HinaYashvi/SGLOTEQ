@@ -252,10 +252,25 @@ function logincheck(){
               url:base_url+'APP/Appcontroller/updateIMEI',
               data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},        
               success:function(imei_result){
-                alert("imei_result "+imei_result);
+                var lres = $.parseJSON(imei_result);
+                var l_msg = lres.l_msg;
+                if(l_msg=='login_succ'){
+                  mainView.router.navigate("/dashboard/"); 
+                  window.localStorage.setItem("session_uid",result.user_session[0].user_id);
+                  window.localStorage.setItem("session_utype",result.user_session[0].user_type);
+                  window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
+                  window.localStorage.setItem("session_uname",result.user_session[0].username);
+                  window.localStorage.setItem("session_stid",result.user_session[0].station_id);
+                  window.localStorage.setItem("session_email",result.user_session[0].email);
+                  window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
+                  window.localStorage.setItem("sess_designation",result.desi_title);
+                  app.preloader.hide();
+                }else if(l_msg=='login_fail'){
+                  app.preloader.hide();
+                }
               }
             });
-            mainView.router.navigate("/dashboard/"); 
+            /*mainView.router.navigate("/dashboard/"); 
             window.localStorage.setItem("session_uid",result.user_session[0].user_id);
             window.localStorage.setItem("session_utype",result.user_session[0].user_type);
             window.localStorage.setItem("session_uclass",result.user_session[0].user_class);
@@ -264,7 +279,7 @@ function logincheck(){
             window.localStorage.setItem("session_email",result.user_session[0].email);
             window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
             window.localStorage.setItem("sess_designation",result.desi_title);
-            app.preloader.hide();
+            app.preloader.hide();*/
             },function(error){
               app.dialog.alert(error+" Unable to get IMEI of "+mobile_num);
               return false;
