@@ -242,20 +242,21 @@ function logincheck(){
             return false;
           }
         }else if(desi_title=='' || desi_title==undefined){
-          alert("NOT COMP. OPERATOR USER");
+          alert("NOT COMP. OPERATOR USER "+parse_authmsg);
           // NOT COMP. OPERATOR USER // 
           var user_id = result.user_session[0].user_id;  
           if(parse_authmsg=="success"){
-            window.plugins.sim.getSimInfo(function(res){             
+            window.plugins.sim.getSimInfo(function(res){  
+            alert("in plugin condition not comp operator");
             var imei_1 = res.cards[0].deviceId;
             var imei_2 = res.cards[1].deviceId;
-            //alert(imei_no+"=="+imei_no_two+'~~'+imei_1+"##"+imei_2+"^^"+user_id);
+            alert(imei_no+"=="+imei_no_two+'~~'+imei_1+"##"+imei_2+"^^"+user_id);
             $.ajax({ 
               type:'POST', 
               url:base_url+'APP/Appcontroller/updateIMEI',
               data:{'imei_no':imei_no,'imei_no_two':imei_no_two,'imei_1':imei_1,'imei_2':imei_2,'user_id':user_id},  
               success:function(imei_result){
-                //alert("imei_result "+imei_result);
+                alert("imei_result "+imei_result);
               }
             });
             mainView.router.navigate("/dashboard/"); 
