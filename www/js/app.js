@@ -238,7 +238,7 @@ function logincheck(){
 
             } // msg=='' || msg==undefined ends //
 
-          }else if(desi_title=='' || desi_title==undefined){
+          }else if(desi_title=='' || desi_title==undefined || desi_title!='COMP. OPERATOR'){
             alert("NOT COMP. OPERATOR USER "+parse_authmsg); // NOT COMP. OPERATOR USER //    
             alert("user is not COMP. OPERATOR");      
             var user_id = result.user_session[0].user_id;  
