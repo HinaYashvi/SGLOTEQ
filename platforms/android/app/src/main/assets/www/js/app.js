@@ -48,8 +48,8 @@ var app = new Framework7({
     app.hideIndicator();
   }
 }); 
-//var base_url = 'http://oteqprojects.co.in/sabarmati/'; // TEST SERVER //
-var base_url = 'https://sglnext.in/'; // LIVE SERVER //  
+var base_url = 'http://oteqprojects.co.in/sabarmati/'; // TEST SERVER //
+//var base_url = 'https://sglnext.in/'; // LIVE SERVER //  
 var mainView = app.views.create('.view-main');
 var dt = new Date();
   if(dt.getMinutes() <=9){ 
@@ -70,7 +70,9 @@ function onDeviceReady() {
   destinationType = navigator.camera.DestinationType;
   //hasReadPermission(); // uncomment //
   //requestReadPermission(); // uncomment //
-}
+  //alert(device.uuid);
+  //alert(device.serial);
+} 
 function onBackKeyDown() {
   checkConnection(); 
   //alert(app.views.main.router.history.length==2);
@@ -168,6 +170,7 @@ function logincheck(){
                   window.localStorage.setItem("session_email",result.user_session[0].email);
                   window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
                   window.localStorage.setItem("sess_designation",result.desi_title);
+                  window.localStorage.setItem("session_propic",result.user_session[0].profile_pic);
                   app.preloader.hide();             
                 }
               });                
@@ -276,6 +279,7 @@ function logincheck(){
                 window.localStorage.setItem("session_email",result.user_session[0].email);
                 window.localStorage.setItem("session_umob",result.user_session[0].mobileno);
                 window.localStorage.setItem("sess_designation",result.desi_title);
+                window.localStorage.setItem("session_propic",result.user_session[0].profile_pic);
                 app.preloader.hide();                    
               }
             }); 
@@ -1084,8 +1088,13 @@ function menuload(){
   var session_utype = window.localStorage.getItem("session_utype");
   var session_email = window.localStorage.getItem("session_email");
   var session_uname = window.localStorage.getItem("session_uname");
-
-  menulist+='<p><center><img id="user_pic" src="img/nouser.png" height="100" width="100" class="img-circle"></center></p><p ><center id="userName" class="text-uppercase">'+session_uname+'</center></p><p ><center id="userdesg_type" class="text-uppercase"><span class="fs-12">['+sess_designation+' - '+session_utype+']</span></center></p><p ><center id="userEmail" class=""><i class="f7-icons fs-14 mr-5">envelope_fill</i><span class="fs-12">'+session_email+'</span></center></p><p ><center id="userMo" class="text-uppercase"><i class="f7-icons fs-14 mr-5">phone_circle_fill</i>'+session_umob+'</center></p>';
+  var session_propic = window.localStorage.getItem("session_propic");
+  if(session_propic==null){
+    var session_propic="img/nouser.png";
+  }else{
+    var session_propic=base_url+'uploads/user/'+session_propic;
+  }
+  menulist+='<p><center><!--img id="user_pic" src="img/nouser.png" height="100" width="100" class="img-circle"--><img id="user_pic" src="'+session_propic+'" height="100" width="100" class="bor-rad"></center></p><p ><center id="userName" class="text-uppercase">'+session_uname+'</center></p><p ><center id="userdesg_type" class="text-uppercase"><span class="fs-12">['+sess_designation+' - '+session_utype+']</span></center></p><p ><center id="userEmail" class=""><i class="f7-icons fs-14 mr-5">envelope_fill</i><span class="fs-12">'+session_email+'</span></center></p><p ><center id="userMo" class="text-uppercase"><i class="f7-icons fs-14 mr-5">phone_circle_fill</i>'+session_umob+'</center></p>';
 
   if(sess_designation == 'SGL EIC'){
     if(sess_module_name==='dpr'){
@@ -1112,6 +1121,9 @@ function menuload(){
     }
     if(sess_module_name==='cms'){
       menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/cms/"><i class="f7-icons fs-16 mr-5">house_fill</i>Complaints</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
+    }
+    if(sess_module_name==='hcv'){
+      menulist+='<br/><p><a class="text-white link" href="/dashboard/"><i class="f7-icons fs-16 mr-5">house_fill</i>Dashboard</a></p><p><a class="text-white link" href="/hcv/"><i class="f7-icons fs-16 mr-5">house_fill</i>Mother Station</a></p><p><a class="text-white link" href="/hcv_db/"><i class="f7-icons fs-16 mr-5">house_fill</i>DB Station</a></p><p><a class="text-white link" href="/change_password/" ><i class="f7-icons fs-16 mr-5">lock_fill</i>Change Password</a></p><p><a class="text-white link" href="#" onclick="logOut()"><i class="f7-icons fs-16 mr-5">power</i>Logout</a></p>';
     }
   }
   $(".menulist").html(menulist);
@@ -2751,6 +2763,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
           }else if(g1 >= g2){  
             console.log("HI - 8");
             if(arr_ser[d_a]!="zero"){
+            //if(arr_ser[d_a]=="one"){
               console.log("HI - 9");
               var read_only="readonly='readonly'";
               var readonly_cls = "readonlytxtbox";
@@ -2759,6 +2772,17 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               var read_only="";
               var readonly_cls="";
             }
+            //var read_only="readonly='readonly'";
+            //var readonly_cls="readonlytxtbox";
+            /*if($("#DISP_"+i+"_A_"+d_a)==''){
+              var read_only="readonly='readonly'";
+              var readonly_cls = "readonlytxtbox";
+            }else{
+              var read_only="";
+              var readonly_cls="";
+            }*/
+            //var read_only="";
+            //var readonly_cls="";
           } 
          var cur_date = parse_res.cur_date;
           if(today_enable_arr!='') {
@@ -2811,7 +2835,7 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
                 var from_datetm=test_arr[z].from_datetm;
                 var to_datetm=test_arr[z].to_datetm;
                 var full_fromdt=test_arr[z].full_fromdt;
-                var full_todt=test_arr[z].full_todt;
+                var full_todt=test_arr[z].full_todt;console.log("======="+full_todt);
                 var to_dt=to_datetm.split(" ");
                 var dbtodt=to_dt[0];
                 var split_dtto = dbtodt.split("-");
@@ -3081,6 +3105,8 @@ $(document).on('page:init', '.page[data-name="dpr_sheet"]', function (page) {
               var read_only="";
               var readonly_cls="";
             }
+            //var read_only="";
+            //var readonly_cls="";
           }
 
           if(today_enable_arr!='') { 
@@ -5147,7 +5173,22 @@ if(g1 >= g2){
           //col_one(c_one,disp_1,elec_1,c_two,disp_two,elec_two,current_time);
         }
       }
-
+      //alert(dispanser_count);
+      //if(comp_0==0 && disp_0==0 && elec_0==0 && comp_1!=0 || disp_1!=0 || elec_1!=0){
+      if(comp_0==0 && disp_0==0 && elec_0==0){
+        //alert(comp_0+"==="+disp_0+"==="+elec_0+"====---===="+comp_1+"==="+disp_1+"==="+elec_1);
+        if(current_time >= "02:00:00"){
+          if(comp_1!=0 || disp_1!=0 || elec_1!=0){
+            $(".page1_btn").removeClass("display-block");
+            $(".page1_btn").addClass("display-none"); 
+            col_zero(comp_0,disp_0,elec_0,comp_1,disp_1,elec_1,current_time);
+          }else if(comp_1==0 && disp_1==0 && elec_1==0){
+            col_zero(comp_0,disp_0,elec_0,comp_1,disp_1,elec_1,current_time);
+            show_secondpg();
+          }          
+          
+        }
+      }
       if(comp_1==0 && disp_1==0 && elec_1==0 && c_two==0 && disp_two==0 && elec_two==0){
         //if(current_time >= "02:00:00"){ // cmnt on 30-4-2020 //
         if(current_time >= "03:00:00"){
@@ -19428,7 +19469,7 @@ function getDPRList(prev_page){
     success:function(result){    
       //console.log(result.dpr_list);
       var dprList = result.dpr_list;
-      var total_dpr = result.total_dpr;
+      var total_dpr = result.total_dpr; 
       if(total_dpr==undefined){
         total_dpr=0;
       }else{
@@ -19436,9 +19477,10 @@ function getDPRList(prev_page){
       }
       $("#dpr_list").html(dprList); 
       $(".total_dpr").html("Total Records: ("+total_dpr+")");
+      app.preloader.hide();
     }
   });
-  app.preloader.hide();
+  
 }
 function approve_dpr(dprid){
   checkConnection();
@@ -20114,9 +20156,10 @@ function getJMRList(jmr_station_id){
         $(".stname").html(st_name);
         $(".total_jmr").html("Total Records: ("+total_jmr+")");
         $("#jmr_list").html(jmrList);
+        app.preloader.hide();
       }    
     });
-  app.preloader.hide();
+  
 }
 function showmsg(msg){
   app.dialog.alert(msg);
@@ -20194,6 +20237,7 @@ $(document).on('page:init', '.page[data-name="jmr_view"]', function (page) {
     data:{'jmr_ID':jmr_ID,'sess_designation':sess_designation},
     success:function(result){
       $(".jmr_view_details").html(result);
+      app.preloader.hide();
     }
   });
 
@@ -20215,7 +20259,7 @@ $(document).on('page:init', '.page[data-name="jmr_view"]', function (page) {
      $(".").html(aprv_btn);
     }
   });*/
-  app.preloader.hide();
+  
 });
 function jmr_approve(jmr_ID){
   menuload();
@@ -20355,9 +20399,10 @@ function getPendingComps(){
       //}
       $("#pending_cms_list").html(pending_cmsList); 
       $(".totalpending_cms").html("Total Records: ("+pending_cnts+")");
+      app.preloader.hide();
     }
   });
-  app.preloader.hide();
+  
 }
 function getCMSList(prev_page){
   checkConnection();
@@ -20408,9 +20453,10 @@ function getCMSList(prev_page){
       //}
       $("#cms_list").html(cmsList); 
       $(".total_cms").html("Total Records: ("+total_cms+")");
+      app.preloader.hide();
     }
   });
-  app.preloader.hide();
+  
 }
 $(document).on('page:init', '.page[data-name="add_cms"]', function (page) {
   menuload();
@@ -20541,9 +20587,9 @@ $(document).on('page:init', '.page[data-name="cms_details"]', function (page) {
       var html = result.html;
       $(".comp_det").html(comp_det); 
       $(".replace_tbl").html(html);
+      app.preloader.hide();
     }
-  });
-  app.preloader.hide();
+  });  
 });
 function editcomplain(c_id){
   checkConnection();
@@ -20714,8 +20760,13 @@ function receive_comp(complain_id){
   });
   app.preloader.hide();
 }
-function show_block(chkd){
-  if($(chkd).prop('checked') === true){
+function show_block(chkd,id){
+  //alert(chkd);
+  //console.log(chkd);
+  //alert("$$$$"+$(chkd).prop('checked'));
+  //alert("@@@@"+$(this).prop('checked'));
+  if($(chkd).prop('checked')==true){
+    //alert("hi");
     $(".tab_logic").show();
     $(".divname input").prop('required',true);
     $(".divname select").prop('required',true);
@@ -20724,6 +20775,7 @@ function show_block(chkd){
     $(".hidetxtpart_0 input").prop('required',false);
     $(".hidetxtmake_0 input").prop('required',false); 
   }else{
+    //alert("hello");
     $(".tab_logic").hide();
   }
 }
@@ -21069,12 +21121,14 @@ $(document).on('page:init', '.page[data-name="change_cms_eic"]', function (page)
   var session_utype = window.localStorage.getItem("session_utype");
   var session_stid = window.localStorage.getItem("session_stid");  
   app.preloader.show();
+  
   $.ajax({
     type:'POST',  
     url:base_url+'APP/Appcontroller/chnagecmsdata_eic',
     data:{'c_id':c_id,'session_utype':session_utype,'session_stid':session_stid},
     dataType:'json',
-    success:function(result){               
+    success:function(result){ 
+
       var changecms_form = result.changecms_form;
       $(".changecms_form").html(changecms_form);
       var rep_sttm = $("#rep_sttm").val();
@@ -21082,6 +21136,16 @@ $(document).on('page:init', '.page[data-name="change_cms_eic"]', function (page)
 
         var calendarModal_edit = app.calendar.create({
           inputEl: '#rep_start_dt_change',
+          openIn: 'customModal',
+          dateFormat: 'dd-mm-yyyy',
+          header: true,
+          footer: true,
+          renderToolbar: function () {   
+            return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
+          }
+        });
+        var calendarModal_edit = app.calendar.create({
+          inputEl: '#rep_end_dt_change',
           openIn: 'customModal',
           dateFormat: 'dd-mm-yyyy',
           header: true,
@@ -21192,16 +21256,18 @@ $(document).on('page:init', '.page[data-name="change_cms_eic"]', function (page)
         });
         $("#repst_tm_change_new").val("");
         $("#end_tm_rep_change_new").val("");
+        app.preloader.hide();
     }
+
   });
-  app.preloader.hide();
+  
 });
 function openimage(divid,image){
   var dynamicPopup = app.popup.create({
   content: '<div class="popup popup-img_'+divid+'">'+
             '<div class="block">'+                
               '<p><a href="#" class="link popup-close">Close me</a></p>'+
-              '<p><img src="'+base_url+'uploads/cms/'+image+'" /></p>'+
+              '<p><img src="'+base_url+'uploads/cms/'+image+'" height="330" width="330"/></p>'+
             '</div>'+
           '</div>',
   });
@@ -21270,7 +21336,7 @@ function EIC_cmschange(){
   }  
   var arrsend_change=JSON.stringify(title_change);
   //console.log(form_cms_chnage);
-  console.log(arrsend_change);
+  //console.log(arrsend_change);
   var hidd_old_img_arr = $("#hidd_old_img_arr").val();
   var unlink_imgs = JSON.stringify(hidd_old_img_arr);
   //alert(arrsend_change);
@@ -21396,9 +21462,11 @@ function approve_comp(approve_comp_id){
       var parse_res = $.parseJSON(result);
       var approve = parse_res.approve;
       $(".approve_comp").html(approve);
+      app.preloader.hide();
     }
+
   });
-  app.preloader.hide();
+  
 }
 function apprv_status(status,approve_comp_id){
   checkConnection();
@@ -22506,8 +22574,15 @@ $(document).on('page:init', '.page[data-name="hcvedit_time"]', function (page) {
     }
   });
 });
-
+// function checkKMsIn(outkm,inkm){
+//   if(outkm < inkm){
+//     app.dialog.alert("Mother Out KM should not less than Mother IN KM");
+//     $("#hcvout_km_edit").val();
+//     return false;
+//   }
+// }
 function hcvtimeedit(){
+  //alert("func called");
   menuload();
   checkConnection();
   var hcvtime_edit = $("#hcvtime_edit").serialize();  
@@ -22519,6 +22594,7 @@ function hcvtimeedit(){
   var hcv_pressure_edit = $("#hcv_pressure_edit").val();
   var hcv_outpressure_edit = $("#hcv_outpressure_edit").val();
   var per_trip_gas_sales = $("#per_trip_gas_sales").val();
+  //alert("in_km "+in_km+" out_km "+out_km);
   if(sold_to_party_tm_edit==""){
     app.dialog.alert("Select Mother Station");
     return false;
@@ -22534,29 +22610,94 @@ function hcvtimeedit(){
   }else if(per_trip_gas_sales==""){
     app.dialog.alert("Enter per trip gas sales");
     return false;
-  }else if(out_km < in_km){
+  }/*else if(out_km < in_km){
     out_km = $('#hcvout_km_edit').val('');
     app.dialog.alert("Sorry, Out KM should be greater then IN KM");
     return false;
-  }else{
-    app.preloader.show();
-    $.ajax({
-      type:'POST', 
-      url:base_url+'APP/Appcontroller/edit_hcvtimesave',
-      data:hcvtime_edit,
-      success:function(result){        
-        var res=result.trim();
-        if(res=='updated'){
-          app.dialog.alert("Data updated successfully.");
-          mainView.router.navigate("/view_mother_hcv/"+hr_id+"/");
-        }else{
-          app.dialog.alert("Problem inserting data");
-        }  
-        app.preloader.hide();        
-      }        
-    });
+  }*/else{    
+    //alert(typeof out_km);
+    //alert(typeof in_km);
+    //alert(typeof hcv_pressure_edit);
+    //alert(typeof hcv_outpressure_edit);
+    var inkm_chk=isInt_number(in_km);
+    var outkm_chk=isInt_number(out_km);
+    if(inkm_chk==true){
+      var in_km_val = parseInt(in_km);
+    }else if(inkm_chk==false){
+      var in_km_val = parseFloat(in_km);
+    }
+    if(outkm_chk==true){
+      var out_km_val = parseInt(out_km);
+    }else if(outkm_chk==false){
+      var out_km_val = parseFloat(out_km);
+    }
+
+    var inpress_chk=isInt_number(hcv_pressure_edit);
+    var outpress_chk=isInt_number(hcv_outpressure_edit);
+    if(inpress_chk==true){
+      var in_press_val = parseInt(hcv_pressure_edit);
+    }else if(inpress_chk==false){
+      var in_press_val = parseFloat(hcv_pressure_edit);
+    }
+    if(outpress_chk==true){
+      var out_press_val = parseInt(hcv_outpressure_edit);
+    }else if(outpress_chk==false){
+      var out_press_val = parseFloat(hcv_outpressure_edit);
+    }
+
+    if(out_km_val < in_km_val){
+      out_km = $('#hcvout_km_edit').val('');
+      app.dialog.alert("Sorry, Out KM can not be less than IN KM");
+      $('#hcvout_km_edit').focus();
+      return false;
+    }else if(out_press_val < in_press_val){
+      if(out_press_val==0){
+        app.dialog.alert("Mother OUT pressure must be greater than 0");
+      }else if(out_press_val != 0){
+        hcv_outpressure_edit = $('#hcv_outpressure_edit').val('');
+        app.dialog.alert("Sorry, Out pressure can not be less than IN pressure");
+        $('#hcv_outpressure_edit').focus();
+        return false;
+      }
+    }/*else if(out_press_val == 0){
+      app.dialog.alert("Mother OUT pressure must be greater than 0");
+      return false;
+    }else if(out_press_val != 0){
+      if(out_press_val < in_press_val){
+        hcv_outpressure_edit = $('#hcv_outpressure_edit').val('');
+        app.dialog.alert("Sorry, Out pressure can not be less than IN pressure");
+        $('#hcv_outpressure_edit').focus();
+        return false;
+      }
+    }*/else{
+      //alert("hi");
+      app.preloader.show();
+      $.ajax({
+        type:'POST', 
+        url:base_url+'APP/Appcontroller/edit_hcvtimesave',
+        data:hcvtime_edit,
+        success:function(result){        
+          var res=result.trim();
+          if(res=='updated'){
+            app.dialog.alert("Data updated successfully.");
+            mainView.router.navigate("/view_mother_hcv/"+hr_id+"/");
+          }else{
+            app.dialog.alert("Problem inserting data");
+          }  
+          app.preloader.hide();        
+        }        
+      });
+    }
   }  
 } 
+function isInt_number(v) {
+  var num = /^-?[0-9]+$/; 
+  return num.test(v);
+}
+function isFloat_number(v) {
+  var num = /^[-+]?[0-9]+\.[0-9]+$/;
+  return num.test(v);
+}
 $(document).on('page:init', '.page[data-name="hcv_db"]', function (page) {
   menuload();
   checkConnection();
@@ -22667,34 +22808,81 @@ function dbstnedit(){
   var edit_db_data = $("#edit_db_data").serialize();
   var hidden_hiid = $("#hidden_hiid").val();
   var indb_km = $("#indb_km").val();
+  var outdb_km = $("#outdb_km").val();
   var indb_pressure = $("#indb_pressure").val();
   var outdb_pressure = $("#outdb_pressure").val();
+  var out_per_trip_gas_sales = $("#out_per_trip_gas_sales").val();
   if(indb_km==""){
     app.dialog.alert("Enter IN/START kilometer");
     return false;
   }else if(indb_pressure==""){
     app.dialog.alert("Enter IN/START pressure");
     return false;
+  }else if(out_per_trip_gas_sales==""){
+    app.dialog.alert("Enter per trip gas sales");
+    return false;
   }else if(outdb_pressure==""){
     app.dialog.alert("Enter OUT/END pressure");
     return false;
   }else{
-  app.preloader.show(); 
-    $.ajax({
-      type:'POST',  
-      url:base_url+'APP/Appcontroller/editdbinfo_save',
-      data:edit_db_data,
-      success:function(res){
-        var res=res.trim();
-        if(res=='updated'){
-          app.dialog.alert("Data updated successfully.");
-          mainView.router.navigate("/hcv_db_details/"+hidden_hiid+"/");
-        }else{
-          app.dialog.alert("Problem inserting data");
-        }  
-        app.preloader.hide(); 
+    var inkm_chk=isInt_number(indb_km);
+    var outkm_chk=isInt_number(outdb_km);
+    if(inkm_chk==true){
+      var in_km_val = parseInt(indb_km);
+    }else if(inkm_chk==false){
+      var in_km_val = parseFloat(indb_km);
+    }
+    if(outkm_chk==true){
+      var out_km_val = parseInt(outdb_km);
+    }else if(outkm_chk==false){
+      var out_km_val = parseFloat(outdb_km);
+    }
+
+    var inpress_chk=isInt_number(indb_pressure);
+    var outpress_chk=isInt_number(outdb_pressure);
+    if(inpress_chk==true){
+      var in_press_val = parseInt(indb_pressure);
+    }else if(inpress_chk==false){
+      var in_press_val = parseFloat(indb_pressure);
+    }
+    if(outpress_chk==true){
+      var out_press_val = parseInt(outdb_pressure);
+    }else if(outpress_chk==false){
+      var out_press_val = parseFloat(outdb_pressure);
+    }
+
+    if(out_km_val < in_km_val){
+      outdb_km = $('#outdb_km').val('');
+      app.dialog.alert("Sorry, Out KM can not be less than IN KM");
+      $('#outdb_km').focus();
+      return false;
+    }else if(out_press_val > in_press_val){
+      if(in_press_val==0){
+        app.dialog.alert("Mother IN pressure must be greater than 0");
+      }else if(in_press_val != 0){
+        outdb_pressure = $('#outdb_pressure').val('');
+        app.dialog.alert("Sorry, Out pressure can not be gretaer than IN pressure");
+        $('#outdb_pressure').focus();
+        return false;
       }
-    });
+    }else{
+      app.preloader.show(); 
+      $.ajax({
+        type:'POST',  
+        url:base_url+'APP/Appcontroller/editdbinfo_save',
+        data:edit_db_data,
+        success:function(res){
+          var res=res.trim();
+          if(res=='updated'){
+            app.dialog.alert("Data updated successfully.");
+            mainView.router.navigate("/hcv_db_details/"+hidden_hiid+"/");
+          }else{
+            app.dialog.alert("Problem inserting data");
+          }  
+          app.preloader.hide(); 
+        }
+      });
+    }
   }
 }
 function formatAMPM(date) {
@@ -23005,6 +23193,7 @@ function logOut(){
         window.localStorage.removeItem("session_umob");
         window.localStorage.removeItem("sess_designation");
         window.localStorage.removeItem("module_name");
+        window.localStorage.removeItem("session_propic");
         mainView.router.navigate('/');   
         app.panel.close();
       }else if(res=='fail'){
