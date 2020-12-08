@@ -239,4 +239,24 @@ var routes = [
     url: './hcv/edit_dryout.html?hi_id={{hi_id}}',
     name: 'edit_dryout',
   },
+  {
+    path: '/mrs/',
+    url: './mrs/mrs.html',
+    name: 'mrs',
+  },
+  {
+    path: '/add_mrs/', 
+    url: './mrs/add_mrs.html',
+    name: 'add_mrs',
+  },
+  {
+    path: '/mrs_details/:mrs_id/',
+    url: './mrs/mrs_details.html?mrs_id={{mrs_id}}',
+    name: 'mrs_details',
+  },
+  {
+    path: '/edit_mrs/:mrs_id/',
+    url: './mrs/edit_mrs.html?mrs_id={{mrs_id}}',
+    name: 'edit_mrs',
+  },
 ];

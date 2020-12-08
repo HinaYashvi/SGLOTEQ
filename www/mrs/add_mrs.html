@@ -1,0 +1,126 @@
+<div data-name="add_mrs" class="page pagebg_clr">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">Add MRS</div>
+      <div class="right">
+        <a class="link" href="/dashboard/"><i class="f7-icons text-white">house_fill</i></a>
+        <a class="link panel-open" href="#" data-panel=".panel-right-2" onclick="menuload()"><i class="f7-icons text-white">bars</i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content">      
+    <form id="form_mrs" class="form_mrs">  
+      <div class="block">       
+        <div class="list no-hairlines-md">
+          <!--input type="hidden" name="hidd_dpr_id" id="hidd_dpr_id">
+          <input type="hidden" name="hidd_created" id="hidd_created">
+          <input type="hidden" name="hidd_sheetid" id="hidd_sheetid">
+          <input type="hidden" name="hidd_sess_user" id="hidd_sess_user">
+          <input type="hidden" name="hidd_slot_sel" id="hidd_slot_sel">
+          <input type="hidden" name="hidd_slot_sel_str" id="hidd_slot_sel_str"-->
+          <ul id="addmrs" class="no-bg">
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title item-floating-label floatlbl_placeholder">Industry</div>
+                <div class="item-input-wrap txtbox_border input-dropdown-wrap">
+                  <select class="form-control" name="mrs_industry" id="mrs_industry">
+                    <option value="">---SELECT---</option>
+                    <option value="VRN CERAMICS LTD">VRN CERAMICS LTD</option>
+                  </select>
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">MRS Total (M<sup>3</sup>)</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="number" name="mrs_total" id="mrs_total">
+                </div>
+              </div>
+            </li>           
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">MRS Yesterday</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="number" name="mrs_yesterday" id="mrs_yesterday">
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Corrected Total(SCM)</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="number" name="corr_total" id="corr_total">
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Uncorrected Total (M<sup>3</sup>)</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="number" name="uncorr_total" id="uncorr_total">
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Temperature FC(<sup>0</sup>C)</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="number" name="temprature_fc" id="temprature_fc">
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Pressure FC(Bar)</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="number" name="pressure_fc" id="pressure_fc">
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Pressure Gauge(Bar-g)</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="number" name="pressure_gauge" id="pressure_gauge">
+                </div>
+              </div>
+            </li>
+
+            <li class="item-content item-input item-input-focused">
+              <div class="item-inner">
+                <div class="item-title floatlbl_placeholder">Battery voltage(V)</div>
+                <div class="item-input-wrap txtbox_border ">
+                  <input type="number" name="battery_vlt" id="battery_vlt">
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="block">
+          <div class="row">
+            <div class="col-50"><button class="button col button button-fill color-black no-radius" type="button" onclick="mrsadd()" id="savecomp">Save</button></div>
+            <div class="col-50"><a class="button col button button-fill color-gray no-radius back" href="#" 
+            >back</a></div>
+          </div>
+        </div>
+      </div>    
+    </form>
+  </div>
+</div>

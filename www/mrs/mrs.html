@@ -1,0 +1,43 @@
+<div data-name="mrs" class="page">
+	<div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding navbg">
+      <div class="left">
+        <a class="link back">
+          <i class="f7-icons text-white">arrow_left</i>          
+        </a>
+      </div>
+      <div class="title text-white">MRS List
+      <!--a class="col plus_icon" href="/dpr/"><i class="f7-icons mr-5 fs-20 text-white pl-90p" >plus</i></a-->    
+      </div>    
+      
+      <div class="right">
+        <a class="link ml-5p" href="/dashboard/"><i class="f7-icons text-white">house_fill</i></a>
+        <a class="link panel-open" href="#" data-panel=".panel-right-2" onclick="menuload()"><i class="f7-icons text-white">bars</i></a>
+      </div> 
+    </div>
+  </div>
+
+  <div class="fab fab-right-bottom">
+    <a href="/add_mrs/" class="color-fbtn">
+      <i class="f7-icons">plus</i>
+      <i class="f7-icons">multiply</i>
+    </a>
+  </div>     
+		
+  	<div class="page-content"> 
+    <div class="">
+      <div class="block m-0"><div class="row"><div class="col"><span class="total_cms fw-600 sgl-orange"></span></div><div class="col"><!--a class="col button button-fill color-red" href="/dpr/">Add DPR</a--></div></div></div>
+      <div class="card data-table">      
+          <table>
+            <thead class="light-thead">
+              <tr>
+                <th class="label-cell text-uppercase table-th"><strong>MRS Details</strong></th>
+                <th class="label-cell text-uppercase table-th" width="40%"><strong>Date &amp; Time</strong></th>
+              </tr>
+            </thead>
+            <tbody id="mrs_list"></tbody>
+          </table>
+        </div>
+    </div>  			
+</div>

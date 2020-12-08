@@ -5,7 +5,7 @@ var app = new Framework7({
   pushState: true, 
   //popupCloseByOutside:true,
   name: 'SGL',// App Name 
-  id: 'com.phonegap.sgltest', // App id //
+  id: 'com.phonegap.sgl', // App id //
   panel: {
     //swipe: 'left', // Enable swipe panel //
     closeByBackdropClick : true,    
@@ -1429,7 +1429,20 @@ $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
     qrcode_txt=qrcode_txt;
     $("#barcode_code").val(qrcode_txt);
   }
-  
+  /*var myDate=new Date();
+  myDate.setDate(myDate.getDate());
+  // format a date    
+  var dt = myDate.getDate();
+  var yr = myDate.getFullYear();
+  var mnth = myDate.getMonth();  */
+
+  var d = new Date();
+  d.setDate(d.getDate()+1);
+  var yr = d.getFullYear();
+  var mnth = d.getMonth();
+  var dt = d.getDate();
+  //var c = new Date(yr + 3, mnth, dt);
+  //alert(c);
       
   var calendarModal = app.calendar.create({
     inputEl: '#demo-calendar-modal',
@@ -1439,7 +1452,15 @@ $(document).on('page:init', '.page[data-name="add_vst"]', function (page) {
     footer: true,
     renderToolbar: function () {   
       return '<div class="toolbar no-shadow"><div class="toolbar-inner"><div class="calendar-month-selector"><a href="#" class="link icon-only calendar-prev-month-button"><i class="f7-icons ">chevron_left</i></a><span class="current-month-value"></span><a href="#" class="link icon-only calendar-next-month-button"><i class="f7-icons ">chevron_right</i></a></div><div class="calendar-year-selector"><a href="#" class="link icon-only calendar-prev-year-button"><i class="f7-icons ">chevron_left</i></a><span class="current-year-value"></span><a href="#" class="link icon-only calendar-next-year-button"><i class="f7-icons ">chevron_right</i></a></div></div></div>'; 
-    }
+    },
+    disabled: [{
+        //from: new Date(yr, mnth, dt),
+        //to: new Date(stddt_yr, stddt_mm, stddt_dd),
+      },
+      {
+        from: new Date(yr + 3, mnth, dt),
+      }
+    ],
   }); 
   var hidden_vehno = $("#hidden_vehno").val();
   //alert(hidden_vehno);
@@ -22098,9 +22119,11 @@ function upload_numplate_reg(lastid,code){
   var actual_imgname1 = split_imgfilename[0];
   var img_filename1 = actual_imgname1.split('%20').join('_');
   //alert("img_filename1 "+img_filename1);
-  var uploadControllerURL_noplate = base_url+"APP/Appcontroller/photoupload_noplate/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename1;
-  //alert("uploadControllerURL_noplate "+uploadControllerURL_noplate);
-  ft.upload(imageURI,uploadControllerURL_noplate, win, fail, options,true);
+  if(img_filename1!="" && img_filename1!="index.html"){
+    var uploadControllerURL_noplate = base_url+"APP/Appcontroller/photoupload_noplate/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename1;
+    //alert("uploadControllerURL_noplate "+uploadControllerURL_noplate);
+    ft.upload(imageURI,uploadControllerURL_noplate, win, fail, options,true);
+  }
 } 
 function upload_rcbook_reg(lastid,code){
   var session_uid = window.localStorage.getItem("session_uid");
@@ -22125,9 +22148,11 @@ function upload_rcbook_reg(lastid,code){
   //console.log("ft :::::::::: "+ft);
   var actual_imgname2 = split_imgfilename[0];
   var img_filename2 = actual_imgname2.split('%20').join('_');
-  var uploadControllerURL_rc = base_url+"APP/Appcontroller/photoupload_rcbook/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename2;
-  //alert("uploadControllerURL_rc "+uploadControllerURL_rc);
-  ft.upload(imageURI,uploadControllerURL_rc, win, fail, options,true);
+  if(img_filename2!="" && img_filename2!="index.html"){
+    var uploadControllerURL_rc = base_url+"APP/Appcontroller/photoupload_rcbook/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename2;
+    //alert("uploadControllerURL_rc "+uploadControllerURL_rc);
+    ft.upload(imageURI,uploadControllerURL_rc, win, fail, options,true);
+  }
 }
 function upload_driver_reg(lastid,code){
   var session_uid = window.localStorage.getItem("session_uid");
@@ -22151,9 +22176,11 @@ function upload_driver_reg(lastid,code){
   //console.log("ft :::::::::: "+ft);
   var actual_imgname3 = split_imgfilename[0];
   var img_filename3 = actual_imgname3.split('%20').join('_');
-  var uploadControllerURL_dpic = base_url+"APP/Appcontroller/photoupload_driverpic/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename3;
-  //alert(uploadControllerURL_dpic);
-  ft.upload(imageURI,uploadControllerURL_dpic, win, fail, options,true);
+  if(img_filename3!="" && img_filename3!="index.html"){
+    var uploadControllerURL_dpic = base_url+"APP/Appcontroller/photoupload_driverpic/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename3;
+    //alert(uploadControllerURL_dpic);
+    ft.upload(imageURI,uploadControllerURL_dpic, win, fail, options,true);
+  }
 }
 function upload_license(lastid,code){
   var session_uid = window.localStorage.getItem("session_uid");
@@ -22177,9 +22204,11 @@ function upload_license(lastid,code){
   //console.log("ft :::::::::: "+ft);
   var actual_imgname4 = split_imgfilename[0];
   var img_filename4 = actual_imgname4.split('%20').join('_');
-  var uploadControllerURL_lic = base_url+"APP/Appcontroller/photoupload_license/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename4;
-  //alert(uploadControllerURL_lic);
-  ft.upload(imageURI,uploadControllerURL_lic, win, fail, options,true);
+  if(img_filename4!="" && img_filename4!="index.html"){
+    var uploadControllerURL_lic = base_url+"APP/Appcontroller/photoupload_license/"+session_uid+"/"+lastid+"/"+code+"/"+img_filename4;
+    //alert(uploadControllerURL_lic);
+    ft.upload(imageURI,uploadControllerURL_lic, win, fail, options,true);
+  }
 }
 
 $(document).on('page:init', '.page[data-name="edit_regveh"]', function (page) {
@@ -23215,3 +23244,114 @@ function logOut(){
   mainView.router.navigate('/');   
   app.panel.close();*/
 } 
+/* -------------------------------------- MRS MODULE CODE(DEMO) -------------------------------------- */
+$(document).on('page:init', '.page[data-name="mrs"]', function (page) {
+  checkConnection();
+  app.panel.close();
+  menuload();  
+  var sess_designation = window.localStorage.getItem("sess_designation");
+  var session_uid = window.localStorage.getItem("session_uid");
+  $.ajax({
+    type:'POST', 
+    dataType:'json',
+    url:base_url+'APP/Appcontroller/getMRSdata',
+    data:{'session_uid':session_uid},
+    success:function(res){
+      var html = res.html;
+      $("#mrs_list").html(html);  
+    }
+  });
+}); 
+function getmrsdetails(mrs_id){
+  app.preloader.show();   
+  mainView.router.navigate("/mrs_details/"+mrs_id+"/");
+  app.preloader.hide();
+}
+$(document).on('page:init', '.page[data-name="mrs_details"]', function (page) {
+  menuload();
+  checkConnection();
+  app.panel.close();
+  app.preloader.show();
+  var mrs_id = page.detail.route.params.mrs_id; 
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/getmrs_data',
+    data:{'mrs_id':mrs_id},
+    dataType:'json',
+    success:function(result){    
+      var html = result.html; 
+      $(".mrs_tbl").html(html);
+      app.preloader.hide();
+    }
+  });  
+});
+function mrsadd(){
+  menuload();
+  checkConnection();
+  var session_uid = window.localStorage.getItem("session_uid");
+  var form_mrs = $(".form_mrs").serialize();  
+  app.preloader.show();
+  $.ajax({
+    type:'POST', 
+    url:base_url+'APP/Appcontroller/addMRS',
+    data:form_mrs+"&session_uid="+session_uid,  
+    success:function(res_cms){
+      var parse_msg = $.parseJSON(res_cms);
+      var msg = parse_msg.msg;
+      if(msg=='inserted'){
+        app.dialog.alert("MRS added successfully!");
+        mainView.router.navigate("/mrs/");
+        app.preloader.hide();
+      }
+    } 
+  });  
+}
+function editMRS(mrs_id){
+  checkConnection();
+  mainView.router.navigate("/edit_mrs/"+mrs_id+"/");
+}
+$(document).on('page:init', '.page[data-name="edit_mrs"]', function (page) {
+  menuload();
+  app.panel.close();
+  checkConnection();  
+  var mrs_id = page.detail.route.params.mrs_id;
+  var session_utype = window.localStorage.getItem("session_utype");
+  var session_stid = window.localStorage.getItem("session_stid");  
+  app.preloader.show();  
+  $.ajax({
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/chnagemrsdata',
+    data:{'mrs_id':mrs_id},
+    dataType:'json',
+    success:function(result){       
+      var editmrs_form = result.editmrs_form;
+      $(".editmrs_form").html(editmrs_form);
+      app.preloader.hide();
+    }
+  });  
+});
+function mrsedit(){
+  checkConnection();
+  menuload(); 
+  var session_uid = window.localStorage.getItem("session_uid");
+  var form_mrs_edit = $(".form_mrs_edit").serialize();
+  app.preloader.show();
+  $.ajax({   
+    type:'POST',  
+    url:base_url+'APP/Appcontroller/editmrs',
+    data:form_mrs_edit+"&session_uid="+session_uid,
+    success:function(result){
+      var parseupdate = $.parseJSON(result);
+      var msg = parseupdate.msg;
+      //alert(msg);
+      if(msg=='updated'){
+        app.dialog.alert("MRS updated successfully!");
+        mainView.router.navigate("/mrs/");
+      }else if(msg=='not_updated'){
+        app.dialog.alert("Problem updating MRS!");
+        mainView.router.navigate("/mrs/");        
+      }
+    }
+  }); 
+  app.preloader.hide();     
+}
